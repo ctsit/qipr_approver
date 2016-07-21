@@ -1,0 +1,9 @@
+<h1>Welcome to QIPR</h1>
+{% load staticfiles %}
+<img src="{% static 'qipr/img/qipr.png' %}" alt="QIPR" style="width:100%"/>
+<input name="search" type="text" value="" placeholder="Search Projects"/>
+<iframe width="560" height="315"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" frameborder="0" allowfullscreen>
+</iframe>
+<a href="{% url 'approver:firstlogin' %}">Register and add your first project!</a>
+<a href="{% url 'approver:shib' %}">Login with shibboleth</a>
