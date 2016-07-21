@@ -1,0 +1,42 @@
+.cts-toast {
+    position: fixed;
+    width: 60%;
+    height: auto;
+    color: white;
+    background-color: #6e72ee;
+    bottom: 5px;
+    font-size: xx-large;
+    text-align: center;
+    transition: 1s;
+    left: 20%;
+    border-radius: 2px;
+    box-shadow: 3px 3px 3px #888888;
+    max-height: 0;
+}
+
+.cts-toast--active {
+    max-height: 3.2rem;
+}
+
+.tag-holder {
+  display:inline;
+}
+.tag {
+  display: inline;
+  color: white;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+
+.tag__delete {
+  display: inline;
+  background-color: red;
+  padding-left: 1rem;
+}
+
+.tag__container {
+  display: inline;
+  background-color: lightseagreen;
+  border-radius: 3px;
+  margin: .3rem;
+}

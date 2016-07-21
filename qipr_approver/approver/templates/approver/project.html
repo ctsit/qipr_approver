@@ -1,0 +1,10 @@
+<form action="{% url 'approver:projects' %}" method="post">
+    {% csrf_token %}
+    <h1>Projects</h1>
+ 	<p>
+		Enter information about your project
+	</p>
+    {{ form.as_p }}
+    <input class="btn" type="submit" value="Submit Project" />
+</form>
+
