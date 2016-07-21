@@ -1,0 +1,57 @@
+set ls=2
+set bs=2
+set background=dark
+set nu
+set nocompatible
+set ruler
+filetype on
+syntax on
+filetype indent on
+
+set autoindent
+set smartindent
+set splitbelow
+set splitright
+set showmatch
+set expandtab
+set tabstop=4 " Set Tab size
+set expandtab " Expand Tabs (pressing Tab inserts spaces)
+set shiftwidth=4 " Number of spaces to use for each step of (auto)indent
+set softtabstop=4 " makes the spaces feel like real tabs; one backspace goes back X spaces :)
+set backspace=indent,eol,start
+retab
+set nowrapscan
+set ignorecase " Ignore case in search
+set smartcase " Consider case only when typing Uppercase
+set incsearch " Show search results when typing
+set hlsearch " highlight search pattern
+set vb t_vb= " don't notify (no audio/visual bell)
+set showmode " display mode INSERT/REPLACE/...
+set scrolloff=3 " do not let the curser get too close to the edge
+set laststatus=2 " laststatus: show status line? Yes, always!
+
+map <F1> <ESC>:NERDTreeToggle <CR>
+map <F2> <c-w>wl
+map <F3> <Esc>:echo expand('%:p')<Return>
+autocmd filetype python nnoremap <F3> :w <bar> exec '!pylint ' .shellescape('%')<CR>
+autocmd filetype php nnoremap <F4> :w <bar> exec '!php '.shellescape('%')<CR>
+autocmd filetype python nnoremap <F3> :w <bar> exec '!pylint '.shellescape('%')<CR>
+autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+map <F5> ddkkp<CR>
+map <F6> :set number! <CR>
+map <F7> :TlistToggle <CR>
+"map <F9> :let &background = ( &background == "dark"? "light" : "dark" ) <CR>
+map <F9> :set paste <CR>
+
+" restore position
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END

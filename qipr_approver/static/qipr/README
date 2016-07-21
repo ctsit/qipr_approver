@@ -1,0 +1,4 @@
+Put static files in this directory. 
+
+In order to use them go see documentation at
+https://docs.djangoproject.com/en/1.9/howto/static-files/
