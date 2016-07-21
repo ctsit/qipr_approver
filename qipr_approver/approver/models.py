@@ -135,7 +135,7 @@ class Person(Provenance):
 class Project(Provenance):
     title = models.CharField(max_length=300)
     description = models.TextField()
-    owner = models.ForeignKey(Person, on_delete=models.SET_NULL, related_name="projects")
+    owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     keywords = models.ManyToManyField(Keyword)
     category = models.ManyToManyField(Category)
     collaborators = models.ManyToManyField(Person, related_name="collaborations")
