@@ -34,20 +34,16 @@ def project(request):
         request.session['message'] = 'Project Saved!'
         context['form'] = saved_form
         return redirect(reverse("approver:dashboard"))
-        #If the project saved properly
-        #context['content'] = 'approver/dashboard.html'
 
     else:
-        #TODO: maybe url args to prefill project information?
         now = timezone.now()
         project_form = ProjectForm(initial={'proposed_start_date': now,'proposed_end_date': now})
         context['form'] = project_form
         if(request.GET.get("project_id")):
-            proj_id = request.GET.get("project_id")
-            project = Project.objects.get(id=proj_id)
-            username = utils.get_current_user_gatorlink(request.session)
-            project_owner = User.objects.get(id=project.owner.id).username + "test"
-            if project_owner != username :
+            project = Project.objects.get(id=request.GET.get('project_id'))
+            project_owner_username = project.owner.user.username
+            current_user_username = utils.get_current_user_gatorlink(request.session)
+            if project_owner_username != current_user_username:
                 request.session['message'] = 'You are not authorized to access this project'
                 return redirect(reverse("approver:dashboard"))
 
