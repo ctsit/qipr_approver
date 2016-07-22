@@ -1,0 +1,20 @@
+[{
+  "model": "auth.User",
+  "fields": {
+    "username": "username1",
+    "first_name": "firstname1",
+    "last_name": "last_name1",
+    "email": "email1@ufl.edu",
+    "password": "password1"
+  }
+},
+{
+  "model": "auth.User",
+  "fields": {
+    "username": "username2",
+    "first_name": "firstname2",
+    "last_name": "last_name2",
+    "email": "email2@ufl.edu",
+    "password": "password2"
+  }
+}]
