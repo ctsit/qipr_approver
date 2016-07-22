@@ -14,4 +14,6 @@ def form_input(input_dict):
     type: the input type. See w3 schools input types for information
     value: the value of the input. Not checked or validated
     """
+    input_classes = input_dict.get('input_classes') or []
+    input_dict['input_class_list'] = ' '.join([str(cls) for cls in input_classes])
     return input_dict

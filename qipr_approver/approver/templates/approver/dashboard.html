@@ -1,48 +1,28 @@
 <div>
-	<h3>
-		<a href="{% url 'approver:projects' %}">Add Project</a>
-	</h3>
+    <h3>
+        <a href="{% url 'approver:projects' %}">Add Project</a>
+    </h3>
 </div>
 <div>
-	<div style="display:inline">
-		List of Projects: 
-	</div>
-	<div style="float:right">
-			<a href="{% url 'approver:projects' %}">Search</a>
-	</div>
-</div>
-<div style="float:left;width:50%;">
-	<span>Projects</span>
-	<ol style="padding:initial;">
-		{% for project in projects %}
-			<a href="{% url 'approver:projects'  %}?project_id={{project.id}}"> {{ project.id }}{{ project.title }} </a> </br>
-			{{ project.title }} </br>
-		{% endfor %}
-	</ol>
-</div >
-<div>
-	<span>Role</span>
-	<ol>
-		{%for project in projects%}
-			 Mentor </br>
-		{% endfor %}
-	</ol>
-</div >
-
-<div class="pagination" style="padding:20 0;">
-    <span class="step-links">
-        {% if projects.has_previous %}
-            <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ projects.number }} of {{ projects.paginator.num_pages }}.
-        </span>
-
-        {% if projects.has_next %}
-            <a href="?page={{ projects.next_page_number }}"> &gt; </a>
-        {% endif %}
-    </span>
+    <div style="display:inline">
+        List of Projects:
+    </div>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th data-field="title">Title</th>
+                <th data-field="edit_link">Edit Project</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.0 }}</td>
+                    <td><a href="{% url 'approver:projects' project_id=project.1 %}">link</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 

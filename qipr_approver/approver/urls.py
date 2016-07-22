@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^shib/$', views.fake_shib, name='shib'),
     url(r'^projects/$', views.project, name='projects'),
+    url(r'^projects/(?P<project_id>[0-9]+)/$', views.project, name='projects'),
     url(r'^aboutyou/$', views.about_you, name='aboutyou'),
     url(r'^first_login/$', views.first_login, name='firstlogin'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),

@@ -17,30 +17,20 @@ from django.shortcuts import render
 def dashboard(request):
     project_title = []
     projects = []
-    if request.method == 'GET':
-        username = request.session.get(constants.SESSION_VARS['gatorlink'])
-        if(len(User.objects.filter(username=username)) != 0):
-            user = User.objects.get(username=username)
-            person = user.person
-            projects_list = person.projects.all()
-            paginator = Paginator(projects_list, 1) # Show 25 contacts per page
-            page = request.GET.get('page')
-            try:
-                projects = paginator.page(page)
-            except PageNotAnInteger:
-                projects = paginator.page(1)
-            except EmptyPage:
-                projects = paginator.page(paginator.num_pages)
-
-                context = {
-                    'content': 'approver/dashboard.html',
-                    'projects' : projects,
-                    'toast_text' : utils.get_and_reset_message(request.session)
-                }
-                return utils.layout_render(request, context)
     context = {
         'content': 'approver/dashboard.html',
-        'projects' : projects,
-        'toast_text' : utils.get_and_reset_message(request.session)
+        'projects' : get_project_context(request),
+        'toast_text' : utils.get_and_reset_toast(request.session)
     }
+
     return utils.layout_render(request, context)
+
+def get_project_context(request):
+    username = request.session.get(constants.SESSION_VARS['gatorlink'])
+    user = User.objects.get(username=username)
+    projects = user.person.projects.all()
+    return [__get_project_tuples(project) for project in projects]
+
+def __get_project_tuples(project):
+    return (project.title,
+            project.pk)

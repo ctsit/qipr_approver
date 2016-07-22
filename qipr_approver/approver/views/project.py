@@ -15,49 +15,31 @@ import approver.utils as utils
 from django.core.urlresolvers import reverse
 
 @login_required
-def project(request):
+def project(request, project_id=None):
     context = {
         'content': 'approver/project.html',
+        'project_id': project_id,
     }
+    current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
     if request.method == 'POST':
         project_form = request.POST
-        editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
         title = project_form.get('title')
-        if not __project_exists(project_form):
-            project = project_crud.create_new_project_from_session_title(request.session, title)
-        project_crud.update_project_from_project_form(project, project_form, editing_user)
-
-        saved_form = ProjectForm(initial={'title': project.title,
-                                          'description': project.description,
-                                          'proposed_start_date': project.proposed_start_date,
-                                          'proposed_end_date': project.proposed_end_date})
-        request.session['message'] = 'Project Saved!'
-        context['form'] = saved_form
-        return redirect(reverse("approver:dashboard"))
+        project = project_crud.create_or_update_project(current_user, project_form, project_id)
+        return utils.dashboard_redirect_and_toast(request, 'Project Saved!')
 
     else:
         now = timezone.now()
-        project_form = ProjectForm(initial={'proposed_start_date': now,'proposed_end_date': now})
+        project_form = ProjectForm()
         context['form'] = project_form
-        if(request.GET.get("project_id")):
-            project = Project.objects.get(id=request.GET.get('project_id'))
-            project_owner_username = project.owner.user.username
-            current_user_username = utils.get_current_user_gatorlink(request.session)
-            if project_owner_username != current_user_username:
-                request.session['message'] = 'You are not authorized to access this project'
-                return redirect(reverse("approver:dashboard"))
-
-            project_form = ProjectForm(initial={'title': project.title, 'description': project.description, 'proposed_start_date': project.proposed_start_date,
-                                             'proposed_end_date': project.proposed_end_date, })
-            context['form'] = project_form
-        return utils.layout_render(request, context)
-
-
-def __project_exists(project_form):
-    """
-    This returns a boolean for if the project exists or not
-    """
-    """still currently broken
-    maybe we pass the primary key in the form and if its empty
-    then we know the project doesnt exist"""
-    return False
+        if(project_id is not None):
+            project = project_crud.get_project_or_none(project_id)
+            if(project is None):
+                return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
+            else:
+                if(project_crud.curent_user_is_project_owner(current_user, project) is not True):
+                    return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
+                else:
+                    context['form'] = ProjectForm(project)
+                    return utils.layout_render(request, context)
+        else:
+            return utils.layout_render(request, context)

@@ -24,8 +24,6 @@ def create_new_user_from_current_session(session):
                         email_address=new_user.email,
                         last_login_time=now)
 
-    new_person.after_create(new_user)
-
     new_person.save(last_modified_by=new_user)
 
     return new_user
