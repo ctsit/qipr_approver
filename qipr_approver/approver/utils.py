@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
+from django.core.urlresolvers import reverse
 
 import datetime
 
@@ -29,7 +30,28 @@ def get_current_user_gatorlink(session):
     """
     return session.get(constants.SESSION_VARS['gatorlink'])
 
-def get_and_reset_message(session):
-    message = session.get("message")
-    session['message'] = ''
-    return message
+def get_and_reset_toast(session):
+    toast = session.get("toast_text")
+    session['toast_text'] = ''
+    return toast
+
+def dashboard_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:dashboard"))
+
+def set_created_by_if_empty(model, user):
+    """
+    This function is called by our save function because django
+    throws exceptions on object access if something doesn't exist.
+    You cannot dereference a related field if it doesn't exist.
+    Meaning you have to do a try except block.
+    """
+    try:
+        # the following line throws an exception
+        model.created_by is not None
+    except:
+        model.created_by = user
+
+def format_date(date):
+    date_parts = [date.year, date.month, date.day]
+    return '/'.join([str(part) for part in date_parts])

@@ -3,6 +3,7 @@
         {% load staticfiles %}
         <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
         <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> 
     </head>
     <body>
         <nav style="background-color:#6e72ee;">
@@ -20,6 +21,7 @@
             <span class="cts-toast__text">{{ toast_text }}</span>
         </div>
         {% endif %}
+        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
         <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
     </body>
 </html>

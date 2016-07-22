@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 
 from approver.models import Project
-from approver.custom_forms import AboutYouForm
+from approver.forms import AboutYouForm
 from approver.workflows import user_crud
 
 import json
@@ -24,9 +24,7 @@ def about_you(request):
         editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
 
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
-        saved_form = AboutYouForm(user=user)
-        context['form'] = saved_form
-        context['toast_text'] = 'Profile Saved!'
+        return utils.dashboard_redirect_and_toast(request, 'Profile Saved!')
 
     else:
         username = request.session.get(constants.SESSION_VARS['gatorlink'])

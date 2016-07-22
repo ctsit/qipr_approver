@@ -17,11 +17,8 @@ class Provenance(models.Model):
     created = models.DateTimeField(auto_now_add=True,editable=False)
     last_modified = models.DateTimeField(auto_now=True,editable=True)
 
-    def after_create(self, user):
-        self.created_by = user
-        self.last_modified_by = user
-
     def save(self, last_modified_by, *args, **kwargs):
+        utils.set_created_by_if_empty(self, last_modified_by)
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
 
@@ -116,8 +113,8 @@ class Person(Provenance):
     position = models.ManyToManyField(Position)
     organization = models.ManyToManyField(Organization)
     business_address = models.ManyToManyField(Address)
-    business_phone = models.IntegerField(null=True)
-    contact_phone = models.IntegerField(null=True)
+    business_phone = models.CharField(max_length=50, null=True)
+    contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
     speciality = models.ManyToManyField(Speciality)
     training = models.ManyToManyField(Training)
@@ -147,7 +144,7 @@ class Project(Provenance):
     clinic_setting = models.ManyToManyField(ClinicalSetting)
 
     def __str__(self):
-        return ' '.join([self.title, self.owner])
+        return ' '.join([self.title, str(self.owner)])
 
 class Response(Provenance):
     user = models.ForeignKey(User)

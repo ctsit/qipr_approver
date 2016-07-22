@@ -132,5 +132,11 @@
         node.addEventListener('click', deleteTag);
     });
 
+    $('.datepicker').pickadate({
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenName: true,
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+    });
 
 }();

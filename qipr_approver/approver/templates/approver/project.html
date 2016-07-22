@@ -1,10 +1,19 @@
+{% if project_id %}
+<form action="{% url 'approver:projects' project_id=project_id %}" method="post">
+{% endif %}
+{% if not project_id %}
 <form action="{% url 'approver:projects' %}" method="post">
+{% endif %}
     {% csrf_token %}
     <h1>Projects</h1>
  	<p>
 		Enter information about your project
 	</p>
-    {{ form.as_p }}
+    {% load form_input %}
+    {% form_input form.title %}
+    {% form_input form.description %}
+    {% form_input form.proposed_start_date %}
+    {% form_input form.proposed_end_date %}
     <input class="btn" type="submit" value="Submit Project" />
 </form>
 
