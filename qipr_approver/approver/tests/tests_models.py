@@ -1,15 +1,41 @@
+import django
 from django.test import TestCase
 from django.test import Client
 from approver.models import *
 from django.core.urlresolvers import reverse
+from django.db.models import fields
+
+class PersonModel(TestCase):
+	def test_person_model(self):
+		person = Person()
+		for field in Person._meta.fields:
+			if field.name in ["first_name","last_name"]:
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+				self.assertEqual(field.max_length,30)
+			if field.name in ["webpage_url","email_address"]:
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+			if field.name in ["business_phone","contact_phone"]:
+				self.assertEqual(isinstance(field,django.db.models.fields.IntegerField),True)
+
+class BaseClassWithUserData(TestCase):
+	# Insert the data through fixtures
+	def setup(self):
+		fixtures = ['user.json']
+		self.user = User.objects.all()[0]
+
+class BaseClassWithPersonData(BaseClassWithUserData):
+	def setUp(self):
+		self.user = User.objects.all()[0]
+		person =  Person(last_modified_by_id=self.user,user_id=self.user,first_name="f1",last_name="l1")
+		person.after_create(self.user)
+		person.save(last_modified_by=user)
+
+	def test_person(self):
+		print(type(self.person))
 
 class BaseClassWithTestData(TestCase):
-	fixtures = ['dump_admin.json']
-	user = User.objects.get(username="username1")
-	print("BaseClassWithTestData:Email- " + user.email)
-	person = Person.objects.get(first_name="qweqw")
-	#print("Person LastName:" + user.person.last_name)
-
+	#do nothing
+	print("test")
 
 class PersonTestCase(BaseClassWithTestData):
 	
