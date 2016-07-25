@@ -13,5 +13,4 @@ def index(request):
     context = {
         'content': 'approver/index.html',
     }
-    request.session.flush()
     return utils.layout_render(request, context)
