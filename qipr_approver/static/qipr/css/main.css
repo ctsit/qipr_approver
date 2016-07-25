@@ -23,8 +23,14 @@
 }
 
 .tag-holder {
-  display:inline;
+  display:inline-block;
 }
+
+.tagbox__input {
+    position: relative;
+    top: -1rem;
+}
+
 .tag {
   display: inline;
   color: white;
@@ -34,13 +40,31 @@
 
 .tag__container {
   display: inline;
-  background-color: lightseagreen;
-  border-radius: 3px;
+  /* the following color is the blue green thing we currently have */
+  background-color: #26a69a;
+  border-radius: 10px;
   margin: .3rem;
+  padding: .2rem;
+  font-size: .8rem;
+  font-weight: 300;
 }
 
 .tag__delete {
+  position: relative;
+  padding-left: .1rem;
+  top: 0.255rem;
+  color: red;
+  font-weight: 900; 
+  background: transparent !important;
   display: inline;
-  background-color: red;
-  padding-left: 1rem;
+  font-family: 'Material Icons';
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
