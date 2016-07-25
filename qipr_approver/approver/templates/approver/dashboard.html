@@ -17,7 +17,7 @@
         <tbody>
             {% for project in projects %}
                 <tr>
-                    <td>{{ project.0 }}</td>
+                    <td class="project__title">{{ project.0 }}</td>
                     <td><a href="{% url 'approver:projects' project_id=project.1 %}">link</a></td>
                 </tr>
             {% endfor %}
