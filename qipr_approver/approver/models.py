@@ -106,6 +106,18 @@ class Choice(Provenance):
     text = models.TextField()
     sort_order = models.IntegerField()
 
+class BigAim(Provenance,NamePrint):
+    name = models.CharField(max_length=100)
+    sort_order = models.IntegerField()
+
+class FocusArea(Provenance,NamePrint):
+    name = models.CharField(max_length=100)
+    sort_order = models.IntegerField()
+
+class ClinicalDepartment(Provenance,NamePrint):
+    name = models.CharField(max_length=100)
+    sort_order = models.IntegerField()
+
 class Person(Provenance):
     user = models.OneToOneField(User,related_name="person")
     first_name = models.CharField(max_length=30)
