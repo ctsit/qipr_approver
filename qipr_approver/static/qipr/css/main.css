@@ -18,6 +18,10 @@
     max-height: 3.2rem;
 }
 
+.project__title {
+    text-overflow: ellipsis;
+}
+
 .tag-holder {
   display:inline;
 }
@@ -28,15 +32,15 @@
   margin-right: .1rem;
 }
 
-.tag__delete {
-  display: inline;
-  background-color: red;
-  padding-left: 1rem;
-}
-
 .tag__container {
   display: inline;
   background-color: lightseagreen;
   border-radius: 3px;
   margin: .3rem;
+}
+
+.tag__delete {
+  display: inline;
+  background-color: red;
+  padding-left: 1rem;
 }
