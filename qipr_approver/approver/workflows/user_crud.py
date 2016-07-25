@@ -1,4 +1,4 @@
-from approver.models import Person, Speciality
+from approver.models import Person, Speciality, Expertise, QI_Interests, Suffix
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 
@@ -52,11 +52,32 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.webpage_url = about_you_form.get('webpage_url')
 
     specialities = extract_tags(about_you_form, 'speciality')
+    expertises = extract_tags(about_you_form, 'expertise')
+    qi_interests = extract_tags(about_you_form, 'qi_interest')
+    suffixes = extract_tags(about_you_form, 'suffix')
 
     update_tags(model=person,
                 tag_property='speciality',
                 tags=specialities,
                 tag_model=Speciality,
+                tagging_user=editing_user)
+
+    update_tags(model=person,
+                tag_property='expertise',
+                tags=expertises,
+                tag_model=Expertise,
+                tagging_user=editing_user)
+
+    update_tags(model=person,
+                tag_property='qi_interests',
+                tags=qi_interests,
+                tag_model=QI_Interests,
+                tagging_user=editing_user)
+
+    update_tags(model=person,
+                tag_property='suffix',
+                tags=suffixes,
+                tag_model=Suffix,
                 tagging_user=editing_user)
 
     user.save()
