@@ -1,5 +1,6 @@
-from approver.models import Person
+from approver.models import Person, Speciality
 from approver.constants import SESSION_VARS
+from approver.utils import extract_tags, update_tags
 
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -49,6 +50,14 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.business_phone = about_you_form.get('business_phone') or 0
     person.contact_phone = about_you_form.get('contact_phone') or 0
     person.webpage_url = about_you_form.get('webpage_url')
+
+    specialities = extract_tags(about_you_form, 'speciality')
+
+    update_tags(model=person,
+                tag_property='speciality',
+                tags=specialities,
+                tag_model=Speciality,
+                tagging_user=editing_user)
 
     user.save()
     person.save(last_modified_by=editing_user)

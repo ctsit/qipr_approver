@@ -116,7 +116,7 @@
 
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
-            value = event.target.parentElement.children[0].value,//the li
+            value = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
         removeValue(getTagboxName(event.target), value);
         parent.removeChild(removeMe);
