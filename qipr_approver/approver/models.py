@@ -4,6 +4,11 @@ from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
 
 from approver import utils
 
+class TaggedWithName(models.Model):
+    tag_property_name = 'name'
+    class Meta:
+        abstract = True
+
 class NamePrint(models.Model):
     def __str__(self):
         return self.name
@@ -25,7 +30,7 @@ class Provenance(models.Model):
     class Meta:
         abstract = True
 
-class Training(Provenance, NamePrint):
+class Training(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
 
@@ -52,47 +57,47 @@ class Organization(Provenance):
     def __str__(self):
         return self.org_name
 
-class Speciality(Provenance, NamePrint):
+class Speciality(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Position(Provenance, NamePrint):
+class Position(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Keyword(Provenance, NamePrint):
+class Keyword(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class SafetyTarget(Provenance, NamePrint):
+class SafetyTarget(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class ClinicalArea(Provenance, NamePrint):
+class ClinicalArea(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class ClinicalSetting(Provenance, NamePrint):
+class ClinicalSetting(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Suffix(Provenance, NamePrint):
+class Suffix(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
 
-class Expertise(Provenance, NamePrint):
+class Expertise(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class QI_Interests(Provenance, NamePrint):
+class QI_Interests(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Category(Provenance, NamePrint):
+class Category(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Section(Provenance, NamePrint):
+class Section(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=30)
     sort_order = models.IntegerField(unique=True)
 

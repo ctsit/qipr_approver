@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from approver.models import Person
 from approver.constants import SESSION_VARS
@@ -33,5 +34,8 @@ def after_validation(request):
         response = redirect(reverse("approver:aboutyou"))
         return response
     else:
+        user = User.objects.get(username=gatorlink)
+        user.person.last_login_time = timezone.now()
+        user.person.save(user)
         return redirect(reverse("approver:dashboard"))
 

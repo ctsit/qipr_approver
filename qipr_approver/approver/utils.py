@@ -53,5 +53,72 @@ def set_created_by_if_empty(model, user):
         model.created_by = user
 
 def format_date(date):
+    """
+    This format date is used with the date picker. It has to be in a
+    particular form in order to work
+    """
     date_parts = [date.year, date.month, date.day]
     return '/'.join([str(part) for part in date_parts])
+
+def extract_tags(form, tag_field_name):
+    """
+    This function extracts the tags from a form and returns
+    a list of their names.
+    """
+    invisible_space = u"\u200B"
+    split_character = ';'
+    tags = form.get(tag_field_name)
+    tags = tags.split(';')
+    for tag in tags:
+        if tag == '':
+            tags.remove('')
+    return [tag.replace(invisible_space, '') for tag in tags]
+
+def model_matching_tag(tag_text, model_class, current_user, matching_property=None):
+    """
+    This returns the model where
+    model_class.objects.filter(model_class.tag_property_name=tag_text)
+    or
+    model_class.objects.filter(matching_property=tag_text)
+    if no model matches, make a new one with the current_user
+    if more than one model exists, return None
+    """
+    filter_against = matching_property or model_class.tag_property_name
+    models = model_class.objects.filter(**{filter_against: tag_text})
+
+    if len(models) is 1:
+        return models[0]
+
+    elif len(models) is 0:
+        model = model_class()
+        setattr(model, filter_against, tag_text)
+        model.save(current_user)
+        return model
+
+    else:
+        return None
+
+def update_tags(model, tag_property, tags, tag_model, tagging_user):
+    """
+    Given a model to update,
+    a model.tag_property to change,
+    a list of strings called tags to add,
+    a tag_model to which those tags belong,
+    and a tagging_user who is doing the tagging
+    This function will add those tags to the model by
+    the tagging user and create new tag_models if the
+    particular tag does not exist
+
+    if any tag matches against more than one model as determined
+    by tag_model.tag_property_name, those models will NOT be added
+    """
+    taggable = getattr(model, tag_property)
+    taggable.clear()
+
+    tag_models = [model_matching_tag(tag, tag_model, tagging_user) for tag in tags]
+
+    for tag in tag_models:
+        if isinstance(tag, tag_model):
+            taggable.add(tag)
+
+    model.save(tagging_user)

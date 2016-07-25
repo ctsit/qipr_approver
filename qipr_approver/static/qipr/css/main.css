@@ -28,7 +28,6 @@
 
 .tagbox__input {
     position: relative;
-    top: -1rem;
 }
 
 .tag {
@@ -40,6 +39,7 @@
 
 .tag__container {
   display: inline;
+  float: left;
   /* the following color is the blue green thing we currently have */
   background-color: #26a69a;
   border-radius: 10px;

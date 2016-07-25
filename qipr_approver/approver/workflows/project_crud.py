@@ -14,7 +14,7 @@ def create_or_update_project(current_user, project_form, project_id=None):
         project = Project.objects.get(id=project_id)
         update_project_from_project_form(project, project_form, current_user)
     else:
-        project = create_new_project_from_user_form(current_user, form)
+        project = create_new_project_from_user_form(current_user, project_form)
     return project
 
 def create_new_project_from_user_form(current_user, form):
