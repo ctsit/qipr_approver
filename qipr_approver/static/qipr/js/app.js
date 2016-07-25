@@ -86,7 +86,7 @@
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
-            icontext = document.createTextNode('do_not_disturb'),
+            icontext = document.createTextNode('cancel'),
             tagtext = document.createTextNode(text);
 
         container.appendChild(li);
