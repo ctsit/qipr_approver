@@ -23,8 +23,14 @@
 }
 
 .tag-holder {
-  display:inline;
+  display:inline-block;
 }
+
+.tagbox__input {
+    position: relative;
+    top: -1rem;
+}
+
 .tag {
   display: inline;
   color: white;
@@ -48,7 +54,17 @@
   padding-left: .1rem;
   top: 0.255rem;
   color: red;
-  font-weight: 900 !important;
+  font-weight: 900; 
   background: transparent !important;
-  display: inline !important;
+  display: inline;
+  font-family: 'Material Icons';
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }

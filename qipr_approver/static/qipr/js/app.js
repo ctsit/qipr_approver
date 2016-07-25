@@ -96,7 +96,6 @@
 
         li.classList.add('tag');
         tagDelete.classList.add('tiny');
-        tagDelete.classList.add('material-icons');
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
