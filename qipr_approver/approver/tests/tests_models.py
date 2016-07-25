@@ -15,12 +15,47 @@ class PersonModel(TestCase):
 			if field.name in ["webpage_url","email_address"]:
 				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
 			if field.name in ["business_phone","contact_phone"]:
-				self.assertEqual(isinstance(field,django.db.models.fields.IntegerField),True)
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
 
+class ProjectModel(TestCase):
+	def test_project_model(self):
+		project = Project()
+		for field in Project._meta.fields:
+			if field.name in "title":
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+				self.assertEqual(field.max_length,300)
+			if field.name in ["description"]:
+				self.assertEqual(isinstance(field,django.db.models.fields.TextField),True)
+			
+class OrganizationModel(TestCase):
+	def test_organization_model(self):
+		org = Organization()
+		for field in Organization._meta.fields:
+			if field.name in "title":
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+				self.assertEqual(field.max_length,30)
+
+class SpecialityModel(TestCase):
+	def test_speciality_model(self):
+		spec = Speciality()
+		for field in Speciality._meta.fields:
+			if field.name in "name":
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+				self.assertEqual(field.max_length,50)
+
+class PositionModel(TestCase):
+	def test_position_model(self):
+		pos = Position()
+		for field in Position._meta.fields:
+			if field.name in "name":
+				self.assertEqual(isinstance(field,django.db.models.fields.CharField),True)
+				self.assertEqual(field.max_length,50)
+'''
 class BaseClassWithUserData(TestCase):
 	# Insert the data through fixtures
 	def setup(self):
 		fixtures = ['user.json']
+		print(User.objects.all())
 		self.user = User.objects.all()[0]
 
 class BaseClassWithPersonData(BaseClassWithUserData):
@@ -68,4 +103,4 @@ class ProjectTestCase(BaseClassWithTestData):
 		project.after_create(user)
 		project.save(last_modified_by=user)
 		print("Created project with title: " + Project.objects.get(title="Project1"))
-
+'''
