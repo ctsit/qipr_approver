@@ -1,3 +1,9 @@
+.bg-orange {
+    background-color:#e28f41;
+}
+.bg-blue {
+    background-color:#6c9ac3;
+}
 .cts-toast {
     position: fixed;
     width: 60%;
@@ -40,8 +46,9 @@
 .tag__container {
   display: inline;
   float: left;
-  /* the following color is the blue green thing we currently have */
-  background-color: #26a69a;
+  /* the following color is the blue green thing we currently have
+  background-color: #26a69a;*/
+  background-color: #E28F41;
   border-radius: 10px;
   margin: .3rem;
   padding: .2rem;
