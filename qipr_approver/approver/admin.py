@@ -5,7 +5,7 @@ from .models import *
 class ProvenanceAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         user = request.user
-        obj.after_create(user)
+        #obj.after_create(user)
         obj.save(last_modified_by=user)
 
 admin.site.register(Person,ProvenanceAdmin)
@@ -14,6 +14,9 @@ admin.site.register(Position,ProvenanceAdmin)
 admin.site.register(Speciality,ProvenanceAdmin)
 admin.site.register(Organization,ProvenanceAdmin)
 admin.site.register(Category,ProvenanceAdmin)
+admin.site.register(BigAim,ProvenanceAdmin)
+admin.site.register(FocusArea,ProvenanceAdmin)
+admin.site.register(ClinicalDepartment,ProvenanceAdmin)
 admin.site.register(Address,ProvenanceAdmin)
 admin.site.register(Training,ProvenanceAdmin)
 admin.site.register(Keyword,ProvenanceAdmin)
