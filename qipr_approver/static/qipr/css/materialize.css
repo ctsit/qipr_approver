@@ -4899,7 +4899,8 @@ small {
 .btn, .btn-large {
   text-decoration: none;
   color: #fff;
-  background-color: #26a69a;
+  /*background-color: #26a69a;*/
+  background-color: #E28F41;
   text-align: center;
   letter-spacing: .5px;
   transition: .2s ease-out;
@@ -5516,7 +5517,7 @@ input[type=number],
 input[type=search],
 textarea.materialize-textarea {
   background-color: transparent;
-  border: none;
+  /*border: none;*/
   border-bottom: 1px solid #9e9e9e;
   border-radius: 0;
   outline: none;
