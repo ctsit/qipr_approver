@@ -5,7 +5,6 @@ from .models import *
 class ProvenanceAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         user = request.user
-        #obj.after_create(user)
         obj.save(last_modified_by=user)
 
 admin.site.register(Person,ProvenanceAdmin)
