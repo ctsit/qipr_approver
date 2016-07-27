@@ -1,5 +1,6 @@
-from approver.models import Person, Project
+from approver.models import Person, Project,Keyword
 from approver.constants import SESSION_VARS
+from approver.utils import extract_tags, update_tags
 import approver.utils as utils
 
 from django.contrib.auth.models import User
@@ -46,6 +47,13 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.description = project_form.get('description')
     project.proposed_start_date = project_form.get('proposed_start_date')
     project.proposed_end_date = project_form.get('proposed_end_date')
+
+    keywords = extract_tags(project_form, 'keywords')
+    update_tags(model=project,
+                tag_property='keywords',
+                tags=keywords,
+                tag_model=Keyword,
+                tagging_user=editing_user)
 
     project.save(editing_user)
 
