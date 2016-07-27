@@ -1,17 +1,19 @@
 {% if project_id %}
-<form action="{% url 'approver:projects' project_id=project_id %}" method="post">
+<form action="{% url 'approver:projects' project_id=project_id %}" method="post" onkeypress="return event.keyCode != 13;">
 {% endif %}
 {% if not project_id %}
-<form action="{% url 'approver:projects' %}" method="post">
+<form action="{% url 'approver:projects' %}" method="post" onkeypress="return event.keyCode != 13;">
 {% endif %}
     {% csrf_token %}
     <h1>Projects</h1>
  	<p>
-		Enter information about your project
+		Enter information about your projects
 	</p>
     {% load form_input %}
+    {% load tagbox %}
     {% form_input form.title %}
     {% form_input form.description %}
+    {% tagbox form.keywords %}
     {% form_input form.proposed_start_date %}
     {% form_input form.proposed_end_date %}
     <input class="btn" type="submit" value="Submit Project" />
