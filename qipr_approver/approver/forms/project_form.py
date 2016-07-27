@@ -15,9 +15,9 @@ class ProjectForm():
                       'value': project.title or ''}
         
         self.keywords = {'name': 'keywords',
-                      'label': 'Keywords',
-                      'options': [item.name for item in Keyword.objects.all()],
-                      'selected': self.keywords_or_empty(project)}
+                                'label': 'Keywords',
+                                'options': [item.name for item in Keyword.objects.all()],
+                                'selected': self.keywords_or_empty(project)}
 
         self.description = {'name': 'description',
                             'label': 'Description',
