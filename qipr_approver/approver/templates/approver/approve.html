@@ -3,6 +3,8 @@
       method="post"
       onkeypress="return event.keyCode != 13">
 
+    {% csrf_token %}
+
     {% load question %}
     {% for item in sorted_questions %}
         {% question item %}
