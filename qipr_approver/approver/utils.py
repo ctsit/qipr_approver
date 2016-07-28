@@ -122,3 +122,7 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
             taggable.add(tag)
 
     model.save(tagging_user)
+
+#Get Data from Project for the given field
+def get_related_or_empty(modelname,field): 
+    return [item.name for item in getattr(modelname,field).all()] if getattr(modelname,'title') else []

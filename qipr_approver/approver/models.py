@@ -89,7 +89,7 @@ class Expertise(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class QI_Interests(Provenance, NamePrint, TaggedWithName):
+class QI_Interest(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
@@ -138,7 +138,7 @@ class Person(Provenance):
     webpage_url = models.CharField(max_length=50, null=True)
     suffix = models.ManyToManyField(Suffix)
     expertise = models.ManyToManyField(Expertise)
-    qi_interests = models.ManyToManyField(QI_Interests)
+    qi_interest = models.ManyToManyField(QI_Interest)
     last_login_time = models.DateTimeField(null=True)
     account_expiration_time = models.DateTimeField(null=True)
 
@@ -150,15 +150,15 @@ class Project(Provenance):
     title = models.CharField(max_length=300)
     description = models.TextField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
-    keywords = models.ManyToManyField(Keyword)
+    keyword = models.ManyToManyField(Keyword)
     category = models.ManyToManyField(Category)
-    collaborators = models.ManyToManyField(Person, related_name="collaborations")
+    collaborator = models.ManyToManyField(Person, related_name="collaborations")
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
     proposed_start_date = models.DateTimeField(null=True)
     proposed_end_date = models.DateTimeField(null=True)
-    safety_targets = models.ManyToManyField(SafetyTarget)
+    safety_target = models.ManyToManyField(SafetyTarget)
     clinical_area = models.ManyToManyField(ClinicalArea)
-    clinic_setting = models.ManyToManyField(ClinicalSetting)
+    clinical_setting = models.ManyToManyField(ClinicalSetting)
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner)])
