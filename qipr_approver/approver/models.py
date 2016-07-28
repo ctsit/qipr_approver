@@ -124,7 +124,7 @@ class ClinicalDepartment(Provenance,NamePrint):
     sort_order = models.IntegerField()
 
 class Person(Provenance):
-    user = models.OneToOneField(User,related_name="person")
+    user = models.OneToOneField(User, null=True, related_name="person")
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     position = models.ManyToManyField(Position)
@@ -141,6 +141,8 @@ class Person(Provenance):
     qi_interest = models.ManyToManyField(QI_Interest)
     last_login_time = models.DateTimeField(null=True)
     account_expiration_time = models.DateTimeField(null=True)
+
+    tag_property_name = 'email_address'
 
     def __str__(self):
         return ' '.join([self.first_name, self.last_name, self.email_address])

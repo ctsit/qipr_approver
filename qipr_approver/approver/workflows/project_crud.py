@@ -52,6 +52,7 @@ def update_project_from_project_form(project, project_form, editing_user):
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     safety_target = extract_tags(project_form, 'safety_target')
+    collaborator = extract_tags(project_form, 'collaborator')
     
     update_tags(model=project,
                 tag_property='keyword',
@@ -68,10 +69,17 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tags=clinical_setting,
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
+
     update_tags(model=project,
                 tag_property='safety_target',
                 tags=safety_target,
                 tag_model=SafetyTarget,
+                tagging_user=editing_user)
+
+    update_tags(model=project,
+                tag_property='collaborator',
+                tags=collaborator,
+                tag_model=Person,
                 tagging_user=editing_user)
 
     project.save(editing_user)
