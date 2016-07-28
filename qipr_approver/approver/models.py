@@ -163,6 +163,15 @@ class Project(Provenance):
     def __str__(self):
         return ' '.join([self.title, str(self.owner)])
 
+    def get_is_editable(self):
+        """
+        Returns true if the project is editable.
+        Projects get locked down after they are approved
+        or a year after their creation date.
+        """
+        """right now this is broken"""
+        return True
+
 class Response(Provenance):
     user = models.ForeignKey(User)
     question = models.ForeignKey(Question)

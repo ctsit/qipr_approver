@@ -13,7 +13,7 @@ class ProjectForm():
                       'label': 'Title',
                       'type': 'text',
                       'value': project.title or ''}
-        
+
         self.keywords = {'name': 'keywords',
                                 'label': 'Keywords',
                                 'options': [item.name for item in Keyword.objects.all()],
@@ -35,5 +35,6 @@ class ProjectForm():
                                    'label': 'Proposed End Date',
                                    'type': 'date',
                                    'value': utils.format_date(end_date)}
+
     def keywords_or_empty(self,project):
       return [item.name for item in project.keywords.all()] if project.title else []
