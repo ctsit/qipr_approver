@@ -1,4 +1,4 @@
-from approver.models import Speciality, Expertise, QI_Interests, Suffix
+from approver.models import Speciality, Expertise, QI_Interest, Suffix
 from django.contrib.auth.models import User
 
 class AboutYouForm():
@@ -45,9 +45,9 @@ class AboutYouForm():
                                 'selected': [item.name for item in user.person.speciality.all()]}
 
         self.qi_interest_tags = {'name': 'qi_interest',
-                                 'label': 'Quality improvement Interests',
-                                 'options': [item.name for item in QI_Interests.objects.all()],
-                                 'selected': [item.name for item in user.person.qi_interests.all()]}
+                                 'label': 'Quality Improvement Interests',
+                                 'options': [item.name for item in QI_Interest.objects.all()],
+                                 'selected': [item.name for item in user.person.qi_interest.all()]}
 
         self.expertise_tags = {'name': 'expertise',
                                'label': 'Expertise',

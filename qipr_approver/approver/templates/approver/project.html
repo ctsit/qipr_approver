@@ -7,13 +7,16 @@
     {% csrf_token %}
     <h1>Projects</h1>
  	<p>
-		Enter information about your projects
+		Enter information about your project
 	</p>
     {% load form_input %}
     {% load tagbox %}
     {% form_input form.title %}
     {% form_input form.description %}
-    {% tagbox form.keywords %}
+    {% tagbox form.keyword %}
+    {% tagbox form.safety_target %}
+    {% tagbox form.clinical_area %}
+    {% tagbox form.clinical_setting %}
     {% form_input form.proposed_start_date %}
     {% form_input form.proposed_end_date %}
     <input class="btn" type="submit" value="Submit Project" />
