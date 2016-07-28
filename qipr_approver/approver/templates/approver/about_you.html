@@ -9,15 +9,15 @@
     {% load tagbox %}
     {% form_input form.user_name %}
     {% form_input form.first_name %}
+    {% form_input form.last_name %}
+    {% form_input form.email %}
     {% tagbox form.speciality_tags %}
     {% tagbox form.expertise_tags %}
     {% tagbox form.qi_interest_tags %}
     {% tagbox form.suffix_tags %}
-    {% form_input form.last_name %}
-    {% form_input form.webpage_url %}
-    {% form_input form.email %}
     {% form_input form.business_phone %}
     {% form_input form.contact_phone %}
+    {% form_input form.webpage_url %}
     <input type="submit"
            value="Submit"
            class="btn"

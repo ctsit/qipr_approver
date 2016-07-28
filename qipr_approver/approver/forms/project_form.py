@@ -1,7 +1,6 @@
 from django.utils import timezone
-from approver.models import Project
-from approver.models import Keyword
-from approver.models import User
+from approver.models import Project,Keyword,ClinicalArea,ClinicalSetting,SafetyTarget
+from django.contrib.auth.models import User
 from approver import utils
 
 class ProjectForm():
@@ -14,11 +13,26 @@ class ProjectForm():
                       'type': 'text',
                       'value': project.title or ''}
 
-        self.keywords = {'name': 'keywords',
-                                'label': 'Keywords',
-                                'options': [item.name for item in Keyword.objects.all()],
-                                'selected': self.keywords_or_empty(project)}
+        self.keyword = {'name': 'keyword',
+                         'label': 'Keywords',
+                         'options': [item.name for item in Keyword.objects.all()],
+                         'selected': utils.get_related_or_empty(project,"keyword")}
+        
+        self.clinical_area = {'name': 'clinical_area',
+                               'label': 'Clinical Area',
+                               'options': [item.name for item in ClinicalArea.objects.all()],
+                               'selected': utils.get_related_or_empty(project,"clinical_area")}
 
+        self.safety_target = {'name': 'safety_target',
+                               'label': 'Safety Targets',
+                               'options': [item.name for item in SafetyTarget.objects.all()],
+                               'selected': utils.get_related_or_empty(project,"safety_target")}
+
+        self.clinical_setting = {'name': 'clinical_setting',
+                                 'label': 'Clinical Setting',
+                                 'options': [item.name for item in ClinicalSetting.objects.all()],
+                                 'selected': utils.get_related_or_empty(project,"clinical_setting")}
+        
         self.description = {'name': 'description',
                             'label': 'Description',
                             'type': 'text',
@@ -35,6 +49,7 @@ class ProjectForm():
                                    'label': 'Proposed End Date',
                                    'type': 'date',
                                    'value': utils.format_date(end_date)}
-
-    def keywords_or_empty(self,project):
-      return [item.name for item in project.keywords.all()] if project.title else []
+    
+    #Get Data from Project for the given field
+    def get_related_or_empty(self,modelname,field): 
+      return [item.name for item in getattr(modelname,field).all()] if getattr(modelname,'title') else []
