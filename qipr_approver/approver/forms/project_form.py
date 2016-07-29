@@ -18,6 +18,10 @@ class ProjectForm():
                              'options': [item.email_address for item in Person.objects.all()],
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
+        self.advisor = {'name': 'advisor',
+                             'label': 'Advisors',
+                             'options': [item.email_address for item in Person.objects.all()],
+                             'selected': utils.get_related_property(project, "advisor", 'email_address')}
         self.keyword = {'name': 'keyword',
                          'label': 'Keywords',
                          'options': [item.name for item in Keyword.objects.all()],
