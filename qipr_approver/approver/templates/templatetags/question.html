@@ -1,8 +1,22 @@
 <h4>{{ question_text }}</h4>
+<div class="cts-modal">
+    <a class="modal-trigger waves-effect waves-light btn" href="#modal--{{ question_id }}">Question Description</a>
+    <div id="modal--{{ question_id }}" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>{{ question_text }}</h4>
+            <p>{{ question_description }}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Got it!</a>
+        </div>
+    </div>
+</div>
 <ul>
     {% for answer in answer_choices %}
     <p>
+        <!-- going to need type or smoething for how to input -->
         {{ answer }}
+
     </p>
     {% endfor %}
 </ul>

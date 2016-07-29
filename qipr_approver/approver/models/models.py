@@ -97,20 +97,6 @@ class Category(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Section(Provenance, NamePrint, TaggedWithName):
-    name = models.CharField(max_length=30)
-    sort_order = models.IntegerField(unique=True)
-
-class Question(Provenance):
-    section = models.ForeignKey(Section)
-    text = models.TextField()
-    sort_order = models.IntegerField()
-
-class Choice(Provenance):
-    question = models.ForeignKey(Question)
-    text = models.TextField()
-    sort_order = models.IntegerField()
-
 class BigAim(Provenance,NamePrint):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
@@ -173,10 +159,3 @@ class Project(Provenance):
         """
         """right now this is broken"""
         return True
-
-class Response(Provenance):
-    user = models.ForeignKey(User)
-    question = models.ForeignKey(Question)
-    choice = models.ForeignKey(Choice)
-    project = models.ForeignKey(Project)
-    free_text_response = models.TextField()
