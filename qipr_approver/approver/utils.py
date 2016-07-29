@@ -122,3 +122,20 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
             taggable.add(tag)
 
     model.save(tagging_user)
+
+def get_related_property(model, related_model_name, related_model_property='name'):
+    """
+    Given a model,
+    a related_model_name,
+    and a related_model_property
+
+    this function returns a list of
+    model.related_model.related_model_property
+    or an empty list
+    """
+    model_in_db = getattr(model, 'pk')
+    if model_in_db:
+        relateds = getattr(model, related_model_name).all()
+        return [getattr(item, related_model_property) for item in relateds]
+    else:
+        return []

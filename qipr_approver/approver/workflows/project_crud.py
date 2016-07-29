@@ -1,4 +1,4 @@
-from approver.models import Person, Project,Keyword
+from approver.models import Person, Project,Keyword,ClinicalArea,ClinicalSetting,SafetyTarget
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 import approver.utils as utils
@@ -48,11 +48,38 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_start_date = project_form.get('proposed_start_date')
     project.proposed_end_date = project_form.get('proposed_end_date')
 
-    keywords = extract_tags(project_form, 'keywords')
+    keyword = extract_tags(project_form, 'keyword')
+    clinical_area = extract_tags(project_form, 'clinical_area')
+    clinical_setting = extract_tags(project_form, 'clinical_setting')
+    safety_target = extract_tags(project_form, 'safety_target')
+    collaborator = extract_tags(project_form, 'collaborator')
+    
     update_tags(model=project,
-                tag_property='keywords',
-                tags=keywords,
+                tag_property='keyword',
+                tags=keyword,
                 tag_model=Keyword,
+                tagging_user=editing_user)
+    update_tags(model=project,
+                tag_property='clinical_area',
+                tags=clinical_area,
+                tag_model=ClinicalArea,
+                tagging_user=editing_user)
+    update_tags(model=project,
+                tag_property='clinical_setting',
+                tags=clinical_setting,
+                tag_model=ClinicalSetting,
+                tagging_user=editing_user)
+
+    update_tags(model=project,
+                tag_property='safety_target',
+                tags=safety_target,
+                tag_model=SafetyTarget,
+                tagging_user=editing_user)
+
+    update_tags(model=project,
+                tag_property='collaborator',
+                tags=collaborator,
+                tag_model=Person,
                 tagging_user=editing_user)
 
     project.save(editing_user)
