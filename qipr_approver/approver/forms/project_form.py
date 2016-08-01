@@ -8,6 +8,7 @@ class ProjectForm():
     def __init__(self, project=Project()):
         start_date = project.proposed_start_date or timezone.now()
         end_date = project.proposed_end_date or timezone.now()
+
         self.title = {'name': 'title',
                       'label': 'Title',
                       'type': 'text',
@@ -19,18 +20,19 @@ class ProjectForm():
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
         self.advisor = {'name': 'advisor',
-                             'label': 'Advisors',
-                             'options': [item.email_address for item in Person.objects.all()],
-                             'selected': utils.get_related_property(project, "advisor", 'email_address')}
+                        'label': 'Advisors',
+                        'options': [item.email_address for item in Person.objects.all()],
+                        'selected': utils.get_related_property(project, "advisor", 'email_address')}
+
         self.keyword = {'name': 'keyword',
-                         'label': 'Keywords',
-                         'options': [item.name for item in Keyword.objects.all()],
-                         'selected': utils.get_related_property(project,"keyword")}
+                        'label': 'Keywords',
+                        'options': [item.name for item in Keyword.objects.all()],
+                        'selected': utils.get_related_property(project, "keyword")}
 
         self.big_aim = {'name': 'big_aim',
                         'label': 'Big Aims',
                         'options': [item.name for item in BigAim.objects.all()],
-                        'selected': utils.get_related_property(project,"big_aim")}
+                        'selected': utils.get_related_property(project, "big_aim")}
 
         self.clinical_area = {'name': 'clinical_area',
                                'label': 'Clinical Area',
