@@ -16,6 +16,7 @@ class Section(Provenance, NamePrint, TaggedWithName):
     sort_order = models.IntegerField(unique=True)
 
 class Question(Provenance, TextPrint):
+    section = models.ForeignKey(Section, related_name='question', null=True)
     text = models.TextField()
     description = models.TextField(null=True)
     sort_order = models.IntegerField()
