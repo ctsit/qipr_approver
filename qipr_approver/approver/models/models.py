@@ -97,15 +97,15 @@ class Category(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class BigAim(Provenance,NamePrint):
+class BigAim(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class FocusArea(Provenance,NamePrint):
+class FocusArea(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class ClinicalDepartment(Provenance,NamePrint):
+class ClinicalDepartment(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
@@ -135,18 +135,19 @@ class Person(Provenance):
 
 
 class Project(Provenance):
-    title = models.CharField(max_length=300)
-    description = models.TextField()
-    owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
-    keyword = models.ManyToManyField(Keyword)
-    category = models.ManyToManyField(Category)
-    collaborator = models.ManyToManyField(Person, related_name="collaborations")
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
-    proposed_start_date = models.DateTimeField(null=True)
-    proposed_end_date = models.DateTimeField(null=True)
-    safety_target = models.ManyToManyField(SafetyTarget)
+    big_aim = models.ManyToManyField(BigAim)
+    description = models.TextField()
+    category = models.ManyToManyField(Category)
     clinical_area = models.ManyToManyField(ClinicalArea)
     clinical_setting = models.ManyToManyField(ClinicalSetting)
+    collaborator = models.ManyToManyField(Person, related_name="collaborations")
+    keyword = models.ManyToManyField(Keyword)
+    owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
+    proposed_end_date = models.DateTimeField(null=True)
+    proposed_start_date = models.DateTimeField(null=True)
+    safety_target = models.ManyToManyField(SafetyTarget)
+    title = models.CharField(max_length=300)
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner)])
