@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from approver.models import Provenance, NamePrint, TaggedWithName, Project
+from approver.models import Provenance, NamePrint, Project
 
 class TextPrint(models.Model):
     def __str__(self):
@@ -11,7 +11,7 @@ class TextPrint(models.Model):
         abstract = True
 
 
-class Section(Provenance, NamePrint, TaggedWithName):
+class Section(Provenance, NamePrint):
     name = models.CharField(max_length=30)
     sort_order = models.IntegerField(unique=True)
 
@@ -22,13 +22,19 @@ class Question(Provenance, TextPrint):
     sort_order = models.IntegerField()
 
 class Choice(Provenance, TextPrint):
-    question = models.ForeignKey(Question, related_name='choice')
+    question = models.ManyToManyField(Question, related_name='choice')
     text = models.TextField()
     sort_order = models.IntegerField()
 
 class Response(Provenance):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='response')
     question = models.ForeignKey(Question)
     choice = models.ForeignKey(Choice)
-    project = models.ForeignKey(Project)
-    free_text_response = models.TextField()
+    project = models.ForeignKey(Project, related_name='response')
+
+    def is_valid(self):
+        """
+        This will eventually need to check against something to tell if
+        this is a response that lets people get approved
+        """
+        return False

@@ -39,6 +39,9 @@ def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
 
+def after_approval(project):
+    return redirect(reverse("approver:project_status") + str(project.id))
+
 def set_created_by_if_empty(model, user):
     """
     This function is called by our save function because django

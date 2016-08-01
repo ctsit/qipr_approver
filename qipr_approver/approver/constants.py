@@ -19,3 +19,18 @@ SESSION_VARS = {
     'first_name': 'first_name',
     'last_name': 'last_name',
 }
+
+answer_submit_names = {
+    'question_id': 'question_id',
+    'choice_id': 'choice_id',
+    'project_id': 'project_id',
+}
+
+answer_response_names = {
+    'user_id': 'user_id',
+    'question_id': 'question_id',
+    'choice_id': 'choice_id',
+    'project_id': 'project_id',
+    'response_id': 'response_id',
+    'newly_created': 'newly_created',
+}

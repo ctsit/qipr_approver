@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
 
@@ -136,6 +137,7 @@ class Person(Provenance):
 
 class Project(Provenance):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
+    approval_date = models.DateTimeField(null=True)
     big_aim = models.ManyToManyField(BigAim)
     description = models.TextField()
     category = models.ManyToManyField(Category)
@@ -160,3 +162,7 @@ class Project(Provenance):
         """
         """right now this is broken"""
         return True
+
+    def approve(self, user):
+        self.approval_date = timezone.now()
+        self.save(user)
