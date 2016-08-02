@@ -1,0 +1,58 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644 235">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #efaf2e;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #231f20;
+      }
+
+      .cls-4 {
+        fill: #47b1e5;
+      }
+
+      .cls-5, .cls-7 {
+        fill: none;
+      }
+
+      .cls-5 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6 {
+        font-size: 164.86px;
+        fill: #37c5f1;
+        font-family: Geometria;
+      }
+    </style>
+  </defs>
+  <title>svg2</title>
+  <g>
+    <g>
+      <polygon class="cls-1" points="163.16 119.86 147.16 180.91 86.28 197.59 41.41 153.2 57.41 92.14 118.28 75.47 163.16 119.86"/>
+      <circle class="cls-2" cx="118.49" cy="117.28" r="13.44" transform="translate(-25.46 33.18) rotate(-14.41)"/>
+      <circle class="cls-3" cx="120.41" cy="116.79" r="7.48" transform="translate(-25.28 33.64) rotate(-14.41)"/>
+      <circle class="cls-2" cx="140.85" cy="111.54" r="10.76" transform="translate(-23.33 38.56) rotate(-14.41)"/>
+      <circle class="cls-3" cx="142.38" cy="111.14" r="5.99" transform="translate(-23.18 38.93) rotate(-14.41)"/>
+      <polygon class="cls-4" points="118.28 75.47 79.33 67.11 77.63 74.07 65.34 68.88 64.06 74.12 56.97 71.12 47.25 130.9 66.45 93.36 118.28 75.47"/>
+      <polygon class="cls-1" points="12.46 186.34 10.25 131.23 43.6 152.63 12.46 186.34"/>
+      <polygon class="cls-4" points="92.87 174.18 79.67 167.13 101.34 151.13 92.87 174.18"/>
+      <path class="cls-5" d="M155.9,147.55c-5,6-22.81,8.91-34.15-3.26"/>
+    </g>
+    <circle class="cls-4" cx="209.83" cy="76.78" r="10.99"/>
+    <circle class="cls-4" cx="187.84" cy="109.66" r="10.99"/>
+    <circle class="cls-4" cx="179.23" cy="65.79" r="8.61"/>
+    <circle class="cls-4" cx="179.23" cy="37.52" r="8.61"/>
+    <circle class="cls-4" cx="160.21" cy="17.87" r="4.3"/>
+    <circle class="cls-4" cx="164.48" cy="53" r="4.3"/>
+  </g>
+  <text class="cls-6" transform="translate(221.4 192.16)">QIPR</text>
+  <rect id="_Slice_" data-name="&lt;Slice&gt;" class="cls-7" width="645" height="233"/>
+</svg>

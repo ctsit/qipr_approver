@@ -1,4 +1,4 @@
-from approver.models import Person, Project,Keyword,ClinicalArea,ClinicalSetting,SafetyTarget
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, SafetyTarget, BigAim
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 import approver.utils as utils
@@ -54,17 +54,26 @@ def update_project_from_project_form(project, project_form, editing_user):
     safety_target = extract_tags(project_form, 'safety_target')
     collaborator = extract_tags(project_form, 'collaborator')
     advisor = extract_tags(project_form,'advisor')
+    big_aim = extract_tags(project_form,'big_aim')
+
+    update_tags(model=project,
+                tag_property='big_aim',
+                tags=big_aim,
+                tag_model=BigAim,
+                tagging_user=editing_user)
 
     update_tags(model=project,
                 tag_property='keyword',
                 tags=keyword,
                 tag_model=Keyword,
                 tagging_user=editing_user)
+
     update_tags(model=project,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
+
     update_tags(model=project,
                 tag_property='clinical_setting',
                 tags=clinical_setting,

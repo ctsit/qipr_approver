@@ -25,7 +25,7 @@ def project(request, project_id=None):
         project_form = request.POST
         title = project_form.get('title')
         project = project_crud.create_or_update_project(current_user, project_form, project_id)
-        return redirect(reverse("approver:approve") + str(project.id))
+        return redirect(reverse("approver:approve") + str(project.id) + '/')
 
     else:
         now = timezone.now()

@@ -75,3 +75,11 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+.question__text {
+    text-indent: 3.5rem;
+}
+
+.question__description {
+    text-indent: 3.5rem;
+}
