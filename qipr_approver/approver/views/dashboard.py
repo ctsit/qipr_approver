@@ -12,6 +12,7 @@ import approver.constants as constants
 from approver.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
+from itertools import chain
 
 @login_required
 def dashboard(request):
@@ -29,7 +30,9 @@ def get_project_context(request):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
     projects = user.person.projects.all()
-    return [__get_project_tuples(project) for project in projects]
+    collaborator_projects = Project.objects.filter(collaborator=user.person)
+    advisor_projects = Project.objects.filter(advisor=user.person)
+    return [__get_project_tuples(project) for project in chain(projects,collaborator_projects,advisor_projects)]
 
 def __get_project_tuples(project):
     return (project.title,
