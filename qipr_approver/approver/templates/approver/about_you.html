@@ -7,9 +7,17 @@
     </p>
     {% load form_input %}
     {% load tagbox %}
+    {% load address %}
     {% form_input form.user_name %}
     {% form_input form.first_name %}
     {% form_input form.last_name %}
+    {% for business_address in form.business_address.all %}
+        {% with count=forloop.counter0|stringformat:"s" %}
+        {% with type="business_"|add:count %}
+            {% address business_address type %}
+        {% endwith %}
+        {% endwith %}
+    {% endfor %}
     {% form_input form.email %}
     {% tagbox form.speciality_tags %}
     {% tagbox form.expertise_tags %}
