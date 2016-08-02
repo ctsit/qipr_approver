@@ -5,9 +5,14 @@ from approver import utils
 
 class ProjectForm():
 
-    def __init__(self, project=Project()):
+    def __init__(self, project=Project(),is_disabled=False):
         start_date = project.proposed_start_date or timezone.now()
         end_date = project.proposed_end_date or timezone.now()
+
+        if is_disabled:
+          self.disabled = True
+        else:
+          self.disabled = False
 
         self.title = {'name': 'title',
                       'label': 'Title',

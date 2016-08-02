@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('templatetags/form_input.html')
-def form_input(input_dict):
+def form_input(input_dict, is_disabled=False):
     """
     Renders an input with a label.
     Takes the following keywords:
@@ -15,4 +15,8 @@ def form_input(input_dict):
     """
     input_classes = input_dict.get('input_classes') or []
     input_dict['input_class_list'] = ' '.join([str(cls) for cls in input_classes])
+    if is_disabled:
+        input_dict['disabled'] = "disabled"
+    else:
+        input_dict['disabled'] = ""
     return input_dict

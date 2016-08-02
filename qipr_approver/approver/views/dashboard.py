@@ -12,7 +12,6 @@ import approver.constants as constants
 from approver.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-from itertools import chain
 
 @login_required
 def dashboard(request):
