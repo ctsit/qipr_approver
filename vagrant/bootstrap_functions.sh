@@ -32,6 +32,7 @@ function install_system_packages() {
         python3-dev python3-pip \
         mysql-server libmysqlclient-dev \
         libffi-dev \
+        inotify-tools \
         libsqlite3-dev;
 
     pip3 install virtualenv
