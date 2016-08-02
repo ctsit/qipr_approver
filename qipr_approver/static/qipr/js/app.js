@@ -49,6 +49,10 @@
                 addTag(this);
             }
         });
+        node.addEventListener("blur", function(event) {
+            event.preventDefault();
+            addTag(this);
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.includes(invisibleSpace)){
