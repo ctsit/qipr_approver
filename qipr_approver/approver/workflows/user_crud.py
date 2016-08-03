@@ -1,9 +1,10 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix
+from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.http import QueryDict
 
 def create_new_user_from_current_session(session):
     """
@@ -50,6 +51,7 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.business_phone = about_you_form.get('business_phone') or 0
     person.contact_phone = about_you_form.get('contact_phone') or 0
     person.webpage_url = about_you_form.get('webpage_url')
+    person.business_address = extract_address(about_you_form, 'business', user)
 
     specialities = extract_tags(about_you_form, 'speciality')
     expertises = extract_tags(about_you_form, 'expertise')
@@ -85,3 +87,56 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
 
     return person
 
+def extract_address(form, address_type, user):
+    """
+    This function will take a form and return a list of business addresses
+    """
+    ADDRESS1 = 0
+    ADDRESS2 = 1
+    CITY = 2
+    STATE = 3
+    ZIP_CODE = 4
+    COUNTRY = 5
+
+    # first need to get list of each of the address fields on the form, probably in the right order
+    address1_list = form.getlist('address1_'+address_type,['a1','a2','a3'])
+    address2_list = form.getlist('address2_'+address_type)
+    city_list = form.getlist('city_'+address_type,['c1','c2','c3'])
+    state_list = form.getlist('state_'+address_type,['fl','fl','fl'])
+    zip_code_list = form.getlist('zip_code_'+address_type,['32','32','32'])
+    country_list = form.getlist('country_'+address_type,['us','us','us'])
+
+    # then we need to pull each of the same position fields from the lists into a new address
+    zipped_address_values = zip(address1_list, city_list, state_list, zip_code_list, country_list)
+
+    # for each tupple created, we need to make it an address
+    address_list = []
+    print("test")
+    for values in zipped_address_values:
+        print("*****")
+        print (values[0], values[1], values[2], values[3], values[4])
+        print("***")
+        address = Address(
+            address1=values[0],
+            city=values[1],
+            state=values[2],
+            zip_code=values[3],
+            country=values[4]
+            )
+        address.save(user)
+        address_list.append(address)
+        address.pk
+
+    # finally we need to return a list of these addresses
+    return address_list
+
+def moc_get_post():
+    q = QueryDict(
+        'address1_business=444 nw 6th st&address1_business=222 ne 8th st&' \
+        'city_business=atlanta&city_business=macon&' \
+        'state_business=FL&state_business=FL&' \
+        'zip_code_business=32608&zip_code_business=12345&' \
+        'country_business=US&country_business=US'
+    )
+
+    return q
