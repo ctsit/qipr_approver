@@ -25,6 +25,7 @@ class Provenance(models.Model):
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
+        self.audit_trail.user = last_modified_by
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
 
