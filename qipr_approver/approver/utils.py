@@ -55,6 +55,15 @@ def set_created_by_if_empty(model, user):
     except:
         model.created_by = user
 
+def get_id_or_none(model):
+    """
+    Django explodes if you dereference pk before saving to the db
+    """
+    try:
+        return model.id
+    except:
+        return None
+
 def format_date(date):
     """
     This format date is used with the date picker. It has to be in a

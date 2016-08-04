@@ -26,8 +26,15 @@ class Provenance(models.Model):
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
+        self.audit_trail.user = last_modified_by
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
+
+    def delete(self, last_modified_by, *args, **kwargs):
+        self.audit_trail.user = last_modified_by
+        self.last_modified_by = last_modified_by
+        super(Provenance, self).delete(*args, **kwargs)
+
 
     class Meta:
         abstract = True
@@ -112,23 +119,23 @@ class ClinicalDepartment(Provenance, NamePrint, TaggedWithName):
     sort_order = models.IntegerField()
 
 class Person(Provenance):
-    user = models.OneToOneField(User, null=True, related_name="person")
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    position = models.ManyToManyField(Position)
-    organization = models.ManyToManyField(Organization)
+    account_expiration_time = models.DateTimeField(null=True)
     business_address = models.ManyToManyField(Address)
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    speciality = models.ManyToManyField(Speciality)
-    training = models.ManyToManyField(Training)
-    webpage_url = models.CharField(max_length=50, null=True)
-    suffix = models.ManyToManyField(Suffix)
     expertise = models.ManyToManyField(Expertise)
-    qi_interest = models.ManyToManyField(QI_Interest)
+    first_name = models.CharField(max_length=30)
     last_login_time = models.DateTimeField(null=True)
-    account_expiration_time = models.DateTimeField(null=True)
+    last_name = models.CharField(max_length=30)
+    organization = models.ManyToManyField(Organization)
+    position = models.ManyToManyField(Position)
+    qi_interest = models.ManyToManyField(QI_Interest)
+    speciality = models.ManyToManyField(Speciality)
+    suffix = models.ManyToManyField(Suffix)
+    training = models.ManyToManyField(Training)
+    user = models.OneToOneField(User, null=True, related_name="person")
+    webpage_url = models.CharField(max_length=50, null=True)
 
     tag_property_name = 'email_address'
 

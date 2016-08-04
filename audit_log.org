@@ -1,0 +1,42 @@
+* Requirements for Provenance extension
+** DONE We need to be able to see who did what when
+CLOSED: [2016-08-03 Wed 17:33]
+| field name  | field type       |
+|-------------+------------------|
+| user        | foreign key User |
+| datetime    | datetime         |
+| json_before | text             |
+| json_after  | text             |
+- [X] create AuditTrail model
+  - [X] old json
+    this is what the model looks like when instantiated
+  - [X] new json
+    this is what the model looks like after changes
+  - [X] timestamp
+    this is when the change happened
+  - [X] user
+    this is who did it
+** TODO We need to be able to roll the changes back
+probably not important right now. If we have the json we
+can later write some script to do this
+** TODO We need the User to have the editing user listed in the AuditTrail
+*** FIGURE THIS OUT!!!!
+- maybe django-contrib-requestprovider?
+- maybe custom signals?
+** DONE We need to not have to call specific things all the time
+CLOSED: [2016-08-03 Wed 17:32]
+- [X] on init <= post_init
+  - [X] serialize to json
+- [X] on save <= post_save
+  - [X] serialize to json
+  - [X] create AuditTrail object
+  - [X] save off the AuditTrail
+  - [X] let save happen
+- [X] pre delete <= pre_delete
+  - [X] save off the AuditTrail
+  - [X] let delete happen
+** DONE We need it to work on all models
+CLOSED: [2016-08-04 Thu 11:00]
+signals attached to different models running on post_save and pre_delete
+- [X] custom models
+- [X] user model
