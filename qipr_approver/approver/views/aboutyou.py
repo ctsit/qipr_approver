@@ -31,7 +31,7 @@ def about_you(request):
         user = User.objects.get(username=username)
         about_you_form = AboutYouForm(user=user)
         context['form'] = about_you_form
-        context['address'] = Address()
+        context['empty_address'] = Address()
 
     return utils.layout_render(request, context)
 

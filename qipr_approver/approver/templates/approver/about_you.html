@@ -14,7 +14,7 @@
     {% for business_address in form.business_address.all %}
         {% address business_address 'business' forloop.counter %}
     {% empty %}
-        {% address address 'business' %}
+        {% address empty_address 'business' %}
     {% endfor %}
     {% form_input form.email %}
     {% tagbox form.speciality_tags %}
