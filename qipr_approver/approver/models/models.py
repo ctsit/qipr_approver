@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
 
 from approver import utils
-import datetime
 
 class TaggedWithName(models.Model):
     tag_property_name = 'name'
@@ -170,7 +169,7 @@ class Project(Provenance):
         """
         """right now this is broken"""
         
-        timeelapsed = timezone.make_aware(datetime.datetime.now()) - self.created
+        timeelapsed = timezone.now() - self.created
         if timeelapsed.seconds > 31536000 or self.approval_date :
             return False
         return True
