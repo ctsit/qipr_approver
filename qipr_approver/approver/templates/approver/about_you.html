@@ -12,11 +12,9 @@
     {% form_input form.first_name %}
     {% form_input form.last_name %}
     {% for business_address in form.business_address.all %}
-        {% with count=forloop.counter0|stringformat:"s" %}
-        {% with type="business_"|add:count %}
-            {% address business_address 'business' forloop.counter %}
-        {% endwith %}
-        {% endwith %}
+        {% address business_address 'business' forloop.counter %}
+    {% empty %}
+        {% address address 'business' %}
     {% endfor %}
     {% form_input form.email %}
     {% tagbox form.speciality_tags %}

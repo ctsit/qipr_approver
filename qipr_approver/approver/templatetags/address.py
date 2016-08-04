@@ -14,13 +14,13 @@ def address(address_model, address_type, counter=''):
     optional counter: adds a counter to the html names to help make them unique
     """
     input_dict = {
-        'address_type': address_type,
+        'address_type': address_type or '',
         'counter': counter,
-        'address1': address_model.address1,
-        'address2': address_model.address2,
-        'city': address_model.city,
-        'zip_code': address_model.zip_code,
-        'state': address_model.state,
-        'country': address_model.country
+        'address1': address_model.address1 or '',
+        'address2': address_model.address2 or '',
+        'city': address_model.city or '',
+        'zip_code': address_model.zip_code or '',
+        'state': address_model.state or '',
+        'country': address_model.country or ''
     }
     return input_dict

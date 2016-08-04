@@ -1,7 +1,9 @@
-<div id="address_{{ address_type }}_{{ counter }}"
-     class="form-address-wrapper input"
-     data-name="address">
+<div class="collection with-header">
+    <div id="address_{{ address_type }}_{{ counter }}"
+        class="form-address-wrapper input"
+        data-name="address">
 
+    <div>{{ address_type|capfirst }} Address</div>
     <div class="form-input-wrapper input_address1 ">
         <label for="address1" class="active">Address 1</label>
         <input class="" name="address1_{{ address_type }}" type="text" value="{{ address1 }}">
@@ -29,7 +31,8 @@
 
     <div class="form-input-wrapper input_country ">
         <label for="country" class="active">Country</label>
-        <input class="" name="country_ {{ address_type }}" type="text" value="{{ country }}">
+        <input class="" name="country_{{ address_type }}" type="text" value="{{ country }}">
     </div>
 
+    </div>
 </div>
