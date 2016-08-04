@@ -1,20 +1,12 @@
-[{
-  "model": "auth.User",
-  "fields": {
-    "username": "username1",
-    "first_name": "firstname1",
-    "last_name": "last_name1",
-    "email": "email1@ufl.edu",
-    "password": "password1"
-  }
-},
-{
-  "model": "auth.User",
-  "fields": {
-    "username": "username2",
-    "first_name": "firstname2",
-    "last_name": "last_name2",
-    "email": "email2@ufl.edu",
-    "password": "password2"
-  }
-}]
+[
+    {
+        "model": "auth.User",
+        "fields": {
+            "username": "admin_fixture_user",
+            "first_name": "admin_fixture_user",
+            "last_name": "admin_fixture_user",
+            "email": "CTS-IT-ALL@ctsi.ufl.edu",
+            "password": "password1"
+        }
+    }
+]

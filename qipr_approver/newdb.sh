@@ -14,6 +14,7 @@ popd
 rm -rf ./approver/migrations
 python3 manage.py makemigrations approver
 python3 manage.py migrate
+python3 manage.py loaddata ./approver/fixtures/user.json
 python3 manage.py loaddata ./approver/fixtures/*
 pushd qipr_approver
 #Adding back the proper urls

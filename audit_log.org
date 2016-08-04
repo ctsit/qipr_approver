@@ -35,7 +35,8 @@ CLOSED: [2016-08-03 Wed 17:32]
 - [X] pre delete <= pre_delete
   - [X] save off the AuditTrail
   - [X] let delete happen
-** TODO We need it to work on all models
+** DONE We need it to work on all models
+CLOSED: [2016-08-04 Thu 11:00]
 signals attached to different models running on post_save and pre_delete
 - [X] custom models
-- [ ] user model
+- [X] user model
