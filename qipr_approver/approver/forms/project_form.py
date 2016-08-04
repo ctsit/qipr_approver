@@ -9,10 +9,7 @@ class ProjectForm():
         start_date = project.proposed_start_date or timezone.now()
         end_date = project.proposed_end_date or timezone.now()
 
-        if is_disabled:
-          self.disabled = True
-        else:
-          self.disabled = False
+        self.is_disabled = is_disabled
 
         self.title = {'name': 'title',
                       'label': 'Title',
