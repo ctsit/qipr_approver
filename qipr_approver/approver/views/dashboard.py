@@ -28,9 +28,11 @@ def dashboard(request):
 def get_project_context(request):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
-    projects = user.person.projects.all()
-    return [__get_project_tuples(project) for project in projects]
+    projects = [__get_project_tuples(project,"PI") for project in user.person.projects.all()]
+    collaborator_projects = [__get_project_tuples(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person)]
+    advisor_projects = [__get_project_tuples(project,"Advisor") for project in Project.objects.filter(advisor=user.person)]
+    return projects + collaborator_projects + advisor_projects
 
-def __get_project_tuples(project):
+def __get_project_tuples(project, role):
     return (project.title,
-            project.pk)
+            project.pk,role)

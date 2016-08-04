@@ -168,6 +168,10 @@ class Project(Provenance):
         or a year after their creation date.
         """
         """right now this is broken"""
+        
+        timeelapsed = timezone.now() - self.created
+        if timeelapsed.seconds > 31536000 or self.approval_date :
+            return False
         return True
 
     def approve(self, user):

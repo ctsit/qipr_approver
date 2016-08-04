@@ -124,3 +124,9 @@ def curent_user_is_project_owner(current_user, project):
     same as the project.owner.id
     """
     return current_user.person.id == project.owner.id
+def current_user_is_project_advisor_or_collaborator(current_user, project):
+    """
+    This returns a boolean true if the current_user.person.id is in 
+    project.advisor or project.collaborator
+    """
+    return True

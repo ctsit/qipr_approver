@@ -11,17 +11,17 @@
 	</p>
     {% load form_input %}
     {% load tagbox %}
-    {% form_input form.title %}
-    {% form_input form.description %}
-    {% tagbox form.collaborator %}
-    {% tagbox form.advisor %}
-    {% tagbox form.keyword %}
-    {% tagbox form.big_aim %}
-    {% tagbox form.safety_target %}
-    {% tagbox form.clinical_area %}
-    {% tagbox form.clinical_setting %}
-    {% form_input form.proposed_start_date %}
-    {% form_input form.proposed_end_date %}
+    {% form_input form.title form.is_disabled %}
+    {% form_input form.description form.is_disabled %}
+    {% tagbox form.collaborator form.is_disabled %}
+    {% tagbox form.advisor form.is_disabled %}
+    {% tagbox form.keyword form.is_disabled %}
+    {% tagbox form.big_aim form.is_disabled %}
+    {% tagbox form.safety_target form.is_disabled %}
+    {% tagbox form.clinical_area form.is_disabled %}
+    {% tagbox form.clinical_setting form.is_disabled %}
+    {% form_input form.proposed_start_date form.is_disabled %}
+    {% form_input form.proposed_end_date form.is_disabled %}
     <input class="btn" type="submit" value="Submit Project" />
 </form>
 

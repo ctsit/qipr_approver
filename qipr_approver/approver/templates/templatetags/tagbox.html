@@ -15,7 +15,7 @@
     <input id="tag-input-entry_{{ name }}"
            class="tagbox__input"
            type="text"
-           list="datalist_{{ name }}">
+           list="datalist_{{ name }}" {{ disabled }}>
 
     <datalist id="datalist_{{ name }}">
         {% for option in options %}
