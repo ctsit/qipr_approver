@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^aboutyou/$', views.about_you, name='aboutyou'),
     url(r'^answer_submit/$', api.answer_submit, name='answer_submit'),
     url(r'^first_login/$', views.first_login, name='firstlogin'),
+    url(r'^dashboard/(?P<project_id>[0-9]+)$', views.project_del, name='project_del'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),

@@ -13,6 +13,7 @@
                 <th data-field="title">Title</th>
                 <th data-field="edit_link">Edit Project</th>
                 <th data-field="role">Role</th>
+                <th data-field="delete">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                     <td class="project__title">{{ project.0 }}</td>
                     <td><a href="{% url 'approver:projects' project_id=project.1 %}">link</a></td>
                     <td class="project__title">{{ project.2 }}</td>
+                    <td><a href="{% url 'approver:project_del' project_id=project.1 %}">delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
