@@ -19,3 +19,8 @@ SESSION_VARS = {
     'first_name': 'first_name',
     'last_name': 'last_name',
 }
+
+ADDRESS_TYPE= {
+    'business': 'business',
+    'organization': 'organization',
+}

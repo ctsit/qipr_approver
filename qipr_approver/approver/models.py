@@ -32,27 +32,9 @@ class Provenance(models.Model):
 
 class Training(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-
-class Address(Provenance):
-    address1 = models.CharField(max_length=50)
-    address2 = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    zip_code = models.IntegerField(null=True)
-    state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True, blank=True)
-    country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, null=True, blank=True)
-
-    def __str__(self):
-        return ' ; '.join([self.address1,
-                           self.address2,
-                           self.city,
-                           self.zip_code,
-                           self.state,
-                           self.country])
 
 class Organization(Provenance):
     org_name = models.CharField(max_length= 400)
-    address = models.ManyToManyField(Address)
 
     def __str__(self):
         return self.org_name
@@ -129,7 +111,6 @@ class Person(Provenance):
     last_name = models.CharField(max_length=30)
     position = models.ManyToManyField(Position)
     organization = models.ManyToManyField(Organization)
-    business_address = models.ManyToManyField(Address)
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
@@ -180,3 +161,24 @@ class Response(Provenance):
     choice = models.ForeignKey(Choice)
     project = models.ForeignKey(Project)
     free_text_response = models.TextField()
+
+    description = models.CharField(max_length=200)
+
+class Address(Provenance):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, related_name="org_address")
+    address1 = models.CharField(max_length=50)
+    address2 = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    zip_code = models.CharField(max_length=10, null=True, blank=True)
+    state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True, blank=True)
+    country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, null=True, blank=True)
+
+    def __str__(self):
+        return ' ; '.join([self.address1,
+                           self.address2,
+                           self.city,
+                           self.zip_code,
+                           self.state,
+                           self.country])
+
