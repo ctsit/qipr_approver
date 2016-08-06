@@ -29,15 +29,16 @@
 
             <div class="form-input-wrapper input_zip col s3">
                 <label for="zip" class="active">Zip</label>
-                <input class="" name="zip_code_{{ address_type }}" type="text" maxlength="5"
+                <input class="" name="zip_code_{{ address_type }}" type="text" maxlength="10"
                     value="{{ zip_code }}">
             </div>
 
             <div class="form-input-wrapper input_country col s1">
                 <label for="country" class="active">Country</label>
                 <input class="" name="country_{{ address_type }}" type="text" maxlength="2"
-                    value="{{ country }}">
+                       value="{{ country }}">
             </div>
         </div>
+        <input style="display:none;" name="address_id_{{ address_type }}" type="text" value="{{ address_id }}">
     </div>
 </div>
