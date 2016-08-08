@@ -22,7 +22,7 @@
                     <td class="project__title">{{ project.0 }}</td>
                     <td><a href="{% url 'approver:projects' project_id=project.1 %}">link</a></td>
                     <td class="project__title">{{ project.2 }}</td>
-                    <td><a href="{% url 'approver:project_del' project_id=project.1 %}">delete</a></td>
+                    <td><form action="{% url 'approver:project_del' project_id=project.1 %}" method="post">{% csrf_token %} <input class="btn" type="submit" value="Delete Project" /></form></td>
                 </tr>
             {% endfor %}
         </tbody>
