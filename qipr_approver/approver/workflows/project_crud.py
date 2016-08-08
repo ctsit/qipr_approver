@@ -1,10 +1,10 @@
-from approver.models import Person, Project,Keyword,ClinicalArea,ClinicalSetting,SafetyTarget
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, SafetyTarget, BigAim
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 import approver.utils as utils
 
 from django.contrib.auth.models import User
-from django.utils import timezone
+from django.utils import timezone, dateparse
 
 def create_or_update_project(current_user, project_form, project_id=None):
     """
@@ -42,29 +42,40 @@ def update_project_from_project_form(project, project_form, editing_user):
     exist.
     """
     now = timezone.now()
+    parse_date = dateparse.parse_date
 
     project.title = project_form.get('title')
     project.description = project_form.get('description')
-    project.proposed_start_date = project_form.get('proposed_start_date')
-    project.proposed_end_date = project_form.get('proposed_end_date')
+    project.proposed_start_date = parse_date(project_form.get('proposed_start_date'))
+    project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
 
-    keyword = extract_tags(project_form, 'keyword')
+    advisor = extract_tags(project_form, 'advisor')
+    big_aim = extract_tags(project_form, 'big_aim')
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
-    safety_target = extract_tags(project_form, 'safety_target')
     collaborator = extract_tags(project_form, 'collaborator')
-    advisor = extract_tags(project_form,'advisor')
+    keyword = extract_tags(project_form, 'keyword')
+    safety_target = extract_tags(project_form, 'safety_target')
 
     update_tags(model=project,
                 tag_property='keyword',
                 tags=keyword,
                 tag_model=Keyword,
                 tagging_user=editing_user)
+
+    update_tags(model=project,
+                tag_property='big_aim',
+                tags=big_aim,
+                tag_model=BigAim,
+                tagging_user=editing_user)
+
+
     update_tags(model=project,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
+
     update_tags(model=project,
                 tag_property='clinical_setting',
                 tags=clinical_setting,
@@ -113,3 +124,9 @@ def curent_user_is_project_owner(current_user, project):
     same as the project.owner.id
     """
     return current_user.person.id == project.owner.id
+def current_user_is_project_advisor_or_collaborator(current_user, project):
+    """
+    This returns a boolean true if the current_user.person.id is in 
+    project.advisor or project.collaborator
+    """
+    return True

@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from approver.models import Project
 from approver.forms import QuestionForm, ProjectForm
-from approver.workflows import project_crud
+from approver.workflows import project_crud, approve_workflow
 from approver.decorators import login_required
 import approver.constants as constants
 import approver.utils as utils
@@ -22,11 +22,10 @@ def approve(request, project_id=None):
     }
     current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
     if request.method == 'POST':
-        # question_form = request.POST
-        # return the route where we build and give the certificate
-        # if the whole thing isnt done, still save their answers, maybe kick them back to dash?
-        # hit back? ajax answers on lose focus?
-        return utils.dashboard_redirect_and_toast(request, 'You posted your questions.')
+        question_form = request.POST
+        project = project_crud.get_project_or_none(project_id)
+        approve_workflow.save_project_with_form(project, question_form, request.session)
+        return approve_workflow.approve_or_next_steps(project, current_user)
 
     else:
         now = timezone.now()
@@ -41,7 +40,7 @@ def approve(request, project_id=None):
                 else:
                     # need to be able to prefill this in case people have already
                     # started approving their project but left
-                    question_form = QuestionForm()
+                    question_form = QuestionForm(project_id=project_id)
                     context['sorted_questions'] = question_form.get_sorted_questions()
                     return utils.layout_render(request, context)
         else:

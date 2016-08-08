@@ -1,9 +1,13 @@
-.bg-orange {
-    background-color:#e28f41;
+nav {
+    /* gator blue */
+    background-color: #6c9ac3;
 }
-.bg-blue {
-    background-color:#6c9ac3;
+
+.btn {
+    /* gator orange */
+    background-color: #e28f41;
 }
+
 .cts-toast {
     position: fixed;
     width: 60%;
@@ -29,7 +33,8 @@
 }
 
 .tag-holder {
-  display:inline-block;
+    display: inline-block;
+    margin: 0;
 }
 
 .tagbox__input {
@@ -37,41 +42,55 @@
 }
 
 .tag {
-  display: inline;
-  color: white;
-  margin-left: .1rem;
-  margin-right: .1rem;
+    display: inline;
+    color: white;
+    margin-left: .1rem;
+    margin-right: .1rem;
 }
 
 .tag__container {
-  display: inline;
-  float: left;
-  /* the following color is the blue green thing we currently have
-  background-color: #26a69a;*/
-  background-color: #E28F41;
-  border-radius: 10px;
-  margin: .3rem;
-  padding: .2rem;
-  font-size: .8rem;
-  font-weight: 300;
+    display: inline;
+    float: left;
+    background-color: #e28f41;
+    border-radius: 10px;
+    margin: .3rem;
+    padding: .2rem;
+    font-size: .8rem;
+    font-weight: 300;
 }
 
 .tag__delete {
-  position: relative;
-  padding-left: .1rem;
-  top: 0.255rem;
-  color: white;
-  font-weight: 900; 
-  background: transparent !important;
-  display: inline;
-  font-family: 'Material Icons';
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding-left: .1rem;
+    top: 0.255rem;
+    color: white;
+    font-weight: 900;
+    background: transparent !important;
+    display: inline;
+    font-family: 'Material Icons';
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.question__text {
+    text-indent: 3.5rem;
+}
+
+.question__description {
+    text-indent: 3.5rem;
+}
+
+.tag_label {
+    float: left;
+    position: relative;
+    left: -.5rem;
+    margin: .3rem;
+    padding: .2rem;
 }

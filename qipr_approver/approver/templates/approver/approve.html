@@ -1,5 +1,5 @@
 <h1>Approve your project!</h1>
-<form action="{% url 'approver:approve' %}"
+<form action="{% url 'approver:approve' project_id=project_id %}"
       method="post"
       onkeypress="return event.keyCode != 13">
 

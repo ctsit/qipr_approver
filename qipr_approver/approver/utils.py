@@ -39,6 +39,9 @@ def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
 
+def after_approval(project):
+    return redirect(reverse("approver:project_status") + str(project.id))
+
 def set_created_by_if_empty(model, user):
     """
     This function is called by our save function because django
@@ -51,6 +54,15 @@ def set_created_by_if_empty(model, user):
         model.created_by is not None
     except:
         model.created_by = user
+
+def get_id_or_none(model):
+    """
+    Django explodes if you dereference pk before saving to the db
+    """
+    try:
+        return model.id
+    except:
+        return None
 
 def format_date(date):
     """
@@ -123,6 +135,21 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
 
     model.save(tagging_user)
 
+def get_related(model, related_model_name):
+    """
+    Given a model,
+    a related_model_name
+
+    this function returns a list of
+    model.related_model
+    or an empty list
+    """
+    model_in_db = getattr(model, 'pk')
+    if model_in_db:
+        return getattr(model, related_model_name).all()
+    else:
+        return []
+
 def get_related_property(model, related_model_name, related_model_property='name'):
     """
     Given a model,
@@ -133,9 +160,5 @@ def get_related_property(model, related_model_name, related_model_property='name
     model.related_model.related_model_property
     or an empty list
     """
-    model_in_db = getattr(model, 'pk')
-    if model_in_db:
-        relateds = getattr(model, related_model_name).all()
-        return [getattr(item, related_model_property) for item in relateds]
-    else:
-        return []
+    relateds = get_related(model, related_model_name)
+    return [getattr(item, related_model_property) for item in relateds]

@@ -49,6 +49,10 @@
                 addTag(this);
             }
         });
+        node.addEventListener("blur", function(event) {
+            event.preventDefault();
+            addTag(this);
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.includes(invisibleSpace)){
@@ -141,5 +145,19 @@
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year
     });
+
+    $('.modal-trigger').leanModal();
+
+    window.submit_answer = function (questionId, projectId, choiceId) {
+        window.$.ajax('/answer_submit/', {
+            method: 'POST',
+            data: {
+                choice_id: choiceId,
+                project_id: projectId,
+                question_id: questionId,
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+            }
+        });
+    };
 
 }();

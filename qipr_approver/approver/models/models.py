@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
 
@@ -24,8 +25,15 @@ class Provenance(models.Model):
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
+        self.audit_trail.user = last_modified_by
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
+
+    def delete(self, last_modified_by, *args, **kwargs):
+        self.audit_trail.user = last_modified_by
+        self.last_modified_by = last_modified_by
+        super(Provenance, self).delete(*args, **kwargs)
+
 
     class Meta:
         abstract = True
@@ -79,29 +87,15 @@ class Category(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Section(Provenance, NamePrint, TaggedWithName):
-    name = models.CharField(max_length=30)
-    sort_order = models.IntegerField(unique=True)
-
-class Question(Provenance):
-    section = models.ForeignKey(Section)
-    text = models.TextField()
-    sort_order = models.IntegerField()
-
-class Choice(Provenance):
-    question = models.ForeignKey(Question)
-    text = models.TextField()
-    sort_order = models.IntegerField()
-
-class BigAim(Provenance,NamePrint):
+class BigAim(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class FocusArea(Provenance,NamePrint):
+class FocusArea(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class ClinicalDepartment(Provenance,NamePrint):
+class ClinicalDepartment(Provenance, NamePrint, TaggedWithName):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
@@ -110,18 +104,22 @@ class Person(Provenance):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     position = models.ManyToManyField(Position)
-    organization = models.ManyToManyField(Organization)
+    account_expiration_time = models.DateTimeField(null=True)
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    speciality = models.ManyToManyField(Speciality)
-    training = models.ManyToManyField(Training)
-    webpage_url = models.CharField(max_length=50, null=True)
-    suffix = models.ManyToManyField(Suffix)
     expertise = models.ManyToManyField(Expertise)
-    qi_interest = models.ManyToManyField(QI_Interest)
+    first_name = models.CharField(max_length=30)
     last_login_time = models.DateTimeField(null=True)
-    account_expiration_time = models.DateTimeField(null=True)
+    last_name = models.CharField(max_length=30)
+    organization = models.ManyToManyField(Organization)
+    position = models.ManyToManyField(Position)
+    qi_interest = models.ManyToManyField(QI_Interest)
+    speciality = models.ManyToManyField(Speciality)
+    suffix = models.ManyToManyField(Suffix)
+    training = models.ManyToManyField(Training)
+    user = models.OneToOneField(User, null=True, related_name="person")
+    webpage_url = models.CharField(max_length=50, null=True)
 
     tag_property_name = 'email_address'
 
@@ -130,18 +128,20 @@ class Person(Provenance):
 
 
 class Project(Provenance):
-    title = models.CharField(max_length=300)
-    description = models.TextField()
-    owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
-    keyword = models.ManyToManyField(Keyword)
-    category = models.ManyToManyField(Category)
-    collaborator = models.ManyToManyField(Person, related_name="collaborations")
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
-    proposed_start_date = models.DateTimeField(null=True)
-    proposed_end_date = models.DateTimeField(null=True)
-    safety_target = models.ManyToManyField(SafetyTarget)
+    approval_date = models.DateTimeField(null=True)
+    big_aim = models.ManyToManyField(BigAim)
+    description = models.TextField()
+    category = models.ManyToManyField(Category)
     clinical_area = models.ManyToManyField(ClinicalArea)
     clinical_setting = models.ManyToManyField(ClinicalSetting)
+    collaborator = models.ManyToManyField(Person, related_name="collaborations")
+    keyword = models.ManyToManyField(Keyword)
+    owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
+    proposed_end_date = models.DateTimeField(null=True)
+    proposed_start_date = models.DateTimeField(null=True)
+    safety_target = models.ManyToManyField(SafetyTarget)
+    title = models.CharField(max_length=300)
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner)])
@@ -153,16 +153,14 @@ class Project(Provenance):
         or a year after their creation date.
         """
         """right now this is broken"""
+        timeelapsed = timezone.now() - self.created
+        if timeelapsed.seconds > 31536000 or self.approval_date :
+            return False
         return True
 
-class Response(Provenance):
-    user = models.ForeignKey(User)
-    question = models.ForeignKey(Question)
-    choice = models.ForeignKey(Choice)
-    project = models.ForeignKey(Project)
-    free_text_response = models.TextField()
-
-    description = models.CharField(max_length=200)
+    def approve(self, user):
+        self.approval_date = timezone.now()
+        self.save(user)
 
 class Address(Provenance):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")

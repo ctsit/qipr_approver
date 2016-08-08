@@ -1,18 +1,31 @@
+from approver.models import Question, Section
+from approver.utils import get_related
 
 class QuestionForm():
 
-    # eventually generate these questions and their respective answers from
-    # some database information.
-    def __init__(self):
-        # make a separate templatetag for answers? something that can
-        # determine what type of thing to use? ie radio checkbox etc
-        self.question_list = [
-            {'question_text':'whats your favorite color',
-             'answer_choices':['red', 'green', 'blue'],
-             'order':1}
-        ]
+    def __init__(self, project_id=None, question_section_name='Wisconsin questions'):
+        self.project_id = project_id
+        self.form_section = Section.objects.get(name=question_section_name)
+        self.question_list = self.get_questions(self.form_section)
+
+    def get_question_tag_context(self, question_model):
+        return {
+            'question_text': question_model.text,
+            'question_id': question_model.id,
+            'question_description': question_model.description,
+            'answers': [self.get_choice_text_id(choice) for choice in get_related(question_model, 'choice')],
+            'sort_order': question_model.sort_order,
+            'project_id': self.project_id,
+        }
 
     def get_sorted_questions(self):
         # this is js syntax probably doesnt work in django
-        self.question_list.sort(key=lambda k: k['order'])
+        self.question_list.sort(key=lambda k: k['sort_order'])
         return self.question_list
+
+    def get_questions(self, section):
+        question_models = Question.objects.filter(section=section)
+        return [self.get_question_tag_context(question) for question in question_models]
+
+    def get_choice_text_id(self, choice):
+        return (choice.text, choice.id)

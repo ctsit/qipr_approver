@@ -4,7 +4,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('templatetags/tagbox.html')
-def tagbox(input_dict):
+def tagbox(input_dict, is_disabled=False):
     """
     Renders tagbox widget
     Takes the following keywords:
@@ -14,6 +14,11 @@ def tagbox(input_dict):
     options: the different options you can select from, list values
     selected: the options selected, list of values
     """
+    if is_disabled:
+        input_dict['disabled'] = "disabled"
+    else:
+        input_dict['disabled'] = ""
+
     input_dict['options'] = __add_invisible_spaces(input_dict['options'])
     input_dict['selected'] = __add_invisible_spaces(input_dict['selected'])
     input_dict['selected_values_string'] = __to_hidden_input_string(input_dict.get('selected'))

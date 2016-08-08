@@ -106,7 +106,7 @@ def save_address_from_form(form, user, address_type, person=None, organization=N
     zip_code_list = form.getlist('zip_code_'+address_type)
     country_list = form.getlist('country_'+address_type)
     address_id_list = form.getlist('address_id_'+address_type)
-    
+
     zipped_address_values = zip(
         address1_list,
         address2_list,
@@ -143,5 +143,3 @@ def __save_each_address_tuple(address_values, user, person=None, organization=No
         address.organization=organization
 
         address.save(user)
-
-    return address_list
