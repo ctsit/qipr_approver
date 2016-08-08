@@ -20,6 +20,11 @@ SESSION_VARS = {
     'last_name': 'last_name',
 }
 
+ADDRESS_TYPE= {
+    'business': 'business',
+    'organization': 'organization',
+}
+
 answer_submit_names = {
     'question_id': 'question_id',
     'choice_id': 'choice_id',

@@ -1,5 +1,6 @@
 <form action="{% url 'approver:aboutyou' %}" method="post"
-      onkeypress="return event.keyCode != 13;">
+      onkeypress="return event.keyCode != 13;" class="col s10">
+
     {% csrf_token %}
     <h1>About You</h1>
     <p>
@@ -7,9 +8,15 @@
     </p>
     {% load form_input %}
     {% load tagbox %}
+    {% load address %}
     {% form_input form.user_name %}
     {% form_input form.first_name %}
     {% form_input form.last_name %}
+    {% for business_address in form.business_address.all %}
+        {% address business_address 'business' forloop.counter %}
+    {% empty %}
+        {% address empty_address 'business' %}
+    {% endfor %}
     {% form_input form.email %}
     {% tagbox form.speciality_tags %}
     {% tagbox form.expertise_tags %}

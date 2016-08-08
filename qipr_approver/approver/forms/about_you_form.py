@@ -19,6 +19,8 @@ class AboutYouForm():
                           'type': 'text',
                           'value': user.person.last_name or ''}
 
+        self.business_address = user.person.business_address
+
         self.webpage_url = {'name': 'webpage_url',
                             'label': 'Webpage URL',
                             'type': 'text',
