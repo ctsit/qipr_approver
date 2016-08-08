@@ -29,20 +29,13 @@ def dashboard(request,project_id=None):
         return utils.layout_render(request, context)
     elif request.method == 'POST':
         current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
-
+        project = project_crud.get_project_or_none(project_id)
         if(project_id is not None):
-            project = project_crud.get_project_or_none(project_id)
-            if(project is None):
-                return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
+            toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
+            if(toast_text == 'Deleted Project'):
+                return redirect(reverse("approver:dashboard"))
             else:
-                if(project_crud.curent_user_is_project_owner(current_user, project) is not True):
-                        return utils.dashboard_redirect_and_toast(request, 'You are not authorized to delete this project.')
-                else:
-                    if (project.get_is_editable() is not True):
-                        return utils.dashboard_redirect_and_toast(request, 'You are not allowed to delete/edit this project.')
-                    else:
-                        project.delete(current_user)
-                        return redirect(reverse("approver:dashboard"))
+                return utils.dashboard_redirect_and_toast(request, toast_text)
         else:
             return redirect(reverse("approver:dashboard"))
 

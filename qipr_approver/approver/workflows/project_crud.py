@@ -130,3 +130,18 @@ def current_user_is_project_advisor_or_collaborator(current_user, project):
     project.advisor or project.collaborator
     """
     return True
+def current_user_can_perform_project_delete(current_user,project):
+    """
+    This returns an error message if user cannot delete the project, returns empty String when
+    user is the owner for the project and the project is editable.
+    """
+    toast_message = ""
+    if(toast_message == "" and project is None):
+        toast_message = 'Project with id {} does not exist.'.format(project_id)
+        return toast_message
+    if(toast_message == "" and curent_user_is_project_owner(current_user, project) is not True):
+        return 'You are not authorized to delete this project.'
+    if (toast_message == "" and project.get_is_editable() is not True):
+        return 'You are not allowed to delete/edit this project.'
+    project.delete(current_user)
+    return 'Deleted Project'
