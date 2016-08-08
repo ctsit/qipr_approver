@@ -4,7 +4,6 @@ from approver.utils import extract_tags, update_tags
 
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.http import QueryDict
 
 def create_new_user_from_current_session(session):
     """
@@ -92,20 +91,20 @@ def save_address_from_form(form, user, address_type, person=None, organization=N
     This function will take a form and save address data found in it.
 
     This function uses the following values:
-    * form: the form containing the address.html template
+    * form: the form from the address.html template
     * user: the current user
-    * address_type: the type of address (currently business or organization)
+    * address_type: the type of address found in constants.ADDRESS_TYPE
     * person: the person who is assigned this address
     * organiztion: the organiztion which is assigned this address
     """
 
-    address1_list = form.getlist('address1_'+address_type)
-    address2_list = form.getlist('address2_'+address_type)
-    city_list = form.getlist('city_'+address_type)
-    state_list = form.getlist('state_'+address_type)
-    zip_code_list = form.getlist('zip_code_'+address_type)
-    country_list = form.getlist('country_'+address_type)
-    address_id_list = form.getlist('address_id_'+address_type)
+    address1_list = form.getlist('address1_' + address_type)
+    address2_list = form.getlist('address2_' + address_type)
+    city_list = form.getlist('city_' + address_type)
+    state_list = form.getlist('state_' + address_type)
+    zip_code_list = form.getlist('zip_code_' + address_type)
+    country_list = form.getlist('country_' + address_type)
+    address_id_list = form.getlist('address_id_' + address_type)
 
     zipped_address_values = zip(
         address1_list,
