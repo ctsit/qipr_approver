@@ -29,6 +29,7 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_PASSWORD'] = get_config('database_password')
     os.environ['QIPR_APPROVER_DATABASE_HOST'] = get_config('database_host')
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
+    os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
 
 define_env()
 

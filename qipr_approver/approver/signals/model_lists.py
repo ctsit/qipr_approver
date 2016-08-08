@@ -29,3 +29,24 @@ AllNormalModels =[
     Training,
     User,
 ]
+
+# Nothing related to responses
+AllRegistryModels = [
+    Address,
+    BigAim,
+    Category,
+    ClinicalArea,
+    ClinicalDepartment,
+    ClinicalSetting,
+    Expertise,
+    Keyword,
+    Organization,
+    Person,
+    Position,
+    Project,
+    QI_Interest,
+    SafetyTarget,
+    Speciality,
+    Suffix,
+    Training,
+]

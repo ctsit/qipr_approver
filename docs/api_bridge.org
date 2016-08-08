@@ -1,0 +1,26 @@
+* Scenario
+Kermit the Frog MD PhD, once his quality improvement project is approved
+wants to have it live in the registry. This way others can search it and
+see what he has done despite being green.
+* Approver Implementation
+** DONE Bridge module
+CLOSED: [2016-08-05 Fri 16:32]
+- [X] Use requests module to make the requests
+- [X] mocking use settings.ini for endpoint
+- [X] registry endpoints being built from settings.ini
+- [X] models have in_registry property
+- [X] Transfer models
+** DONE Determine the signals that submit data when appropriate
+CLOSED: [2016-08-05 Fri 11:33]
+  + [X] Option 1: signals
+    * [X] find right hooks
+      * post save
+    * [X] make sure that all_signals connects the signals on app ready
+** DONE Api user
+CLOSED: [2016-08-05 Fri 11:45]
+- [X] fixtures contains the api user
+- [X] constants file has right api username
+- [X] pushdata grabs the username from constants to make those changes
+* Registry Implementation
+** TODO Api endpoints
+** TODO Make sure that the Approver has to log in or verify its identity
