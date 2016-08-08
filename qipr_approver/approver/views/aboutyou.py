@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 
-from approver.models import Project
+from approver.models import Project, Address
 from approver.forms import AboutYouForm
 from approver.workflows import user_crud
 
@@ -31,6 +31,7 @@ def about_you(request):
         user = User.objects.get(username=username)
         about_you_form = AboutYouForm(user=user)
         context['form'] = about_you_form
+        context['empty_address'] = Address()
 
     return utils.layout_render(request, context)
 

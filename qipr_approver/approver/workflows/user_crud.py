@@ -1,5 +1,5 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix
-from approver.constants import SESSION_VARS
+from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization
+from approver.constants import SESSION_VARS, ADDRESS_TYPE
 from approver.utils import extract_tags, update_tags
 
 from django.contrib.auth.models import User
@@ -82,6 +82,63 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
 
     user.save()
     person.save(last_modified_by=editing_user)
+    save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
 
     return person
 
+def save_address_from_form(form, user, address_type, person=None, organization=None):
+    """
+    This function will take a form and save address data found in it.
+
+    This function uses the following values:
+    * form: the form from the address.html template
+    * user: the current user
+    * address_type: the type of address found in constants.ADDRESS_TYPE
+    * person: the person who is assigned this address
+    * organiztion: the organiztion which is assigned this address
+    """
+
+    address1_list = form.getlist('address1_' + address_type)
+    address2_list = form.getlist('address2_' + address_type)
+    city_list = form.getlist('city_' + address_type)
+    state_list = form.getlist('state_' + address_type)
+    zip_code_list = form.getlist('zip_code_' + address_type)
+    country_list = form.getlist('country_' + address_type)
+    address_id_list = form.getlist('address_id_' + address_type)
+
+    zipped_address_values = zip(
+        address1_list,
+        address2_list,
+        city_list,
+        state_list,
+        zip_code_list,
+        country_list,
+        address_id_list
+    )
+
+    __save_each_address_tuple(zipped_address_values, user, person, organization)
+
+def __save_each_address_tuple(address_values, user, person=None, organization=None):
+    """
+    This function will save the addresses generated in the save_address_from_list function
+    """
+    ADDRESS1 = 0
+    ADDRESS2 = 1
+    CITY = 2
+    STATE = 3
+    ZIP_CODE = 4
+    COUNTRY = 5
+    ADDRESS_ID = 6
+
+    for values in address_values:
+        address=Address.objects.get(id=values[ADDRESS_ID]) if values[ADDRESS_ID] else Address()
+        address.address1=values[ADDRESS1]
+        address.address2=values[ADDRESS2]
+        address.city=values[CITY]
+        address.state=values[STATE]
+        address.zip_code=values[ZIP_CODE]
+        address.country=values[COUNTRY]
+        address.person=person
+        address.organization=organization
+
+        address.save(user)

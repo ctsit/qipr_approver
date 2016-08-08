@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
 
 from approver import utils
+from approver.models.bridge_models import Registerable
 
 class TaggedWithName(models.Model):
     tag_property_name = 'name'
@@ -38,88 +39,69 @@ class Provenance(models.Model):
     class Meta:
         abstract = True
 
-class Training(Provenance, NamePrint, TaggedWithName):
+class Training(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-
-class Address(Provenance):
-    address1 = models.CharField(max_length=50)
-    address2 = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    zip_code = models.IntegerField(null=True)
-    state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True, blank=True)
-    country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, null=True, blank=True)
-
-    def __str__(self):
-        return ' ; '.join([self.address1,
-                           self.address2,
-                           self.city,
-                           self.zip_code,
-                           self.state,
-                           self.country])
 
 class Organization(Provenance):
     org_name = models.CharField(max_length= 400)
-    address = models.ManyToManyField(Address)
 
     def __str__(self):
         return self.org_name
 
-class Speciality(Provenance, NamePrint, TaggedWithName):
+class Speciality(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Position(Provenance, NamePrint, TaggedWithName):
+class Position(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Keyword(Provenance, NamePrint, TaggedWithName):
+class Keyword(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class SafetyTarget(Provenance, NamePrint, TaggedWithName):
+class SafetyTarget(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class ClinicalArea(Provenance, NamePrint, TaggedWithName):
+class ClinicalArea(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class ClinicalSetting(Provenance, NamePrint, TaggedWithName):
+class ClinicalSetting(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Suffix(Provenance, NamePrint, TaggedWithName):
+class Suffix(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
 
-class Expertise(Provenance, NamePrint, TaggedWithName):
+class Expertise(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class QI_Interest(Provenance, NamePrint, TaggedWithName):
+class QI_Interest(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class Category(Provenance, NamePrint, TaggedWithName):
+class Category(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class BigAim(Provenance, NamePrint, TaggedWithName):
+class BigAim(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class FocusArea(Provenance, NamePrint, TaggedWithName):
+class FocusArea(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class ClinicalDepartment(Provenance, NamePrint, TaggedWithName):
+class ClinicalDepartment(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
     sort_order = models.IntegerField()
 
-class Person(Provenance):
+class Person(Provenance, Registerable):
     account_expiration_time = models.DateTimeField(null=True)
-    business_address = models.ManyToManyField(Address)
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
@@ -142,15 +124,15 @@ class Person(Provenance):
         return ' '.join([self.first_name, self.last_name, self.email_address])
 
 
-class Project(Provenance):
+class Project(Provenance, Registerable):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
     approval_date = models.DateTimeField(null=True)
     big_aim = models.ManyToManyField(BigAim)
-    description = models.TextField()
     category = models.ManyToManyField(Category)
     clinical_area = models.ManyToManyField(ClinicalArea)
     clinical_setting = models.ManyToManyField(ClinicalSetting)
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
+    description = models.TextField()
     keyword = models.ManyToManyField(Keyword)
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
@@ -167,13 +149,30 @@ class Project(Provenance):
         Projects get locked down after they are approved
         or a year after their creation date.
         """
-        """right now this is broken"""
-        
         timeelapsed = timezone.now() - self.created
-        if timeelapsed.seconds > 31536000 or self.approval_date :
+        if timeelapsed.seconds > 31536000 or self.approval_date or self.in_registry:
             return False
         return True
 
     def approve(self, user):
         self.approval_date = timezone.now()
         self.save(user)
+
+class Address(Provenance, Registerable):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, related_name="org_address")
+    address1 = models.CharField(max_length=50)
+    address2 = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    zip_code = models.CharField(max_length=10, null=True, blank=True)
+    state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True, blank=True)
+    country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, null=True, blank=True)
+
+    def __str__(self):
+        return ' ; '.join([self.address1,
+                           self.address2,
+                           self.city,
+                           self.zip_code,
+                           self.state,
+                           self.country])
+
