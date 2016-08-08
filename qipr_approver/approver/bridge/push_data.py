@@ -13,7 +13,7 @@ def push_model(model):
     json_data = __jsonify(model)
 
     response = requests.post(registry_endpoints.get('add_model'), data=json_data)
-    if response.status_code == 200 and is_json:
+    if response.status_code == 200:
         model.register()
         model.save(api_user)
     return response
