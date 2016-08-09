@@ -45,6 +45,6 @@ def get_project_context(request):
     return projects + collaborator_projects + advisor_projects
 
 def __get_project_details(project, role):
+    '''Returns dictionary of all project details that are displayed on Dashboard''' 
     return {'title':project.title,'pk':project.pk,'role':role}
-    #return (project.title,
-    #       project.pk,role)
+    
