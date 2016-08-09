@@ -32,10 +32,7 @@ def dashboard(request,project_id=None):
         project = project_crud.get_project_or_none(project_id)
         if(project_id is not None):
             toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
-            if(toast_text == 'Deleted Project'):
-                return redirect(reverse("approver:dashboard"))
-            else:
-                return utils.dashboard_redirect_and_toast(request, toast_text)
+            return utils.dashboard_redirect_and_toast(request, toast_text)
         else:
             return redirect(reverse("approver:dashboard"))
 
