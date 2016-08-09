@@ -6,25 +6,16 @@ from django.contrib.auth.models import User
 from approver.constants import STATE_CHOICES, COUNTRY_CHOICES, QI_CHECK
 
 from approver import utils
+from approver import constants
 from approver.models.bridge_models import Registerable
-
-class TaggedWithName(models.Model):
-    tag_property_name = 'name'
-    class Meta:
-        abstract = True
-
-class NamePrint(models.Model):
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        abstract = True
+from approver.models.tag_models import Tag, TagPrint, TaggedWithName
 
 class Provenance(models.Model):
     created_by = models.ForeignKey(User,editable=False,related_name="+")
     last_modified_by = models.ForeignKey(User,related_name="+")
     created = models.DateTimeField(auto_now_add=True,editable=False)
     last_modified = models.DateTimeField(auto_now=True,editable=True)
+    guid = models.CharField(max_length=32, editable=False, default=utils.get_guid())
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
@@ -37,65 +28,47 @@ class Provenance(models.Model):
         self.last_modified_by = last_modified_by
         super(Provenance, self).delete(*args, **kwargs)
 
-
     class Meta:
         abstract = True
 
-class Training(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=200)
-
-class Organization(Provenance):
+class Organization(Provenance, Registerable):
     org_name = models.CharField(max_length= 400)
 
-    def __str__(self):
+    def __str__(self, delimiter=' '):
         return self.org_name
 
-class Speciality(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
+class Training(Provenance, TagPrint, TaggedWithName, Registerable):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, null=True)
 
-class Position(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
+class Category(Provenance, Tag):
+    pass
+class ClinicalArea(Provenance, Tag):
+    pass
+class ClinicalSetting(Provenance, Tag):
+    pass
+class Expertise(Provenance, Tag):
+    pass
+class Keyword(Provenance, Tag):
+    pass
+class Position(Provenance, Tag):
+    pass
+class QI_Interest(Provenance, Tag):
+    pass
+class Speciality(Provenance, Tag):
+    pass
+class Suffix(Provenance, Tag):
+    pass
+class Training(Provenance, Tag):
+    pass
 
-class Keyword(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class ClinicalArea(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class ClinicalSetting(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class Suffix(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
-
-class Expertise(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class QI_Interest(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class Category(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class BigAim(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=100)
+class BigAim(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 
-class FocusArea(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=100)
+class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 
-class ClinicalDepartment(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=100)
+class ClinicalDepartment(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 
 class Person(Provenance, Registerable):
@@ -126,6 +99,15 @@ class Person(Provenance, Registerable):
     def __str__(self):
         return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
 
+    def get_natural_dict(self):
+        return {
+            'gatorlink': self.gatorlink,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email_address': self.email_address,
+            'model_class_name': self.__class__.__name__,
+        }
+
 
 class Project(Provenance, Registerable):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
@@ -143,7 +125,7 @@ class Project(Provenance, Registerable):
     title = models.CharField(max_length=300)
 
     def __str__(self):
-        return ' '.join([self.title, str(self.owner)])
+        return ' '.join([self.title, str(self.owner.gatorlink)])
 
     def get_is_editable(self):
         """
@@ -162,6 +144,16 @@ class Project(Provenance, Registerable):
     def approve(self, user):
         self.approval_date = timezone.now()
         self.save(user)
+
+    def get_natural_dict(self):
+        return {
+            'title': self.title,
+            'description': self.description,
+            'owner': self.owner.natural_key(),
+            'collaborators': [item.natural_key() for item in self.collaborator.all()],
+            'keyword': [item.natural_key() for item in self.keyword.all()],
+            'model_class_name': self.__class__.__name__,
+        }
 
     def get_need_advisor(self):
         """
@@ -187,3 +179,13 @@ class Address(Provenance, Registerable):
                            self.state,
                            self.country])
 
+    def get_natural_dict(self):
+        return {
+            'address1': self.address1,
+            'address2': self.address2,
+            'city': self.city,
+            'zip_code': self.zip_code,
+            'state': self.state,
+            'country': self.country,
+            'person': self.person.natural_key(),
+        }

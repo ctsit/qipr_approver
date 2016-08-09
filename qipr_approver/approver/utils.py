@@ -1,7 +1,10 @@
+from datetime import timedelta
+import uuid
+
+import django
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from datetime import timedelta
@@ -10,6 +13,12 @@ import approver.constants as constants
 import django
 from django.db.models import fields
 from django.apps import apps
+
+def get_guid():
+    """
+    Wraps the python uuid.uuid4 function and returns the hex value
+    """
+    return uuid.uuid4().hex
 
 def user_exists(about_you_form):
     """
@@ -140,6 +149,8 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
         if isinstance(tag, tag_model):
             taggable.add(tag)
 
+    # this should do a diff and only save if it changed
+    # either that or save all the diffrent tag types at once
     model.save(tagging_user)
 
 def get_related(model, related_model_name):

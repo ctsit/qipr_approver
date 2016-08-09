@@ -75,8 +75,12 @@ gatorlink_header = 'Glid'
 
 registry_host = 'http://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
+registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
+
+registry_hostport = registry_host + (':' + registry_port if registry_port else '')
+
 registry_endpoints = {
-    'add_model': '/'.join([registry_host, 'add_model']),
+    'add_model': '/'.join([registry_hostport, 'api', 'add_model']),
 }
 
 app_label = 'approver'
