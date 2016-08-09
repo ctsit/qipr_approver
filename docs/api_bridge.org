@@ -23,8 +23,8 @@ CLOSED: [2016-08-05 Fri 11:45]
 - [X] pushdata grabs the username from constants to make those changes
 ** TODO Model natural key
 Models must contain a natural key in order for the registry database to
-look up and add those related objects.
-- [ ] person natural key
+look up and add those related objects. [[https://docs.djangoproject.com/en/1.9/topics/serialization/][Search for "natural key".]] 
+- [X] person natural key
 - [ ] project natural key
 - [ ] tags natural key
 - [ ] address natural key
