@@ -13,7 +13,7 @@ class QuestionForm():
             'question_text': question_model.text,
             'question_id': question_model.id,
             'question_description': question_model.description,
-            'answers': [self.get_choice_text_id(choice) for choice in get_related(question_model, 'choice')],
+            'answers': [self.get_choice_dict(choice) for choice in get_related(question_model, 'choice')],
             'sort_order': question_model.sort_order,
             'project_id': self.project_id,
         }
@@ -27,5 +27,8 @@ class QuestionForm():
         question_models = Question.objects.filter(section=section)
         return [self.get_question_tag_context(question) for question in question_models]
 
-    def get_choice_text_id(self, choice):
-        return (choice.text, choice.id)
+    def get_choice_dict(self, choice):
+        return {
+            'text': choice.text,
+            'id': choice.id,
+        }

@@ -17,12 +17,13 @@
     <ul>
         {% for choice in answers %}
             <p>
-                <input name="question_{{ question_id }}__choice_{{ choice.1 }}"
+                <input name="question_{{ question_id }}"
                        class="with-gap"
                        onchange="window.submit_answer.call(this, {{ question_id }}, {{ project_id }}, {{ choice.1 }})"
                        type="radio"
-                       id="question_{{ question_id }}}__choice_{{ choice.1 }}" />
-                <label for="question_{{ question_id }}}__choice_{{ choice.1 }}">{{ choice.0 }}</label>
+                       value="{{ choice['id'] }}"
+                       id="question_{{ question_id }}__choice_{{ choice['id'] }}" />
+                <label for="question_{{ question_id }}__choice_{{ choice['id'] }}">{{ choice['text'] }}</label>
             </p>
         {% endfor %}
     </ul>

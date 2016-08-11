@@ -107,6 +107,7 @@ class Person(Provenance, Registerable):
     email_address = models.CharField(max_length=100, null=True)
     expertise = models.ManyToManyField(Expertise)
     first_name = models.CharField(max_length=30)
+    gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
     last_name = models.CharField(max_length=30)
     organization = models.ManyToManyField(Organization)
