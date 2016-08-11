@@ -1,0 +1,17 @@
+<h1>Approve your project!</h1>
+<form action="{% url 'approver:approve' project_id=project_id %}"
+      method="post"
+      onkeypress="return event.keyCode != 13">
+
+    {% csrf_token %}
+
+    {% load question %}
+    {% for item in sorted_questions %}
+        {% question item %}
+    {% endfor %}
+
+    <input type="submit"
+           value="Submit"
+           class="btn"
+           />
+</form>

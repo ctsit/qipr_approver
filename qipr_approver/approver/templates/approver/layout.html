@@ -1,0 +1,28 @@
+<html>
+    <head>
+        {% load staticfiles %}
+        <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> 
+    </head>
+    <body>
+        <nav class="bg-blue">
+            <a class="btn" href="{% url 'approver:index' %}">Home</a>
+            <a class="btn" href="{% url 'approver:projects' %}">Projects</a>
+            <a class="btn" href="{% url 'approver:aboutyou' %}">About you</a>
+            <a class="btn" href="{% url 'approver:dashboard' %}">Dashboard</a>
+            <a class="btn" href="{% url 'approver:logout' %}">Logout</a>
+        </nav>
+        <div class="container">
+            {% include content %}
+        </div>
+        {% if toast_text %}
+        <div id="toast" class="cts-toast">
+            <span class="cts-toast__text">{{ toast_text }}</span>
+        </div>
+        {% endif %}
+        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
+    </body>
+</html>

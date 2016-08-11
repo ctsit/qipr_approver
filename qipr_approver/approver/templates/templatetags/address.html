@@ -1,0 +1,44 @@
+<div class="collection with-header">
+    <div id="address_{{ address_type }}_{{ counter }}"
+        class="form-address-wrapper input"
+        data-name="address">
+
+        <div>{{ address_type|capfirst }} Address</div>
+
+        <div class="form-input-wrapper input_address1">
+            <label for="address1" class="active">Address 1</label>
+            <input class="" name="address1_{{ address_type }}" type="text" value="{{ address1 }}">
+        </div>
+
+        <div class="form-input-wrapper input_address2">
+            <label for="address2" class="active">Address 2</label>
+            <input class="" name="address2_{{ address_type }}" type="text" value="{{ address2 }}">
+        </div>
+
+        <div class="row">
+            <div class="form-input-wrapper input_city col s5">
+                <label for="city" class="active">City</label>
+                <input class="" name="city_{{ address_type }}" type="text" value="{{ city }}">
+            </div>
+
+            <div class="form-input-wrapper input_state col s1">
+                <label for="state" class="active">State</label>
+                <input class="" name="state_{{ address_type }}" type="text" maxlength="2"
+                       value="{{ state }}">
+            </div>
+
+            <div class="form-input-wrapper input_zip col s3">
+                <label for="zip" class="active">Zip</label>
+                <input class="" name="zip_code_{{ address_type }}" type="text" maxlength="10"
+                    value="{{ zip_code }}">
+            </div>
+
+            <div class="form-input-wrapper input_country col s1">
+                <label for="country" class="active">Country</label>
+                <input class="" name="country_{{ address_type }}" type="text" maxlength="2"
+                       value="{{ country }}">
+            </div>
+        </div>
+        <input style="display:none;" name="address_id_{{ address_type }}" type="text" value="{{ address_id }}">
+    </div>
+</div>

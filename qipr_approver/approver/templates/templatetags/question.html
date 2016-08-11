@@ -1,0 +1,29 @@
+<div class="question">
+    <h5 class="question__text">{{ question_text }}</h5>
+
+    <div class="cts-modal">
+        <a class="modal-trigger waves-effect waves-light btn" href="#modal--{{ question_id }}">Why are we asking?</a>
+        <div id="modal--{{ question_id }}" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h5 class="question__text">{{ question_text }}</h5>
+                <p class="question__description">{{ question_description }}</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Got it!</a>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        {% for choice in answers %}
+            <p>
+                <input name="question_{{ question_id }}__choice_{{ choice.1 }}"
+                       class="with-gap"
+                       onchange="window.submit_answer.call(this, {{ question_id }}, {{ project_id }}, {{ choice.1 }})"
+                       type="radio"
+                       id="question_{{ question_id }}}__choice_{{ choice.1 }}" />
+                <label for="question_{{ question_id }}}__choice_{{ choice.1 }}">{{ choice.0 }}</label>
+            </p>
+        {% endfor %}
+    </ul>
+</div>

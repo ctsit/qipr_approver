@@ -1,0 +1,32 @@
+<div>
+    <h3>
+        <a href="{% url 'approver:projects' %}">Add Project</a>
+    </h3>
+</div>
+<div>
+    <div style="display:inline">
+        List of Projects:
+    </div>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th data-field="title">Title</th>
+                <th data-field="edit_link">Edit Project</th>
+                <th data-field="role">Role</th>
+                <th data-field="delete">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td class="project__title">{{ project.title }}</td>
+                    <td><a href="{% url 'approver:projects' project_id=project.pk %}">link</a></td>
+                    <td class="project__title">{{ project.role }}</td>
+                    <td><form action="{% url 'approver:project_del' project_id=project.pk %}" method="post">{% csrf_token %} <input class="btn" type="submit" value="Delete Project" /></form></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,42 @@
+* Scenario
+Kermit the Frog MD PhD, once his quality improvement project is approved
+wants to have it live in the registry. This way others can search it and
+see what he has done despite being green.
+* Approver Implementation
+** DONE Bridge module
+CLOSED: [2016-08-05 Fri 16:32]
+- [X] Use requests module to make the requests
+- [X] mocking use settings.ini for endpoint
+- [X] registry endpoints being built from settings.ini
+- [X] models have in_registry property
+- [X] Transfer models
+** DONE Determine the signals that submit data when appropriate
+CLOSED: [2016-08-05 Fri 11:33]
+  + [X] Option 1: signals
+    * [X] find right hooks
+      * post save
+    * [X] make sure that all_signals connects the signals on app ready
+** DONE Api user
+CLOSED: [2016-08-05 Fri 11:45]
+- [X] fixtures contains the api user
+- [X] constants file has right api username
+- [X] pushdata grabs the username from constants to make those changes
+** TODO Model natural key
+Models must contain a natural key in order for the registry database to
+look up and add those related objects. [[https://docs.djangoproject.com/en/1.9/topics/serialization/][Search for "natural key".]] 
+- [X] person natural key
+- [ ] project natural key
+- [ ] tags natural key
+- [ ] address natural key
+** TODO Related object dependencies
+Registry must be able to get related objects that are not in the registry
+already. These are most likely already in the registry db but could not be
+due to network failure or something.
+*** option 1: Pass leaf models first
+- [ ] when serializing, make sure related objects are in the registry
+- [ ] when adding the model make sure to respond to dependency errors
+*** option 2: bidirectional communication
+- [ ] approver enpoints so registry can ask for the things it lacks
+* Registry Implementation
+** TODO Api endpoints
+** TODO Make sure that the Approver has to log in or verify its identity
