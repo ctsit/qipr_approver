@@ -13,7 +13,7 @@ class QuestionForm():
             'question_text': question_model.text,
             'question_id': question_model.id,
             'question_description': question_model.description,
-            'answers': [self.get_choice_dict(choice) for choice in get_related(question_model, 'choice')],
+            'answers': [self.get_choice_dict(choice) for choice in get_related(question_model,'choice')],
             'sort_order': question_model.sort_order,
             'project_id': self.project_id,
         }
