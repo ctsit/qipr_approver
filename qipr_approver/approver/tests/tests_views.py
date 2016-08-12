@@ -11,16 +11,16 @@ class TestView(TestCase):
 		print(response)
 		self.assertEqual(response.status_code,302)
 		self.assertEqual(response.url, '/aboutyou/')
-		response1 = self.client.post('/shib/', {'username': 'test','password':'temp','gatorlink':'test'})
-		print(response1)
-		self.assertEqual(response1.status_code,302)
-		self.assertEqual(response1.url, '/dashboard/')
+		# response1 = self.client.post('/shib/', {'username': 'test','password':'temp','gatorlink':'test'})
+		# print(response1)
+		# self.assertEqual(response1.status_code,302)
+		# self.assertEqual(response1.url, '/dashboard/')
 
 	def test_dashboard(self):
 		response = self.client.get('/dashboard/')
 		self.assertEqual(response.status_code,302)
 		print(response)
-		
+
 	def test_add_project(self):
 		response = self.client.get('/projects/')
 		self.assertEqual(response.status_code,302)

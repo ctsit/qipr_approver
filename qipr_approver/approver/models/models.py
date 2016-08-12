@@ -122,7 +122,7 @@ class Person(Provenance, Registerable):
     tag_property_name = 'email_address'
 
     def __str__(self):
-        return ' '.join([self.first_name, self.last_name, self.email_address])
+        return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
 
 
 class Project(Provenance, Registerable):
