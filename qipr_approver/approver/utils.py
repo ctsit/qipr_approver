@@ -143,7 +143,7 @@ def get_related(model, related_model_name):
     this function returns a list of
     model.related_model
     or an empty list
-    Example: get_related(Person,project)  will return al projects related to a person
+    Example: get_related(Person, 'project')  will return all projects related to a person
     """
     model_in_db = getattr(model, 'pk')
     if model_in_db:
@@ -160,7 +160,7 @@ def get_related_property(model, related_model_name, related_model_property='name
     this function returns a list of
     model.related_model.related_model_property
     or an empty list
-    Example: get_related_property(Person,project,title)  will return all project titles related to a person
+    Example: get_related_property(Person, 'project', 'title')  will return all project titles related to a person
     """
     relateds = get_related(model, related_model_name)
     return [getattr(item, related_model_property) for item in relateds]
