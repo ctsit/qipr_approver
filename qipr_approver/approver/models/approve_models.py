@@ -24,7 +24,7 @@ class Question(Provenance, TextPrint):
     text = models.TextField()
     description = models.TextField(null=True)
     sort_order = models.IntegerField()
-    choice = models.ManyToManyField(Choice, related_name='choice_for_question')
+    choice = models.ManyToManyField(Choice, related_name='question')
     correct_choice = models.ForeignKey(Choice,related_name='+')
 
 class Response(Provenance):
