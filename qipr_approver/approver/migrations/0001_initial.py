@@ -296,6 +296,8 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
                 ('description', models.TextField(null=True)),
                 ('sort_order', models.IntegerField()),
+                ('choice', models.ManyToManyField(related_name='choice_for_question', to='approver.Choice')),
+                ('correct_choice', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='approver.Choice')),
                 ('created_by', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
                 ('last_modified_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
@@ -437,11 +439,6 @@ class Migration(migrations.Migration):
             model_name='person',
             name='user',
             field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='person', to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AddField(
-            model_name='choice',
-            name='question',
-            field=models.ManyToManyField(related_name='choice', to='approver.Question'),
         ),
         migrations.AddField(
             model_name='address',

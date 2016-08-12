@@ -64,8 +64,8 @@ def save_project_with_form(project, question_form, session):
 
 def approve_or_next_steps(project, user):
     responses = project.response.all()
-    is_valid = reduce(lambda acc,response : acc and response.is_valid(), responses, True)
-    if is_valid:
+    is_correct_response = reduce(lambda acc,response : acc and response.is_correct_response(), responses, True)
+    if is_correct_response:
         project.approve(user)
     return after_approval(project)
 
