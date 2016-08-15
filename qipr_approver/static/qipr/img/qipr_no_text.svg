@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 210.6 188.6" style="enable-background:new 0 0 210.6 188.6;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#EFAF2E;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#231F20;}
+	.st3{fill:#47B1E5;}
+	.st4{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+</style>
+<title>svg2</title>
+<g>
+	<g>
+		<polygon class="st0" points="152.9,110.9 136.9,171.9 76,188.6 31.2,144.2 47.2,83.1 108,66.5 		"/>
+		
+			<ellipse transform="matrix(0.9685 -0.2489 0.2489 0.9685 -23.542 30.3427)" class="st1" cx="108.2" cy="108.3" rx="13.4" ry="13.4"/>
+		
+			<ellipse transform="matrix(0.9685 -0.2489 0.2489 0.9685 -23.3591 30.8045)" class="st2" cx="110.2" cy="107.8" rx="7.5" ry="7.5"/>
+		
+			<ellipse transform="matrix(0.9685 -0.2489 0.2489 0.9685 -21.4092 35.726)" class="st1" cx="130.6" cy="102.5" rx="10.8" ry="10.8"/>
+		<ellipse transform="matrix(0.9685 -0.2489 0.2489 0.9685 -21.2619 36.0948)" class="st2" cx="132.1" cy="102.1" rx="6" ry="6"/>
+		<polygon class="st3" points="108,66.5 69.1,58.1 67.4,65.1 55.1,59.9 53.8,65.1 46.7,62.1 37,121.9 56.2,84.4 		"/>
+		<polygon class="st0" points="2.2,177.3 0,122.2 33.3,143.6 		"/>
+		<polygon class="st3" points="82.6,165.2 69.4,158.1 91.1,142.1 		"/>
+		<path class="st4" d="M145.6,138.6c-5,6-22.8,8.9-34.2-3.3"/>
+	</g>
+	<circle class="st3" cx="199.6" cy="67.8" r="11"/>
+	<circle class="st3" cx="177.6" cy="100.7" r="11"/>
+	<circle class="st3" cx="169" cy="56.8" r="8.6"/>
+	<circle class="st3" cx="169" cy="28.5" r="8.6"/>
+	<circle class="st3" cx="150" cy="8.9" r="4.3"/>
+	<circle class="st3" cx="154.2" cy="44" r="4.3"/>
+</g>
+</svg>
