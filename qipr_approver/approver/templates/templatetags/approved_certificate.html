@@ -1,1 +1,19 @@
-Hello World!!!!
+<div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
+    <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
+        <span style="font-size:50px; font-weight:bold">Certificate of Approval</span>
+        <br><br>
+        <span style="font-size:30px"><b>${{ project_owner_first_name }} {{ project_owner_last_name }}
+</b></span><br/><br/>
+        <span style="font-size:25px"><i>Your quality improvement project entitled</i></span> <br/><br/>
+        <span style="font-size:25px"><i>"{{ project_title }}"</i></span> <br/><br/>
+        <span style="font-size:30px">has been approved.</span> <br/><br/>
+        <span style="font-size:20px">The QI office whishes your team:<b></b>
+            <ul>
+                {% for contributor in project_collab %}
+                    <li>{{ contributor.email_address }}</li>
+                {% endfor %}
+            </ul>
+        </span>
+        <span style="font-size:20px">much success in  your effors to improve patient quality.<b></b>
+    </div>
+</div>

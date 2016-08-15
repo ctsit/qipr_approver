@@ -1,7 +1,7 @@
 {% load approved_certificate %}
 {% if is_approved %}
 <h1>Congratulations project is approved</h1>
-{% approved_certificate %}
+{% approved_certificate project %}
 {% endif %}
 {% if not is_approved %}
 <h1>You need IRB approval</h1>
