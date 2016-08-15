@@ -90,3 +90,4 @@ ENV/
 
 #Vagrant machine stuff
 .vagrant
+.swp

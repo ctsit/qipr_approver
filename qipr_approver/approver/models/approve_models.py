@@ -15,16 +15,17 @@ class Section(Provenance, NamePrint):
     name = models.CharField(max_length=30)
     sort_order = models.IntegerField(unique=True)
 
+class Choice(Provenance, TextPrint):
+    text = models.TextField()
+    sort_order = models.IntegerField()
+
 class Question(Provenance, TextPrint):
     section = models.ForeignKey(Section, related_name='question', null=True)
     text = models.TextField()
     description = models.TextField(null=True)
     sort_order = models.IntegerField()
-
-class Choice(Provenance, TextPrint):
-    question = models.ManyToManyField(Question, related_name='choice')
-    text = models.TextField()
-    sort_order = models.IntegerField()
+    choice = models.ManyToManyField(Choice, related_name='question')
+    correct_choice = models.ForeignKey(Choice,related_name='+')
 
 class Response(Provenance):
     user = models.ForeignKey(User, related_name='response')
@@ -32,9 +33,12 @@ class Response(Provenance):
     choice = models.ForeignKey(Choice)
     project = models.ForeignKey(Project, related_name='response')
 
-    def is_valid(self):
+    def is_correct_response(self):
         """
         This will eventually need to check against something to tell if
         this is a response that lets people get approved
         """
+        if self.choice == self.question.correct_choice:
+            return True
+
         return False

@@ -107,6 +107,7 @@ class Person(Provenance, Registerable):
     email_address = models.CharField(max_length=100, null=True)
     expertise = models.ManyToManyField(Expertise)
     first_name = models.CharField(max_length=30)
+    gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
     last_name = models.CharField(max_length=30)
     organization = models.ManyToManyField(Organization)
@@ -121,7 +122,7 @@ class Person(Provenance, Registerable):
     tag_property_name = 'email_address'
 
     def __str__(self):
-        return ' '.join([self.first_name, self.last_name, self.email_address])
+        return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
 
 
 class Project(Provenance, Registerable):

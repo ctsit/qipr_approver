@@ -16,7 +16,7 @@ def form_input(input_dict, is_disabled=False):
     input_classes = input_dict.get('input_classes') or []
     input_dict['input_class_list'] = ' '.join([str(cls) for cls in input_classes])
     if is_disabled:
-        input_dict['disabled'] = "disabled"
+        input_dict['is_disabled'] = "disabled"
     else:
-        input_dict['disabled'] = ""
+        input_dict['is_disabled'] = ""
     return input_dict

@@ -39,28 +39,22 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     now = timezone.now()
     person = user.person
 
-    user.username = about_you_form.get('user_name')
     user.first_name = about_you_form.get('first_name')
     user.last_name = about_you_form.get('last_name')
     user.email = about_you_form.get('email')
 
-    person.first_name = about_you_form.get('first_name')
-    person.last_name = about_you_form.get('last_name')
-    person.email_address = about_you_form.get('email')
     person.business_phone = about_you_form.get('business_phone') or 0
     person.contact_phone = about_you_form.get('contact_phone') or 0
+    person.email_address = about_you_form.get('email')
+    person.first_name = about_you_form.get('first_name')
+    person.gatorlink = user.username
+    person.last_name = about_you_form.get('last_name')
     person.webpage_url = about_you_form.get('webpage_url')
 
-    specialities = extract_tags(about_you_form, 'speciality')
     expertises = extract_tags(about_you_form, 'expertise')
     qi_interest = extract_tags(about_you_form, 'qi_interest')
+    specialities = extract_tags(about_you_form, 'speciality')
     suffixes = extract_tags(about_you_form, 'suffix')
-
-    update_tags(model=person,
-                tag_property='speciality',
-                tags=specialities,
-                tag_model=Speciality,
-                tagging_user=editing_user)
 
     update_tags(model=person,
                 tag_property='expertise',
@@ -72,6 +66,12 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
                 tag_property='qi_interest',
                 tags=qi_interest,
                 tag_model=QI_Interest,
+                tagging_user=editing_user)
+
+    update_tags(model=person,
+                tag_property='speciality',
+                tags=specialities,
+                tag_model=Speciality,
                 tagging_user=editing_user)
 
     update_tags(model=person,
