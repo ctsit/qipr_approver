@@ -90,15 +90,15 @@ class Category(Provenance, NamePrint, TaggedWithName, Registerable):
 
 class BigAim(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
-    sort_order = models.IntegerField()
+    sort_order = models.IntegerField(null=True)
 
 class FocusArea(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
-    sort_order = models.IntegerField()
+    sort_order = models.IntegerField(null=True)
 
 class ClinicalDepartment(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=100)
-    sort_order = models.IntegerField()
+    sort_order = models.IntegerField(null=True)
 
 class Person(Provenance, Registerable):
     account_expiration_time = models.DateTimeField(null=True)
