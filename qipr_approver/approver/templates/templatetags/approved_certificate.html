@@ -1,19 +1,19 @@
-<div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
-    <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
+<div style="width:800px; height:1000px; padding:20px; text-align:center; border: 10px solid #787878">
+    <div style="width:750px; height:950px; padding:20px; text-align:center; border: 5px solid #787878">
         <span style="font-size:50px; font-weight:bold">Certificate of Approval</span>
         <br><br>
-        <span style="font-size:30px"><b>${{ project_owner_first_name }} {{ project_owner_last_name }}
-</b></span><br/><br/>
-        <span style="font-size:25px"><i>Your quality improvement project entitled</i></span> <br/><br/>
-        <span style="font-size:25px"><i>"{{ project_title }}"</i></span> <br/><br/>
-        <span style="font-size:30px">has been approved.</span> <br/><br/>
-        <span style="font-size:20px">The QI office whishes your team:<b></b>
+        <span style="font-size:25px">{{ project_owner_first_name }} {{ project_owner_last_name }}</span><br/><br/>
+        <span style="font-size:25px">Your quality improvement project entitled</span> <br/><br/>
+        <span style="font-size:25px">"{{ project_title }}"</span> <br/><br/>
+        <span style="font-size:25px"><b>has been approved.</b></span> <br/><br/>
+        <span style="font-size:20px">The QI office wishes your team:<b></b>
             <ul>
                 {% for contributor in project_collab %}
-                    <li>{{ contributor.email_address }}</li>
+                    <li>{{ contributor.first_name }} {{ contributor.last_name }} ({{ contributor.email_address }})</li>
                 {% endfor %}
             </ul>
         </span>
-        <span style="font-size:20px">much success in  your effors to improve patient quality.<b></b>
+        <span style="font-size:20px">much success in  your effors to improve patient quality.<b></b></span><br/><br/>
+        <span style="font-size:15px"><i>The project will not involve testing an experimental drug, device, or bilogic. It has not recieved funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is inteded to improve or evaluate the practice or process within a particular institution or a specific program.</i></span> 
     </div>
 </div>
