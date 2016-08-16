@@ -1,19 +1,26 @@
-<div style="width:800px; height:1000px; padding:20px; text-align:center; border: 10px solid #787878">
-    <div style="width:750px; height:950px; padding:20px; text-align:center; border: 5px solid #787878">
-        <span style="font-size:50px; font-weight:bold">Certificate of Approval</span>
-        <br><br>
-        <span style="font-size:25px">{{ project_owner_first_name }} {{ project_owner_last_name }}</span><br/><br/>
-        <span style="font-size:25px">Your quality improvement project entitled</span> <br/><br/>
-        <span style="font-size:25px">"{{ project_title }}"</span> <br/><br/>
-        <span style="font-size:25px"><b>has been approved.</b></span> <br/><br/>
-        <span style="font-size:20px">The QI office wishes your team:<b></b>
-            <ul>
-                {% for contributor in project_collab %}
-                    <li>{{ contributor.first_name }} {{ contributor.last_name }} ({{ contributor.email_address }})</li>
-                {% endfor %}
-            </ul>
-        </span>
-        <span style="font-size:20px">much success in  your effors to improve patient quality.<b></b></span><br/><br/>
-        <span style="font-size:15px"><i>The project will not involve testing an experimental drug, device, or bilogic. It has not recieved funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is inteded to improve or evaluate the practice or process within a particular institution or a specific program.</i></span> 
+<div class="cert__border">
+    <div class="cert__border--inner">
+        <div class="cert__text">
+            <div class="cert__text--header">Certificate of Approval</div>
+            <div class="cert__image"></div>
+            <br>
+            <div>
+                {{ project_owner_first_name }} {{ project_owner_last_name }}<br/>
+                Your quality improvement project entitled <br/>
+                "{{ project_title }}"<br/>
+                <b>has been approved.</b>
+            </div>
+            <br/>
+            <div class="cert__text--small">The QI office wishes your team:<b></b>
+                <ul>
+                    {% for contributor in project_collab %}
+                        <li>{{ contributor.first_name }} {{ contributor.last_name }} ({{ contributor.email_address }})</li>
+                    {% endfor %}
+                </ul>
+                much success in  your effors to improve patient quality.
+            </div>
+            <br/><br/>
+            <div class="cert__text--xsmall"> The project will not involve testing an experimental drug, device, or bilogic. It has not recieved funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is inteded to improve or evaluate the practice or process within a particular institution or a specific program.</div>
+        </div>
     </div>
 </div>

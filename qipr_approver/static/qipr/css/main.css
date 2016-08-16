@@ -94,3 +94,48 @@ nav {
     margin: .3rem;
     padding: .2rem;
 }
+
+.cert__border {
+    width: 58rem;
+    height: auto;
+    padding: 1.2rem;
+    text-align: center;
+    border: .75rem solid #787878
+    
+}
+
+.cert__border--inner {
+    position: relative;
+    width: auto;
+    height: auto;
+    border: .5rem solid #787878;
+}
+
+.cert__text {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+
+}
+
+.cert__text--header {
+    font-size: 3rem;
+    font-weight:bold;
+}
+
+.cert__text--small {
+    font-size: 1.5rem;
+}
+
+.cert__text--xsmall {
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.cert__image {
+    height: 9rem;
+    width: 9rem;
+    background-image: url("/static/qipr/img/UF_Seal.gif");
+    background-size: contain;
+    right: 2rem;
+    position: absolute;
+}
