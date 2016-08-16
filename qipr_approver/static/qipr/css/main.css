@@ -3,6 +3,12 @@ nav {
     background-color: #6c9ac3;
 }
 
+.icon {
+    height: 5rem;
+    width: 5rem;
+    float: left;
+}
+
 .btn {
     /* gator orange */
     background-color: #e28f41;
