@@ -22,4 +22,5 @@ def project_status(request, project_id=None):
     project = project_crud.get_project_or_none(project_id)
     if project.approval_date:
         context['is_approved'] = True
+        context['project'] = project
     return utils.layout_render(request, context)
