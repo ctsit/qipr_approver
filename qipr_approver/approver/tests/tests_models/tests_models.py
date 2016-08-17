@@ -14,7 +14,7 @@ def check_fields(ModelName,fieldname,type,max_length):
     fields = getattr(model_meta,"fields")
     for field in fields :
         if field.name == fieldname:
-            if (isinstance(field, getattr(django.db.models.fields,type+"Field")) == True) and (field.max_length == max_length):
+            if isinstance(field, getattr(django.db.models.fields,type+"Field")) == True and field.max_length == max_length:
                 return True
             else:
                 return False
@@ -38,6 +38,16 @@ class PositionModel(TestCase):
 class KeywordModel(TestCase):
     def test_keyword_model(self):
         self.assertEqual(check_fields(Keyword,"name","Char",50), True)
+
+class SafetyTargetModel(TestCase):
+    def test_safety_target_model(self):
+        self.assertEqual(check_fields(SafetyTarget,"name","Char",50), True)
+        self.assertEqual(check_fields(SafetyTarget,"description","Char",100), True)
+
+class ClinicalAreaModel(TestCase):
+    def test_clinical_area_model(self):
+        self.assertEqual(check_fields(ClinicalArea,"name","Char",50), True)
+        self.assertEqual(check_fields(ClinicalArea,"description","Char",100), True)
 
 class SuffixModel(TestCase):
     def test_suffix_model(self):
