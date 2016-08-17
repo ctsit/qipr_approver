@@ -11,8 +11,8 @@ from django.test import TestCase, Client
 
 def check_fields(ModelName,fieldname,type,len):
     model_meta = getattr(ModelName, "_meta")
-    f = getattr(model_meta,"fields")
-    for field in f :
+    fields = getattr(model_meta,"fields")
+    for field in fields :
         if field.name == fieldname:
             if (isinstance(field, getattr(django.db.models.fields,type+"Field")) == True):
                 return True
