@@ -4,12 +4,14 @@
         <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
         <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> 
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav>
             <div class="nav-wrapper bg-blue">
-                <a id="icon-container" class="icon"><img src="/static/qipr/img/qipr_no_text.svg" ></a>
+                <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
+                    <img class="nav__logo" src="/static/qipr/img/qipr_no_text.svg" >
+                </a>
                 <ul>
                     <li><a class="btn" href="{% url 'approver:index' %}">Home</a></li>
                     <li><a class="btn" href="{% url 'approver:projects' %}">Projects</a></li>
