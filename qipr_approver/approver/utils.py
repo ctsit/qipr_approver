@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 import datetime
 
 import approver.constants as constants
+import django
+from django.db.models import fields
 
 def user_exists(about_you_form):
     """
@@ -164,3 +166,21 @@ def get_related_property(model, related_model_name, related_model_property='name
     """
     relateds = get_related(model, related_model_name)
     return [getattr(item, related_model_property) for item in relateds]
+
+def check_fields(ModelName,fieldname,type,max_length=None):
+    """
+    Given a Model checks if the fieldname is of proper type.
+    Also checks the max_length if it is not None
+    """
+    model_meta = getattr(ModelName, "_meta")
+    fields = getattr(model_meta, "fields")
+    for field in fields :
+        if field.name == fieldname:
+            if isinstance(field, getattr(django.db.models.fields, type+"Field")) == True :
+                if max_length is not None :
+                    if field.max_length == max_length :
+                        return True
+                else:
+                    return True
+            else:
+                return False
