@@ -140,8 +140,9 @@ nav {
 .cert__image {
     height: 9rem;
     width: 9rem;
+    z-index: -1; 
     background-image: url("/static/qipr/img/UF_Seal.gif");
     background-size: contain;
-    right: 2rem;
+    right: 1rem;
     position: absolute;
 }
