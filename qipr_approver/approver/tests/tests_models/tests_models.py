@@ -9,12 +9,12 @@ from django.core.urlresolvers import reverse
 from django.db.models import fields, signals
 from django.test import TestCase, Client
 
-def check_fields(ModelName,fieldname,type,len):
+def check_fields(ModelName,fieldname,type,max_length):
     model_meta = getattr(ModelName, "_meta")
     fields = getattr(model_meta,"fields")
     for field in fields :
         if field.name == fieldname:
-            if (isinstance(field, getattr(django.db.models.fields,type+"Field")) == True):
+            if (isinstance(field, getattr(django.db.models.fields,type+"Field")) == True) and (field.max_length == max_length):
                 return True
             else:
                 return False
@@ -41,14 +41,13 @@ class KeywordModel(TestCase):
 
 class SuffixModel(TestCase):
     def test_suffix_model(self):
-        self.assertEqual(check_fields(Suffix,"name","Char",50), True)
+        self.assertEqual(check_fields(Suffix,"name","Char",20), True)
         self.assertEqual(check_fields(Suffix,"description","Char",100), True)
-
 
 class QIInterestModel(TestCase):
-    def test_category_model(self):
-        self.assertEqual(check_fields(Suffix,"name","Char",50), True)
-        self.assertEqual(check_fields(Suffix,"description","Char",100), True)
+    def test_qi_interest_model(self):
+        self.assertEqual(check_fields(QI_Interest,"name","Char",50), True)
+        self.assertEqual(check_fields(QI_Interest,"description","Char",100), True)
 
 class CategoryModel(TestCase):
     def test_category_model(self):
