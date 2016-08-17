@@ -8,16 +8,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import fields, signals
 from django.test import TestCase, Client
-
-def check_fields(ModelName,fieldname,type,max_length):
-    model_meta = getattr(ModelName, "_meta")
-    fields = getattr(model_meta,"fields")
-    for field in fields :
-        if field.name == fieldname:
-            if isinstance(field, getattr(django.db.models.fields,type+"Field")) == True and field.max_length == max_length:
-                return True
-            else:
-                return False
+from approver.utils import check_fields as check_fields
 
 class OrganizationModel(TestCase):
     def test_organization_model(self):

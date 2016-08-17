@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import fields, signals
 from django.test import TestCase, Client
+from approver.utils import check_fields as check_fields
 
 class ProjectTestCase(TestCase):
     def setUp(self):
@@ -15,10 +16,5 @@ class ProjectTestCase(TestCase):
         pass
 
     def test_project_model(self):
-        project = Project()
-        for field in Project._meta.fields:
-            if field.name in "title":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 300)
-            if field.name in ["description"]:
-                self.assertEqual(isinstance(field, django.db.models.fields.TextField), True)
+        self.assertEqual(check_fields(Project,"title","Char",300), True)
+        self.assertEqual(check_fields(Project,"description","Text"), True)
