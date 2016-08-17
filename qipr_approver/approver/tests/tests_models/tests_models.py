@@ -9,6 +9,16 @@ from django.core.urlresolvers import reverse
 from django.db.models import fields, signals
 from django.test import TestCase, Client
 
+def check_fields(ModelName,fieldname,type,len):
+    model_meta = getattr(ModelName, "_meta")
+    f = getattr(model_meta,"fields")
+    for field in f :
+        if field.name == fieldname:
+            if (isinstance(field, getattr(django.db.models.fields,type+"Field")) == True):
+                return True
+            else:
+                return False
+
 class OrganizationModel(TestCase):
     def test_organization_model(self):
         org = Organization()
@@ -19,68 +29,40 @@ class OrganizationModel(TestCase):
 
 class SpecialityModel(TestCase):
     def test_speciality_model(self):
-        spec = Speciality()
-        for field in Speciality._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 50)
+        self.assertEqual(check_fields(Speciality,"name","Char",50), True)
 
 class PositionModel(TestCase):
     def test_position_model(self):
-        pos = Position()
-        for field in Position._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 50)
+        self.assertEqual(check_fields(Position,"name","Char",50), True)
 
 class KeywordModel(TestCase):
-    def test_position_model(self):
-        keyword = Keyword()
-        for field in Keyword._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 50)
+    def test_keyword_model(self):
+        self.assertEqual(check_fields(Keyword,"name","Char",50), True)
+
+class SuffixModel(TestCase):
+    def test_suffix_model(self):
+        self.assertEqual(check_fields(Suffix,"name","Char",50), True)
+        self.assertEqual(check_fields(Suffix,"description","Char",100), True)
+
 
 class QIInterestModel(TestCase):
     def test_category_model(self):
-        for field in QI_Interest._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 50)
-            if field.name in "description":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 100)
+        self.assertEqual(check_fields(Suffix,"name","Char",50), True)
+        self.assertEqual(check_fields(Suffix,"description","Char",100), True)
 
 class CategoryModel(TestCase):
     def test_category_model(self):
-        for field in Category._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 50)
-            if field.name in "description":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 100)
+        self.assertEqual(check_fields(Category,"name","Char",50), True)
+        self.assertEqual(check_fields(Category,"description","Char",100), True)
 
 class BigAimModel(TestCase):
     def test_big_aim_model(self):
-        bigaim = BigAim()
-        for field in BigAim._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 100)
+        self.assertEqual(check_fields(BigAim,"name","Char",100), True)
 
-class PositionModel(TestCase):
+class FocusAreaModel(TestCase):
     def test_focus_area_model(self):
-        fa = FocusArea()
-        for field in FocusArea._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 100)
+        self.assertEqual(check_fields(FocusArea,"name","Char",100), True)
 
 class ClinicalDepartmentModel(TestCase):
     def test_clinical_department_model(self):
-        cd = ClinicalDepartment()
-        for field in ClinicalDepartment._meta.fields:
-            if field.name in "name":
-                self.assertEqual(isinstance(field, django.db.models.fields.CharField), True)
-                self.assertEqual(field.max_length, 100)
+        self.assertEqual(check_fields(ClinicalDepartment,"name","Char",100), True)
