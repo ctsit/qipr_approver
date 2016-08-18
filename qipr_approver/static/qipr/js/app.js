@@ -2,32 +2,37 @@
 //this automatically executes
 ! function () {
 
-    window.Toaster = function () {
-        var timeToShow = 500,
-            timeToHide = 5000,
+    window.Toaster = function (domOrFrag) {
+        var dom = domOrFrag || document,
             Toaster = function () {
                 var self = this;
-                this.toast = document.getElementById('toast') || undefined;
+                this.timeToHide = 5000;
+                this.toast = dom.getElementById('toast') || undefined;
 
-                this.show = () => {
-                    window.setTimeout(function () {
-                        if (self.toast) {
-                            self.toast.classList.add('cts-toast--active');
-                        }
-                    }, timeToShow);
+                this.show = function() {
+                    if (this.toast) {
+                        this.toast.classList.add('cts-toast--active');
+                    }
                 };
 
-                this.hide = () => {
-                    window.setTimeout(function () {
-                        if (self.toast) {
-                            self.toast.classList.remove('cts-toast--active');
-                        }
-                    }, timeToHide);
+                this.hide = function() {
+                    if (this.toast) {
+                        this.toast.classList.remove('cts-toast--active');
+                    }
                 };
 
-                this.flash = () => {
+                this.flash = function(finishedCallback) {
                     this.show();
-                    this.hide();
+                    window.setTimeout(function () {
+                        self.hide();
+                        if (typeof finishedCallback === 'function') {
+                            finishedCallback();
+                        }
+                    }, this.timeToHide);
+                };
+
+                this.changeDOM = function (dom) {
+                    this.toast = dom.getElementById('toast');
                 };
             };
 
