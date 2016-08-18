@@ -24,7 +24,14 @@ def project(request, project_id=None):
     if request.method == 'POST':
         project_form = request.POST
         title = project_form.get('title')
-        project = project_crud.create_or_update_project(current_user, project_form, project_id)
+        project = project_crud.get_project_or_none(project_id)
+        if(project is None):
+           project = project_crud.create_or_update_project(current_user, project_form, project_id)
+        else:
+            if project_crud.curent_user_is_project_owner(current_user, project) is True and project.get_is_editable():
+                project = project_crud.create_or_update_project(current_user, project_form, project_id)
+            else:
+                return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
         return redirect(reverse("approver:approve") + str(project.id) + '/')
 
     else:

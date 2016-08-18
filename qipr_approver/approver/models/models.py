@@ -155,6 +155,9 @@ class Project(Provenance, Registerable):
             return False
         return True
 
+    def is_approved(self):
+        return self.approval_date or self.in_registry
+
     def approve(self, user):
         self.approval_date = timezone.now()
         self.save(user)
