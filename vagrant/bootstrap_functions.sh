@@ -108,8 +108,8 @@ function install_qipr_approver_fresh_vm () {
         create_virtualenv
         pip_dependencies
         create_database
-        apply_fixtures
         migrate_application_database
+        apply_fixtures
         apache_setup
     popd
 }
@@ -118,7 +118,7 @@ function install_qipr_approver() {
     pushd /var/www/qipr_approver
         create_virtualenv
         pip_dependencies
-        apply_fixtures
         migrate_application_database
+        apply_fixtures
     popd
 }
