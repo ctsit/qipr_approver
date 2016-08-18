@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "debian/jessie64"
+  config.vm.hostname = "qipr-approver"
+  config.vm.synced_folder "../qipr_approver", "/var/www/qipr_approver"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 443, host: 8443
+  config.vm.network :forwarded_port, guest: 9392, host: 9392
+  config.vm.define "qipr_approver"
+
+  config.vm.provision "shell" do |s|
+    s.path = "bootstrap.sh"
+  end
+
+  # Restart apache when all done (if using apache)
+  config.vm.provision "shell", run: "always", inline: "service apache2 restart"
+
+  config.trigger.after [:up] do
+    if Vagrant::Util::Platform.darwin?
+      system("open -a 'Google Chrome.app' http://localhost:8080")
+    end
+  end
+
+end

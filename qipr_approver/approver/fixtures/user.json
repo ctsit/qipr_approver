@@ -1,0 +1,22 @@
+[
+    {
+        "model": "auth.User",
+        "fields": {
+            "username": "admin_fixture_user",
+            "first_name": "admin_fixture_user",
+            "last_name": "admin_fixture_user",
+            "email": "CTS-IT-ALL@ctsi.ufl.edu",
+            "password": "password1"
+        }
+    },
+    {
+        "model": "auth.User",
+        "fields": {
+            "username": "admin_api_user",
+            "first_name": "admin_api_user",
+            "last_name": "admin_api_user",
+            "email": "CTS-IT-ALL@ctsi.ufl.edu",
+            "password": "password2"
+        }
+    }
+]

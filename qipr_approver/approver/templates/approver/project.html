@@ -1,0 +1,31 @@
+{% if project_id %}
+<form action="{% url 'approver:projects' project_id=project_id %}" method="post" onkeypress="return event.keyCode != 13;">
+{% endif %}
+{% if not project_id %}
+<form action="{% url 'approver:projects' %}" method="post" onkeypress="return event.keyCode != 13;">
+{% endif %}
+    {% csrf_token %}
+    <h1>Projects</h1>
+ 	<p>
+		Enter information about your project
+	</p>
+    {% load form_input %}
+    {% load tagbox %}
+    {% form_input form.title form.is_disabled %}
+    {% form_input form.description form.is_disabled %}
+    {% tagbox form.collaborator form.is_disabled %}
+    {% tagbox form.advisor form.is_disabled %}
+    {% tagbox form.keyword form.is_disabled %}
+    {% tagbox form.big_aim form.is_disabled %}
+    {% tagbox form.safety_target form.is_disabled %}
+    {% tagbox form.clinical_area form.is_disabled %}
+    {% tagbox form.clinical_setting form.is_disabled %}
+    {% form_input form.proposed_start_date form.is_disabled %}
+    {% form_input form.proposed_end_date form.is_disabled %}
+    {% if form.is_disabled %}
+        <a href="{% url 'approver:project_status' project_id=project_id %}" class=btn>See Certificate</a>
+    {% else %}
+        <input class="btn" type="submit" value="Submit Project" />
+    {% endif %}
+</form>
+

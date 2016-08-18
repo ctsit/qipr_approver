@@ -1,0 +1,155 @@
+nav {
+    /* gator blue */
+    background-color: #6c9ac3;
+}
+
+.icon {
+    float: left;
+}
+
+iframe {
+    display: block;
+}
+
+.nav__logo {
+    height: 90%;
+    padding-left: 0.3rem;
+}
+
+.btn {
+    /* gator orange */
+    background-color: #e28f41;
+}
+
+.cts-toast {
+    position: fixed;
+    width: 60%;
+    height: auto;
+    color: white;
+    background-color: #e28f41;
+    bottom: 5px;
+    font-size: xx-large;
+    text-align: center;
+    transition: 1s;
+    left: 20%;
+    border-radius: 2px;
+    box-shadow: 3px 3px 3px #888888;
+    max-height: 0;
+}
+
+.cts-toast--active {
+    max-height: 3.2rem;
+}
+
+.project__title {
+    text-overflow: ellipsis;
+}
+
+.tag-holder {
+    display: inline-block;
+    margin: 0;
+}
+
+.tagbox__input {
+    position: relative;
+}
+
+.tag {
+    display: inline;
+    color: white;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+.tag__container {
+    display: inline;
+    float: left;
+    background-color: #e28f41;
+    border-radius: 10px;
+    margin: .3rem;
+    padding: .2rem;
+    font-size: .8rem;
+    font-weight: 300;
+}
+
+.tag__delete {
+    position: relative;
+    padding-left: .1rem;
+    top: 0.255rem;
+    color: white;
+    font-weight: 900;
+    background: transparent !important;
+    display: inline;
+    font-family: 'Material Icons';
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.question__text {
+    text-indent: 3.5rem;
+}
+
+.question__description {
+    text-indent: 3.5rem;
+}
+
+.tag_label {
+    float: left;
+    position: relative;
+    left: -.5rem;
+    margin: .3rem;
+    padding: .2rem;
+}
+
+.cert__border {
+    width: 58rem;
+    height: auto;
+    padding: 1.2rem;
+    text-align: center;
+    border: .75rem solid #787878
+    
+}
+
+.cert__border--inner {
+    position: relative;
+    width: auto;
+    height: auto;
+    border: .5rem solid #787878;
+}
+
+.cert__text {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+
+}
+
+.cert__text--header {
+    font-size: 3rem;
+    font-weight:bold;
+}
+
+.cert__text--small {
+    font-size: 1.5rem;
+}
+
+.cert__text--xsmall {
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.cert__image {
+    height: 9rem;
+    width: 9rem;
+    z-index: -1; 
+    background-image: url("/static/qipr/img/UF_Seal.gif");
+    background-size: contain;
+    right: 1rem;
+    position: absolute;
+}
