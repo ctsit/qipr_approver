@@ -22,6 +22,10 @@
     {% tagbox form.clinical_setting form.is_disabled %}
     {% form_input form.proposed_start_date form.is_disabled %}
     {% form_input form.proposed_end_date form.is_disabled %}
-    <input class="btn" type="submit" value="Submit Project" />
+    {% if form.is_disabled %}
+        <a href="{% url 'approver:project_status' project_id=project_id %}" class=btn>See Certificate</a>
+    {% else %}
+        <input class="btn" type="submit" value="Submit Project" />
+    {% endif %}
 </form>
 
