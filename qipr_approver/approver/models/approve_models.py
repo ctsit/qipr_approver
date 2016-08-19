@@ -13,17 +13,17 @@ class TextPrint(models.Model):
 
 class Section(Provenance, NamePrint):
     name = models.CharField(max_length=30)
-    sort_order = models.IntegerField(unique=True)
+    sort_order = models.IntegerField(unique=True, null=True)
 
 class Choice(Provenance, TextPrint):
     text = models.TextField()
-    sort_order = models.IntegerField()
+    sort_order = models.IntegerField(null=True, unique=True)
 
 class Question(Provenance, TextPrint):
     section = models.ForeignKey(Section, related_name='question', null=True)
     text = models.TextField()
     description = models.TextField(null=True)
-    sort_order = models.IntegerField()
+    sort_order = models.IntegerField(null=True, unique=True)
     choice = models.ManyToManyField(Choice, related_name='question')
     correct_choice = models.ForeignKey(Choice,related_name='+')
 
