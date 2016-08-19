@@ -20,3 +20,11 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                 return False
 
     return False
+
+def is_foreign_key_to(model_name, field_name, related_model_name):
+    try:
+        return model_name._meta.get_field(field_name).rel.to is related_model_name
+    except AttributeError:
+        return False
+
+    return False
