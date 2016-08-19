@@ -18,3 +18,5 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                     return True
             else:
                 return False
+
+    return False
