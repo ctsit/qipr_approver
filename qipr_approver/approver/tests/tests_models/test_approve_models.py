@@ -101,8 +101,8 @@ class ResponseTestCase(TestCase):
 
     def test_should_pass_when_is_correct_response(self):
         response = Response(question = self.question, choice = self.correct_choice)
-        self.assertTrue(response.is_correct_response)
+        self.assertTrue(response.is_correct_response())
 
     def test_should_not_be_correct_when_not_correct_choice_selected(self):
         response = Response(question = self.question, choice = self.incorrect_choice)
-        self.assertTrue(response.is_correct_response)
+        self.assertFalse(response.is_correct_response())
