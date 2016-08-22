@@ -18,7 +18,6 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                     return True
             else:
                 return False
-
     return False
 
 def is_foreign_key_to(model_name, field_name, related_model_name):
