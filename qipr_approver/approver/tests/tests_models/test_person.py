@@ -39,9 +39,9 @@ class PersonTestCase(TestCase):
         last_name = "doe"
         email_address = "jdoe@ufl.edu"
         person = Person(
-            first_name = first_name,
-            last_name = last_name,
-            email_address = email_address
+            first_name=first_name,
+            last_name=last_name,
+            email_address=email_address
             )
 
         self.assertEqual(str(person), ' '.join([str(item) for item in [person.first_name, person.last_name, person.email_address]]))

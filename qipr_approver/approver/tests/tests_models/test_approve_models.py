@@ -12,7 +12,7 @@ from django.db.utils import IntegrityError
 
 class SectionTestCase(TestCase):
     def setUp(self):
-        self.user = User(username = 'testuser')
+        self.user = User(username='testuser')
         self.user.save()
 
     def test_should_pass_when_model_has_correct_fields(self):
@@ -20,20 +20,20 @@ class SectionTestCase(TestCase):
         self.assertTrue(check_fields(Section, "sort_order", "Integer"))
 
     def test_should_throw_exception_when_not_unique_sort_order(self):
-        section1 = Section(name = 'section1', sort_order = 1)
-        section2 = Section(name = 'section2', sort_order = 1)
+        section1 = Section(name='section1', sort_order=1)
+        section2 = Section(name='section2', sort_order=1)
 
         section1.save(self.user)
         self.assertRaises(IntegrityError, lambda : section2.save(self.user))
 
     def test_should_print_name_when_asked_for_string(self):
         text = "sample text"
-        section = Section(name = text)
+        section = Section(name=text)
         self.assertEqual(str(section), text)
 
 class QuestionTestCase(TestCase):
     def setUp(self):
-        self.user = User(username = 'testuser')
+        self.user = User(username='testuser')
         self.user.save()
 
     def test_should_pass_when_model_has_correct_fields(self):
@@ -50,7 +50,7 @@ class QuestionTestCase(TestCase):
 
     def test_should_pass_when_saving_with_user_and_correct_choice(self):
         question = Question()
-        choice = Choice(text='testChoice', sort_order = 1)
+        choice = Choice(text='testChoice', sort_order=1)
         choice.save(self.user)
         question.correct_choice = choice
         question.save(self.user)
@@ -58,12 +58,12 @@ class QuestionTestCase(TestCase):
 
     def test_should_print_text_when_asked_for_string(self):
         text = "sample choice"
-        question = Question(text = text)
+        question = Question(text=text)
         self.assertEqual(str(question), text)
 
 class ChoiceTestCase(TestCase):
     def setUp(self):
-        self.user = User(username = 'testuser')
+        self.user = User(username= 'testuser')
         self.user.save()
 
     def test_should_pass_when_model_has_correct_fields(self):
@@ -71,8 +71,8 @@ class ChoiceTestCase(TestCase):
         self.assertTrue(check_fields(Choice, "sort_order", "Integer"))
 
     def test_should_throw_exception_when_not_unique_sort_order(self):
-        choice1 = Choice(text = 'choice1', sort_order = 1)
-        choice2 = Choice(text = 'choice2', sort_order = 1)
+        choice1 = Choice(text='choice1', sort_order=1)
+        choice2 = Choice(text='choice2', sort_order=1)
 
         choice1.save(self.user)
         self.assertRaises(IntegrityError, lambda : choice2.save(self.user))
@@ -84,13 +84,13 @@ class ChoiceTestCase(TestCase):
 
 class ResponseTestCase(TestCase):
     def setUp(self):
-        self.user = User(username = 'testuser')
+        self.user = User(username='testuser')
         self.user.save()
-        self.correct_choice = Choice(text='test choice', sort_order = 1)
+        self.correct_choice = Choice(text='test choice', sort_order=1)
         self.correct_choice.save(self.user)
-        self.incorrect_choice = Choice(text='test choice', sort_order = 2)
+        self.incorrect_choice = Choice(text='test choice', sort_order=2)
         self.incorrect_choice.save(self.user)
-        self.question = Question(text='test question', correct_choice = self.correct_choice)
+        self.question = Question(text='test question', correct_choice=self.correct_choice)
         self.question.save(self.user)
 
     def test_should_pass_when_model_has_correct_fields(self):
@@ -100,9 +100,9 @@ class ResponseTestCase(TestCase):
         self.assertTrue(is_foreign_key_to(Response, "project", Project))
 
     def test_should_pass_when_is_correct_response(self):
-        response = Response(question = self.question, choice = self.correct_choice)
+        response = Response(question=self.question, choice=self.correct_choice)
         self.assertTrue(response.is_correct_response())
 
     def test_should_not_be_correct_when_not_correct_choice_selected(self):
-        response = Response(question = self.question, choice = self.incorrect_choice)
+        response = Response(question=self.question, choice=self.incorrect_choice)
         self.assertFalse(response.is_correct_response())

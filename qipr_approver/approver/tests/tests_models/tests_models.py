@@ -43,7 +43,7 @@ class OrganizationModel(TestCase):
 
     def test_should_print_text_when_asked_for_string(self):
         org_name = "test org"
-        org = Organization(org_name = org_name)
+        org = Organization(org_name=org_name)
 
         self.assertEqual(str(org), org_name)
 
@@ -130,12 +130,12 @@ class AddressModel(TestCase):
         zip_code = '09876'
         country = "US"
         address = Address(
-            address1 = address1,
-            address2 = address2,
-            city = city,
-            zip_code = zip_code,
-            state = state,
-            country = country
+            address1=address1,
+            address2=address2,
+            city=city,
+            zip_code=zip_code,
+            state=state,
+            country=country
             )
         self.assertEqual(str(address), ' ; '.join([address1,
                                                    address2,
