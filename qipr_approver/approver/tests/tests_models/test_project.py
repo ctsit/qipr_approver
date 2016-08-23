@@ -1,4 +1,5 @@
-import sys, time, datetime
+import sys, time
+from datetime import datetime, timedelta
 
 from approver.models import *
 from approver.signals.bridge.model_signals import model_push
@@ -11,10 +12,11 @@ from django.db.models import fields, signals
 from django.test import TestCase, Client
 from unittest.mock import patch
 from django.utils import timezone
+
 class ProjectTestCase(TestCase):
     def setUp(self):
         signals.post_save.disconnect(model_push, Project)
-        self.user = User(username = 'testUser')
+        self.user = User(username='testUser')
         self.user.save()
 
     def test_should_have_proper_fields_when_created(self):
@@ -35,8 +37,8 @@ class ProjectTestCase(TestCase):
 
     def test_should_print_text_when_asked_for_string(self):
         title = 'test title'
-        owner = Person(first_name = 'first', last_name = 'last', email_address = 'email')
-        project = Project(title = title, owner = owner)
+        owner = Person(first_name='first', last_name='last', email_address='email')
+        project = Project(title=title, owner=owner)
         test_string = ' '.join([title, str(owner)])
 
         self.assertEqual(str(project), test_string)
@@ -53,7 +55,7 @@ class ProjectTestCase(TestCase):
 
         self.assertTrue(project.is_approved())
 
-    def test_ahould_not_be_approved_when_not_in_registry_or_approved(self):
+    def test_should_not_be_approved_when_not_in_registry_or_approved(self):
         project = Project()
         self.assertFalse(project.is_approved())
 
@@ -74,8 +76,10 @@ class ProjectTestCase(TestCase):
         self.assertFalse(project.get_is_editable())
 
     def test_should_not_be_editable_when_older_than_a_year(self):
-        future_time = time.time() + 63092000
-        future_date = datetime.datetime.fromtimestamp(future_time)
-        print(timezone.now())
-        with patch.object(timezone, 'now', return_value = future_date):
-            print(timezone.now())
+        previous_saved_time = timezone.now() - timedelta(days=400)
+
+        with patch.object(timezone, 'now', return_value=previous_saved_time):
+            project = Project()
+            project.save(self.user)
+
+        self.assertFalse(project.get_is_editable())

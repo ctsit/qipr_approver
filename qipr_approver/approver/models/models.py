@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -150,8 +152,8 @@ class Project(Provenance, Registerable):
         Projects get locked down after they are approved
         or a year after their creation date.
         """
-        timeelapsed = timezone.now() - self.created
-        if timeelapsed.seconds > 31536000 or self.approval_date or self.in_registry:
+        if utils.check_is_date_past_year(self.created) or \
+        self.approval_date or self.in_registry:
             return False
         return True
 
