@@ -3,6 +3,7 @@ describe('Toaster Test', function () {
         toastDiv,
         testToaster;
     it('should define window.Toaster', function () {
+        expect(window.modules.ToasterFactory).toBeDefined();
         expect(window.Toaster).toBeDefined();
     });
 
