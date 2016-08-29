@@ -1,0 +1,102 @@
+<html>
+    <head>
+        {% load staticfiles %}
+        <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper bg-blue">
+              <a href="#!" class="brand-logo">
+                <img class="nav__logo" src="/static/qipr/img/qipr_no_text.svg">
+              </a>
+
+        
+        <!-- <ul class="right hide-on-sm-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+        </ul> -->
+      
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-small-only">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Register</a></li>
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+              </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="section" id="index-banner">
+                <div class="container">
+                  <div class="row center">
+                    <br><br>
+                    <div class="col s12 m6">
+                      <h2 class="header center orange-text">Learn About CQI</h2>
+                      <p>Start a Continuous Quality Improvement Project. Get approved. Get implemented. Learn more now.</p>
+                    </div>
+                    <div class="col s12 m6 light">
+                         <div class="video-container">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section no-pad-bot orange lighten-4">
+                <div class="container">
+                    <div class="row home__section">
+                        <div class="col s12">
+                            <h2 class="header orange-text">Frequently Asked Questions</h2>
+                        </div>
+                        <div class="col s12 m6">
+                            <p>Some Question Goes here?</p>
+                            <p>Some answer goes here.</p>
+                        </div>
+                        <div class="col s12 m6">
+                            <p>Some Question Goes here?</p>
+                            <p>Some answer goes here.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+        </main>
+
+         <footer class="page-footer grey darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright grey darken-4">
+            <div class="container">
+            © 2016 QIPR Approver
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+        
+        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>
+    </body>
+</html>
