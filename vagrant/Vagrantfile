@@ -20,10 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Restart apache when all done (if using apache)
   config.vm.provision "shell", run: "always", inline: "service apache2 restart"
 
-  config.trigger.after [:up] do
-    if Vagrant::Util::Platform.darwin?
-      system("open -a 'Google Chrome.app' http://localhost:8080")
-    end
-  end
+ # config.trigger.after [:up] do
+  #  if Vagrant::Util::Platform.darwin?
+   #   system("open -a 'Google Chrome.app' http://localhost:8080")
+   # end
+ # end
 
 end
