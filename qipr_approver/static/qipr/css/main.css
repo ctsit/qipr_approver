@@ -23,19 +23,42 @@ main {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height:700px;
+    height:100%;
 }
 
 .bg__ltblue {
     background-color: #43b1e5;
-    height: 47rem;
+    height: 100%;
     margin-top: -44px;
     opacity: 0.89;
+    padding-top: 5rem !important;
 }
 
 .text__callout {
-    font-size:1.6rem;
+    font-size:2.4rem;
     color: #004d9a;
+}
+
+.video__alignment {
+    margin-right:3rem;
+    margin-top:6rem;
+}
+
+.text__med {
+    font-size:1.5rem;
+}
+
+
+.font__opensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font__sourcesans {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.font__roboto {    
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .footer__margin {
