@@ -8,8 +8,6 @@ class AuditTrail(models.Model):
     datetime = models.DateTimeField(auto_now=True, editable=False)
     json_before = models.TextField(null=True)
     json_after = models.TextField(null=True)
-    # we need what the action was
-    # ie create edit delete at minimum view
 
     def __str__(self):
         return (str(self.user) + str(self.datetime))
