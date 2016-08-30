@@ -7,4 +7,9 @@ if __name__ == "__main__":
 
     from django.core.management import execute_from_command_line
 
-    execute_from_command_line(sys.argv)
+    from approver.custom_commands import loadmesh
+
+    if sys.argv[1] == 'loadmesh'
+        loadmesh(sys.argv)
+    else:
+        execute_from_command_line(sys.argv)

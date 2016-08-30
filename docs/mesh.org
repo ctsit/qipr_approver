@@ -1,0 +1,9 @@
+* DONE create models
+CLOSED: [2016-08-30 Tue 16:45]
+* TODO create parser
+* TODO spilt up giant xml file into something managable
+** create @ delimited xml file to cut on and pip smaller bits
+*** DONE descriptors
+CLOSED: [2016-08-30 Tue 16:47]
+*** TODO qualifiers <- probably dont need it
+*** TODO scr 
