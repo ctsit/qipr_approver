@@ -7,7 +7,9 @@
         {% for option in selected %}
             <div class="tag__container">
                 <li class="tag" >{{ option }}</li>
-                <i class="tiny tag__delete">cancel</i>
+                {% if disabled != "disabled" %}
+                  <i class="tiny tag__delete">cancel</i>
+                {% endif %}
             </div>
         {% endfor %}
     </ul>
