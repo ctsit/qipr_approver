@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
-import datetime
+from datetime import timedelta
 
 import approver.constants as constants
 import django
@@ -184,3 +185,7 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                     return True
             else:
                 return False
+
+def check_is_date_past_year(date):
+    return date + timedelta(days=365) < timezone.now()
+
