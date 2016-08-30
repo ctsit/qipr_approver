@@ -1,6 +1,45 @@
 nav {
     /* gator blue */
-    background-color: #6c9ac3;
+    background-color: #004d9a;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.home__section {
+    margin-bottom:0;
+}
+
+.bg__img {
+    background: url("../img/shands_bgimage.jpg") no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:700px;
+}
+
+.bg__ltblue {
+    background-color: #43b1e5;
+    height: 47rem;
+    margin-top: -44px;
+    opacity: 0.89;
+}
+
+.text__callout {
+    font-size:1.6rem;
+    color: #004d9a;
+}
+
+.footer__margin {
+
 }
 
 .icon {
