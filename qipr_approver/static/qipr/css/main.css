@@ -1,6 +1,10 @@
 nav {
-    /* gator blue */
     background-color: #004d9a;
+}
+
+nav ul a {
+    padding-left:.5rem;
+    padding-right:.5rem;
 }
 
 body {
@@ -252,10 +256,6 @@ iframe {
     position: absolute;
 }
 
-nav ul a {
-    padding-left:.5rem;
-    padding-right:.5rem;
-}
 
 @media screen and (min-width: 609px) {
     .bg__img {
