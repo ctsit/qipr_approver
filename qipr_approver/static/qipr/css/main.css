@@ -35,7 +35,11 @@ main {
 }
 
 .text__callout {
-    font-size:2.4rem;
+    font-size:2.2rem;
+    color: #004d9a;
+}
+
+.text__blue {
     color: #004d9a;
 }
 
@@ -48,6 +52,33 @@ main {
     font-size:1.5rem;
 }
 
+.shape__circle {
+    width: 75px;
+    height: 75px;
+    background: #004d9a;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    float:left;
+    margin-right:1.5rem;
+    clear:both;
+}
+
+.btn:hover, .btn-large:hover, .btn:focus {
+    background-color: #e87910;
+    }
+
+.clear__both {
+    clear:both;
+}
+
+.shape__circle--text {
+    display: block;
+    position: relative;
+    top: -0.5rem;
+    right: -1.8rem;
+    font-size: 4rem;
+}
 
 .font__opensans {
     font-family: 'Open Sans', sans-serif;
@@ -59,6 +90,10 @@ main {
 
 .font__roboto {    
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.font__arvo {
+    font-family: 'Arvo', serif;
 }
 
 .footer__margin {
