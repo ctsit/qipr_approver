@@ -40,6 +40,10 @@
 //end toast
 //////////////
 
+    $(document).on("keypress", ":input:not(textarea)", function(event) {
+        return event.keyCode != 13;
+    });
+
     tagboxInputs = document.getElementsByClassName("tagbox__input");
 
     Array.prototype.forEach.call(tagboxInputs, (node) => {
