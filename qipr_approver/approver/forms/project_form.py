@@ -18,37 +18,37 @@ class ProjectForm():
 
         self.collaborator = {'name': 'collaborator',
                              'label': 'Collaborators',
-                             'options': [item.email_address for item in Person.objects.all()],
+                             'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
         self.advisor = {'name': 'advisor',
                         'label': 'Advisors',
-                        'options': [item.email_address for item in Person.objects.all()],
+                        'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',
-                        'options': [item.name for item in Keyword.objects.all()],
+                        'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
                         'selected': utils.get_related_property(project, "keyword")}
 
         self.big_aim = {'name': 'big_aim',
                         'label': 'Big Aims',
-                        'options': [item.name for item in BigAim.objects.all()],
+                        'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim")}
 
         self.clinical_area = {'name': 'clinical_area',
                                'label': 'Clinical Area',
-                               'options': [item.name for item in ClinicalArea.objects.all()],
+                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                                'selected': utils.get_related_property(project,"clinical_area")}
 
         self.safety_target = {'name': 'safety_target',
                                'label': 'Safety Targets',
-                               'options': [item.name for item in SafetyTarget.objects.all()],
+                               'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
                                'selected': utils.get_related_property(project,"safety_target")}
 
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',
-                                 'options': [item.name for item in ClinicalSetting.objects.all()],
+                                 'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
                                  'selected': utils.get_related_property(project,"clinical_setting")}
 
         self.description = {'name': 'description',
