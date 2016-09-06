@@ -14,6 +14,7 @@ class ProjectForm():
         self.title = {'name': 'title',
                       'label': 'Title',
                       'type': 'text',
+                      'rows': 2,
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
@@ -54,6 +55,7 @@ class ProjectForm():
         self.description = {'name': 'description',
                             'label': 'Description',
                             'type': 'text',
+                            'rows': 3,
                             'value': project.description or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',

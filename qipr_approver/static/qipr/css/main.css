@@ -158,9 +158,10 @@ textarea.form__textarea--with-border {
     border: 1px solid #9e9e9e;
     padding-top: 5px;
     padding-bottom: 5px;
+    height: auto;
 }
 
 textarea.form__textarea--with-border:focus:not([readonly]) {
   border: 1px solid #26a69a;
-  box-shadow: 1px 1px 1px 1px #26a69a;
+  box-shadow: 4px 4px 8px 1px #26a69a;
 }
