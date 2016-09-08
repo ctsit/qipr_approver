@@ -29,15 +29,14 @@ class Term(MeshModel):
     term_ui = models.CharField(max_length=16)
 
 class Concept(MeshModel):
-    broader_concept = models.ForeignKey('self')
     casn1_name = models.TextField()
     concept_ui = models.CharField(max_length=16)
     is_preferred_concept = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
-    narrower_concept = models.ForeignKey('self')
+    narrower_concept = models.ForeignKey('self', related_name='broader_concept')
     related_concept = models.ForeignKey('self')
     registry_number = models.CharField(max_length=200)
-    related_registry_number = models.ManyToMany(RegistryNumber, related_name='concept')
+    related_registry_number = models.ManyToManyField(RegistryNumber, related_name='concept')
     scope_note = models.TextField()
     term = models.ManyToManyField(Term, related_name='concept')
 
@@ -90,7 +89,7 @@ class SCR(MeshModel):
     Supplementary Concept Record. These are things like different drugs
     and chemical compounds that get added daily
     """
-    alternative_index = models.ManyToMany(AlternativeIndex, related_name='scr')
+    alternative_index = models.ManyToManyField(AlternativeIndex, related_name='scr')
     concept = models.ManyToManyField(Concept, related_name='scr')
     frequency = models.IntegerField()
     name = models.CharField(max_length=100)
