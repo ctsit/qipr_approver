@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     from approver.custom_commands import loadmesh
 
-    if sys.argv[1] == 'loadmesh'
+    if sys.argv[1] == 'loadmesh':
         loadmesh(sys.argv)
     else:
         execute_from_command_line(sys.argv)
