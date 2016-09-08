@@ -35,6 +35,7 @@ iframe {
     border-radius: 2px;
     box-shadow: 3px 3px 3px #888888;
     max-height: 0;
+    transition: .5s;
 }
 
 .cts-toast--active {
