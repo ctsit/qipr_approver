@@ -1,3 +1,4 @@
+from approver.views.home import home
 from approver.views.aboutyou import about_you
 from approver.views.index import index
 from approver.views.dashboard import dashboard
