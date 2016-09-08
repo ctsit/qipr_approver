@@ -1,6 +1,108 @@
 nav {
-    /* gator blue */
-    background-color: #6c9ac3;
+    background-color: #004d9a;
+}
+
+nav ul a {
+    padding-left:.5rem;
+    padding-right:.5rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.home__section {
+    margin-bottom:0;
+}
+
+.bg__img {
+    background: url("../img/shands__bgimage.jpg") no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:64rem;
+}
+
+.bg__ltblue {
+    background-color: #43b1e5;/*
+    height: 100%;*/
+    margin-top: 1rem;
+    opacity: 0.89;
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+.text__callout {
+    font-size:2.2rem;
+    color: #004d9a;
+}
+
+.text__blue {
+    color: #004d9a;
+}
+
+.video__alignment {
+    margin-right:3rem;
+    margin-top:1rem;
+}
+
+.text__med {
+    font-size:1.5rem;
+}
+
+.shape__circle {
+    width: 75px;
+    height: 75px;
+    background: #004d9a;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    float:left;
+    margin-right:1.5rem;
+    clear:both;
+}
+
+.btn:hover, .btn-large:hover, .btn:focus {
+    background-color: #e87910;
+    }
+
+.clear__both {
+    clear:both;
+}
+
+.shape__circle--text {
+    display: block;
+    position: relative;
+    top: -0.5rem;
+    right: -1.8rem;
+    font-size: 4rem;
+}
+
+.font__opensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font__sourcesans {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.font__roboto {    
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.font__arvo {
+    font-family: 'Arvo', serif;
+}
+
+.footer__margin {
+
 }
 
 .icon {
@@ -152,4 +254,44 @@ iframe {
     background-size: contain;
     right: 1rem;
     position: absolute;
+}
+
+
+@media screen and (min-width: 609px) {
+    .bg__img {
+        height:72rem;
+    }
+
+    nav ul a {
+    padding-left:1rem;
+    padding-right:1rem;
+    }
+}
+
+@media screen and (min-width: 993px) {
+    .bg__ltblue {
+        margin-top: -2.9rem;
+    }
+
+    .video__alignment {
+        margin-top: 6rem;
+    }
+
+    .bg__img {
+        height:650px;
+    }
+    .bg__ltblue {
+        padding-bottom: 3.5rem !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .bg__ltblue {
+        margin-top: -2.96rem;
+    }
+}
+@media screen and (min-width: 1436px) {
+    .bg__ltblue {
+        padding-bottom: 5rem !important;
+    }
 }
