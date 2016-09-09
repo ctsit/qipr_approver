@@ -65,3 +65,8 @@ class AboutYouForm():
                            'label': 'Last Login',
                            'type': 'text',
                            'value': user.person.last_login_time or ''}
+
+        self.account_expiration = {'name': 'account_expiration',
+                           'label': 'Account Expiration',
+                           'type': 'text',
+                           'value': user.person.account_expiration_time or ''}
