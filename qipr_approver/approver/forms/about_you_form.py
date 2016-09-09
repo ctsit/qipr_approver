@@ -61,3 +61,17 @@ class AboutYouForm():
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()]}
 
+        self.last_login = {'name': 'last_login',
+                           'label': 'Last Login',
+                           'type': 'text',
+                           'value': user.person.last_login_time or ''}
+
+        self.account_expiration = {'name': 'account_expiration',
+                           'label': 'Account Expiration',
+                           'type': 'text',
+                           'value': user.person.account_expiration_time or ''}
+
+        self.account_created = {'name': 'account_created',
+                           'label': 'Account Created',
+                           'type': 'text',
+                           'value': user.date_joined or ''}
