@@ -70,3 +70,8 @@ class AboutYouForm():
                            'label': 'Account Expiration',
                            'type': 'text',
                            'value': user.person.account_expiration_time or ''}
+
+        self.account_created = {'name': 'account_created',
+                           'label': 'Account Created',
+                           'type': 'text',
+                           'value': user.date_joined or ''}
