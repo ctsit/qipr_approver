@@ -5,12 +5,6 @@ from approver.forms import AboutYouForm, ProjectForm
 from django.contrib.auth.models import User
 from approver.models import Project
 
-import json
-import approver.utils as utils
-import approver.constants as constants
 
 def index(request):
-    context = {
-        'content': 'approver/index.html',
-    }
-    return utils.layout_render(request, context)
+    return render(request, 'approver/index.html')
