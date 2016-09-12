@@ -1,0 +1,210 @@
+[
+{
+  "model": "approver.qi_interest",
+  "pk": 2,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:17:18Z",
+    "last_modified": "2016-09-12T19:17:18Z",
+    "name": "Infection Prevention",
+    "description": "Infection Prevention"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 3,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:17:31Z",
+    "last_modified": "2016-09-12T19:17:31Z",
+    "name": "Patient Safety",
+    "description": "Patient Safety"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 4,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:17:47Z",
+    "last_modified": "2016-09-12T19:17:47Z",
+    "name": "Fatigue Management",
+    "description": "Fatigue Management"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 5,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:18:03Z",
+    "last_modified": "2016-09-12T19:18:03Z",
+    "name": "Professionalism",
+    "description": "Professionalism"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 6,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:19:56Z",
+    "last_modified": "2016-09-12T19:19:56Z",
+    "name": "Transitions in Care (handoffs)",
+    "description": "Transitions in Care (handoffs)"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 7,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:20:13Z",
+    "last_modified": "2016-09-12T19:20:13Z",
+    "name": "Quality Improvement",
+    "description": "Quality Improvement"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 8,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:20:23Z",
+    "last_modified": "2016-09-12T19:20:23Z",
+    "name": "Supervision",
+    "description": "Supervision"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 9,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:20:34Z",
+    "last_modified": "2016-09-12T19:20:34Z",
+    "name": "Nursing Sensitive Indicators",
+    "description": "Nursing Sensitive Indicators"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 10,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:20:48Z",
+    "last_modified": "2016-09-12T19:20:48Z",
+    "name": "Core Measures/Meaningful Use",
+    "description": "Core Measures/Meaningful Use"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 11,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:21:11Z",
+    "last_modified": "2016-09-12T19:21:11Z",
+    "name": "Throughput/Efficiency",
+    "description": "Throughput/Efficiency"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 12,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:21:23Z",
+    "last_modified": "2016-09-12T19:21:23Z",
+    "name": "Healthcare Disparities",
+    "description": "Healthcare Disparities"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 13,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:21:33Z",
+    "last_modified": "2016-09-12T19:21:33Z",
+    "name": "Cost Effectiveness",
+    "description": "Cost Effectiveness"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 14,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:21:50Z",
+    "last_modified": "2016-09-12T19:21:50Z",
+    "name": "Just Culture",
+    "description": "Just Culture"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 15,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:22:02Z",
+    "last_modified": "2016-09-12T19:22:02Z",
+    "name": "Medication Safety",
+    "description": "Medication Safety"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 16,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:22:26Z",
+    "last_modified": "2016-09-12T19:22:26Z",
+    "name": "Surgical Safety",
+    "description": "Surgical Safety"
+  }
+},
+{
+  "model": "approver.qi_interest",
+  "pk": 17,
+  "fields": {
+    "in_registry": false,
+    "created_by": 3,
+    "last_modified_by": 3,
+    "created": "2016-09-12T19:22:36Z",
+    "last_modified": "2016-09-12T19:22:36Z",
+    "name": "Infections",
+    "description": "Infections"
+  }
+}
+]
