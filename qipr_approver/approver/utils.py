@@ -166,7 +166,8 @@ def get_related_property(model, related_model_name, related_model_property='name
     Example: get_related_property(Person, 'project', 'title')  will return all project titles related to a person
     """
     relateds = get_related(model, related_model_name)
-    return [getattr(item, related_model_property) for item in relateds]
+    list_of_related_properties = [getattr(item, related_model_property) for item in relateds]
+    return [prop for prop in list_of_related_properties if prop != None]
 
 def check_fields(ModelName,fieldname,type,max_length=None):
     """
@@ -189,3 +190,5 @@ def check_fields(ModelName,fieldname,type,max_length=None):
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
 
+def is_not_none(item):
+    return item != None
