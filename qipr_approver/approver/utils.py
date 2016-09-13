@@ -189,3 +189,21 @@ def check_fields(ModelName,fieldname,type,max_length=None):
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
 
+def get_or_instantiate(Model, kwargs):
+    """
+    This tries to get a model matching the kwargs.
+    If it cant be found. It will instantiate one.
+    NOTE: this will not save the object
+    """
+    try:
+        return Model.objects.get(**kwargs)
+    except:
+        return Model(**kwargs)
+
+def save_all(iterable, user):
+    """
+    Saves every item in iterable with the user passed
+    NOTE: This will exhaust iterators, Take care
+    """
+    for item in iterable:
+        item.save(user)

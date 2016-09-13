@@ -25,8 +25,8 @@ class Term(MeshModel):
     lexical_tag = models.ForeignKey(LexicalTag, related_name="+")
     name = models.CharField(max_length=100)
     record_preferred_term = models.BooleanField(default=False)
-    term_note = models.TextField(null=True)
     term_ui = models.CharField(max_length=16)
+    thesaurus = models.ManyToMany(Thesaurus, related_name="+", null=True)
 
 class Concept(MeshModel):
     casn1_name = models.TextField()
@@ -65,7 +65,6 @@ class Descriptor(MeshModel):
     nlm_classification_number = models.CharField(max_length=16)
     online_note = models.TextField()
     pharma_action = models.ManyToManyField(PharmacologicalAction, related_name='descriptor')
-    pharmacological_action = models.CharField(max_length=100)
     previous_indexing = models.TextField()
     public_mesh_note = models.TextField()
     see_related = models.ForeignKey('self')
