@@ -10,6 +10,7 @@
     <table class="striped">
         <thead>
             <tr>
+                <th data-field="number">Number</th>
                 <th data-field="title">Title</th>
                 <th data-field="edit_link">Edit Project</th>
                 <th data-field="role">Role</th>
@@ -20,6 +21,7 @@
         <tbody>
             {% for project in projects %}
                 <tr>
+                    <td>{{ forloop.counter }}</td>
                     <td class="project__title">{{ project.title }}</td>
                     <td><a href="{% url 'approver:projects' project_id=project.pk %}">link</a></td>
                     <td class="project__title">{{ project.role }}</td>
