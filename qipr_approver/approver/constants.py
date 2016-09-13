@@ -56,3 +56,5 @@ registry_host = 'http://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 registry_endpoints = {
     'add_model': '/'.join([registry_host, 'add_model']),
 }
+
+VERSION_NUMBER = '0.2.0'
