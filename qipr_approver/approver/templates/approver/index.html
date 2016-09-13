@@ -1,7 +1,98 @@
-{% load staticfiles %}
-<img src="{% static 'qipr/img/qipr_outlines.svg' %}" alt="QIPR" style="width:100%"/>
-<iframe width="560" height="315"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" frameborder="0" allowfullscreen>
-</iframe>
-<a href="{% url 'approver:firstlogin' %}">Register and add your first project!</a>
-<a href="{% url 'approver:shib' %}">Login with shibboleth</a>
+<html>
+    <head>
+        {% load staticfiles %}
+        <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Open+Sans|Roboto+Condensed|Source+Sans+Pro" rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper bg-blue">
+              <a href="#" class="brand-logo">
+                  <img class="nav__logo" src="{% static 'qipr/img/qipr.svg' %}">
+              </a>
+              <ul class="right">
+                  <li><a href="{% url 'approver:shib' %}">Login</a></li>
+                  <li><a href="{% url 'approver:shib' %}">Register</a></li>
+              </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="bg__img">
+                <div class="container">
+                  <div class="row center">
+                    <br><br>
+                    <div class="col s12 l6 light video__alignment">
+                         <div class="video-container">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
+                          </div>
+                    </div>
+
+                    <div class="col s12 l5 bg__ltblue">
+                      <h1 class="font__roboto header center white-text">Learn About CQI</h1>
+                      <p class="text__med font__sourcesans">Start a <span class="text__callout font__arvo">Continuous Quality Improvement </span>project.</p>
+                      <p class="text__med font__opensans white-text"><i class="material-icons">done</i>Get approved.</p> 
+                      <p class="text__med font__opensans white-text"><i class="material-icons">done</i>Get implemented.</p> 
+                       <button class="font__opensans btn waves-effect waves-light" type="submit" name="action">Learn more now</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="section no-pad-bot  lighten-4">
+                <div class="container">
+                    <div class="row home__section">
+                        <div class="col s12">
+                            <h2 class="header grey-text text-darken-3 center font__opensans">Frequently Asked Questions</h2>
+                        </div>
+                        <div class="col s12 l6 font__opensans">
+                            <div class="shape__circle">
+                                <div class="shape__circle--text white-text">?</div>
+                            </div>
+                            <h5 class="text__blue">What is CQI?</h5>
+                            <p>Lorem ipsum dolor sit amet, habeo possit dissentias cum cu. Vulputate scribentur cotidieque sit no. Ius ei cetero quaestio pericula, est semper tractatos te. Id duo rebum debet phaedrum, mollis maluisset constituto usu et. Vim congue legere mediocritatem ut.</p>
+                        </div>
+                        <div class="col s12 l6 font__opensans">
+                            <div class="shape__circle">
+                                <div class="shape__circle--text white-text">?</div>
+                            </div>
+                            <h5 class="text__blue">How do I get started?</h5>
+                            <p>Id usu assum delenit perfecto, quod labores urbanitas eam id. Saepe omnium mei ea, iudico constituam has in, eum ut scaevola persecuti.</p>
+                        </div>
+                        <div class="col s12 l6 font__opensans clear__both">
+                            <div class="shape__circle">
+                                <div class="shape__circle--text white-text">?</div>
+                            </div>
+                            <h5 class="text__blue">What types of projects are there?</h5>
+                            <p>Has te solum zril. No eam magna ullum argumentum. Quo ea facilisis patrioque, ea sea justo debet. Cum ei expetenda maluisset, his modo omnis ei.</p>
+                        </div>
+                        <div class="col s12 l6 font__opensans">
+                            <div class="shape__circle">
+                                <div class="shape__circle--text white-text">?</div>
+                            </div>
+                            <h5 class="text__blue">Are there support options?</h5>
+                            <p>Id duo rebum debet phaedrum, mollis maluisset constituto usu et. Vim congue legere mediocritatem ut.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+        </main>
+
+         <footer class="page-footer grey darken-4">
+          <div class="footer-copyright grey darken-4">
+            <div class="container center">
+            © 2016 QIPR Approver
+            </div>
+          </div>
+        </footer>
+
+        
+        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>
+    </body>
+</html>

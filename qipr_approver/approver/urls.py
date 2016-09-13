@@ -3,7 +3,6 @@ from django.contrib.auth.views import logout
 from approver import views, api
 
 urlpatterns = [
-    url(r'^home/$', views.home, name='home'),
     url(r'^$', views.index, name='index'),
     url(r'^shib/$', views.fake_shib, name='shib'),
     url(r'^projects/$', views.project, name='projects'),
