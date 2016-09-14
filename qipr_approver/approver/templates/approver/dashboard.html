@@ -15,7 +15,7 @@
                 <th data-field="edit_link">Edit Project</th>
                 <th data-field="role">Role</th>
                 <th data-field="Approval">Project Approval</th>
-                <th data-field="delete">Delete</th>
+                <th data-field="delete">Delete?</th>
             </tr>
         </thead>
         <tbody>
@@ -28,11 +28,15 @@
                     {% if project.role == "PI" %}
                         {% if project.is_approved %}
                             <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
+                            <td></td>
                         {% else %}
                             <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
+                            <td><form action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you sure you want to delete project {{ forloop.counter }}?');">{% csrf_token %}
+                                    <button class="btn" type="submit" value="Delete Project"> <i class="material-icons">delete</i></button>
+                                </form>
+                            </td>
                         {% endif %}
                     {% endif %}
-                            <td><form action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you sure you want to delete project {{ forloop.counter }}?');">{% csrf_token %} <button class="btn" type="submit" value="Delete Project"> <i class="material-icons">delete</i></button></form></td>
                 </tr>
             {% endfor %}
         </tbody>
