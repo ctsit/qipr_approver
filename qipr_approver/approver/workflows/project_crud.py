@@ -5,6 +5,8 @@ import approver.utils as utils
 
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
+from django.db.models.query import QuerySet
+
 
 def create_or_update_project(current_user, project_form, project_id=None):
     """
@@ -145,3 +147,95 @@ def current_user_can_perform_project_delete(current_user,project):
         return 'You are not allowed to delete/edit this project.'
     project.delete(current_user)
     return 'Deleted Project'
+
+def get_all_projects():
+    """
+    This returns a list of all the existing projects
+    """
+    return Project.objects.all()
+
+def get_similar_projects(project):
+    projects = get_all_projects()
+    project_scores = []
+
+    for member in projects:
+        if project.id == member.id: continue
+        similarity = _calculate_similarity_score(project, member)
+        if similarity == 0: continue
+        project_scores.append((member.id, member, similarity))
+
+    return sorted(project_scores, key=lambda score: score[2], reverse = True)
+
+def _calculate_similarity_score(project, member):
+
+    '''
+    Need to be improved based on priority. Remove static values and read from a file.
+    Sum can be 100 to scale from zero to 100 (like a percentage)
+
+    keyword - 25
+    title - 20
+    big_aim - 15
+    category - 5
+    clinical area - 10
+    clinical setting - 10
+    description - 10
+    '''
+
+    keyword_factor = 25
+    title_factor = 20
+    big_aim_factor = 15
+    category_factor = 5
+    clinical_area_factor = 10
+    clinical_setting_factor = 10
+    description_factor = 10
+
+    similarity = 0.0
+
+    if project.title is not None and member.title is not None:
+        similarity += title_factor * _jaccard_similarity(project.title, member.title)
+
+    if project.keyword is not None and member.keyword is not None:
+        similarity += keyword_factor * _jaccard_similarity(project.keyword.all(), member.keyword.all())
+
+    if project.description is not None and member.description is not None:
+        similarity += description_factor * _jaccard_similarity(project.description, member.description)
+
+    if project.big_aim is not None and member.big_aim is not None:
+        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.all(), member.big_aim.all())
+
+    if project.clinical_setting is not None and member.clinical_setting is not None:
+        similarity += clinical_setting_factor * _jaccard_similarity(project.clinical_setting.all(), member.clinical_setting.all())
+
+    if project.clinical_area is not None and member.clinical_area is not None:
+        similarity += clinical_area_factor * _jaccard_similarity(project.clinical_area.all(), member.clinical_area.all())
+
+    if project.category is not None and member.category is not None:
+        similarity += category_factor * _jaccard_similarity(project.category.all(), member.category.all())
+    
+    return similarity
+
+
+def _get_set_for_query(queryset):
+    res = set()
+    for element in queryset.all():
+        res.add(element.name)
+    return res
+
+def _jaccard_similarity(doc1, doc2):
+
+    a = set()
+    b = set()
+
+    if isinstance(doc1, QuerySet):
+        a = _get_set_for_query(doc1)
+        b = _get_set_for_query(doc2)
+    else:
+        a = set(doc1.split())
+        b = set(doc2.split())
+
+    intersection = len(a.intersection(b))
+
+    if intersection == 0: return intersection
+
+    similarity = float(intersection*1.0/len(a.union(b)))
+    return similarity
