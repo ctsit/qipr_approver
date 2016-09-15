@@ -19,6 +19,21 @@ class AboutYouForm():
                           'type': 'text',
                           'value': user.person.last_name or ''}
 
+        self.title = {'name': 'title',
+                          'label': 'Tite',
+                          'type': 'text',
+                          'value': ''}
+
+        self.department = {'name': 'department',
+                          'label': 'Department',
+                          'type': 'text',
+                          'value': ''}
+
+        self.unit = {'name': 'unit',
+                          'label': 'Unit',
+                          'type': 'text',
+                          'value': ''}
+
         self.business_address = user.person.business_address
 
         self.webpage_url = {'name': 'webpage_url',
