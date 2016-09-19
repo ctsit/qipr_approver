@@ -14,7 +14,8 @@
     {% form_input form.last_name %}
     {% form_input form.title %}
     {% form_input form.department %}
-    {% form_input form.unit %}
+    {% tagbox form.clinical_area form.is_disabled %}
+
     {% for business_address in form.business_address.all %}
         {% address business_address 'business' forloop.counter %}
     {% empty %}

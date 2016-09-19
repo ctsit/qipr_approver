@@ -1,6 +1,6 @@
-from approver.models import Speciality, Expertise, QI_Interest, Suffix
+from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea
 from django.contrib.auth.models import User
-
+from approver import utils
 class AboutYouForm():
 
     def __init__(self, user=User()):
@@ -29,10 +29,10 @@ class AboutYouForm():
                           'type': 'text',
                           'value': user.person.department or ''}
 
-        self.unit = {'name': 'unit',
-                          'label': 'Unit',
-                          'type': 'text',
-                          'value': user.person.unit or ''}
+        self.clinical_area = {'name': 'clinical_area',
+                               'label': 'Clinical Area',
+                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                               'selected': utils.get_related_property(user.person,"clinical_area")}
 
         self.business_address = user.person.business_address
 

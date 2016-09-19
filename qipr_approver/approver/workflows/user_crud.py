@@ -1,4 +1,4 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization
+from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
 from approver.utils import extract_tags, update_tags, true_false_to_bool
 
@@ -52,9 +52,9 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.webpage_url = about_you_form.get('webpage_url')
     person.title = about_you_form.get('title')
     person.department = about_you_form.get('department')
-    person.unit = about_you_form.get('unit')
     person.qi_required = true_false_to_bool(about_you_form.get('qi_required'))
 
+    clinical_area = extract_tags(about_you_form, 'clinical_area')
     expertises = extract_tags(about_you_form, 'expertise')
     qi_interest = extract_tags(about_you_form, 'qi_interest')
     specialities = extract_tags(about_you_form, 'speciality')
@@ -82,6 +82,12 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
                 tag_property='suffix',
                 tags=suffixes,
                 tag_model=Suffix,
+                tagging_user=editing_user)
+
+    update_tags(model=person,
+                tag_property='clinical_area',
+                tags=clinical_area,
+                tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
     user.save()

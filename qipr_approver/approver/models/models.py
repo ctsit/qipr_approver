@@ -122,9 +122,8 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
-    unit = models.CharField(max_length=50, null=True)
     qi_required = models.NullBooleanField()
-
+    clinical_area = models.ManyToManyField(ClinicalArea)
     tag_property_name = 'email_address'
 
     def __str__(self):
