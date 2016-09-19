@@ -192,3 +192,17 @@ def check_is_date_past_year(date):
 
 def is_not_none(item):
     return item != None
+
+def true_false_to_bool(true_false_string):
+    """
+    This function will take a string with a value of
+    true or false and return a boolean object representation
+    of it
+    """
+    if true_false_string is not None:
+        if (true_false_string.lower() == 'true'):
+            return True
+        elif (true_false_string.lower() == 'false'):
+            return False
+
+    return None

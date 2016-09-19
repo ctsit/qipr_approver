@@ -22,17 +22,17 @@ class AboutYouForm():
         self.title = {'name': 'title',
                           'label': 'Tite',
                           'type': 'text',
-                          'value': ''}
+                          'value': user.person.title or ''}
 
         self.department = {'name': 'department',
                           'label': 'Department',
                           'type': 'text',
-                          'value': ''}
+                          'value': user.person.department or ''}
 
         self.unit = {'name': 'unit',
                           'label': 'Unit',
                           'type': 'text',
-                          'value': ''}
+                          'value': user.person.unit or ''}
 
         self.business_address = user.person.business_address
 
@@ -75,6 +75,8 @@ class AboutYouForm():
                             'label': 'Suffix',
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()]}
+
+        self.qi_required = user.person.qi_required 
 
         self.last_login = {'name': 'last_login',
                            'label': 'Last Login',

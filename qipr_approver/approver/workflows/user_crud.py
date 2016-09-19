@@ -1,6 +1,6 @@
 from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
-from approver.utils import extract_tags, update_tags
+from approver.utils import extract_tags, update_tags, true_false_to_bool
 
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -50,6 +50,10 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.gatorlink = user.username
     person.last_name = about_you_form.get('last_name')
     person.webpage_url = about_you_form.get('webpage_url')
+    person.title = about_you_form.get('title')
+    person.department = about_you_form.get('department')
+    person.unit = about_you_form.get('unit')
+    person.qi_required = true_false_to_bool(about_you_form.get('qi_required'))
 
     expertises = extract_tags(about_you_form, 'expertise')
     qi_interest = extract_tags(about_you_form, 'qi_interest')
