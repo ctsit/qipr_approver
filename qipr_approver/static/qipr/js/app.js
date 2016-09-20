@@ -83,11 +83,20 @@
             key;
 
         if (text) {
-            tag = createtag(text);
-            addValue(name, text);
-            document.getElementById(tagHolderId).appendChild(tag);
-            inputNode.value = "";
+            if (addValue(name, text)){
+                tag = createtag(text);
+                document.getElementById(tagHolderId).appendChild(tag);
+                inputNode.value = "";
+            }
         }
+    };
+
+    tag_already_exists = function(values_array,val) {
+        return (values_array.map(remove_invisible_space).indexOf(val) != -1);
+    };
+
+    remove_invisible_space = function(input_string){
+        return input_string.replace('\u200B', '');
     };
 
     createtag = function(text) {
@@ -118,8 +127,12 @@
     addValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
-        values.push(val);
-        hiddenInputNode.value = values.join(';');
+        if (!tag_already_exists(values,val)){
+            values.push(val);
+            hiddenInputNode.value = values.join(';');
+            return true;
+        }
+        return false;
     };
 
     deleteTag = function (event) {
