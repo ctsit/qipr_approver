@@ -129,7 +129,13 @@ def current_user_is_project_advisor_or_collaborator(current_user, project):
     This returns a boolean true if the current_user.person.id is in 
     project.advisor or project.collaborator
     """
-    return True
+    for advisor in project.advisor.all():
+        if current_user.person.id == advisor.id:
+            return True
+    for collaborator in project.collaborator.all():
+        if current_user.person.id == collaborator.id:
+            return True
+    return False
 def current_user_can_perform_project_delete(current_user,project):
     """
     This returns an error message if user cannot delete the project, returns empty String when

@@ -1,6 +1,6 @@
-from approver.models import Speciality, Expertise, QI_Interest, Suffix
+from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea
 from django.contrib.auth.models import User
-
+from approver import utils
 class AboutYouForm():
 
     def __init__(self, user=User()):
@@ -18,6 +18,21 @@ class AboutYouForm():
                           'label': 'Last Name',
                           'type': 'text',
                           'value': user.person.last_name or ''}
+
+        self.title = {'name': 'title',
+                      'label': 'Tite',
+                      'type': 'text',
+                      'value': user.person.title or ''}
+
+        self.department = {'name': 'department',
+                           'label': 'Department',
+                           'type': 'text',
+                           'value': user.person.department or ''}
+
+        self.clinical_area = {'name': 'clinical_area',
+                              'label': 'Clinical Area',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(user.person,"clinical_area")}
 
         self.business_address = user.person.business_address
 
@@ -61,3 +76,19 @@ class AboutYouForm():
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()]}
 
+        self.qi_required = user.person.qi_required 
+
+        self.last_login = {'name': 'last_login',
+                           'label': 'Last Login',
+                           'type': 'text',
+                           'value': user.person.last_login_time or ''}
+
+        self.account_expiration = {'name': 'account_expiration',
+                           'label': 'Account Expiration',
+                           'type': 'text',
+                           'value': user.person.account_expiration_time or ''}
+
+        self.account_created = {'name': 'account_created',
+                           'label': 'Account Created',
+                           'type': 'text',
+                           'value': user.date_joined or ''}
