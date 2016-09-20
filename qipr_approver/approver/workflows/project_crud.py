@@ -148,21 +148,20 @@ def current_user_can_perform_project_delete(current_user,project):
     project.delete(current_user)
     return 'Deleted Project'
 
-def get_all_projects():
+def get_approved_projects():
     """
     This returns a list of all the existing projects
     """
-    return Project.objects.all()
+    return Project.objects.exclude(approval_date__isnull=True)
 
 def get_similar_projects(project):
-    projects = get_all_projects()
+    projects = get_approved_projects()
     project_scores = []
 
     for member in projects:
-        if project.id == member.id: continue
         similarity = _calculate_similarity_score(project, member)
-        if similarity == 0: continue
-        project_scores.append((member.id, member, similarity))
+        if similarity != 0:
+            project_scores.append((member.id, member, similarity))
 
     return sorted(project_scores, key=lambda score: score[2], reverse = True)
 
