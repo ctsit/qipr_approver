@@ -18,6 +18,7 @@ actions = {
     'DS': lambda acc, RHS: set_return(acc, 'descriptor_sort_version', RHS),
     'DX': lambda acc, RHS: set_date(acc, 'major_descriptor', RHS),
     # 'EC': lambda acc, RHS: set_return(acc, 'annotation', RHS),
+    'ENTRY': lambda acc, RHS: add_return(acc, 'entry', RHS),
     'FR': lambda acc, RHS: set_return(acc, 'frequency', RHS),
     # 'FX': lambda acc, RHS: set_return(acc, 'annotation', RHS),
     'HM': lambda acc, RHS: set_return(acc, 'heading_mapped_to', RHS),
@@ -97,4 +98,9 @@ def set_consider_also(model, RHS):
     # there arent very many of these but we will want to break them into something
     # nicer than just the nasty string that they are now
     model.consider_also = RHS
+    return model
+
+def add_return(obj, prop, RHS):
+    manager = getattr(obj, prop)
+    manager.add(RHS)
     return model

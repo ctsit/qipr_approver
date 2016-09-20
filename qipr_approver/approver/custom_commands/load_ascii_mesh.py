@@ -19,8 +19,8 @@ def reduce_by_line(accumulator, line):
     LHS = split_line[0].strip()
     RHS = split_line[1].strip()
     # map to different functions based on what we need to do
-    actions = {
-    }
+    actions = import approver.parsers.mesh_ascii.actions
     # return that return value
+    return actions[LHS](accumulator, RHS)
 
 
