@@ -20,19 +20,19 @@ class AboutYouForm():
                           'value': user.person.last_name or ''}
 
         self.title = {'name': 'title',
-                          'label': 'Tite',
-                          'type': 'text',
-                          'value': user.person.title or ''}
+                      'label': 'Tite',
+                      'type': 'text',
+                      'value': user.person.title or ''}
 
         self.department = {'name': 'department',
-                          'label': 'Department',
-                          'type': 'text',
-                          'value': user.person.department or ''}
+                           'label': 'Department',
+                           'type': 'text',
+                           'value': user.person.department or ''}
 
         self.clinical_area = {'name': 'clinical_area',
-                               'label': 'Clinical Area',
-                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
-                               'selected': utils.get_related_property(user.person,"clinical_area")}
+                              'label': 'Clinical Area',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(user.person,"clinical_area")}
 
         self.business_address = user.person.business_address
 
