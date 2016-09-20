@@ -21,6 +21,10 @@ def reduce_by_line(accumulator, line):
     # map to different functions based on what we need to do
     actions = import approver.parsers.mesh_ascii.actions
     # return that return value
-    return actions[LHS](accumulator, RHS)
+    func = actions.get(LHS)
+    if func != None:
+        return func(RHS)
+    else:
+        return accumulator
 
 
