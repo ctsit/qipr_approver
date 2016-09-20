@@ -150,7 +150,7 @@ def current_user_can_perform_project_delete(current_user,project):
 
 def get_approved_projects():
     """
-    This returns a list of all the existing projects
+    This returns a list of all the existing approved projects
     """
     return Project.objects.exclude(approval_date__isnull=True)
 
