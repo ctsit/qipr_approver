@@ -10,11 +10,13 @@ class AboutYouForm():
                           'value': user.username or ''}
 
         self.first_name = {'name': 'first_name',
+                           'placeholder': 'Jane',
                            'label': 'First Name',
                            'type': 'text',
                            'value': user.person.first_name or ''}
 
         self.last_name = {'name': 'last_name',
+                          'placeholder': 'Doe',
                           'label': 'Last Name',
                           'type': 'text',
                           'value': user.person.last_name or ''}
@@ -27,16 +29,19 @@ class AboutYouForm():
                             'value': user.person.webpage_url or ''}
 
         self.email = {'name': 'email',
+                      'placeholder': 'janedoe@ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
                       'value': user.email or ''}
 
         self.business_phone = {'name': 'business_phone',
+                               'placeholder': '(555) 555-5555',
                                'label': 'Business Phone Number',
                                'type': 'text',
                                'value': user.person.business_phone or ''}
 
         self.contact_phone = {'name': 'contact_phone',
+                              'placeholder': '(555) 555-5555',
                               'label': 'Contact Phone Number',
                               'type': 'text',
                               'value': user.person.contact_phone or ''}
