@@ -14,19 +14,20 @@ def stream_parse(filename):
 
 def reduce_by_line(accumulator, line):
     # determine what we need to do by the type of line
-    split_line = line.split('=')
-    LHS = split_line[0].strip()
-    print(LHS, end="", flush=True)
-    RHS = None
-    if len(split_line) > 1:
-        RHS = split_line[1].strip()
-    # map to different functions based on what we need to do
+    print(line.strip(), end="", flush=True)
     actions = mesh_actions
-    # return that return value
+
+    split_line = line.split('=')
+
+    LHS = split_line[0].strip()
+    RHS = split_line[1].strip() if len(split_line) >= 2 else None
+
+    if LHS == '':
+        LHS = 'save'
+
     func = actions.get(LHS)
+
     if func != None:
-        return func(accumulator, RHS)
-    else:
-        return accumulator
+        accumulator = func(accumulator, RHS)
 
-
+    return accumulator

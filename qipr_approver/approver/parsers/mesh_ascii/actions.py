@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.models import User
 
 from approver.models import *
@@ -9,7 +11,8 @@ qualifier_count = len(Qualifier.objects.all())
 total_qualifiers_2016 = 82
 
 actions = {
-    '*NEWRECORD': lambda acc, RHS: save_if_model(acc, RHS),
+    'save': lambda acc, RHS: acc.save(fixture_user),
+    '*NEWRECORD': lambda acc, RHS: acc,
     'AN': lambda acc, RHS: set_return(acc, 'annotation', RHS),
     'AQ': lambda acc, RHS: set_qualifiers(acc, RHS),
     'CATSH': lambda acc, RHS: acc,
@@ -29,7 +32,7 @@ actions = {
     # 'II': lambda acc, RHS: add_return(acc, 'indexing_information', RHS, desc_mh_lookup),
     'MH': lambda acc, RHS: set_return(acc, 'mesh_heading', RHS),
     # 'MH_TH': lambda acc, RHS: set_return(acc, 'mesh_heading_thesaurus', RHS),
-    'MN': lambda acc, RHS: set_return(acc, 'mesh_tree_number', RHS),
+    'MN': lambda acc, RHS: add_return(acc, 'mesh_tree_number', RHS, mesh_num_lookup),
     'MR': lambda acc, RHS: set_date(acc, 'major_revision_date', RHS),
     'MS': lambda acc, RHS: set_return(acc, 'mesh_scope_note', RHS),
     # 'N1': lambda acc, RHS: set_return(acc, 'castype1_name', RHS),
@@ -72,16 +75,19 @@ def instantiate_mesh_model(acc, RHS):
     model.save(fixture_user)
     return model
 
-def set_return(obj, prop, value):
-    setattr(obj, prop, value)
-    return obj
+def set_return(model, prop, value):
+    setattr(model, prop, value)
+    return model
 
 def parse_date(yyyymmdd):
-    return None
+    year = int(yyyymmdd[0:4])
+    month = int(yyyymmdd[4:6])
+    day = int(yyyymmdd[6:8])
+    return date(year=year, month=month, day=day)
 
-def set_date(obj, prop, value):
-    date = parse_date(value)
-    return set_return(obj, prop, date)
+def set_date(model, prop, value):
+    my_date = parse_date(value)
+    return set_return(model, prop, my_date)
 
 def set_qualifiers(model, quals):
     quals = quals.split(' ')
@@ -101,10 +107,10 @@ def set_consider_also(model, RHS):
     model.consider_also = RHS
     return model
 
-def add_return(obj, prop, RHS, mapping=lambda x:x):
-    manager = getattr(obj, prop)
+def add_return(model, prop, RHS, mapping=lambda x:x):
+    manager = getattr(model, prop)
     manager.add(mapping(RHS))
-    return obj
+    return model
 
 def desc_mh_lookup(string):
     models = Descriptor.objects.filter(mesh_heading__startswith=string)
@@ -142,9 +148,7 @@ def synonym_lookup(string):
     model.save(fixture_user)
     return model
 
-def save_if_model(acc, RHS):
-    try:
-        acc.save(fixture_user)
-        return None
-    except:
-        return None
+def mesh_num_lookup(string):
+    model = MeshTreeNumber(value=string)
+    model.save(fixture_user)
+    return model
