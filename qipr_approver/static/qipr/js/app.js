@@ -44,6 +44,36 @@
     var typingTimer;                //timer identifier
     var doneTypingInterval = 500;  //time in ms (.5 seconds)
 
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
     //on keyup, start the countdown
     startTypingTimer = function(node){
         clearTimeout(typingTimer);
@@ -57,7 +87,7 @@
         //do something
         $.ajax({
             url: 'http://localhost:8080/api/tags',
-            type: 'get', // This is the default though, you don't actually need to always mention it
+            type: 'post', // This is the default though, you don't actually need to always mention it
             success: function(data) {
                 alert(data);
             },
