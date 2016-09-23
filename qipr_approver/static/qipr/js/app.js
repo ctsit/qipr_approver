@@ -40,23 +40,33 @@
 //end toast
 //////////////
 
-//setup before functions
-var typingTimer;                //timer identifier
-var doneTypingInterval = 500;  //time in ms (.5 seconds)
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 500;  //time in ms (.5 seconds)
 
-//on keyup, start the countdown
-startTypingTimer = function(node){
-    clearTimeout(typingTimer);
-    if (node.value) {
-        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    //on keyup, start the countdown
+    startTypingTimer = function(node){
+        clearTimeout(typingTimer);
+        if (node.value) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    };
+
+    //user is "finished typing," do something
+    function doneTyping () {
+        //do something
+        $.ajax({
+            url: 'http://localhost:8080/api/tags',
+            type: 'get', // This is the default though, you don't actually need to always mention it
+            success: function(data) {
+                alert(data);
+            },
+            failure: function(data) { 
+                alert('Got an error dude');
+            }
+        }); 
     }
-};
 
-//user is "finished typing," do something
-function doneTyping () {
-    //do something
-    alert("YAY");
-}
     $(document).on("keypress", ":input:not(textarea)", function(event) {
         return event.keyCode != 13;
     });
