@@ -42,7 +42,7 @@
 
     //setup before functions
     var typingTimer;                //timer identifier
-    var doneTypingInterval = 500;  //time in ms (.5 seconds)
+    var doneTypingInterval = 5000;  //time in ms (.5 seconds)
 
     function getCookie(name) {
         var cookieValue = null;
@@ -87,7 +87,8 @@
         //do something
         $.ajax({
             url: 'http://localhost:8080/api/tags',
-            type: 'post', // This is the default though, you don't actually need to always mention it
+            type: 'post',
+            data: {"tagString": "TAGSTRING"},
             success: function(data) {
                 alert(data);
             },
