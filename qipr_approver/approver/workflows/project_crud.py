@@ -55,7 +55,14 @@ def update_project_from_project_form(project, project_form, editing_user):
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     collaborator = extract_tags(project_form, 'collaborator')
     keyword = extract_tags(project_form, 'keyword')
+    mesh_keyword = extract_tags(project_form, 'mesh_keyword')
     safety_target = extract_tags(project_form, 'safety_target')
+
+    update_tags(model=project,
+                tag_property='mesh_keyword',
+                tags=keyword,
+                tag_model=Descriptor,
+                tagging_user=editing_user)
 
     update_tags(model=project,
                 tag_property='keyword',

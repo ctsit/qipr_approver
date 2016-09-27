@@ -1,5 +1,5 @@
 from django.utils import timezone
-from approver.models import Project, Keyword, ClinicalArea, ClinicalSetting, SafetyTarget, Person, BigAim
+from approver.models import Project, Keyword, Descriptor, ClinicalArea, ClinicalSetting, SafetyTarget, Person, BigAim
 from django.contrib.auth.models import User
 from approver import utils
 
@@ -26,6 +26,11 @@ class ProjectForm():
                         'label': 'Advisors',
                         'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
+
+        self.mesh_keyword = {'name': 'mesh_keyword',
+                        'label': 'MeSH Keywords',
+                        'options': filter(utils.is_not_none, [item.mesh_heading for item in Descriptor.objects.all()]),
+                        'selected': utils.get_related_property(project, "mesh_keyword")}
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',

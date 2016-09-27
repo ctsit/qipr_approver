@@ -62,6 +62,16 @@ class Source(Provenance):
     def __str__(self):
         return str(self.name)
 
+class MeshTreeNumber(Provenance):
+    value = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.value)
+
+    def get_value_at_index(self, index):
+        return self.number.split('.')[index] or None
+
+
 class Qualifier(MeshModel):
     qualifier_established = models.CharField(null=True, max_length=25)
     abbreviation = models.CharField(max_length=2)
@@ -80,9 +90,11 @@ class Descriptor(MeshModel):
     forward_reference = models.ManyToManyField('self')
     major_descriptor_date = models.DateField(null=True)
     mesh_heading = models.CharField(max_length=150)
+    mesh_tree_number = models.ForeignKey(MeshTreeNumber, related_name='descriptor', null=True)
     pharmacological_action = models.ManyToManyField(PharmacologicalAction)
     related_registry_number = models.ManyToManyField(RegistryNumber)
     semantic_type = models.ManyToManyField(SemanticType)
+    project = models.ForeignKey(Project, related_name='mesh_keyword', null=True)
 
     def __str__(self):
         return str(self.mesh_heading) + ' ' + str(self.mesh_tree_number)
@@ -103,14 +115,3 @@ class SCR(MeshModel):
 
     def __str__(self):
         return str(self.substance_name)
-
-class MeshTreeNumber(Provenance):
-    value = models.CharField(max_length=100)
-    descriptor = models.ForeignKey(Descriptor, related_name='mesh_tree_number')
-
-    def __str__(self):
-        return str(self.value)
-
-    def get_value_at_index(self, index):
-        return self.number.split('.')[index] or None
-

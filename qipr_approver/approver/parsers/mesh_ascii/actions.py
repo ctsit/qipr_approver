@@ -32,7 +32,7 @@ actions = {
     # 'II': lambda acc, RHS: add_return(acc, 'indexing_information', RHS, desc_mh_lookup),
     'MH': lambda acc, RHS: set_return(acc, 'mesh_heading', RHS),
     # 'MH_TH': lambda acc, RHS: set_return(acc, 'mesh_heading_thesaurus', RHS),
-    'MN': lambda acc, RHS: add_return(acc, 'mesh_tree_number', RHS, mesh_num_lookup),
+    'MN': lambda acc, RHS: set_return(acc, 'mesh_tree_number', RHS, mesh_num_lookup),
     'MR': lambda acc, RHS: set_date(acc, 'major_revision_date', RHS),
     'MS': lambda acc, RHS: set_return(acc, 'mesh_scope_note', RHS),
     # 'N1': lambda acc, RHS: set_return(acc, 'castype1_name', RHS),
@@ -75,8 +75,8 @@ def instantiate_mesh_model(acc, RHS):
     model.save(fixture_user)
     return model
 
-def set_return(model, prop, value):
-    setattr(model, prop, value)
+def set_return(model, prop, value, mapping=lambda x:x):
+    setattr(model, prop, mapping(value))
     return model
 
 def parse_date(yyyymmdd):
