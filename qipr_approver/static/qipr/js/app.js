@@ -40,6 +40,10 @@
 //end toast
 //////////////
 
+    $(document).on("keypress", ":input:not(textarea)", function(event) {
+        return event.keyCode != 13;
+    });
+
     tagboxInputs = document.getElementsByClassName("tagbox__input");
 
     Array.prototype.forEach.call(tagboxInputs, (node) => {
@@ -79,11 +83,20 @@
             key;
 
         if (text) {
-            tag = createtag(text);
-            addValue(name, text);
-            document.getElementById(tagHolderId).appendChild(tag);
-            inputNode.value = "";
+            if (addValue(name, text)){
+                tag = createtag(text);
+                document.getElementById(tagHolderId).appendChild(tag);
+                inputNode.value = "";
+            }
         }
+    };
+
+    tagAlreadyExists = function(valuesArray,val) {
+        return (valuesArray.map(removeInvisibleSpace).indexOf(removeInvisibleSpace(val)) != -1);
+    };
+
+    removeInvisibleSpace = function(inputString){
+        return inputString.replace('\u200B', '');
     };
 
     createtag = function(text) {
@@ -114,8 +127,12 @@
     addValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
-        values.push(val);
-        hiddenInputNode.value = values.join(';');
+        if (!tagAlreadyExists(values,val)){
+            values.push(val);
+            hiddenInputNode.value = values.join(';');
+            return true;
+        }
+        return false;
     };
 
     deleteTag = function (event) {

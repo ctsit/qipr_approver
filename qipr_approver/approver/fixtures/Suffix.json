@@ -1,1 +1,379 @@
-[{"model": "approver.suffix", "pk": 2, "fields": {"created_by": 1, "last_modified_by": 1, "created": "2016-07-26T00:14:21Z", "last_modified": "2016-07-27T15:20:15Z", "name": "MPH", "description": "MPH"}}, {"model": "approver.suffix", "pk": 3, "fields": {"created_by": 1, "last_modified_by": 1, "created": "2016-07-26T00:15:49Z", "last_modified": "2016-07-27T15:19:55Z", "name": "CNA", "description": "CNA"}}, {"model": "approver.suffix", "pk": 4, "fields": {"created_by": 1, "last_modified_by": 1, "created": "2016-07-26T00:15:59Z", "last_modified": "2016-07-27T15:19:35Z", "name": "MD", "description": "MD"}}, {"model": "approver.suffix", "pk": 1, "fields": {"created_by": 1, "last_modified_by": 1, "created": "2016-07-26T00:16:11Z", "last_modified": "2016-07-27T15:19:23Z", "name": "PhD", "description": "PhD"}}]
+[
+ {
+  "model": "approver.suffix",
+  "pk": 1,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:04:23Z",
+    "last_modified": "2016-09-12T18:04:23Z",
+    "name": "BA",
+    "description": "Bachelor of Arts"
+  }
+},
+ {
+  "model": "approver.suffix",
+  "pk": 2,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:04:54Z",
+    "last_modified": "2016-09-12T18:04:54Z",
+    "name": "BSN",
+    "description": "Bachelor of Science in Nursing"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 3,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:05:18Z",
+    "last_modified": "2016-09-12T18:05:18Z",
+    "name": "CMA",
+    "description": "Certified Medical Assistant"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 4,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-07-26T00:15:49Z",
+    "last_modified": "2016-07-27T15:19:55Z",
+    "name": "CNA",
+    "description": "Certified Nursing Assistant"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 5,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:06:00Z",
+    "last_modified": "2016-09-12T18:06:00Z",
+    "name": "CNM",
+    "description": "Certified Nurse Midwife"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 6,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:06:22Z",
+    "last_modified": "2016-09-12T18:06:22Z",
+    "name": "DC",
+    "description": "Doctor of Chiropractic"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 7,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:06:41Z",
+    "last_modified": "2016-09-12T18:06:41Z",
+    "name": "DDS",
+    "description": "Doctor of Dental Surgery"
+  }
+},
+ {
+  "model": "approver.suffix",
+  "pk": 8,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:12:58Z",
+    "last_modified": "2016-09-12T18:12:58Z",
+    "name": "DM",
+    "description": "Doctor of Medicine"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 9,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:06:58Z",
+    "last_modified": "2016-09-12T18:06:58Z",
+    "name": "DMD",
+    "description": "Doctor of Dental Medicine"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 10,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:07:35Z",
+    "last_modified": "2016-09-12T18:07:35Z",
+    "name": "DNP",
+    "description": "Doctor of Nursing Practice"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 11,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:08:06Z",
+    "last_modified": "2016-09-12T18:08:06Z",
+    "name": "DO",
+    "description": "Doctor of Osteopathy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 12,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:08:51Z",
+    "last_modified": "2016-09-12T18:08:51Z",
+    "name": "DPT",
+    "description": "Doctor of Physical Therapy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 13,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:09:19Z",
+    "last_modified": "2016-09-12T18:10:31Z",
+    "name": "EMT-B",
+    "description": "Emergency Medical Technician, Basic"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 14,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:09:46Z",
+    "last_modified": "2016-09-12T18:09:46Z",
+    "name": "EMT-P",
+    "description": "Emergency Medical Technician, Paramedic"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 15,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:12:10Z",
+    "last_modified": "2016-09-12T18:12:10Z",
+    "name": "LPN",
+    "description": "Licensed Practical Nurse"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 16,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:12:33Z",
+    "last_modified": "2016-09-12T18:12:33Z",
+    "name": "MA",
+    "description": "Master of Arts"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 17,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:18:05Z",
+    "last_modified": "2016-09-12T18:18:05Z",
+    "name": "MBA",
+    "description": "Master of Business Administration"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 18,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-07-26T00:15:59Z",
+    "last_modified": "2016-09-12T18:03:30Z",
+    "name": "MD",
+    "description": "Doctor of Medicine"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 19,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-07-26T00:14:21Z",
+    "last_modified": "2016-09-12T18:20:12Z",
+    "name": "MPH",
+    "description": "Master of Public Health"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 20,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:13:46Z",
+    "last_modified": "2016-09-12T18:13:46Z",
+    "name": "MS",
+    "description": "Master of Science"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 21,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:19:14Z",
+    "last_modified": "2016-09-12T18:19:14Z",
+    "name": "MSHA",
+    "description": "Master Of Health Services Administration"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 22,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:14:19Z",
+    "last_modified": "2016-09-12T18:14:19Z",
+    "name": "ND",
+    "description": "Doctor of Naturopathy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 23,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:14:46Z",
+    "last_modified": "2016-09-12T18:14:46Z",
+    "name": "NP",
+    "description": "Nurse Practitioner"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 24,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:15:05Z",
+    "last_modified": "2016-09-12T18:15:05Z",
+    "name": "PA-C",
+    "description": "Physician Assistant Certified"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 25,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:15:24Z",
+    "last_modified": "2016-09-12T18:15:24Z",
+    "name": "PD",
+    "description": "Doctor of Pharmacy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 26,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:15:49Z",
+    "last_modified": "2016-09-12T18:15:49Z",
+    "name": "PharmD",
+    "description": "Doctor of Pharmacy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 27,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-07-26T00:16:11Z",
+    "last_modified": "2016-09-12T18:20:32Z",
+    "name": "PhD",
+    "description": "Doctor of Philosophy"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 28,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:16:11Z",
+    "last_modified": "2016-09-12T18:16:11Z",
+    "name": "PT",
+    "description": "Physical Therapist"
+  }
+},
+{
+  "model": "approver.suffix",
+  "pk": 29,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-09-12T18:16:54Z",
+    "last_modified": "2016-09-12T18:16:57Z",
+    "name": "RN",
+    "description": "Registered Nurse"
+  }
+}
+]

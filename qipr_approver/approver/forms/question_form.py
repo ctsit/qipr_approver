@@ -1,4 +1,4 @@
-from approver.models import Question, Section
+from approver.models import Question, Section, Response
 from approver.utils import get_related
 
 class QuestionForm():
@@ -13,7 +13,7 @@ class QuestionForm():
             'question_text': question_model.text,
             'question_id': question_model.id,
             'question_description': question_model.description,
-            'answers': [self.get_choice_dict(choice) for choice in get_related(question_model,'choice')],
+            'answers': [self.get_choice_dict(choice, question_model.id) for choice in get_related(question_model,'choice')],
             'sort_order': question_model.sort_order,
             'project_id': self.project_id,
         }
@@ -27,8 +27,13 @@ class QuestionForm():
         question_models = Question.objects.filter(section=section)
         return [self.get_question_tag_context(question) for question in question_models]
 
-    def get_choice_dict(self, choice):
+    def get_choice_dict(self, choice, question_id):
         return {
             'text': choice.text,
             'id': choice.id,
+            'selected': self.check_response(choice.id, question_id),
         }
+
+    def check_response(self, choice_id, question_id):
+        response_exists = Response.objects.filter(question__id=question_id, project__id=self.project_id, choice__id=choice_id).exists()
+        return response_exists
