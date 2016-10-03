@@ -78,17 +78,18 @@
     startTypingTimer = function(node){
         clearTimeout(typingTimer);
         if (node.value) {
-            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
         }
     };
 
     //user is "finished typing," do something
-    function doneTyping () {
+    function doneTyping (node) {
         //do something
         $.ajax({
             url: 'http://localhost:8080/api/tags',
             type: 'post',
-            data: {"tagString": "TAGSTRING"},
+            data: {"tagString": node.value,
+                   "dataName": getTagboxName(node)},
             success: function(data) {
                 alert(data);
             },
