@@ -20,7 +20,8 @@ def about_you(request):
     }
     if request.method == 'POST':
         about_you_form = request.POST
-        user = User.objects.get(username=about_you_form.get('user_name'))
+        username = request.session.get(constants.SESSION_VARS['gatorlink'])
+        user = User.objects.get(username=username)
         editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
 
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
