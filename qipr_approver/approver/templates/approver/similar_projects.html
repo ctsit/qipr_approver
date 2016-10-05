@@ -1,0 +1,40 @@
+<div>
+    <h3> Similar Projects </h3>
+    <h6> These are the existing list of projects that may be similar to your project idea. You can see the details and probably collaborate your efforts. Or, you can continue to submit your project!</h6>
+</div>
+<div>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th data-field="title">Title</th>
+                <th data-field="edit_link">Details</th>
+                <th data-field="role">Role</th>
+                <th data-field="relevance">Relevance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member_id, project, similarity in project_scores %}
+                <tr>
+                    <td class="project__title">{{ project.title }}</td>
+                    <td><a href="{% url 'approver:projects' project_id=project.pk %}">View</a></td>
+                    <td class="project__title">{{ project.role }}</td>
+                    <td class="project__similarity"> {{ similarity | floatformat:2 }} </td>
+                    {% if project.role == "PI" %}
+                        {% if project.is_approved %}
+                            <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
+                        {% else %}
+                            <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <form method="post" onkeypress="return event.keyCode != 13;">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="Submit Project" />
+    </form>
+</div>
+
+

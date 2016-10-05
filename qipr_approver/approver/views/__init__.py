@@ -6,3 +6,4 @@ from approver.views.first_login import first_login
 from approver.views.project import project
 from approver.views.project_status import project_status
 from approver.views.approve import approve
+from approver.views.similar_projects import similar_projects

@@ -19,6 +19,7 @@ def approve(request, project_id=None):
     context = {
         'content': 'approver/approve.html',
         'project_id': project_id,
+        'toast_text': utils.get_and_reset_toast(request.session)
     }
     current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
     if request.method == 'POST':

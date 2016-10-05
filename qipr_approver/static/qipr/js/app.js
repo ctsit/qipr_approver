@@ -91,12 +91,12 @@
         }
     };
 
-    tag_already_exists = function(values_array,val) {
-        return (values_array.map(remove_invisible_space).indexOf(val) != -1);
+    tagAlreadyExists = function(valuesArray,val) {
+        return (valuesArray.map(removeInvisibleSpace).indexOf(removeInvisibleSpace(val)) != -1);
     };
 
-    remove_invisible_space = function(input_string){
-        return input_string.replace('\u200B', '');
+    removeInvisibleSpace = function(inputString){
+        return inputString.replace('\u200B', '');
     };
 
     createtag = function(text) {
@@ -127,7 +127,7 @@
     addValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
-        if (!tag_already_exists(values,val)){
+        if (!tagAlreadyExists(values,val)){
             values.push(val);
             hiddenInputNode.value = values.join(';');
             return true;
