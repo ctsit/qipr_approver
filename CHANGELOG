@@ -1,5 +1,21 @@
+## [0.3.0] - 2016-10-04
+## Summary
+ 0.3.0 adds a new feature which compares a project to other projects and returns a score to help customers determine if there is one similar already in the system. There was bug fix from 0.2.0 which prevents the same tag from being added via the drop down list. Finally, the Gatorlink field was made uneditable. 
+
+### Added
+ * place filler text in the about you page text input fields (Stewart Wehmeyer)
+ * Added new get_similar_projects function to get list of projects that are similar to the current project being queried for. used jaccard similarity ratio for the same. Algorithm needs to be further discussed and improved (Tarun Gupta Akirala)
+
+### Changed
+ * make gatorlink field uneditable and post successfully (Stewart Wehmeyer)
+
+### Fixed
+ * Fix bug where tags we're being added through dropdown even if they already existed (Matthew McConnell)
+
+
 ## [0.2.0] - 2016-09-20
 ## Summary
+Added many new fields to both the project and about you pages. Added unit tests and fixed bugs discovered.
 
 ### Added
 * Add unit, title, department. and qi required input fields to about you form (Matthew McConnell)
