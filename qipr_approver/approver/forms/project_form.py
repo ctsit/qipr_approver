@@ -32,22 +32,22 @@ class ProjectForm():
                         'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
                         'selected': utils.get_related_property(project, "keyword")}
 
-        self.big_aim = {'name': 'big_aim',
+        self.big_aim = {'name': 'bigaim',
                         'label': 'Big Aims',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim")}
 
-        self.clinical_area = {'name': 'clinical_area',
+        self.clinical_area = {'name': 'clinicalarea',
                                'label': 'Clinical Area',
                                'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                                'selected': utils.get_related_property(project,"clinical_area")}
 
-        self.safety_target = {'name': 'safety_target',
+        self.safety_target = {'name': 'safetytarget',
                                'label': 'Safety Targets',
                                'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
                                'selected': utils.get_related_property(project,"safety_target")}
 
-        self.clinical_setting = {'name': 'clinical_setting',
+        self.clinical_setting = {'name': 'clinicalsetting',
                                  'label': 'Clinical Setting',
                                  'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
                                  'selected': utils.get_related_property(project,"clinical_setting")}
