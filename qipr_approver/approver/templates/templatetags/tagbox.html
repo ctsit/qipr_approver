@@ -17,15 +17,12 @@
     <input id="tag-input-entry_{{ name }}"
            class="tagbox__input"
            type="text"
-           list="datalist_{{ name }}" {{ disabled }}>
+           data-list="datalist_{{ name }}"
+           {{ disabled }}>
 
-    <datalist id="datalist_{{ name }}">
-        {% for option in options %}
-            <option value="{{ option }}"/>
-        {% endfor %}
-    </datalist>
+    <ul class="datalist" id="datalist_{{ name }}"></ul>
 
-    <input style="display: none"
+     <input style="display: none"
            id="tag-input_{{ name }}"
            name="{{ name }}"
            type="text"

@@ -42,7 +42,7 @@
 
     //setup before functions
     var typingTimer;                //timer identifier
-    var doneTypingInterval = 5000;  //time in ms (.5 seconds)
+    var doneTypingInterval = 500;  //time in ms (.5 seconds)
 
     function getCookie(name) {
         var cookieValue = null;
@@ -91,12 +91,25 @@
             data: {"tagString": node.value,
                    "dataName": getTagboxName(node)},
             success: function(data) {
-                alert(data);
+                jnode = $(node);
+                optionList = $('#' + jnode.attr('data-list'));
+                optionList.empty();
+                $.each(data, function( i, l ){
+                    //alert( "Index #" + i + ": " + l );
+                    optionList.append($("<li>" + l + "</li>")
+                                      .attr("value", l)
+                                      .click(function() {
+                                          node.value = $(this).text();
+                                          addTag(node);
+                                          $(this).remove();
+                                      }));
+                });
+                //alert(data);
             },
-            failure: function(data) { 
+            failure: function(data) {
                 alert('Got an error dude');
             }
-        }); 
+        });
     }
 
     $(document).on("keypress", ":input:not(textarea)", function(event) {
@@ -111,17 +124,17 @@
             if (event.keyCode == 13) {
                 addTag(this);
             }
-            startTypingTimer(node);
         });
-        node.addEventListener("blur", function(event) {
-            event.preventDefault();
-            addTag(this);
-        });
+        // node.addEventListener("blur", function(event) {
+        //     event.preventDefault();
+        //     addTag(this);
+        // });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.includes(invisibleSpace)){
                 addTag(this);
             }
+            startTypingTimer(node);
             return true;
         });
     });
