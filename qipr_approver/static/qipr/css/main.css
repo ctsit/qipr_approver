@@ -269,6 +269,10 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
   box-shadow: 4px 4px 8px 1px #26a69a;
 }
 
+.form__input--with-border {
+    border: 1px solid #9e9e9e !important;
+}
+
 @media screen and (min-width: 609px) {
     .bg__img {
         height:72rem;
