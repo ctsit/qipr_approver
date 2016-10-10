@@ -89,7 +89,8 @@
             url: 'http://localhost:8080/api/tags',
             type: 'post',
             data: {"tagString": node.value,
-                   "dataName": getTagboxName(node)},
+                   "model_name": getTagboxData(node, 'model'),
+                   "filter_field": getTagboxData(node, 'filter_field')},
             success: function(data) {
                 jnode = $(node);
                 optionList = $('#' + jnode.attr('data-list'));
@@ -139,19 +140,23 @@
         });
     });
 
-    getTagboxName = function (node) {
+    /*
+     This function takes a node and a "data-" style attribute
+     and returns the value associated with it.
+     */
+    getTagboxData = function (node, dataNameAttr) {
         if (node.parentElement) {
-            if (node.hasAttribute('data-name')) {
-                return node.getAttribute('data-name');
+            if (node.hasAttribute('data-' + dataNameAttr)) {
+                return node.getAttribute('data-' + dataNameAttr);
             } else {
-                return getTagboxName(node.parentElement);
+                return getTagboxData(node.parentElement, 'name');
             }
         }
     };
 
     addTag = function(inputNode) {
         var text = inputNode.value.trim(),
-            name = getTagboxName(inputNode),
+            name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
             key;
 
@@ -212,7 +217,7 @@
         var removeMe = event.target.parentElement,
             value = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
-        removeValue(getTagboxName(event.target), value);
+        removeValue(getTagboxData(event.target, 'name'), value);
         parent.removeChild(removeMe);
     };
 
