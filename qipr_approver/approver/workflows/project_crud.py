@@ -50,12 +50,12 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
 
     advisor = extract_tags(project_form, 'advisor')
-    big_aim = extract_tags(project_form, 'bigaim')
-    clinical_area = extract_tags(project_form, 'clinicalarea')
-    clinical_setting = extract_tags(project_form, 'clinicalsetting')
+    big_aim = extract_tags(project_form, 'big_aim')
+    clinical_area = extract_tags(project_form, 'clinical_area')
+    clinical_setting = extract_tags(project_form, 'clinical_setting')
     collaborator = extract_tags(project_form, 'collaborator')
     keyword = extract_tags(project_form, 'keyword')
-    safety_target = extract_tags(project_form, 'safetytarget')
+    safety_target = extract_tags(project_form, 'safety_target')
 
     update_tags(model=project,
                 tag_property='keyword',
@@ -64,26 +64,26 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tagging_user=editing_user)
 
     update_tags(model=project,
-                tag_property='bigaim',
+                tag_property='big_aim',
                 tags=big_aim,
                 tag_model=BigAim,
                 tagging_user=editing_user)
 
 
     update_tags(model=project,
-                tag_property='clinicalarea',
+                tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
     update_tags(model=project,
-                tag_property='clinicalsetting',
+                tag_property='clinical_setting',
                 tags=clinical_setting,
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
     update_tags(model=project,
-                tag_property='safetytarget',
+                tag_property='safety_target',
                 tags=safety_target,
                 tag_model=SafetyTarget,
                 tagging_user=editing_user)
