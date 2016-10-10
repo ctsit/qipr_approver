@@ -22,9 +22,10 @@
            data-filter_field="{{ filter_field }}"
            {{ disabled }}>
 
-    <ul class="datalist" id="datalist_{{ name }}"></ul>
-
-     <input style="display: none"
+    <div class="dropdown">
+         <ul class="datalist dropdown-content" id="datalist_{{ name }}"></ul>
+    </div>
+    <input style="display: none"
            id="tag-input_{{ name }}"
            name="{{ name }}"
            type="text"

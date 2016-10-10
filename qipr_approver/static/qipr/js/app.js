@@ -77,9 +77,7 @@
     //on keyup, start the countdown
     startTypingTimer = function(node){
         clearTimeout(typingTimer);
-        if (node.value) {
-            typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
-        }
+        typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
     //user is "finished typing," do something
@@ -97,15 +95,15 @@
                 optionList = $('#' + jnode.attr('data-list'));
                 optionList.empty();
                 $.each(data, function( i, l ){
-                    //alert( "Index #" + i + ": " + l );
                     optionList.append($("<li>" + l + "</li>")
                                       .attr("value", l)
-                                      .click(function() {
+                                      .mousedown(function() {
                                           node.value = $(this).text();
                                           addTag(node);
                                           $(this).remove();
                                       }));
                 });
+                optionList.show();
                 //alert(data);
             },
             failure: function(data) {
@@ -113,6 +111,24 @@
             }
         });
     }
+
+    // Close the dropdown menu if the user clicks outside of it
+    $(document).click( function(event) {
+        if (!event.target.matches('dropdown')) {
+            closeDropDowns();
+        }
+    });
+
+    function closeDropDowns() {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = $(dropdowns[i]);
+            if (openDropdown.is(":visible") ) {
+                openDropdown.hide();
+            }
+        }
+    };
 
     $(document).on("keypress", ":input:not(textarea)", function(event) {
         return event.keyCode != 13;
@@ -125,12 +141,13 @@
             event.preventDefault();
             if (event.keyCode == 13) {
                 addTag(this);
+                closeDropDowns();
             }
         });
-        // node.addEventListener("blur", function(event) {
-        //     event.preventDefault();
-        //     addTag(this);
-        // });
+        node.addEventListener("blur", function(event) {
+            // alert(document.activeElement.id)
+            closeDropDowns();
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.includes(invisibleSpace)){
