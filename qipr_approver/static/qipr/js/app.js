@@ -90,7 +90,8 @@
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
-                   "filter_field": getTagboxData(node, 'filter_field')},
+                   "filter_field": getTagboxData(node, 'filter_field'),
+                   "exclude_tags": getSelectedTags(getTagboxData(node, 'name'))},
             success: function(data) {
                 jnode = $(node);
                 optionList = $('#' + jnode.attr('data-list'));
@@ -174,7 +175,7 @@
     };
 
     removeInvisibleSpace = function(inputString){
-        return inputString.replace('\u200B', '');
+        return inputString.replace(/\u200B/g, '');
     };
 
     createtag = function(text) {
@@ -211,6 +212,11 @@
             return true;
         }
         return false;
+    };
+
+    getSelectedTags = function(nodeName){
+        var hiddenInputNode = document.getElementById('tag-input_' + nodeName);
+        return removeInvisibleSpace(hiddenInputNode.value);
     };
 
     deleteTag = function (event) {
