@@ -27,4 +27,4 @@ def list_top_ten_matches(model, search_value, filter_field, exclude_tags=[]):
     return_list = model.objects.filter(**{ model_filter: search_value}).values(filter_field)
     if(exclude_tags):
         return_list = return_list.exclude(**{exclude_filter: exclude_tags})
-    return return_list
+    return return_list[:10]
