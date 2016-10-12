@@ -17,9 +17,6 @@ def tags(request):
             listv.append(matches.get(filter_field))
 
         return JsonResponse(listv, safe=False)
-    else:
-         return HttpResponse("Hello Get")
-
 
 def list_top_ten_matches(model, search_value, filter_field, exclude_tags=[]):
     model_filter = filter_field + '__icontains'
