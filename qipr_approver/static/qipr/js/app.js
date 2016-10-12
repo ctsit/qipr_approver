@@ -42,7 +42,8 @@
 
     //setup before functions
     var typingTimer;                //timer identifier
-    var doneTypingInterval = 500;  //time in ms (.5 seconds)
+    var doneTypingInterval = 200;  //time in ms (.5 seconds)
+    var nodeSpinner;
 
     function getCookie(name) {
         var cookieValue = null;
@@ -77,6 +78,8 @@
     //on keyup, start the countdown
     startTypingTimer = function(node){
         clearTimeout(typingTimer);
+        nodeSpinner = $('#spinner_' + getTagboxData(node, 'name'));
+        nodeSpinner.removeClass('hidden');
         window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
@@ -104,9 +107,10 @@
                                       }));
                 });
                 optionList.show();
+                nodeSpinner.addClass('hidden');
             },
             failure: function(data) {
-                console.log("There was an error with the AJAX request")
+                console.log("There was an error with the AJAX request");
             }
         });
     }

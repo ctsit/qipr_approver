@@ -195,6 +195,17 @@ iframe {
     -webkit-font-smoothing: antialiased;
 }
 
+.tag__list--loading {
+    width: 20px;
+    height: 20px;
+    float: right;
+    border-color: #004d9a;
+}
+
+.hidden {
+    display: none;
+}
+
 .question__text {
     text-indent: 3.5rem;
 }
