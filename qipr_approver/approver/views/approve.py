@@ -40,7 +40,8 @@ def approve(request, project_id=None):
                     return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
                 else:
                     question_form = QuestionForm(project_id=project_id)
-                    context['sorted_questions'] = question_form.get_sorted_questions()
+                    context['sorted_questions'] = question_form.get_random_questions()
+
                     return utils.layout_render(request, context)
         else:
             return utils.dashboard_redirect_and_toast(request, 'You need to have a project.')
