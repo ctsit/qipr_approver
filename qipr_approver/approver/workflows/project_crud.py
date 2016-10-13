@@ -178,21 +178,20 @@ def _calculate_similarity_score(project, member):
     Sum can be 100 to scale from zero to 100 (like a percentage)
 
     keyword - 25
-    title - 20
-    big_aim - 15
-    category - 5
+    title - 10
+    big_aim - 10
+    category - 10
     clinical area - 10
     clinical setting - 10
-    description - 10
+    description - 25
     '''
-
+    description_factor = 25
     keyword_factor = 25
-    title_factor = 20
-    big_aim_factor = 15
-    category_factor = 5
+    title_factor = 10
+    big_aim_factor = 10
+    category_factor = 10
     clinical_area_factor = 10
     clinical_setting_factor = 10
-    description_factor = 10
 
     similarity = 0.0
 
