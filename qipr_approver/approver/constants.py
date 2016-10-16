@@ -47,6 +47,8 @@ answer_submit_names = {
     'project_id': 'project_id',
 }
 
+projects_per_page = 25
+
 api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'

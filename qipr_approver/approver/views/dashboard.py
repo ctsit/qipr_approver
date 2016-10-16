@@ -15,15 +15,26 @@ from approver.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.utils import timezone
+from approver.constants import projects_per_page
 
 @login_required
 def dashboard(request,project_id=None):
     if request.method == 'GET':
         project_title = []
         projects = []
+        projects_list = get_project_context(request)
+        paginator = Paginator(projects_list, projects_per_page)
+        page = request.GET.get('page')
+        try:
+                projects = paginator.page(page)
+        except PageNotAnInteger:
+                projects = paginator.page(1)
+        except EmptyPage:
+                projects = paginator.page(paginator.num_pages)
+
         context = {
             'content': 'approver/dashboard.html',
-            'projects': get_project_context(request),
+            'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session)
         }
         return utils.layout_render(request, context)
