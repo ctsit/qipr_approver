@@ -184,6 +184,12 @@ h3 {
     display:block;
 }
 
+.pagination {
+    margin-top:2rem;
+}
+
+
+
 
 footer {
     margin-top:0 !important;
