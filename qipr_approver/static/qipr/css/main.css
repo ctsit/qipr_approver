@@ -66,6 +66,8 @@ main {
     background-color: #f2f2f2;
     color: #004d9a;
     margin-top: 1rem;
+    border: 1pt grey solid;
+    border-bottom: 0;
 }
 
 .dashboard_border {
@@ -108,6 +110,11 @@ main {
 .dashboard-menu {
         border-bottom: grey solid 1pt;
     }
+
+.dashboard_title-bg {
+    margin-bottom:0;
+}
+
 
 
 
