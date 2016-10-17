@@ -1,40 +1,84 @@
-<div>
-    <h3>
-        <a href="{% url 'approver:projects' %}">Add Project</a>
-    </h3>
-</div>
-<div>
-    <div style="display:inline">
-        List of Projects:
+
+    <div class="row">
+        <div class="col s12 dashboard_title">
+            <div class="dashboard_title">
+                <h3>QIPR Dashboard</h3>
+            </div>
+        </div>
     </div>
-    <table class="striped">
-        <thead>
-            <tr>
-                <th data-field="title">Title</th>
-                <th data-field="edit_link">Edit Project</th>
-                <th data-field="role">Role</th>
-                <th data-field="delete">Delete</th>
-                <th data-field="Approval">Project Approval</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for project in projects %}
+
+    <div class="row dashboard_border">
+        <div class="col s12 m3 l2 dashboard-menu">
+            <ul>
+                <li>Projects</li>
+                <li>Profile</li>
+            </ul>
+        </div>
+
+        <div class="col s12 m9 l10 dashboard_border-left">
+            <h3>QI Projects for Some Person</h3>
+            <div class="row">
+                <div class="col s6">
+                    <a class="dashboard_add" href="{% url 'approver:projects' %}"><div class="dashboard_add-btn">+</div><div class="dashboard_add-text">Add Project</div></a>
+                </div>
+                 <div class="col s6">
+                    <div class="input-field dashboard_search">
+                      <input class="dashboard_search-input" id="search" type="search" required>
+                      <label for="search">Search your projects</label>
+                      <i class="material-icons">close</i>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col s6">
+                <h5 class="dashboard_row-title">Title</h5>
+            </div>
+            <div class="col s3">
+                <h5 class="dashboard_row-title">Role</h5>
+            </div>
+            <div class="col s3">
+                <h5 class="dashboard_row-title">Project Status</h5>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+    <div>
+        <div style="display:inline">
+            List of Projects:
+        </div>
+        <table class="striped">
+            <thead>
                 <tr>
-                    <td class="project__title">{{ project.title }}</td>
-                    <td><a href="{% url 'approver:projects' project_id=project.pk %}">link</a></td>
-                    <td class="project__title">{{ project.role }}</td>
-                    <td><form action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to delete this project?');">{% csrf_token %} <input class="btn" type="submit" value="Delete Project" /></form></td>
-                    {% if project.role == "PI" %}
-                        {% if project.is_approved %}
-                            <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
-                        {% else %}
-                            <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
-                        {% endif %}
-                    {% endif %}
+                    <th data-field="title">Title</th>
+                    <th data-field="edit_link">Edit Project</th>
+                    <th data-field="role">Role</th>
+                    <th data-field="delete">Delete</th>
+                    <th data-field="Approval">Project Approval</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <td class="project__title">{{ project.title }}</td>
+                        <td><a href="{% url 'approver:projects' project_id=project.pk %}">link</a></td>
+                        <td class="project__title">{{ project.role }}</td>
+                        <td><form action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to delete this project?');">{% csrf_token %} <input class="btn" type="submit" value="Delete Project" /></form></td>
+                        {% if project.role == "PI" %}
+                            {% if project.is_approved %}
+                                <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
+                            {% else %}
+                                <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 
 
