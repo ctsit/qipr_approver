@@ -124,6 +124,10 @@ h3 {
     font-size: 1.2rem;
 }
 
+.dashboard_menu-item a {
+    color:black;
+}
+
 .dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited, .dashboard_menu-item:hover {
     border-left: 3pt #004d9a solid;
     font-weight: 500;
