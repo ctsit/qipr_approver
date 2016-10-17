@@ -17,6 +17,14 @@ main {
     flex: 1 0 auto;
 }
 
+p, a {
+    font-family: 'Open Sans', sans-serif;
+    }
+
+h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+}    
+
 .home__section {
     margin-bottom:0;
 }
@@ -89,7 +97,7 @@ main {
     font-size: 2rem;
     display: inline;
     border: dashed 2pt;
-    padding: .01rem .5rem;
+    padding: .01rem .7rem;
     margin-right: .7rem;
 }
 
@@ -125,7 +133,36 @@ main {
     margin-bottom:0;
 }
 
+.dashboard_delete {
+    border: none;
+    background-color: transparent;
+}
 
+.dashboard_projects-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.dashboard_title-main {
+    margin: .5rem 0;
+    font-size: 2.5rem;
+}
+
+.dashboard_status {
+    color:#757575;
+}
+
+.dashboard_certificate-btn {
+    background-color: #004d9a;
+    color: white;
+    padding: .2rem;
+    font-size: .9rem;
+    display: block;
+    width: 7rem;
+    text-align: center;
+    border-radius: .2rem;
+    margin-top:.5rem;
+}
 
 
 
@@ -220,6 +257,8 @@ iframe {
 
 .project__title {
     text-overflow: ellipsis;
+    font-family:'Open Sans', sans-serif;
+    color:#757575;
 }
 
 .tag-holder {
