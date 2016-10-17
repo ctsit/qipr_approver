@@ -64,8 +64,35 @@ def save_project_with_form(project, question_form, session):
 
 def approve_or_next_steps(project, user):
     responses = project.response.all()
-    is_correct_response = reduce(lambda acc,response : acc and response.is_correct_response(), responses, True)
-    if is_correct_response:
-        project.approve(user)
+    total_responses = len(responses)
+    is_correct_response = False
+    if total_responses > 0:
+        if __response_count_matches_question_count(responses):
+            is_correct_response = reduce(lambda acc,response : acc and response.is_correct_response(), responses, True)
+            if is_correct_response:
+                project.approve(user)
     return after_approval(project)
 
+def __response_count_matches_question_count(response_list):
+    """
+    This function takes a list of responses, finds the section in which
+    the questions came from, then returns a boolean if they amount of
+    responses matches the amount of total questions in all of the sections
+    """
+    total_responses = len(response_list)
+    question_count = 0
+    sections_set = set()
+
+    #For each response, add the section id from each question to the set
+    for response in response_list:
+        sections_set.add(response.question.section.id)
+
+    #Count each question in the sections
+    for section_id in sections_set:
+        question_count += len(Question.objects.filter(section=section_id))
+
+    #If question count doesn't equal response count, fail it
+    if question_count == total_responses:
+        return True
+
+    return False

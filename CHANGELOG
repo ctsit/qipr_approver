@@ -1,3 +1,60 @@
+## [0.3.0] - 2016-10-04
+## Summary
+ 0.3.0 adds a new feature which compares a project to other projects and returns a score to help customers determine if there is one similar already in the system. There was bug fix from 0.2.0 which prevents the same tag from being added via the drop down list. Finally, the Gatorlink field was made uneditable. 
+
+### Added
+ * place filler text in the about you page text input fields (Stewart Wehmeyer)
+ * Added new get_similar_projects function to get list of projects that are similar to the current project being queried for. used jaccard similarity ratio for the same. Algorithm needs to be further discussed and improved (Tarun Gupta Akirala)
+
+### Changed
+ * make gatorlink field uneditable and post successfully (Stewart Wehmeyer)
+
+### Fixed
+ * Fix bug where tags we're being added through dropdown even if they already existed (Matthew McConnell)
+
+
+## [0.2.0] - 2016-09-20
+## Summary
+Added many new fields to both the project and about you pages. Added unit tests and fixed bugs discovered.
+
+### Added
+* Add unit, title, department. and qi required input fields to about you form (Matthew McConnell)
+* Show saved responses on project approval questions (Matthew McConnell)
+* Add footer to bottom of all the approver pages (Matthew McConnell)
+* add a number column in the dashboard to number the projects (Matthew McConnell)
+* Add account created date to about you page (Matthew McConnell)
+* Add QI_Interest fixtures (Matthew McConnell)
+* add Account Expiration to about you page (Matthew McConnell)
+* Add last login date/time to about you page (Matthew McConnell)
+* check if user is logged in before showing landing page (Matthew McConnell)
+* point login and register urls to shib (Matthew McConnell)
+* connect landing page to Django (Matthew McConnell)
+* create a new template tag for form input that requires a textarea. (Matthew McConnell)
+* Add model unit tests (Matthew McConnell)
+* Initial page set up (Amber Allen)
+* added jasmine to the project for front end testing (Patrick White)
+* Adding tests for project_crud workflow (ndavuluri)
+* User validation to check if the user is a advisor or collaborator (ndavuluri)
+
+### Changed
+* prevent duplicate tags from being selected (Matthew McConnell)
+* Remove dashboard edit column and make the project titles clickable links to the edit page instead (Matthew McConnell)
+* Force delete icon to only show if the project is not approved (Matthew McConnell)
+* Move delete to last column and change the hyperlink to a garbage can icon (Matthew McConnell)
+* Update Suffix fixture with new values (Matthew McConnell)
+* Replace Add project text with materialize plus button (Matthew McConnell)
+* refactoring based on unit testing (Patrick White)
+* make sort orders allowed to be null and unique on approver models (Matthew McConnell)
+
+
+### Fixed
+* validate if all the questions in a responses section were answered before approving a project (Matthew McConnell)
+* Fix bug that prevented answers from being saved once they were clicked (Matthew McConnell)
+* Fixing bug in project entry NoneType options were being added causing the app to crash. Normally there should not be NoneType options but we need to be safe. (Patrick White)
+* Make Title and Description multiline enabled on the project page (Matthew McConnell)
+* Fixing Bug in Add Project. When the fields are disabled since the project is no longer editable, tags will not have close icon (ndavuluri)
+* fix bug validating if project is older than 1 year and can be edited (Matthew McConnell)
+
 ## [0.1.0] - 2016-08-18
 ### Summary
 * This is the initial release of QIPR_Approver which includes functional dashboards,

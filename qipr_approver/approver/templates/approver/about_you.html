@@ -9,9 +9,13 @@
     {% load form_input %}
     {% load tagbox %}
     {% load address %}
-    {% form_input form.user_name %}
+    {% form_input form.user_name True %}
     {% form_input form.first_name %}
     {% form_input form.last_name %}
+    {% form_input form.title %}
+    {% form_input form.department %}
+    {% tagbox form.clinical_area %}
+
     {% for business_address in form.business_address.all %}
         {% address business_address 'business' forloop.counter %}
     {% empty %}
@@ -25,6 +29,17 @@
     {% form_input form.business_phone %}
     {% form_input form.contact_phone %}
     {% form_input form.webpage_url %}
+    {% form_input form.last_login True %}
+    {% form_input form.account_expiration True %}
+    {% form_input form.account_created True %}
+    Is quality improvement a requirement of your training program?
+    <p>
+        <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
+        <label for="qi_required_yes">Yes</label>
+        <input class="with-gap" name="qi_required" value="false" type="radio" id="qi_required_no" {% ifequal form.qi_required False %} checked {% endifequal %} />
+        <label for="qi_required_no">No</label>
+
+    </p>
     <input type="submit"
            value="Submit"
            class="btn"

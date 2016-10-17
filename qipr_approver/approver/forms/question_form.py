@@ -1,5 +1,6 @@
-from approver.models import Question, Section
+from approver.models import Question, Section, Response
 from approver.utils import get_related
+import random
 
 class QuestionForm():
 
@@ -13,7 +14,7 @@ class QuestionForm():
             'question_text': question_model.text,
             'question_id': question_model.id,
             'question_description': question_model.description,
-            'answers': [self.get_choice_dict(choice) for choice in get_related(question_model,'choice')],
+            'answers': [self.get_choice_dict(choice, question_model.id) for choice in get_related(question_model,'choice')],
             'sort_order': question_model.sort_order,
             'project_id': self.project_id,
         }
@@ -23,12 +24,24 @@ class QuestionForm():
         self.question_list.sort(key=lambda k: k['sort_order'])
         return self.question_list
 
+    def get_random_questions(self):
+        '''Call get_sorted_questions if the questions need to be in specified order ,
+        else call get_random_questions for random order'''
+        random_list = self.question_list
+        random.shuffle(random_list)
+        return random_list
+
     def get_questions(self, section):
         question_models = Question.objects.filter(section=section)
         return [self.get_question_tag_context(question) for question in question_models]
 
-    def get_choice_dict(self, choice):
+    def get_choice_dict(self, choice, question_id):
         return {
             'text': choice.text,
             'id': choice.id,
+            'selected': self.check_response(choice.id, question_id),
         }
+
+    def check_response(self, choice_id, question_id):
+        response_exists = Response.objects.filter(question__id=question_id, project__id=self.project_id, choice__id=choice_id).exists()
+        return response_exists
