@@ -65,6 +65,21 @@ h3 {
     font-size:1.5rem;
 }
 
+/*Navbar*/
+.nav_li {
+    text-transform: uppercase;
+}
+.nav_li:hover {
+    border-bottom: #039be5 4px solid;
+}
+
+.btn__logout {
+    line-height: 2rem;
+    height: 2rem;
+    width: 5rem;
+    padding: 0 .6;
+}
+
 /*Dashboard*/
 .dashboard #content {
     width: 600px;
