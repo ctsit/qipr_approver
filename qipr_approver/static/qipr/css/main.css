@@ -66,12 +66,12 @@ main {
     background-color: #f2f2f2;
     color: #004d9a;
     margin-top: 1rem;
-    border: 1pt grey solid;
+    border: 1pt #d0d0d0 solid;
     border-bottom: 0;
 }
 
 .dashboard_border {
-     border: grey solid 1pt;
+     border: #d0d0d0 solid 1pt;
  }
 
 .dashboard_search {
@@ -107,9 +107,19 @@ main {
     color:#004d9a;
 }
 
-.dashboard-menu {
-        border-bottom: grey solid 1pt;
+.dashboard_menu {
+        border-bottom: #d0d0d0 solid 1pt;
     }
+
+.dashboard_menu-item, .dashboard_menu-item-active {
+    padding-left: .7rem;
+    font-size: 1.2rem;
+}
+
+.dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited, .dashboard_menu-item:hover {
+    border-left: 3pt #004d9a solid;
+    font-weight: 500;
+}
 
 .dashboard_title-bg {
     margin-bottom:0;
@@ -323,12 +333,12 @@ iframe {
 
 
 @media screen and (min-width: 601px) {
-    .dashboard-menu {
+    .dashboard_menu {
         border-bottom: none;
     }
 
     .dashboard_border-left {
-    border-left: grey solid 1pt;
+    border-left: #d0d0d0 solid 1pt;
     }
 }
 
