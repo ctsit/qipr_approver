@@ -216,7 +216,7 @@ nav .button-collapse {
     color: red;
 }
 
-.dashboard_btns-edit a:hover {
+.dashboard_btns-edit a:hover, .dashboard_btns-view:hover {
     color: #004d9a;
 }
 
@@ -265,7 +265,7 @@ nav .button-collapse {
     color:#004d9a;
 }
 
-.dashboard_btns-edit {
+.dashboard_btns-edit, .dashboard_btns-view {
     display:block;
     padding-top:1rem;
 }
@@ -274,8 +274,26 @@ nav .button-collapse {
     margin-top:2rem;
 }
 
+/*Similar Projects*/
+.btn__similar {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.4rem;
+    color: #444;
+    background-color: #e0e0e0 !important;
+    font-weight: 300;
+}
 
+.similar__header {
+    font-weight:200;
+    }
 
+.similar__body {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #757575;
+}
 
 footer {
     margin-top:0 !important;
