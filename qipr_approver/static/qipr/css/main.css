@@ -80,6 +80,17 @@ h3 {
     padding: 0 .6;
 }
 
+nav ul a.btn:hover, .side-nav a.btn:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+    background-color: #e47004;
+    }
+
+nav .button-collapse {
+    float: right;
+}
+
+
+
+
 /*Dashboard*/
 .dashboard #content {
     width: 600px;
