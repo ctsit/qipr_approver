@@ -126,7 +126,7 @@ nav .button-collapse {
 }
 
 .nonapprove__caution {
-    width: 19rem;
+    width: 18rem;
 }
 
 /*Dashboard*/
@@ -513,6 +513,10 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 @media screen and (min-width: 623px) {
     .nonapprove__header {
         font-size: 3rem;
+    }
+
+    .nonapprove__caution {
+    width: 19rem;
     }
 }
 
