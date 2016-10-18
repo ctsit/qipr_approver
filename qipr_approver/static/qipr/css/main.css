@@ -212,6 +212,14 @@ nav .button-collapse {
     color: #039be5;
 }
 
+.dashboard_delete--form input:hover {
+    color: red;
+}
+
+.dashboard_btns-edit a:hover {
+    color: #004d9a;
+}
+
 .dashboard_delete--form input:focus {
     outline: none;
 }
