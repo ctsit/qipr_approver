@@ -207,6 +207,15 @@ nav .button-collapse {
     padding-left: 0;
 }
 
+.dashboard_delete--form {
+    display: inline;
+    color: #039be5;
+}
+
+.dashboard_delete--form input:focus {
+    outline: none;
+}
+
 .dashboard_projects-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -250,6 +259,7 @@ nav .button-collapse {
 
 .dashboard_btns-edit {
     display:block;
+    padding-top:1rem;
 }
 
 .pagination {
