@@ -298,6 +298,7 @@ nav .button-collapse {
 .similar__search--bg {
     background-color: #004d9a;
     color:white;
+    padding: 3rem 0;
 }
 
 .similar__search--search, .similar__search--header {
@@ -310,10 +311,16 @@ nav .button-collapse {
     font-weight: 500;
     text-transform: uppercase;
     font-size: 2.2rem;
+    margin-bottom: 0;
+}
+
+.similar__search--searchicon:hover {
+    color: #b1dcfb;
 }
 
 .similar__search--searchicon {
     text-align:center;
+    color:white;
 }
 .similar__search--margin {
     margin-bottom:0;
