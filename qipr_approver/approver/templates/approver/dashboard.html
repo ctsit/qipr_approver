@@ -65,9 +65,7 @@
                             
                             
                             {% if project.role == "PI" %}
-                                {% if project.is_approved %}
-                                    <li class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></li>
-                                {% endif %}
+                            
                                     <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
                                             {% if project.is_approved %}
