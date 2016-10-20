@@ -271,6 +271,13 @@ nav .button-collapse {
 .dashboard_projects-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    padding-top: 1.5rem;
+    vertical-align: top !important;
+}
+
+td, th {
+    vertical-align: top;
+    padding-top: 1.5rem;
 }
 
 .dashboard_title-main {
