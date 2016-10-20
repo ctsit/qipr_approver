@@ -278,6 +278,12 @@ nav .button-collapse {
     margin-right: .5rem;
 }
 
+.dashboard__star {
+    color: #0089ec;
+    display: inline;
+    margin-right: .5rem;
+}
+
 .dashboard__red {
     color: #f44336;
     text-transform:uppercase;
