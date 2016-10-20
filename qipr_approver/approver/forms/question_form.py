@@ -1,5 +1,6 @@
 from approver.models import Question, Section, Response
 from approver.utils import get_related
+import random
 
 class QuestionForm():
 
@@ -22,6 +23,13 @@ class QuestionForm():
         # this is js syntax probably doesnt work in django
         self.question_list.sort(key=lambda k: k['sort_order'])
         return self.question_list
+
+    def get_random_questions(self):
+        '''Call get_sorted_questions if the questions need to be in specified order ,
+        else call get_random_questions for random order'''
+        random_list = self.question_list
+        random.shuffle(random_list)
+        return random_list
 
     def get_questions(self, section):
         question_models = Question.objects.filter(section=section)
