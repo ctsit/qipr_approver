@@ -13,30 +13,40 @@
   }
 }
 </style>
-
-<div class="cert__border" id="printable">
-    <div class="cert__border--inner">
-        <div class="cert__text">
-            <div class="cert__image"></div>
-            <div class="cert__text--header">Certificate of Approval</div>
-            <br>
-            <div>
-                {{ project_owner_first_name }} {{ project_owner_last_name }}<br/>
-                Your quality improvement project entitled <br/>
-                "{{ project_title }}"<br/>
-                <b>has been approved.</b>
+<div class="row center">
+    <div class="col s12">
+        <div class="cert__border" id="printable">
+            <div class="cert__border--inner">
+                <div class="cert__text">
+                    <div class="cert__image"></div>
+                    <div class="cert__text--header">Certificate of Approval</div>
+                    <br>
+                    <div>
+                        {{ project_owner_first_name }} {{ project_owner_last_name }}<br/>
+                        Your quality improvement project entitled <br/>
+                        "{{ project_title }}"<br/>
+                        <b>has been approved.</b>
+                    </div>
+                    <br/>
+                    <div class="cert__text--small">The QI office wishes your team:<b></b>
+                        <ul>
+                            {% for contributor in project_collab %}
+                                <li>{{ contributor.first_name }} {{ contributor.last_name }} ({{ contributor.email_address }})</li>
+                            {% endfor %}
+                        </ul>
+                        much success in  your effors to improve patient quality.
+                    </div>
+                    <br/><br/>
+                    <div class="cert__text--xsmall"> The project will not involve testing an experimental drug, device, or biologic. It has not received funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is intended to improve or evaluate the practice or process within a particular institution or a specific program.</div>
+                </div>
             </div>
-            <br/>
-            <div class="cert__text--small">The QI office wishes your team:<b></b>
-                <ul>
-                    {% for contributor in project_collab %}
-                        <li>{{ contributor.first_name }} {{ contributor.last_name }} ({{ contributor.email_address }})</li>
-                    {% endfor %}
-                </ul>
-                much success in  your effors to improve patient quality.
-            </div>
-            <br/><br/>
-            <div class="cert__text--xsmall"> The project will not involve testing an experimental drug, device, or biologic. It has not received funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is intended to improve or evaluate the practice or process within a particular institution or a specific program.</div>
         </div>
+    </div>
+</div>
+
+
+<div class="row center">
+    <div class="col s12">
+        <input class="btn" type="button" onClick="window.print()" value="Print Your Certificate"/>
     </div>
 </div>

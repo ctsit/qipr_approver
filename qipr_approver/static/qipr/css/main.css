@@ -212,13 +212,17 @@ iframe {
 }
 
 .cert__border {
-    width: 58rem;
+    width: 68rem;
     height: auto;
     padding: 1.2rem;
     text-align: center;
-    border: .75rem solid #787878
-    
+    border: .75rem solid #787878;
+    margin: 0 auto;
+    display: flex;  
 }
+
+
+font-family: 'Amiri', serif;
 
 .cert__border--inner {
     position: relative;
@@ -236,6 +240,8 @@ iframe {
 .cert__text--header {
     font-size: 3rem;
     font-weight:bold;
+    font-family: 'Eczar', serif;
+    text-transform: uppercase;
 }
 
 .cert__text--small {
