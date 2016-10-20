@@ -1,24 +1,31 @@
 <div>
-    <h3> Similar Projects </h3>
-    <h6> These are the existing list of projects that may be similar to your project idea. You can see the details and probably collaborate your efforts. Or, you can continue to submit your project!</h6>
+    <h3 class="center-align font__opensans similar__header">Similar Projects </h3>
+    <p class="similar__body">The Quality Improvement office encourages you to join an existing project whenever possible. We have found the following projects which may be similar to the project you're proposing. If you are interested in joining an existing project, please click the collaborate button to contact the PQI of the project. If the similar projecs are not useful for your unique project, please continue to the project submission page.</p>
 </div>
+
+<form class="nonapprove__center" method="post" onkeypress="return event.keyCode != 13;">
+        {% csrf_token %}
+        <input class="btn__similar btn" type="submit" value="Continue to project submission >>>" />
+    </form>
 <div>
     <table class="striped">
         <thead>
             <tr>
-                <th data-field="title">Title</th>
-                <th data-field="edit_link">Details</th>
-                <th data-field="role">Role</th>
-                <th data-field="relevance">Relevance</th>
+                <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
+                <th class="dashboard_row-title" data-field="role"><h5>Expected Start Date</h5></th>
+                <th class="dashboard_row-title" data-field="relevance"><h5>Relevance</h5></th>
+                <th class="dashboard_row-title" data-field="role"><h5>Contact</h5></th>
             </tr>
         </thead>
         <tbody>
             {% for member_id, project, similarity in project_scores %}
                 <tr>
-                    <td class="project__title">{{ project.title }}</td>
-                    <td><a href="{% url 'approver:projects' project_id=project.pk %}">View</a></td>
+                    <td class="project__title">{{ project.title }} 
+                        <a class="dashboard_btns-view" href="{% url 'approver:projects' project_id=project.pk %}">View Project</a>
+                    </td>
+                   
                     <td class="project__title">{{ project.role }}</td>
-                    <td class="project__similarity"> {{ similarity | floatformat:2 }} </td>
+                    <td class="project__similarity"><p> {{ similarity | floatformat:2 }} % </p></td>
                     {% if project.role == "PI" %}
                         {% if project.is_approved %}
                             <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
@@ -26,15 +33,33 @@
                             <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
                         {% endif %}
                     {% endif %}
+                    <td><div class="project__collaborate"><p><a href="mailto:someemail@ufl.edu?subject=QI Project Collaboration Request&body=Hi <collaborator name>, the QI Registry shows that a project I'm about to begin is a <xx> match with your <some name> project. I'm interested in collaborating with you on your <some name> project. Can we set up a time for us to meet to discuss in greater detail how we can work together? Please reply back to this email at your earliest convenience. Thanks!">Collaborate</a></p></div></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <br/>
-    <form method="post" onkeypress="return event.keyCode != 13;">
-        {% csrf_token %}
-        <input class="btn" type="submit" value="Submit Project" />
-    </form>
+    
+</div>
+
+</div>
+
+<div class="similar__search--bg">
+    <div class="container">
+        <div class="row similar__search--margin">
+            <div class="col s12 m8">
+                <h3 class="similar__search--header">Interested in exploring our entire registry of Quality Projects?</h3>
+            </div>
+
+            <div class="col s12 m4">
+                <h3 class="similar__search--search">Start your search here!</h3>
+                <div class="nonapprove__center">
+                    
+                    <a href="#"><i class="large material-icons similar__search--searchicon">search</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
