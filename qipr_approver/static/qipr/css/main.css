@@ -179,6 +179,27 @@ nav .button-collapse {
     color:#004d9a;
 }
 
+.dashboard_row-title li {
+    font-weight: normal;
+    color: grey;
+}
+
+.dashboard__question {
+    font-size: 1.1rem;
+    display: inline-block;
+    color: white;
+    background-color: #efaf2e;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.dashboard__question:hover {
+    background-color: #e27b19;
+}
+
 .dashboard_menu {
         border-bottom: #d0d0d0 solid 1pt;
     }

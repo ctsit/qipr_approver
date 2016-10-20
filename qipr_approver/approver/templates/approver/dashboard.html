@@ -33,7 +33,22 @@
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
                         <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>Project Status</h5></th>
+                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>Approval Status <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
+                            
+                        <!-- Modal Structure -->
+                                <div id="modal1" class="modal">
+                                    <div class="modal-content">
+                                      <h4>What are the states of Approval?</h4>
+                                      <ul>
+                                        <li>Approved</li>
+                                        <li>Requires Edits</li>
+                                      </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                                    </div>
+                                </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
