@@ -66,15 +66,19 @@
                             
                             {% if project.role == "PI" %}
                                 {% if project.is_approved %}
-                                    <td class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></td>
-                                {% else %}
+                                    <li class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></li>
+                                {% endif %}
                                     <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
+                                            {% if project.is_approved %}
+                                                <li class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></li>
+                                            {% endif %}
+
                                             <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
                                             <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">QI Survey</a></li>
                                             <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="#">Similar Projects</a></li>
                                         </ul></a></td>
-                                {% endif %}
+                                
                             {% endif %}
                         </tr>
                     {% endfor %}
