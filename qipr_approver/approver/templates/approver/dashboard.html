@@ -33,15 +33,16 @@
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
                         <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>Approval Status <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
+                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>Approval Documents <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
                             
                         <!-- Modal Structure -->
                                 <div id="modal1" class="modal">
                                     <div class="modal-content">
-                                      <h4>What are the states of Approval?</h4>
+                                      <h4>How do I know if my documents are complete?</h4>
                                       <ul>
-                                        <li>Approved</li>
-                                        <li>Requires Edits</li>
+                                        <li><p><div class="dashboard__check">&#10003;</div>If you see a green check mark, it means you have <span class="dashboard__green">completed</span> all requirements of the document.</p></li>
+                                        <li><p><div class="dashboard__exclaimation">!</div>If you see a red exclaimation mark, it means your document is <span class="dashboard__red">incomplete and requires edits</span>.</p></li>
+                                        <li><p>*NOTE* Similar Projects will only appear if there are projects out there that match yours. If these projects exist, you have access to view them at any time by clicking the similar projects link.</p></li>
                                       </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -68,7 +69,12 @@
                                 {% if project.is_approved %}
                                     <td class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></td>
                                 {% else %}
-                                    <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">Pending IRB Approval</a></td>
+                                    <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">
+                                        <ul>
+                                            <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="#">Project Details</a></li>
+                                            <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="#">QI Survey</a></li>
+                                            <li class="dashboard__list"><a href="#">Similar Projects</a></li>
+                                        </ul></a></td>
                                 {% endif %}
                             {% endif %}
                         </tr>

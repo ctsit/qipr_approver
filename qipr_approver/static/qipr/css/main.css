@@ -188,7 +188,7 @@ nav .button-collapse {
     font-size: 1.1rem;
     display: inline-block;
     color: white;
-    background-color: #efaf2e;
+    background-color: #004d9a;
     width: 1.5rem;
     height: 1.5rem;
     line-height: 1.5rem;
@@ -197,7 +197,7 @@ nav .button-collapse {
 }
 
 .dashboard__question:hover {
-    background-color: #e27b19;
+    background-color: #0089ec;
 }
 
 .dashboard_menu {
@@ -256,12 +256,49 @@ nav .button-collapse {
 }
 
 .dashboard_status a {
-    color:#757575;
+    font-weight: 600;
+    color: #757575;
 }
 
+.dashboard_status a:hover {
+    color: #0089ec;
+}
+
+.dashboard__list {
+    padding-bottom: .3rem; 
+}
 .dashboard_status {
     padding-left:2rem;
+    min-width: 13rem;
 }
+
+.dashboard__check {
+    color: #4caf50;
+    display: inline;
+    margin-right: .5rem;
+}
+
+.dashboard__red {
+    color: #f44336;
+    text-transform:uppercase;
+}
+
+.dashboard__green {
+    color: #4caf50;
+    text-transform:uppercase;
+}
+
+.dashboard__exclaimation {
+    background-color: #f44336;
+    display: inline;
+    font-weight: 600;
+    color: white;
+    border-radius: 1rem;
+    padding: 0 .5rem;
+    margin-right: .5rem;
+    text-align: center;
+}
+
 
 .dashboard_row-title-project {
     padding-left:2rem;
