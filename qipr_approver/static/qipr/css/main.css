@@ -237,7 +237,7 @@ nav .button-collapse {
     color: red;
 }
 
-.dashboard_btns-edit a:hover {
+.dashboard_btns-edit a:hover, .dashboard_btns-view:hover {
     color: #004d9a;
 }
 
@@ -329,7 +329,7 @@ nav .button-collapse {
     color:#004d9a;
 }
 
-.dashboard_btns-edit {
+.dashboard_btns-edit, .dashboard_btns-view {
     display:block;
     padding-top:1rem;
 }
@@ -338,8 +338,76 @@ nav .button-collapse {
     margin-top:2rem;
 }
 
+/*Similar Projects*/
+.btn__similar {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.4rem;
+    color: #444;
+    background-color: #e0e0e0 !important;
+    font-weight: 300;
+}
 
+.similar__header {
+    font-weight:200;
+    }
 
+.similar__body {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #757575;
+}
+
+.similar__search--bg {
+    background-color: #004d9a;
+    color:white;
+    padding: 3rem 0;
+}
+
+.similar__search--search, .similar__search--header {
+    font-family:'Open Sans', sans-serif;
+    font-weight:200;
+    text-align:center;
+}
+
+.similar__search--search {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    margin-bottom: 0;
+}
+
+.similar__search--searchicon:hover {
+    color: #b1dcfb;
+}
+
+.similar__search--searchicon {
+    text-align:center;
+    color:white;
+}
+.similar__search--margin {
+    margin-bottom:0;
+}
+
+.project__collaborate {
+    width: 7rem;
+    height: 2rem;
+    line-height: 2rem;
+    background-color: #004d9a;
+    color: white;
+    text-align: center;
+    border-radius: .3rem;
+}
+
+.project__collaborate a {
+    color: white;
+}
+
+.project__collaborate:hover {
+    background-color: #0169d2;
+
+}
 
 footer {
     margin-top:0 !important;
