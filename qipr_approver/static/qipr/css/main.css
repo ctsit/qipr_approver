@@ -558,6 +558,7 @@ iframe {
 .question__text {
     font-size: 1.3rem;
     margin-top:3rem;
+    margin-bottom:0;
 }
 
 .question__description {
@@ -567,6 +568,15 @@ iframe {
 .question__yn {
     display: inline;
     margin-right: 2rem;
+}
+
+.question__modal:hover {
+    color: #004d9a;
+}
+
+.question__modal {
+    font-weight: 600;
+    font-size:1.2rem;
 }
 
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
