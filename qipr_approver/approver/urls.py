@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.contrib.auth.views import logout,logout_then_login
+from django.contrib.auth.views import logout
 from approver import views, api
 
 urlpatterns = [
@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),
-    url(r'^logout/$', logout_then_login, {"login_url":"/"}, name = 'logout'),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
 ]
