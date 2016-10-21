@@ -65,6 +65,13 @@ h3 {
     font-size:1.5rem;
 }
 
+/*Landing Page*/
+.learn__getstarted {
+    background-color:#004d9a;
+    margin: 0 -0.75rem 2rem;
+    padding: 1rem 0rem .1;
+}
+
 /*Navbar*/
 .nav_li {
     text-transform: uppercase;
