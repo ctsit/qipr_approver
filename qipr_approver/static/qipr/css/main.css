@@ -72,6 +72,18 @@ h3 {
     padding: 1rem 0rem .1;
 }
 
+.learn__btns--fcm {
+    margin-bottom:1rem;
+    width:20rem;
+}
+
+.learn__btns--fcmtxt {
+    width: 18rem;
+    font-size: 2rem;
+    text-transform: lowercase;
+    height: 3.5rem;
+}
+
 /*Navbar*/
 .nav_li {
     text-transform: uppercase;
