@@ -272,6 +272,10 @@ iframe {
     margin:0 auto;
 }
 
+.cert__print--btn { 
+    margin-bottom: 2rem;
+}
+
 textarea.form__textarea--with-border {
     border: 1px solid #9e9e9e;
     padding-top: 5px;
