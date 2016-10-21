@@ -579,6 +579,15 @@ iframe {
     font-size:1.2rem;
 }
 
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after { 
+    border: 2px solid #004d9a;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #004d9a;
+}
+
+
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
     font-size:1.3rem;
 }
