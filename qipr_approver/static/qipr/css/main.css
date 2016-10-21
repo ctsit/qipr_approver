@@ -556,11 +556,21 @@ iframe {
 }
 
 .question__text {
-    text-indent: 3.5rem;
+    font-size: 1.3rem;
+    margin-top:3rem;
 }
 
 .question__description {
-    text-indent: 3.5rem;
+    font-size:1.2rem;
+}
+
+.question__yn {
+    display: inline;
+    margin-right: 2rem;
+}
+
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    font-size:1.3rem;
 }
 
 .tag_label {
