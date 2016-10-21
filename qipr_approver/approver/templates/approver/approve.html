@@ -15,8 +15,20 @@
         {% question item %}
     {% endfor %}
 
-    <input type="submit"
-           value="Submit"
-           class="btn"
+    <div class="btmnav">
+      <input type="submit"
+           value="Save and Continue"
+           class="btmnav__btn--interior btn"
            />
+      <input type="submit"
+           value="Save and Exit"
+           class="btmnav__btn--interior btn"
+           />
+      <input type="submit"
+           value="Continue"
+           class="btmnav__btn--interior btn"
+           />
+    </div>
 </form>
+
+<a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>
