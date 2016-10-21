@@ -42,7 +42,6 @@ class ProjectForm():
                         'label': 'UF Health Big Aims',
                         'model': 'bigaim',
                         'filter_field': 'name',
-                        'label': 'UF Health Big Aims',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim")}
 
