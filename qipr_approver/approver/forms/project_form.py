@@ -39,9 +39,10 @@ class ProjectForm():
                         'selected': utils.get_related_property(project, "keyword")}
 
         self.big_aim = {'name': 'big_aim',
-                        'label': 'Big Aims',
+                        'label': 'UF Health Big Aims',
                         'model': 'bigaim',
                         'filter_field': 'name',
+                        'label': 'UF Health Big Aims',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim")}
 

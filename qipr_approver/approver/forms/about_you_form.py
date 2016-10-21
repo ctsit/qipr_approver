@@ -22,7 +22,7 @@ class AboutYouForm():
                           'value': user.person.last_name or ''}
 
         self.title = {'name': 'title',
-                      'label': 'Tite',
+                      'label': 'Title',
                       'type': 'text',
                       'value': user.person.title or ''}
 
