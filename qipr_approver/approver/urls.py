@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.contrib.auth.views import logout_then_login
+from django.contrib.auth.views import logout
 from approver import views, api
 
 urlpatterns = [
