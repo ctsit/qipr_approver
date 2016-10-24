@@ -81,6 +81,7 @@ h3 {
     font-size: 2rem;
     text-transform: lowercase;
     height: 3.5rem;
+    line-height: 3.5rem;
 }
 
 .learn__btns--create {

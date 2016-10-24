@@ -1,6 +1,8 @@
 <html>
     <head>
         {% load staticfiles %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
         <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,13 +43,13 @@
                       </div>
                        
                        <div class="col s12 learn__btns--fcm">
-                         <button class="orange darken-3 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">find</button>
+                         <a class="orange darken-3 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">find</a>
                        </div>
-                       <div class="col s12 learn__btns--fcm">
-                        <button class="orange darken-1 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">create</button>
+                       <div href="#" class="col s12 learn__btns--fcm">
+                        <a href="#" class="orange darken-1 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">create</a>
                       </div>
                        <div class="col s12 learn__btns--fcm">
-                        <button class="orange lighten-2 learn__btns--fcmtxt learn__btns--manage font__opensans btn waves-effect waves-light" type="submit" name="action">manage</button>
+                        <a href="#" class="orange lighten-2 learn__btns--fcmtxt learn__btns--manage font__opensans btn waves-effect waves-light" type="submit" name="action">manage</a>
                       </div>
                     </div>
 
