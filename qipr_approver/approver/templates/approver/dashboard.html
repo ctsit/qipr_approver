@@ -20,10 +20,9 @@
                 </div>
                  <div class="col s6">
                     <div class="input-field dashboard_search">
-                    <form method="get" action="{% url 'approver:dashboard' %}">
-                      <input class="dashboard_search-input" id="search" name="search" type="search" required />
+                      <input class="dashboard_search-input" id="search" type="search" required>
                       <label for="search">Search your projects</label>
-                      <input type="submit" value="Search">
+                      <i class="material-icons">close</i>
                     </div>
                 </div>
             </div>
@@ -73,11 +72,7 @@
                                         <ul>
                                             <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
                                             <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">QI Survey</a></li>
-                                            {% if project.has_similar_projects != 0 %}
-                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
-                                            {% else %}
-                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div>No Similar Projects</li>
-                                            {% endif %}
+                                            <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="#">Similar Projects</a></li>
                                         </ul></a></td>
                                 {% endif %}
                             {% endif %}

@@ -6,7 +6,7 @@ import approver.utils as utils
 from django.core.urlresolvers import reverse
 
 @login_required
-def similar_projects(request, project_id=None,from_page=None):
+def similar_projects(request, project_id=None):
     
     project = project_crud.get_project_or_none(project_id)
 
@@ -17,10 +17,7 @@ def similar_projects(request, project_id=None,from_page=None):
 
         if (len(project_scores) == 0) :
             utils.set_toast(request.session, 'No relevant projects were found!')
-            if(from_page == "dashboard") :
-                return redirect(reverse("approver:dashboard"))
-            else :
-                return redirect(reverse("approver:approve") + str(project.id) + '/')
+            return redirect(reverse("approver:approve") + str(project.id) + '/')
 
         context = {
                     'content': 'approver/similar_projects.html',
