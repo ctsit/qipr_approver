@@ -6,6 +6,7 @@ import approver.utils as utils
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
 from django.db.models.query import QuerySet
+from approver.constants import description_factor,keyword_factor,title_factor,big_aim_factor,category_factor,clinical_area_factor,clinical_setting_factor
 
 
 def create_or_update_project(current_user, project_form, project_id=None):
@@ -174,25 +175,9 @@ def get_similar_projects(project):
 def _calculate_similarity_score(project, member):
 
     '''
-    Need to be improved based on priority. Remove static values and read from a file.
+    Need to be improved based on priority.
     Sum can be 100 to scale from zero to 100 (like a percentage)
-
-    keyword - 25
-    title - 20
-    big_aim - 15
-    category - 5
-    clinical area - 10
-    clinical setting - 10
-    description - 10
     '''
-
-    keyword_factor = 25
-    title_factor = 20
-    big_aim_factor = 15
-    category_factor = 5
-    clinical_area_factor = 10
-    clinical_setting_factor = 10
-    description_factor = 10
 
     similarity = 0.0
 
