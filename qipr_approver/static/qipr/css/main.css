@@ -549,6 +549,10 @@ iframe {
     padding-right: 2rem;
 }
 
+.project__title--forms {
+    float: right;
+    min-width: 14rem;
+}
 .tag-holder {
     display: inline-block;
     margin: 0;

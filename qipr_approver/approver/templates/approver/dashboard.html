@@ -33,7 +33,7 @@
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
                         <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
+                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
                             
                         <!-- Modal Structure -->
                                 <div id="modal1" class="modal">
@@ -68,7 +68,7 @@
                             
                             {% if project.role == "PI" %}
                             
-                                    <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">
+                                    <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
                                             {% if project.is_approved %}
                                                 <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
