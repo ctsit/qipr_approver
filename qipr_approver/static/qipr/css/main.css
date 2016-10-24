@@ -364,6 +364,12 @@ td, th {
     color:#004d9a;
 }
 
+.dashboard__updated {
+    color: #bdbdbd;
+    font-style: italic;
+    padding-top: .3rem;
+    }    
+
 .dashboard_btns-edit, .dashboard_btns-view {
     display:block;
     padding-top:1rem;
