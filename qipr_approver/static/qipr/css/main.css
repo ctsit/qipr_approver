@@ -153,8 +153,15 @@ nav .button-collapse {
 
 .dashboard_search-input {
     border-bottom: none !important;
-    margin-bottom: .5rem !important;
+    /*margin-bottom: .5rem !important;*/
     height: 2rem !important;
+    /*padding-left: 1rem;*/
+    margin-bottom: 0 !important;
+    padding: .5rem 1rem !important;
+}
+
+.dashboard_search-close { 
+    padding: .5rem;
 }
 
 .dashboard_add-btn {
