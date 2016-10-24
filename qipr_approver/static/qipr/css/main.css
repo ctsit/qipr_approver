@@ -567,11 +567,76 @@ iframe {
 }
 
 .question__text {
-    text-indent: 3.5rem;
+    font-size: 1.3rem;
+    margin-top:3rem;
+    margin-bottom:0;
 }
 
 .question__description {
-    text-indent: 3.5rem;
+    font-size:1.2rem;
+}
+
+.question__yn {
+    display: inline;
+    margin-right: 2rem;
+}
+
+.question__modal:hover {
+    color: #004d9a;
+}
+
+.question__modal {
+    font-weight: 600;
+    font-size:1.2rem;
+}
+
+.headerbg__interiorpg {
+    background-color: #f9e1c4;
+}
+
+.question__header {
+    margin: 0;
+    padding: 4rem 0 0; 
+    font-weight: 100;   
+}    
+
+.question__header--sub {
+    padding-bottom: 3rem;
+    font-size: 1.7rem;    
+}    
+
+.back__dashboard {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    display: block;
+    margin: 3rem 0;
+}
+
+.back__dashboard:hover {
+    color: #004d9a;
+}
+
+.btmnav {
+    text-align:center;
+    margin-top: 3rem;
+}
+
+.btmnav__btn--interior {
+    margin: 0 1rem;
+}
+
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after { 
+    border: 2px solid #004d9a;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #004d9a;
+}
+
+
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    font-size:1.3rem;
 }
 
 .tag_label {
