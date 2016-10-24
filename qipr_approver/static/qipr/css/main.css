@@ -251,9 +251,9 @@ nav .button-collapse {
     border-radius: .3rem;
 }
 
-.dashboard_approved:hover {
+/*.dashboard_approved:hover {
     background-color: #004d9a
-}
+}*/
 
 .dashboard_approved-text  {
     font-weight: 300;
@@ -351,6 +351,10 @@ td, th {
     text-align: center;
     margin-top: 0.5rem;
     margin: 0 auto;
+}
+
+.dashboard_certificate-btn:hover {
+    background-color: #039be5;
 }
 
 .dashboard_stats {
