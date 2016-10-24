@@ -20,9 +20,10 @@
                 </div>
                  <div class="col s6">
                     <div class="input-field dashboard_search">
-                      <input class="dashboard_search-input" id="search" type="search" required>
+                    <form method="get" action="{% url 'approver:dashboard' %}">
+                      <input class="dashboard_search-input" id="search" name="search" type="search" required />
                       <label for="search">Search your projects</label>
-                      <i class="material-icons">close</i>
+                      <input type="submit" value="Search">
                     </div>
                 </div>
             </div>

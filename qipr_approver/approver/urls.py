@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^answer_submit/$', api.answer_submit, name='answer_submit'),
     url(r'^first_login/$', views.first_login, name='firstlogin'),
     url(r'^dashboard/(?P<project_id>[0-9]+)$', views.dashboard, name='project_del'),
+    url(r'^dashboard/(?P<search>\w+)$', views.dashboard, name='dashboard'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),

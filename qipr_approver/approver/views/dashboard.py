@@ -19,11 +19,14 @@ from approver.constants import projects_per_page
 from operator import itemgetter
 
 @login_required
-def dashboard(request,project_id=None):
+def dashboard(request,project_id=None,search=None):
     if request.method == 'GET':
+        search_query = ""
+        if(request.GET.get('search') is not None):
+            search_query = request.GET.get('search')
         project_title = []
         projects = []
-        projects_list = sorted(get_project_context(request),key=itemgetter('last_modified'),reverse=True)
+        projects_list = sorted(get_project_context(request,search_query),key=itemgetter('last_modified'),reverse=True)
         paginator = Paginator(projects_list, projects_per_page)
         page = request.GET.get('page')
         try:
@@ -48,12 +51,12 @@ def dashboard(request,project_id=None):
         else:
             return redirect(reverse("approver:dashboard"))
 
-def get_project_context(request):
+def get_project_context(request,search_query):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
-    projects = [__get_project_details(project,"PI") for project in user.person.projects.all()]
-    collaborator_projects = [__get_project_details(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person)]
-    advisor_projects = [__get_project_details(project,"Advisor") for project in Project.objects.filter(advisor=user.person)]
+    projects = [__get_project_details(project,"PI") for project in user.person.projects.all().filter(title__contains=search_query)]
+    collaborator_projects = [__get_project_details(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person).filter(title__contains=search_query)]
+    advisor_projects = [__get_project_details(project,"Advisor") for project in Project.objects.filter(advisor=user.person).filter(title__contains=search_query)]
     return projects + collaborator_projects + advisor_projects
 
 def __get_project_details(project, role):
