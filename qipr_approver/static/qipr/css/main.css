@@ -39,10 +39,9 @@ h3 {
 }
 
 .bg__ltblue {
-    background-color: #43b1e5;/*
-    height: 100%;*/
+    background-color: #43b1e5;
     margin-top: 1rem;
-    opacity: 0.89;
+    opacity: 0.95;
     padding-top: 3rem !important;
     padding-bottom: 2rem !important;
 }
