@@ -48,7 +48,7 @@ class ProjectForm():
         self.clinical_area = {'name': 'clinical_area',
                               'label': 'Clinical Area/Unit',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
-                              'selected': utils.get_related_property(project,"clinical_area")}
+                              'selected': utils.get_related_property(project,"clinical_area"),
                               'model': 'clinicalarea',
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
