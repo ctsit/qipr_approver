@@ -1,9 +1,4 @@
-</div>
-<div class="headerbg__interiorpg center">
-  <h1 class="question__header font__opensans">QI Program Evaluation Survey</h1>
-  <p class="question__header--sub">Please answer the following questions about your QI project.</p>
-</div>
-<div class="container"> 
+<h1>Approve your project!</h1>
 <form action="{% url 'approver:approve' project_id=project_id %}"
       method="post"
       onkeypress="return event.keyCode != 13">
@@ -15,20 +10,8 @@
         {% question item %}
     {% endfor %}
 
-    <div class="btmnav">
-      <input type="submit"
-           value="Save and Continue"
-           class="btmnav__btn--interior btn"
+    <input type="submit"
+           value="Submit"
+           class="btn"
            />
-      <input type="submit"
-           value="Save and Exit"
-           class="btmnav__btn--interior btn"
-           />
-      <input type="submit"
-           value="Continue"
-           class="btmnav__btn--interior btn"
-           />
-    </div>
 </form>
-
-<a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>

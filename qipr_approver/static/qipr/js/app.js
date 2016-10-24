@@ -40,99 +40,6 @@
 //end toast
 //////////////
 
-    //setup before functions
-    var typingTimer;                //timer identifier
-    var doneTypingInterval = 200;  //time in ms (.5 seconds)
-    var nodeSpinner;
-
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie) {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie =cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    var csrftoken = getCookie('csrftoken');
-
-    function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
-
-    //on keyup, start the countdown
-    startTypingTimer = function(node){
-        clearTimeout(typingTimer);
-        nodeSpinner = $('#spinner_' + getTagboxData(node, 'name'));
-        nodeSpinner.removeClass('hidden');
-        window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
-    };
-
-    //user is "finished typing," do something
-    function doneTyping (node) {
-        //do something
-        $.ajax({
-            url: 'http://localhost:8080/api/tags',
-            type: 'post',
-            data: {"tagString": node.value,
-                   "model_name": getTagboxData(node, 'model'),
-                   "filter_field": getTagboxData(node, 'filter_field'),
-                   "exclude_tags": getSelectedTags(getTagboxData(node, 'name'))},
-            success: function(data) {
-                jnode = $(node);
-                optionList = $('#' + jnode.attr('data-list'));
-                optionList.empty();
-                $.each(data, function( i, l ){
-                    optionList.append($("<li>" + l + "</li>")
-                                      .attr("value", l)
-                                      .mousedown(function() {
-                                          node.value = $(this).text();
-                                          addTag(node);
-                                          $(this).remove();
-                                      }));
-                });
-                optionList.show();
-                nodeSpinner.addClass('hidden');
-            },
-            failure: function(data) {
-                console.log("There was an error with the AJAX request");
-            }
-        });
-    }
-
-    // Close the dropdown menu if the user clicks outside of it
-    $(document).click( function(event) {
-        if (!event.target.matches('dropdown')) {
-            closeDropDowns();
-        }
-    });
-
-    function closeDropDowns() {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = $(dropdowns[i]);
-            if (openDropdown.is(":visible") ) {
-                openDropdown.hide();
-            }
-        }
-    };
-
     $(document).on("keypress", ":input:not(textarea)", function(event) {
         return event.keyCode != 13;
     });
@@ -144,39 +51,34 @@
             event.preventDefault();
             if (event.keyCode == 13) {
                 addTag(this);
-                closeDropDowns();
             }
         });
         node.addEventListener("blur", function(event) {
-            closeDropDowns();
+            event.preventDefault();
+            addTag(this);
         });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.includes(invisibleSpace)){
                 addTag(this);
             }
-            startTypingTimer(node);
             return true;
         });
     });
 
-    /*
-     This function takes a node and a "data-" style attribute
-     and returns the value associated with it.
-     */
-    getTagboxData = function (node, dataNameAttr) {
+    getTagboxName = function (node) {
         if (node.parentElement) {
-            if (node.hasAttribute('data-' + dataNameAttr)) {
-                return node.getAttribute('data-' + dataNameAttr);
+            if (node.hasAttribute('data-name')) {
+                return node.getAttribute('data-name');
             } else {
-                return getTagboxData(node.parentElement, 'name');
+                return getTagboxName(node.parentElement);
             }
         }
     };
 
     addTag = function(inputNode) {
         var text = inputNode.value.trim(),
-            name = getTagboxData(inputNode, 'name'),
+            name = getTagboxName(inputNode),
             tagHolderId = 'tag-holder_' + name,
             key;
 
@@ -194,7 +96,7 @@
     };
 
     removeInvisibleSpace = function(inputString){
-        return inputString.replace(/\u200B/g, '');
+        return inputString.replace('\u200B', '');
     };
 
     createtag = function(text) {
@@ -233,16 +135,11 @@
         return false;
     };
 
-    getSelectedTags = function(nodeName){
-        var hiddenInputNode = document.getElementById('tag-input_' + nodeName);
-        return removeInvisibleSpace(hiddenInputNode.value);
-    };
-
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
             value = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
-        removeValue(getTagboxData(event.target, 'name'), value);
+        removeValue(getTagboxName(event.target), value);
         parent.removeChild(removeMe);
     };
 
