@@ -762,6 +762,9 @@ table#change-history tbody th {
     padding: 20px 40px;
 }
 
+.dashboard #content {
+    width: 600px;
+}
 
 #content-main {
     float: left;

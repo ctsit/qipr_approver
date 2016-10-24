@@ -13,29 +13,17 @@
             </div>
         {% endfor %}
     </ul>
-    <div class="preloader-wrapper active tag__list--loading hidden" id="spinner_{{name}}">
-        <div class="spinner-layer tag__list--loading">
-            <div class="circle-clipper left">
-                <div class="circle"></div>
-            </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-        </div>
-    </div>
 
     <input id="tag-input-entry_{{ name }}"
-           class="tagbox__input form__input--with-border"
+           class="tagbox__input"
            type="text"
-           data-list="datalist_{{ name }}"
-           data-model="{{ model }}"
-           data-filter_field="{{ filter_field }}"
-           {{ disabled }}>
+           list="datalist_{{ name }}" {{ disabled }}>
 
-    <div class="dropdown">
-         <ul class="datalist dropdown-content" id="datalist_{{ name }}"></ul>
-    </div>
+    <datalist id="datalist_{{ name }}">
+        {% for option in options %}
+            <option value="{{ option }}"/>
+        {% endfor %}
+    </datalist>
 
     <input style="display: none"
            id="tag-input_{{ name }}"

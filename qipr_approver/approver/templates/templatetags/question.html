@@ -1,9 +1,8 @@
 <div class="question">
-    <p class="question__text">{{ question_text }} </p>
+    <h5 class="question__text">{{ question_text }}</h5>
 
     <div class="cts-modal">
-      <a class="modal-trigger question__modal" href="#modal--{{ question_id }}"> [ Why are we asking? ]</a>
-        
+        <a class="modal-trigger waves-effect waves-light btn" href="#modal--{{ question_id }}">Why are we asking?</a>
         <div id="modal--{{ question_id }}" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h5 class="question__text">{{ question_text }}</h5>
@@ -17,7 +16,7 @@
 
     <ul>
         {% for choice in answers %}
-            <p class="question__yn">
+            <p>
                 <input name="question_{{ question_id }}"
                        class="with-gap"
                        onchange="window.submit_answer.call(this, {{ question_id }}, {{ project_id }}, {{ choice.id }})"

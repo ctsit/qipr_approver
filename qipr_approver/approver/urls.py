@@ -19,6 +19,5 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),
-    url(r'^api/tags$', api.tags, name='api_tags'),
-    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
+    url(r'^logout/$', logout, {'next_page': '/shib'}, name='logout'),
 ]

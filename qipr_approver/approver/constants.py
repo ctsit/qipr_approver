@@ -47,22 +47,6 @@ answer_submit_names = {
     'project_id': 'project_id',
 }
 
-projects_per_page = 25
-
-description_factor = 25
-
-keyword_factor = 25
-
-title_factor = 10
-
-big_aim_factor = 10
-
-category_factor = 10
-
-clinical_area_factor = 10
-
-clinical_setting_factor = 10
-
 api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'
@@ -73,7 +57,4 @@ registry_endpoints = {
     'add_model': '/'.join([registry_host, 'add_model']),
 }
 
-app_label = 'approver'
-
 VERSION_NUMBER = '0.3.0'
-

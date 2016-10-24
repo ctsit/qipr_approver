@@ -15,27 +15,15 @@ from approver.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.utils import timezone
-from approver.constants import projects_per_page
-from operator import itemgetter
 
 @login_required
 def dashboard(request,project_id=None):
     if request.method == 'GET':
         project_title = []
         projects = []
-        projects_list = sorted(get_project_context(request),key=itemgetter('last_modified'),reverse=True)
-        paginator = Paginator(projects_list, projects_per_page)
-        page = request.GET.get('page')
-        try:
-                projects = paginator.page(page)
-        except PageNotAnInteger:
-                projects = paginator.page(1)
-        except EmptyPage:
-                projects = paginator.page(paginator.num_pages)
-
         context = {
             'content': 'approver/dashboard.html',
-            'projects': projects,
+            'projects': get_project_context(request),
             'toast_text': utils.get_and_reset_toast(request.session)
         }
         return utils.layout_render(request, context)
@@ -58,5 +46,5 @@ def get_project_context(request):
 
 def __get_project_details(project, role):
     '''Returns dictionary of all project details that are displayed on Dashboard''' 
-    return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified}
+    return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved}
     

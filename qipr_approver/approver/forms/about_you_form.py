@@ -22,7 +22,7 @@ class AboutYouForm():
                           'value': user.person.last_name or ''}
 
         self.title = {'name': 'title',
-                      'label': 'Title',
+                      'label': 'Tite',
                       'type': 'text',
                       'value': user.person.title or ''}
 
@@ -33,8 +33,6 @@ class AboutYouForm():
 
         self.clinical_area = {'name': 'clinical_area',
                               'label': 'Clinical Area',
-                              'model': 'clinicalarea',
-                              'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(user.person,"clinical_area")}
 
@@ -65,29 +63,21 @@ class AboutYouForm():
 
         self.speciality_tags = {'name': 'speciality',
                                 'label': 'Speciality',
-                                'model': 'speciality',
-                                'filter_field': 'name',
                                 'options': [item.name for item in Speciality.objects.all()],
                                 'selected': [item.name for item in user.person.speciality.all()]}
 
         self.qi_interest_tags = {'name': 'qi_interest',
                                  'label': 'Quality Improvement Interests',
-                                 'model': 'qi_interest',
-                                 'filter_field': 'name',
                                  'options': [item.name for item in QI_Interest.objects.all()],
                                  'selected': [item.name for item in user.person.qi_interest.all()]}
 
         self.expertise_tags = {'name': 'expertise',
                                'label': 'Expertise',
-                               'model': 'expertise',
-                               'filter_field': 'name',
                                'options': [item.name for item in Expertise.objects.all()],
                                'selected': [item.name for item in user.person.expertise.all()]}
 
         self.suffix_tags = {'name': 'suffix',
                             'label': 'Suffix',
-                            'model': 'suffix',
-                            'filter_field': 'name',
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()]}
 
