@@ -83,6 +83,19 @@ h3 {
     height: 3.5rem;
 }
 
+.learn__btns--create {
+    background-color: #f0b02f;
+}
+
+.learn__btns--create:hover {
+    background-color: #f3aa16
+}
+
+.learn__btns--manage {
+    background-color: #ecc475 !important;
+}      
+
+
 /*Navbar*/
 .nav_li {
     text-transform: uppercase;
