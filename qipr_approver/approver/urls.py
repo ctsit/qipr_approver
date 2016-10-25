@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^shib/$', views.fake_shib, name='shib'),
     url(r'^projects/$', views.project, name='projects'),
     url(r'^projects/similar/(?P<project_id>[0-9]+)/(?P<from_page>\w+)$', views.similar_projects, name='similar_projects'),
+    url(r'^projects/similar/(?P<project_id>[0-9]+)/$', views.similar_projects, name='similar_projects'),
     url(r'^projects/(?P<project_id>[0-9]+)/$', views.project, name='projects'),
     url(r'^approver/$', views.approve, name='approve'),
     url(r'^approver/(?P<project_id>[0-9]+)/$', views.approve, name='approve'),
