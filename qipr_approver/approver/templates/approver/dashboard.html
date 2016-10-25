@@ -20,9 +20,12 @@
                 </div>
                  <div class="col s6">
                     <div class="input-field dashboard_search">
-                      <input class="dashboard_search-input" id="search" type="search" required>
-                      <label for="search">Search your projects</label>
-                      <i class="material-icons">close</i>
+                        <form method="post" action="{% url 'approver:dashboard' %}">
+                            {% csrf_token %}
+                            <input class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                            <label for="search">Search your project title</label>
+                            <input type="submit" value="Search">
+                        </form>
                     </div>
                 </div>
             </div>
