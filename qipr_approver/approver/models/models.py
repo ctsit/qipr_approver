@@ -140,6 +140,7 @@ class Project(Provenance, Registerable):
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
     keyword = models.ManyToManyField(Keyword)
+    need_advisor = models.NullBooleanField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
@@ -165,6 +166,10 @@ class Project(Provenance, Registerable):
 
     def approve(self, user):
         self.approval_date = timezone.now()
+        self.save(user)
+
+    def set_need_advisor(self, user):
+        self.need_advisor = (user.person.qi_required is True) and (len(self.advisor.all()) <= 0)
         self.save(user)
 
 class Address(Provenance, Registerable):
