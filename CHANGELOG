@@ -1,6 +1,36 @@
+## [0.4.0] - 2016-10-25
+## Summary
+
+### Added
+* Add space on certificate for the date (Amber Allen)
+* On QI survey page, add buttons at bottom to save and continue, save and exit, and continue as well as a back to dashboard link (Amber Allen)
+* Adds the required Nursing Units to the Clinical Area dropdown and updates the label to include the word units (Matthew McConnell)
+* Randomize order of project approval questions. Reason : In order to prevent customers from quickly selecting the answers which would get an approval, randomize the questions so that each has to be read and thought about before being answered (ndavuluri)
+
+### Changed
+* Change some help message text (Matthew McConnell)
+* Recreate and style approval certificate
+* Arrange projects chronologically most recent first on dashboard #106 . Sorting based on last_modified (ndavuluri)
+* Created brand new "Similar Projects" page with a collaborate button
+* Created brand new "Needs IRB Approval" page with new styling
+* ISSUE #105 . Logout should return to landing page (ndavuluri)
+* Issue #95 . Updated values for Big Aims (ndavuluri)
+* Recreated and styled brand new dashboard
+* Adding pagination for Dashboard
+* Updating big Aims to UF Health Big Aims. (ndavuluri)
+* Exclude tags which are already selected (Matthew McConnell)
+* Replacing lines with Boxes for input fields (ndavuluri)
+* Data fields now pull from the database while user types and show the top 10 matching results using AJAX on the About You and Projects page
+
+### Fixed
+* All proper suffixes show (Matthew McConnell)
+* Fixes a bug which cased ascii characters to be displayed in the help text on approver questions (Matthew McConnell)
+* Issue 95 : Update project similarity matching values (ndavuluri)
+* Title misspelling on Project Page(#92) (stewhat)
+
 ## [0.3.0] - 2016-10-04
 ## Summary
- 0.3.0 adds a new feature which compares a project to other projects and returns a score to help customers determine if there is one similar already in the system. There was bug fix from 0.2.0 which prevents the same tag from being added via the drop down list. Finally, the Gatorlink field was made uneditable. 
+ 0.3.0 adds a new feature which compares a project to other projects and returns a score to help customers determine if there is one similar already in the system. There was bug fix from 0.2.0 which prevents the same tag from being added via the drop down list. Finally, the Gatorlink field was made uneditable.
 
 ### Added
  * place filler text in the about you page text input fields (Stewart Wehmeyer)
