@@ -153,8 +153,15 @@ nav .button-collapse {
 
 .dashboard_search-input {
     border-bottom: none !important;
-    margin-bottom: .5rem !important;
+    /*margin-bottom: .5rem !important;*/
     height: 2rem !important;
+    /*padding-left: 1rem;*/
+    margin-bottom: 0 !important;
+    padding: .5rem 1rem !important;
+}
+
+.dashboard_search-close { 
+    padding: .5rem;
 }
 
 .dashboard_add-btn {
@@ -241,6 +248,29 @@ nav .button-collapse {
     color: #004d9a;
 }
 
+.dashboard_approved {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align:center;
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
+    border: #004d9a .3rem solid;
+    border-radius: .3rem;
+}
+
+/*.dashboard_approved:hover {
+    background-color: #004d9a
+}*/
+
+.dashboard_approved-text  {
+    font-weight: 300;
+    color: #004d9a;
+}
+
+.dashboard_approved-text:hover  {
+    color:#004d9a;
+}
+
 .dashboard_delete--form input:focus {
     outline: none;
 }
@@ -248,6 +278,13 @@ nav .button-collapse {
 .dashboard_projects-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    padding-top: 1.5rem;
+    vertical-align: top !important;
+}
+
+td, th {
+    vertical-align: top;
+    padding-top: 1.5rem;
 }
 
 .dashboard_title-main {
@@ -270,6 +307,7 @@ nav .button-collapse {
 .dashboard_status {
     padding-left:2rem;
     min-width: 13rem;
+    padding-top: 0;
 }
 
 .dashboard__check {
@@ -314,12 +352,17 @@ nav .button-collapse {
     background-color: #004d9a;
     color: white;
     padding: .2rem;
-    font-size: .9rem;
+    font-size: 1.08rem;
     display: block;
-    width: 7rem;
+    height: 2rem;
+    line-height:1.8rem;
     text-align: center;
-    border-radius: .2rem;
-    margin-top:.5rem;
+    margin-top: 0.5rem;
+    margin: 0 auto;
+}
+
+.dashboard_certificate-btn:hover {
+    background-color: #039be5;
 }
 
 .dashboard_stats {
@@ -328,6 +371,12 @@ nav .button-collapse {
     margin-bottom: 0;
     color:#004d9a;
 }
+
+.dashboard__updated {
+    color: #bdbdbd;
+    font-style: italic;
+    padding-top: .3rem;
+    }    
 
 .dashboard_btns-edit, .dashboard_btns-view {
     display:block;
@@ -508,6 +557,10 @@ iframe {
     padding-right: 2rem;
 }
 
+.project__title--forms {
+    float: right;
+    min-width: 14rem;
+}
 .tag-holder {
     display: inline-block;
     margin: 0;
