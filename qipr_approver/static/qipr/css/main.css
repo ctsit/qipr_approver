@@ -63,6 +63,26 @@ h3 {
     padding-top: 1rem;
 }
 
+.landing__FAQ--font {
+    font-size:1.25rem;
+}
+
+.landing__FAQ--font a:hover {
+    color: #efaf2e;
+}
+
+.landing__FAQ--font li {
+    list-style-type:square;
+}
+
+.landing__FAQ--padding {
+    padding-right: 2rem;
+    } 
+
+.landing_FAQ--bullets {
+    margin-left: 2rem; 
+}  
+
 .video__alignment {
     margin-right:3rem;
     margin-top:1rem;
