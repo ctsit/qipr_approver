@@ -153,8 +153,15 @@ nav .button-collapse {
 
 .dashboard_search-input {
     border-bottom: none !important;
-    margin-bottom: .5rem !important;
+    /*margin-bottom: .5rem !important;*/
     height: 2rem !important;
+    /*padding-left: 1rem;*/
+    margin-bottom: 0 !important;
+    padding: .5rem 1rem !important;
+}
+
+.dashboard_search-close { 
+    padding: .5rem;
 }
 
 .dashboard_add-btn {
@@ -241,6 +248,29 @@ nav .button-collapse {
     color: #004d9a;
 }
 
+.dashboard_approved {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align:center;
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
+    border: #004d9a .3rem solid;
+    border-radius: .3rem;
+}
+
+/*.dashboard_approved:hover {
+    background-color: #004d9a
+}*/
+
+.dashboard_approved-text  {
+    font-weight: 300;
+    color: #004d9a;
+}
+
+.dashboard_approved-text:hover  {
+    color:#004d9a;
+}
+
 .dashboard_delete--form input:focus {
     outline: none;
 }
@@ -248,6 +278,13 @@ nav .button-collapse {
 .dashboard_projects-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    padding-top: 1.5rem;
+    vertical-align: top !important;
+}
+
+td, th {
+    vertical-align: top;
+    padding-top: 1.5rem;
 }
 
 .dashboard_title-main {
@@ -270,6 +307,7 @@ nav .button-collapse {
 .dashboard_status {
     padding-left:2rem;
     min-width: 13rem;
+    padding-top: 0;
 }
 
 .dashboard__check {
@@ -314,12 +352,17 @@ nav .button-collapse {
     background-color: #004d9a;
     color: white;
     padding: .2rem;
-    font-size: .9rem;
+    font-size: 1.08rem;
     display: block;
-    width: 7rem;
+    height: 2rem;
+    line-height:1.8rem;
     text-align: center;
-    border-radius: .2rem;
-    margin-top:.5rem;
+    margin-top: 0.5rem;
+    margin: 0 auto;
+}
+
+.dashboard_certificate-btn:hover {
+    background-color: #039be5;
 }
 
 .dashboard_stats {
@@ -328,6 +371,12 @@ nav .button-collapse {
     margin-bottom: 0;
     color:#004d9a;
 }
+
+.dashboard__updated {
+    color: #bdbdbd;
+    font-style: italic;
+    padding-top: .3rem;
+    }    
 
 .dashboard_btns-edit, .dashboard_btns-view {
     display:block;
@@ -508,6 +557,10 @@ iframe {
     padding-right: 2rem;
 }
 
+.project__title--forms {
+    float: right;
+    min-width: 14rem;
+}
 .tag-holder {
     display: inline-block;
     margin: 0;
@@ -553,6 +606,17 @@ iframe {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+}
+
+.tag__list--loading {
+    width: 20px;
+    height: 20px;
+    float: right;
+    border-color: #004d9a;
+}
+
+.hidden {
+    display: none;
 }
 
 .question__text {
@@ -637,35 +701,51 @@ iframe {
 }
 
 .cert__border {
-    width: 58rem;
+    max-width: 68rem;
     height: auto;
     padding: 1.2rem;
     text-align: center;
-    border: .75rem solid #787878
-    
+    border: 2rem solid #02386f;
+    margin: 0 auto;
+    display: flex;  
 }
 
 .cert__border--inner {
     position: relative;
     width: auto;
     height: auto;
-    border: .5rem solid #787878;
+}
+
+.cert__text, .cert__text--small {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 2.2rem;
+    margin: 0 auto;
 }
 
 .cert__text {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 2rem;
-
-}
-
-.cert__text--header {
-    font-size: 3rem;
-    font-weight:bold;
+    width: 90%;
 }
 
 .cert__text--small {
-    font-size: 1.5rem;
+    max-width: 37rem;
 }
+
+.cert__text--name {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.cert__text--header {
+    padding-top: 1.5rem;
+    font-size: 3rem;
+    font-family: 'Eczar', serif;
+    text-transform: uppercase;
+}
+
+
 
 .cert__text--xsmall {
     font-style: italic;
@@ -673,13 +753,16 @@ iframe {
 }
 
 .cert__image {
-    height: 9rem;
-    width: 9rem;
-    z-index: -1; 
-    background-image: url("/static/qipr/img/UF_Seal.gif");
+    height: 6rem;
+    width: 6rem;
+    z-index: -1;
+    background-image: url(/static/qipr/img/UF_Seal.gif);
     background-size: contain;
-    right: 1rem;
-    position: absolute;
+    margin:0 auto;
+}
+
+.cert__print--btn { 
+    margin-bottom: 2rem;
 }
 
 textarea.form__textarea--with-border {
@@ -735,6 +818,13 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
     }
 }
 
+@media screen and (min-width: 650px) {
+    .cert__border--inner {
+        padding: 1rem;
+        border: #787878 dotted .3rem;
+    }
+}
+
 @media screen and (min-width: 740px) {
     .nonapprove__header {
         font-size: 3.2rem;
@@ -744,6 +834,16 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 @media screen and (min-width: 789px) {
     .nonapprove__header {
         font-size: 3.5rem;
+    }
+}
+
+@media screen and (min-width: 958px) {
+    .cert__text--name {
+        font-size: 3.7rem;
+    }
+
+    .cert__text--header {
+        font-size: 3.9rem;
     }
 }
 
@@ -774,4 +874,27 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
     .bg__ltblue {
         padding-bottom: 5rem !important;
     }
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    opacity: 100;
+}
+
+/* List items inside the dropdown */
+.dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
