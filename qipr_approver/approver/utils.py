@@ -222,3 +222,8 @@ def get_model_from_string(model_name):
             return model
 
     return None
+
+def get_user_from_http_request(request):
+    username = request.session.get(constants.SESSION_VARS['gatorlink'])
+    user = User.objects.get(username=username)
+    return user
