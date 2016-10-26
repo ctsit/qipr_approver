@@ -265,9 +265,7 @@ iframe {
 
 .cert__image {
     height: 6rem;
-    width: 6rem;
     z-index: -1;
-    background-image: url(/static/qipr/img/UF_Seal.gif);
     background-size: contain;
     margin:0 auto;
 }
