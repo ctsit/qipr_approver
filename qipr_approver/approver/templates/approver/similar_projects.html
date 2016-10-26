@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
-                <th class="dashboard_row-title" data-field="role"><h5>Expected Start Date</h5></th>
+                <th class="dashboard_row-title" data-field="start_date"><h5>Expected Start Date</h5></th>
                 <th class="dashboard_row-title" data-field="relevance"><h5>Relevance</h5></th>
                 <th class="dashboard_row-title" data-field="role"><h5>Contact</h5></th>
             </tr>
@@ -24,7 +24,7 @@
                         <a class="dashboard_btns-view" href="{% url 'approver:projects' project_id=project.pk %}">View Project</a>
                     </td>
                    
-                    <td class="project__title">{{ project.role }}</td>
+                    <td class="project__title">{{ project.proposed_start_date|date:"M d Y" }}</td>
                     <td class="project__similarity"><p> {{ similarity | floatformat:2 }} % </p></td>
                     {% if project.role == "PI" %}
                         {% if project.is_approved %}
