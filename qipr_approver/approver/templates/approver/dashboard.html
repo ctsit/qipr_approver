@@ -20,20 +20,24 @@
                 </div>
                  <div class="col s6">
                     <div class="input-field dashboard_search">
-                      <input placeholder="Search your projects" class="dashboard_search-input" id="search" type="search" required>
-                      <i class="material-icons dashboard_search-close">close</i>
+                        <form method="post" action="{% url 'approver:dashboard' %}">
+                            {% csrf_token %}
+                            <input class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                            <label for="search">Search your project title</label>
+                            <input type="submit" value="Search">
+                        </form>
                     </div>
                 </div>
             </div>
 
-            
+
             <table class="striped">
                 <thead>
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
                         <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
-                            
+                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5>
+
                         <!-- Modal Structure -->
                                 <div id="modal1" class="modal">
                                     <div class="modal-content">
@@ -63,10 +67,10 @@
                                 </div>
                             </td>
                             <td class="project__title">{{ project.role }}</td>
-                            
-                            
+
+
                             {% if project.role == "PI" %}
-                            
+
                                     <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
                                             {% if project.is_approved %}
@@ -75,9 +79,11 @@
 
                                             <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
                                             <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">Self Certification</a></li>
-                                            <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="#">Similar Projects</a></li>
+                                            {% if project.has_similar_projects != 0 %}
+                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
+                                            {% endif %}
                                         </ul></a></td>
-                                
+                      
                             {% endif %}
                         </tr>
                     {% endfor %}
@@ -91,11 +97,11 @@
                     {% if projects.has_previous %}
                         <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
                     {% endif %}
-             
+
                     <span class="current">
                         Page {{ projects.number }} of {{ projects.paginator.num_pages }}
                     </span>
-             
+
                     {% if projects.has_next %}
                         <a href="?page={{ projects.next_page_number }}"> &gt; </a>
                     {% endif %}
@@ -106,5 +112,3 @@
 
         </div> <!-- end right side of dashboard -->
     </div> <!-- end dashboard -->
-
-
