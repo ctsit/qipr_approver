@@ -33,7 +33,7 @@
                             <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
                         {% endif %}
                     {% endif %}
-                    <td><div class="project__collaborate"><p><a href="mailto:someemail@ufl.edu?subject=QI Project Collaboration Request&body=Hi <collaborator name>, the QI Registry shows that a project I'm about to begin is a <xx> match with your <some name> project. I'm interested in collaborating with you on your <some name> project. Can we set up a time for us to meet to discuss in greater detail how we can work together? Please reply back to this email at your earliest convenience. Thanks!">Collaborate</a></p></div></td>
+                    <td><div class="project__collaborate"><p><a href="mailto:{{ project.owner.email_address }}?subject=QI Project Collaboration Request&body=Hi {{ project.owner.first_name }} {{ project.owner.last_name }}. The QI Registry shows that a project I am about to begin is a {{ similarity | floatformat:2 }}%25 match with your &quot;{{ project.title }}&quot; project. I am interested in collaborating with you on it. Can we set up a time for us to meet to discuss in greater detail how we can work together? Please reply back to this email at your earliest convenience. Thanks!">Collaborate</a></p></div></td>
                 </tr>
             {% endfor %}
         </tbody>
