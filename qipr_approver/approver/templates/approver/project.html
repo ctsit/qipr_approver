@@ -1,8 +1,8 @@
 {% if project_id %}
-<form action="{% url 'approver:projects' project_id=project_id %}" method="post"> 
+<form action="{% url 'approver:projects' project_id=project_id %}" autocomplete="off" method="post"> 
 {% endif %}
 {% if not project_id %}
-<form action="{% url 'approver:projects' %}" method="post"> 
+    <form action="{% url 'approver:projects' %}" autocomplete="off" method="post"> 
 {% endif %}
     {% csrf_token %}
     <h1>Projects</h1>
