@@ -13,7 +13,9 @@ class AboutYouForm():
                            'placeholder': 'Jane',
                            'label': 'First Name',
                            'type': 'text',
-                           'value': user.person.first_name or ''}
+                           'value': user.person.first_name or '',
+                           'input_classes': 'class1',
+                           'div_classes': 'class1 class2'}
 
         self.last_name = {'name': 'last_name',
                           'placeholder': 'Doe',
@@ -107,3 +109,8 @@ class AboutYouForm():
                            'label': 'Account Created',
                            'type': 'text',
                            'value': user.date_joined or ''}
+
+        self.training_program = {'name': 'training_program',
+                           'label': 'Training Program',
+                           'type': 'text',
+                           'value': user.person.training or ''}
