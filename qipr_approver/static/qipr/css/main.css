@@ -464,12 +464,6 @@ td, th {
 
 
 /*About Me Page*/
-.about__txtfield {
-    width: 250px;
-    float: left;
-    margin-right: 1rem;
-}
-
 .about__question {
     font-weight: 600;
     font-size: 1.3rem;
@@ -841,8 +835,6 @@ iframe {
     text-transform: uppercase;
 }
 
-
-
 .cert__text--xsmall {
     font-style: italic;
     font-size: 1rem;
@@ -930,6 +922,22 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 @media screen and (min-width: 740px) {
     .nonapprove__header {
         font-size: 3.2rem;
+    }
+
+    .about__txtfield--sm, .about__txtfield--md, .about__txtfield--lg {
+    float: left;
+    margin-right: 1rem;
+    }
+
+    .about__txtfield--sm {
+        width: 10rem;
+    }
+    .about__txtfield--md {
+        width: 22rem;
+    }
+
+    .about__txtfield--lg {
+        width: 30rem;
     }
 }
 
