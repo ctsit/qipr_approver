@@ -258,10 +258,6 @@ nav .button-collapse {
     border-radius: .3rem;
 }
 
-/*.dashboard_approved:hover {
-    background-color: #004d9a
-}*/
-
 .dashboard_approved-text  {
     font-weight: 300;
     color: #004d9a;
@@ -385,6 +381,14 @@ td, th {
 
 .pagination {
     margin-top:2rem;
+}
+
+
+/*About Me Page*/
+.about__txtfield {
+    width: 250px;
+    float: left;
+    margin-right: 1rem;
 }
 
 /*Similar Projects*/
@@ -655,7 +659,8 @@ iframe {
 
 .question__header--sub {
     padding-bottom: 3rem;
-    font-size: 1.7rem;    
+    font-size: 1.7rem; 
+    font-weight: 300;   
 }    
 
 .back__dashboard {
