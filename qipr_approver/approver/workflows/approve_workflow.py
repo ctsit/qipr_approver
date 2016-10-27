@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from approver.models import Response, Question, Project, Choice
 from approver.constants import answer_submit_names, answer_response_names
-from approver.utils import get_current_user_gatorlink, after_approval, advisor_needed
+from approver.utils import get_current_user_gatorlink, after_approval
 
 def add_update_response(post_data, session):
     """
