@@ -7,21 +7,35 @@
         {% for option in selected %}
             <div class="tag__container">
                 <li class="tag" >{{ option }}</li>
-                <i class="tiny tag__delete">cancel</i>
+                {% if disabled != "disabled" %}
+                  <i class="tiny tag__delete">cancel</i>
+                {% endif %}
             </div>
         {% endfor %}
     </ul>
+    <div class="preloader-wrapper active tag__list--loading hidden" id="spinner_{{name}}">
+        <div class="spinner-layer tag__list--loading">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
 
     <input id="tag-input-entry_{{ name }}"
-           class="tagbox__input"
+           class="tagbox__input form__input--with-border"
            type="text"
-           list="datalist_{{ name }}" {{ disabled }}>
+           data-list="datalist_{{ name }}"
+           data-model="{{ model }}"
+           data-filter_field="{{ filter_field }}"
+           {{ disabled }}>
 
-    <datalist id="datalist_{{ name }}">
-        {% for option in options %}
-            <option value="{{ option }}"/>
-        {% endfor %}
-    </datalist>
+    <div class="dropdown">
+         <ul class="datalist dropdown-content" id="datalist_{{ name }}"></ul>
+    </div>
 
     <input style="display: none"
            id="tag-input_{{ name }}"

@@ -19,6 +19,7 @@ def approve(request, project_id=None):
     context = {
         'content': 'approver/approve.html',
         'project_id': project_id,
+        'toast_text': utils.get_and_reset_toast(request.session)
     }
     current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
     if request.method == 'POST':
@@ -38,10 +39,9 @@ def approve(request, project_id=None):
                    or project.get_is_editable() is not True):
                     return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
                 else:
-                    # need to be able to prefill this in case people have already
-                    # started approving their project but left
                     question_form = QuestionForm(project_id=project_id)
-                    context['sorted_questions'] = question_form.get_sorted_questions()
+                    context['sorted_questions'] = question_form.get_random_questions()
+
                     return utils.layout_render(request, context)
         else:
             return utils.dashboard_redirect_and_toast(request, 'You need to have a project.')

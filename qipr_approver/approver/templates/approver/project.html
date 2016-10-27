@@ -1,18 +1,17 @@
 {% if project_id %}
-<form action="{% url 'approver:projects' project_id=project_id %}" method="post" onkeypress="return event.keyCode != 13;">
+<form action="{% url 'approver:projects' project_id=project_id %}" autocomplete="off" method="post"> 
 {% endif %}
 {% if not project_id %}
-<form action="{% url 'approver:projects' %}" method="post" onkeypress="return event.keyCode != 13;">
+    <form action="{% url 'approver:projects' %}" autocomplete="off" method="post"> 
 {% endif %}
     {% csrf_token %}
     <h1>Projects</h1>
- 	<p>
-		Enter information about your project
-	</p>
+  	<p>Enter information about your project</p>
     {% load form_input %}
+    {% load form_input_textarea %}
     {% load tagbox %}
-    {% form_input form.title form.is_disabled %}
-    {% form_input form.description form.is_disabled %}
+    {% form_input_textarea form.title form.is_disabled %}
+    {% form_input_textarea form.description form.is_disabled %}
     {% tagbox form.collaborator form.is_disabled %}
     {% tagbox form.advisor form.is_disabled %}
     {% tagbox form.keyword form.is_disabled %}

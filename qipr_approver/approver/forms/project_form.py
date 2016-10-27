@@ -14,46 +14,64 @@ class ProjectForm():
         self.title = {'name': 'title',
                       'label': 'Title',
                       'type': 'text',
+                      'rows': 2,
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
                              'label': 'Collaborators',
-                             'options': [item.email_address for item in Person.objects.all()],
+                             'model': 'person',
+                             'filter_field': 'email_address',
+                             'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
         self.advisor = {'name': 'advisor',
                         'label': 'Advisors',
-                        'options': [item.email_address for item in Person.objects.all()],
+                        'model': 'person',
+                        'filter_field': 'email_address',
+                        'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',
-                        'options': [item.name for item in Keyword.objects.all()],
+                        'model': 'keyword',
+                        'filter_field': 'name',
+                        'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
                         'selected': utils.get_related_property(project, "keyword")}
 
         self.big_aim = {'name': 'big_aim',
-                        'label': 'Big Aims',
-                        'options': [item.name for item in BigAim.objects.all()],
+                        'label': 'UF Health Big Aims',
+                        'model': 'bigaim',
+                        'filter_field': 'name',
+                        'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim")}
 
         self.clinical_area = {'name': 'clinical_area',
-                               'label': 'Clinical Area',
-                               'options': [item.name for item in ClinicalArea.objects.all()],
-                               'selected': utils.get_related_property(project,"clinical_area")}
+                              'label': 'Clinical Area/Unit',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(project,"clinical_area"),
+                              'model': 'clinicalarea',
+                              'filter_field': 'name',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(project,"clinical_area")}
 
         self.safety_target = {'name': 'safety_target',
-                               'label': 'Safety Targets',
-                               'options': [item.name for item in SafetyTarget.objects.all()],
-                               'selected': utils.get_related_property(project,"safety_target")}
+                              'label': 'Safety Targets',
+                              'model': 'safetytarget',
+                              'filter_field': 'name',
+                              'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
+                              'selected': utils.get_related_property(project,"safety_target")}
 
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',
-                                 'options': [item.name for item in ClinicalSetting.objects.all()],
+                                 'model': 'clinicalsetting',
+                                 'filter_field': 'name',
+                                 'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
                                  'selected': utils.get_related_property(project,"clinical_setting")}
 
         self.description = {'name': 'description',
                             'label': 'Description',
                             'type': 'text',
+                            'rows': 3,
                             'value': project.description or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',

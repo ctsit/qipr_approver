@@ -18,3 +18,17 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                     return True
             else:
                 return False
+    return False
+
+def is_foreign_key_to(model_name, field_name, related_model_name):
+    """
+    Given a Model, check if the field_name is related to the
+    related Model given and return true or false. If the field_name
+    is not a foriegn key,it will error with AttributeError
+    """
+    try:
+        return model_name._meta.get_field(field_name).rel.to is related_model_name
+    except AttributeError:
+        return False
+
+    return False

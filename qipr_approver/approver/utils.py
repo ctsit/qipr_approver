@@ -2,12 +2,14 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
-import datetime
+from datetime import timedelta
 
 import approver.constants as constants
 import django
 from django.db.models import fields
+from django.apps import apps
 
 def user_exists(about_you_form):
     """
@@ -36,6 +38,9 @@ def get_and_reset_toast(session):
     toast = session.get("toast_text")
     session['toast_text'] = ''
     return toast
+
+def set_toast(session, toast_text):
+    session['toast_text'] = toast_text
 
 def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
@@ -165,7 +170,8 @@ def get_related_property(model, related_model_name, related_model_property='name
     Example: get_related_property(Person, 'project', 'title')  will return all project titles related to a person
     """
     relateds = get_related(model, related_model_name)
-    return [getattr(item, related_model_property) for item in relateds]
+    list_of_related_properties = [getattr(item, related_model_property) for item in relateds]
+    return [prop for prop in list_of_related_properties if prop != None]
 
 def check_fields(ModelName,fieldname,type,max_length=None):
     """
@@ -184,3 +190,35 @@ def check_fields(ModelName,fieldname,type,max_length=None):
                     return True
             else:
                 return False
+
+def check_is_date_past_year(date):
+    return date + timedelta(days=365) < timezone.now()
+
+def is_not_none(item):
+    return item != None
+
+def true_false_to_bool(true_false_string):
+    """
+    This function will take a string with a value of
+    true or false and return a boolean object representation
+    of it
+    """
+    if true_false_string is not None:
+        if (true_false_string.lower() == 'true'):
+            return True
+        elif (true_false_string.lower() == 'false'):
+            return False
+
+    return None
+
+def get_model_from_string(model_name):
+    """
+    This function will take a string name and try to find
+    a model match of it.
+    """
+    app_models = apps.get_app_config(constants.app_label).get_models()
+    for model in app_models:
+        if(model.__name__.lower() == model_name.lower()):
+            return model
+
+    return None
