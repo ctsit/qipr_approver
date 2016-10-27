@@ -24,7 +24,7 @@ def dashboard(request,project_id=None):
         search_query = ""
         if(request.POST.get('search') is not None):
             search_query = request.POST.get('search')
-        project_title = []
+
         projects = []
         projects_list = sorted(get_project_context(request,search_query),key=itemgetter('last_modified'),reverse=True)
         paginator = Paginator(projects_list, projects_per_page)
@@ -36,11 +36,14 @@ def dashboard(request,project_id=None):
         except EmptyPage:
                 projects = paginator.page(paginator.num_pages)
 
+        user = utils.get_user_from_http_request(request)
+        person = user.person
         context = {
             'content': 'approver/dashboard.html',
             'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session),
-            'search_query': search_query
+            'search_query': search_query,
+            'person': person
         }
         return utils.layout_render(request, context)
     elif request.method == 'POST':
