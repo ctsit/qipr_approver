@@ -109,3 +109,8 @@ class AboutYouForm():
                            'label': 'Account Created',
                            'type': 'text',
                            'value': user.date_joined or ''}
+
+        self.training_program = {'name': 'training_program',
+                           'label': 'Training Program',
+                           'type': 'text',
+                           'value': user.person.training or ''}
