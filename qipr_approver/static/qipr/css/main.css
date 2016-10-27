@@ -491,7 +491,7 @@ form .about__acctinfo .about__acctinfo--border  {
 
 .about__submit {
     display: block;
-    margin-bottom: 6rem;
+    margin: 1rem 0 6rem 0;
 }
 
 form .about__field--box {
