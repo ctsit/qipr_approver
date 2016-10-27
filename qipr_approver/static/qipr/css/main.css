@@ -149,19 +149,38 @@ nav .button-collapse {
 .dashboard_search {
     margin-top: 0;
     border: 1pt #ddd solid;
+    height: 3rem;
 }
 
 .dashboard_search-input {
     border-bottom: none !important;
-    /*margin-bottom: .5rem !important;*/
     height: 2rem !important;
-    /*padding-left: 1rem;*/
     margin-bottom: 0 !important;
     padding: .5rem 1rem !important;
+    float: left;
+    width: 3.1rem !important;
 }
 
 .dashboard_search-close { 
     padding: .5rem;
+}
+
+.input-field input[type=search]:focus {
+    background-color: inherit;
+}
+
+.dashboard__search--projects {
+    height:2.9rem;
+    float:right;
+    border-width: 0;
+    background-color: #f2f2f2;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+}
+
+.dashboard__search--projects:focus {
+    background-color: #d0d0d0;
+    outline-width: 0;
 }
 
 .dashboard_add-btn {
@@ -257,10 +276,6 @@ nav .button-collapse {
     border: #004d9a .3rem solid;
     border-radius: .3rem;
 }
-
-/*.dashboard_approved:hover {
-    background-color: #004d9a
-}*/
 
 .dashboard_approved-text  {
     font-weight: 300;
@@ -784,6 +799,12 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 @media screen and (min-width: 500px) {
     .nonapprove__irb {
     max-width:30rem;
+    }
+}
+
+@media screen and (min-width: 544px) {
+    .dashboard_search-input {
+        width: 11rem!important;
     }
 }
 
