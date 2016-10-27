@@ -169,6 +169,11 @@ class Project(Provenance, Registerable):
         self.save(user)
 
     def set_need_advisor(self, user):
+        """
+        Checks the need for an advisor. Based on whether Person has need for qi
+        (qi_required) and, if so, if the Project has an associated "advisor".
+        Returns True if there is no advisor and there is "qi" required.
+        """
         self.need_advisor = (user.person.qi_required is True) and (len(self.advisor.all()) <= 0)
         self.save(user)
 
