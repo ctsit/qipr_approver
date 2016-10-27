@@ -391,6 +391,18 @@ td, th {
     margin-right: 1rem;
 }
 
+.about__question {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.about__question--sub {
+    font-size: 1.2rem;
+    color: grey;
+    font-weight: 300;
+    margin-top: 0;
+}
+
 /*Similar Projects*/
 .btn__similar {
     font-family: 'Open Sans', sans-serif;

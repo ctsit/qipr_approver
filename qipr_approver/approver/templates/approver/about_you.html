@@ -37,7 +37,8 @@
     {% form_input form.last_login True %}
     {% form_input form.account_expiration True %}
     {% form_input form.account_created True %}
-    Is quality improvement a requirement of your training program?
+    <p class="about__question">Is quality improvement a requirement of your training program?</p>
+    <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
     <p>
         <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
         <label for="qi_required_yes">Yes</label>
