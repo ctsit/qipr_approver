@@ -846,7 +846,7 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 
 @media screen and (min-width: 700px) {
     .dashboard_search-input {
-        width: 11rem!important;
+        width: 11.8rem!important;
     }
 
     .dashboard_search {
