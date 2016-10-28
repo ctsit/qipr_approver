@@ -8,8 +8,7 @@ class AboutYouForm():
                           'label': 'Gatorlink',
                           'type': 'text',
                           'value': user.username or '',
-                          'input_classes': 'about__field--box',
-                          'div_classes': 'about__txtfield--md'}
+                          'input_classes': 'about__field--box'}
 
         self.first_name = {'name': 'first_name',
                            'placeholder': 'Jane',
@@ -37,8 +36,7 @@ class AboutYouForm():
                            'label': 'Department',
                            'type': 'text',
                            'value': user.person.department or '',
-                           'input_classes': 'about__field--box',
-                           'div_classes': 'about__txtfield--md'}
+                           'input_classes': 'about__field--box'}
 
         self.clinical_area = {'name': 'clinical_area',
                               'label': 'Clinical Area',
@@ -46,8 +44,7 @@ class AboutYouForm():
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(user.person,"clinical_area"),
-                              'input_classes': 'about__field--box',
-                              'div_classes': 'about__txtfield--md'}
+                              'input_classes': 'about__field--box'}
 
         self.business_address = user.person.business_address
 
@@ -55,32 +52,28 @@ class AboutYouForm():
                             'label': 'Webpage URL',
                             'type': 'text',
                             'value': user.person.webpage_url or '',
-                            'input_classes': 'about__field--box',
-                            'div_classes': 'about__txtfield--md'}
+                            'input_classes': 'about__field--box'}
 
         self.email = {'name': 'email',
                       'placeholder': 'janedoe@ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
                       'value': user.email or '',
-                      'input_classes': 'about__field--box',
-                      'div_classes': 'about__txtfield--md'}
+                      'input_classes': 'about__field--box'}
 
         self.business_phone = {'name': 'business_phone',
                                'placeholder': '(555) 555-5555',
                                'label': 'Business Phone Number',
                                'type': 'text',
                                'value': user.person.business_phone or '',
-                               'input_classes': 'about__field--box',
-                               'div_classes': 'about__txtfield--md'}
+                               'input_classes': 'about__field--box'}
 
         self.contact_phone = {'name': 'contact_phone',
                               'placeholder': '(555) 555-5555',
                               'label': 'Contact Phone Number',
                               'type': 'text',
                               'value': user.person.contact_phone or '',
-                              'input_classes': 'about__field--box',
-                              'div_classes': 'about__txtfield--md'}
+                              'input_classes': 'about__field--box'}
 
         self.speciality_tags = {'name': 'speciality',
                                 'label': 'Speciality',
@@ -88,8 +81,7 @@ class AboutYouForm():
                                 'filter_field': 'name',
                                 'options': [item.name for item in Speciality.objects.all()],
                                 'selected': [item.name for item in user.person.speciality.all()],
-                                'input_classes': 'about__field--box',
-                                'div_classes': 'about__txtfield--md'}
+                                'input_classes': 'about__field--box'}
 
         self.qi_interest_tags = {'name': 'qi_interest',
                                  'label': 'Quality Improvement Interests',
@@ -97,8 +89,7 @@ class AboutYouForm():
                                  'filter_field': 'name',
                                  'options': [item.name for item in QI_Interest.objects.all()],
                                  'selected': [item.name for item in user.person.qi_interest.all()],
-                                 'input_classes': 'about__field--box',
-                                 'div_classes': 'about__txtfield--md'}
+                                 'input_classes': 'about__field--box'}
 
         self.expertise_tags = {'name': 'expertise',
                                'label': 'Expertise',
@@ -106,8 +97,7 @@ class AboutYouForm():
                                'filter_field': 'name',
                                'options': [item.name for item in Expertise.objects.all()],
                                'selected': [item.name for item in user.person.expertise.all()],
-                               'input_classes': 'about__field--box',
-                               'div_classes': 'about__txtfield--md'}
+                               'input_classes': 'about__field--box'}
 
         self.suffix_tags = {'name': 'suffix',
                             'label': 'Suffix',

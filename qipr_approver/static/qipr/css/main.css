@@ -1002,13 +1002,9 @@ form .form__input--with-border {
 }
 
 @media screen and (min-width: 784px) {
-    .about__txtfield--md, .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+    .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
     float: left;
     margin-right: 2rem;
-    }
-
-    .about__txtfield--md {
-        width: 20rem;
     }
 
     .about__txtfield--name {
@@ -1026,11 +1022,6 @@ form .form__input--with-border {
     }
 }
 
-@media screen and (min-width: 791px) {
-    .about__txtfield--md {
-        width: 22rem;
-    }
-}
 
 @media screen and (min-width: 958px) {
     .cert__text--name {
@@ -1062,10 +1053,6 @@ form .form__input--with-border {
         padding-top: 1.5rem !important;
         padding-bottom: 3.5rem !important;
     }
-
-    .about__txtfield--md {
-        width: 21rem;
-    }
 }
 
 @media screen and (min-width: 1161px) {
@@ -1088,20 +1075,12 @@ form .form__input--with-border {
         height:50rem;
     }
 
-    .about__txtfield--md {
-        width: 25rem;
-    }
-
     .about__txtfield--name {
             width: 23rem;
         }
 }
 
 @media screen and (min-width: 1800px) {
-    .about__txtfield--md {
-        width: 40rem;
-    }
-
     .about__txtfield--name {
             width: 32rem;
         }
