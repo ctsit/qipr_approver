@@ -2,17 +2,6 @@
      class="form-tagbox-wrapper input_{{ name }} {{div_classes}}"
      data-name="{{ name }}">
 
-    <ul id="tag-holder_{{ name }}" class="tag-holder">
-    <label class="tag_label" for="{{ name }}">{{ label }}</label>
-        {% for option in selected %}
-            <div class="tag__container">
-                <li class="tag" >{{ option }}</li>
-                {% if disabled != "disabled" %}
-                  <i class="tiny tag__delete">cancel</i>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </ul>
     <div class="preloader-wrapper active tag__list--loading hidden" id="spinner_{{name}}">
         <div class="spinner-layer tag__list--loading">
             <div class="circle-clipper left">
@@ -25,6 +14,7 @@
         </div>
     </div>
 
+    <label class="tag_label" for="{{ name }}">{{ label }}</label>
     <input id="tag-input-entry_{{ name }}"
            class="tagbox__input form__input--with-border"
            type="text"
@@ -42,4 +32,16 @@
            name="{{ name }}"
            type="text"
            value="{{ selected_values_string }}"/>
+
+    <ul id="tag-holder_{{ name }}" class="tag-holder">
+        {% for option in selected %}
+        <div class="tag__container">
+            <li class="tag" >{{ option }}</li>
+            {% if disabled != "disabled" %}
+            <i class="tiny tag__delete">cancel</i>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+
 </div>
