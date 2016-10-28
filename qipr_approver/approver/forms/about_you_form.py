@@ -15,16 +15,14 @@ class AboutYouForm():
                            'label': 'First Name',
                            'type': 'text',
                            'value': user.person.first_name or '',
-                           'input_classes': 'about__field--box',
-                           'div_classes': 'about__txtfield--name'}
+                           'input_classes': 'about__field--box'}
 
         self.last_name = {'name': 'last_name',
                           'placeholder': 'Doe',
                           'label': 'Last Name',
                           'type': 'text',
                           'value': user.person.last_name or '',
-                          'input_classes': 'about__field--box',
-                          'div_classes': 'about__txtfield--name'}
+                          'input_classes': 'about__field--box'}
 
         self.title = {'name': 'title',
                       'label': 'Title',
