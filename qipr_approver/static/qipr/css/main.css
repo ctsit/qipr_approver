@@ -806,12 +806,6 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
     }
 }
 
-@media screen and (min-width: 544px) {
-    .dashboard_search-input {
-        width: 11rem!important;
-    }
-}
-
 @media screen and (min-width: 601px) {
     .dashboard_menu {
         border-bottom: none;
@@ -847,6 +841,17 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
     .cert__border--inner {
         padding: 1rem;
         border: #787878 dotted .3rem;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .dashboard_search-input {
+        width: 11rem!important;
+    }
+
+    .dashboard_search {
+        width: 17.5rem;
+        float: right;
     }
 }
 
