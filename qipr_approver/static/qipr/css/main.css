@@ -298,8 +298,8 @@ nav .button-collapse {
 }
 
 .dashboard_menu {
-        border-bottom: #d0d0d0 solid 1pt;
-    }
+    border-bottom: #d0d0d0 solid 1pt;
+}
 
 .dashboard_menu-item, .dashboard_menu-item-active {
     padding-left: .7rem;
@@ -313,6 +313,11 @@ nav .button-collapse {
 .dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited, .dashboard_menu-item:hover {
     border-left: 3pt #004d9a solid;
     font-weight: 500;
+}
+
+.dashboard_menu-item-active a {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .dashboard_title-bg {
