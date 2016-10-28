@@ -525,6 +525,11 @@ form .about__field--box {
     font-size: 1.3rem;
     color: #5d5d5d;
 }
+
+.form-input-wrapper textarea.form__textarea--with-border:focus:not([readonly]) {
+    border: 1px solid #e28f41;
+    box-shadow: 1px 1px 2px 1px #e28f41;
+}
         
 /*Similar Projects*/
 .btn__similar {
