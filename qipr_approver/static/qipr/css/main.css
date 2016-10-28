@@ -531,6 +531,10 @@ form .about__field--box {
     border: 1px solid #9e9e9e;
 }
 
+.about__field--width100 {
+    width: 100%;
+}
+
 /*Project Page*/
 .about__txtfield--date {
     width: 12.5rem;

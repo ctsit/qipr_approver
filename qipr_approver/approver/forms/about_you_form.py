@@ -42,7 +42,8 @@ class AboutYouForm():
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(user.person,"clinical_area"),
-                              'input_classes': 'about__field--box'}
+                              'input_classes': 'about__field--box',
+                              'div_classes': 'about__field--width100'}
 
         self.business_address = user.person.business_address
 
@@ -79,7 +80,8 @@ class AboutYouForm():
                                 'filter_field': 'name',
                                 'options': [item.name for item in Speciality.objects.all()],
                                 'selected': [item.name for item in user.person.speciality.all()],
-                                'input_classes': 'about__field--box'}
+                                'input_classes': 'about__field--box',
+                                'div_classes': 'about__field--width100'}
 
         self.qi_interest_tags = {'name': 'qi_interest',
                                  'label': 'Quality Improvement Interests',
@@ -87,7 +89,8 @@ class AboutYouForm():
                                  'filter_field': 'name',
                                  'options': [item.name for item in QI_Interest.objects.all()],
                                  'selected': [item.name for item in user.person.qi_interest.all()],
-                                 'input_classes': 'about__field--box'}
+                                 'input_classes': 'about__field--box',
+                                 'div_classes': 'about__field--width100'}
 
         self.expertise_tags = {'name': 'expertise',
                                'label': 'Expertise',
@@ -95,7 +98,8 @@ class AboutYouForm():
                                'filter_field': 'name',
                                'options': [item.name for item in Expertise.objects.all()],
                                'selected': [item.name for item in user.person.expertise.all()],
-                               'input_classes': 'about__field--box'}
+                               'input_classes': 'about__field--box',
+                               'div_classes': 'about__field--width100'}
 
         self.suffix_tags = {'name': 'suffix',
                             'label': 'Suffix',
@@ -103,7 +107,8 @@ class AboutYouForm():
                             'filter_field': 'name',
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()],
-                            'input_classes': 'about__field--box'}
+                            'input_classes': 'about__field--box',
+                            'div_classes': 'about__field--width100'}
 
         self.qi_required = user.person.qi_required 
 
