@@ -525,6 +525,16 @@ form .about__field--box {
 .about__txtfield--100 {
     width: 100%;
 }
+
+.input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
+    font-size: 1.4rem;
+    color: #444;
+}
+
+.input_proposed_start_date label, .input_proposed_end_date label {
+    font-size: 1.3rem;
+    color: #444;
+}
         
 /*Similar Projects*/
 .btn__similar {
