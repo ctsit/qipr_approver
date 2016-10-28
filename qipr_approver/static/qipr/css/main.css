@@ -512,6 +512,7 @@ td, th {
 
 form .about__acctinfo .about__acctinfo--border  {
     border: none;
+    padding-left: 0;
 }
 
 .about__submit {
