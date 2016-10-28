@@ -17,7 +17,7 @@ class AboutYouForm():
                            'type': 'text',
                            'value': user.person.first_name or '',
                            'input_classes': 'about__field--box',
-                           'div_classes': 'about__txtfield--md'}
+                           'div_classes': 'about__txtfield--name'}
 
         self.last_name = {'name': 'last_name',
                           'placeholder': 'Doe',
@@ -25,7 +25,7 @@ class AboutYouForm():
                           'type': 'text',
                           'value': user.person.last_name or '',
                           'input_classes': 'about__field--box',
-                          'div_classes': 'about__txtfield--md'}
+                          'div_classes': 'about__txtfield--name'}
 
         self.title = {'name': 'title',
                       'label': 'Title',

@@ -475,6 +475,7 @@ td, th {
     color: grey;
     font-weight: 300;
     margin-top: 0;
+    max-width: 70rem;
 }
 
 .about__question--train {
@@ -948,20 +949,21 @@ form .form__input--with-border {
         font-size: 3.2rem;
     }
 
-    .about__txtfield--sm, .about__txtfield--md, .about__txtfield--lg, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+    .about__txtfield--sm, .about__txtfield--md, .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
     float: left;
     margin-right: 2rem;
     }
 
     .about__txtfield--sm {
-        width: 10rem;
-    }
-    .about__txtfield--md {
-        width: 22rem;
+        width: 6rem;
     }
 
-    .about__txtfield--lg {
-        width: 45%;
+    .about__txtfield--md {
+        width: 20rem;
+    }
+
+    .about__txtfield--name {
+        width: 35rem;
     }
 
     .about__sec--header {
@@ -972,6 +974,12 @@ form .form__input--with-border {
 @media screen and (min-width: 789px) {
     .nonapprove__header {
         font-size: 3.5rem;
+    }
+}
+
+@media screen and (min-width: 791px) {
+    .about__txtfield--md {
+        width: 22rem;
     }
 }
 
@@ -997,10 +1005,21 @@ form .form__input--with-border {
     .bg__img {
         height:56rem;
     }
+
     .bg__ltblue {
         padding-top: 1.5rem !important;
         padding-bottom: 3.5rem !important;
     }
+
+    .about__txtfield--md {
+        width: 21rem;
+    }
+}
+
+@media screen and (min-width: 1161px) {
+    .about__txtfield--name {
+            width: 18rem;
+        }
 }
 
 @media screen and (min-width: 1200px) {
@@ -1016,6 +1035,24 @@ form .form__input--with-border {
      .bg__img {
         height:50rem;
     }
+
+    .about__txtfield--md {
+        width: 25rem;
+    }
+
+    .about__txtfield--name {
+            width: 23rem;
+        }
+}
+
+@media screen and (min-width: 1800px) {
+    .about__txtfield--md {
+        width: 40rem;
+    }
+
+    .about__txtfield--name {
+            width: 32rem;
+        }
 }
 
 /* The container <div> - needed to position the dropdown content */
