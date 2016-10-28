@@ -513,11 +513,6 @@ form .about__field--box {
 }
 
 /*Project Page*/
-.project__subhead {
-    font-size: 1.4rem;
-    color: #444;
-}
-
 .about__txtfield--date {
     width: 12.5rem;
 }
@@ -526,14 +521,9 @@ form .about__field--box {
     width: 100%;
 }
 
-.input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
-    font-size: 1.4rem;
-    color: #444;
-}
-
-.input_proposed_start_date label, .input_proposed_end_date label {
+.project__subhead, .input_proposed_start_date label, .input_proposed_end_date label, .input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
     font-size: 1.3rem;
-    color: #444;
+    color: #5d5d5d;
 }
         
 /*Similar Projects*/
@@ -729,7 +719,7 @@ iframe {
 .tag__container {
     display: inline;
     float: left;
-    background-color: #e28f41;
+    background-color: #868686;
     border-radius: 10px;
     margin: .3rem;
     padding: .2rem;
@@ -753,6 +743,7 @@ iframe {
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
+    cursor: pointer;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
