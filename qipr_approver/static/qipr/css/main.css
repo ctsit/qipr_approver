@@ -501,6 +501,11 @@ td, th {
     float:left;
 }
 
+.about__header .input_clinical_area ul label {
+    font-size: 0.8rem;
+    color: #9e9e9e;
+}
+
 .row .about__header {
     padding: 0;
 }
@@ -803,7 +808,7 @@ iframe {
 }
 
 .headerbg__interiorpg {
-    background-color: #f9e1c4;
+    background-color: rgba(177, 220, 251, 0.49);
 }
 
 .question__header {
@@ -994,14 +999,12 @@ form .form__input--with-border {
     .nonapprove__header {
         font-size: 3.2rem;
     }
+}
 
-    .about__txtfield--sm, .about__txtfield--md, .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+@media screen and (min-width: 784px) {
+    .about__txtfield--md, .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
     float: left;
     margin-right: 2rem;
-    }
-
-    .about__txtfield--sm {
-        width: 6rem;
     }
 
     .about__txtfield--md {

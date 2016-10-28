@@ -20,100 +20,86 @@
               <p class="question__header--sub">Please tell us about yourself by filling out the following form.</p>
             </div>
             <div class="row">
-                <div class="col s6">
-                    <a class="dashboard_add" href="{% url 'approver:projects' %}"><div class="dashboard_add-btn">+</div><div class="dashboard_add-text">Add Project</div></a>
-                </div>
-                 <div class="col s6">
-                    <div class="input-field dashboard_search">
-                        <form method="post" action="{% url 'approver:dashboard' %}">
-                            {% csrf_token %}
-                            <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
-                            
-                            <input class="dashboard__search--projects" type="submit" value="&#128270;">
-                        </form>
+                <form action="{% url 'approver:aboutyou' %}" method="post"
+      onkeypress="return event.keyCode != 13;" class="col s12"
+      autocomplete="off">
+
+                    {% csrf_token %}
+
+                    {% load form_input %}
+                    {% load tagbox %}
+                    {% load address %}
+                    <h5>Name</h5>
+                    <div class="row">
+                        <div class="col s12 m2">
+                            {% form_input form.title %}
+                        </div>
+                        <div class="col s12 m4">
+                            {% form_input form.first_name %}
+                        </div>
+                        <div class="col s12 m2">
+                            {% form_input form.last_name %}
+                        </div>
+                        <div class="col s12 m4">
+                            {% tagbox form.suffix_tags %}
+                        </div>
                     </div>
-                </div>
-            </div>
+
+                    <h5 class="clear__both about__sec--header">Professional Details</h5>
+                    {% form_input form.user_name True %}
+                    {% form_input form.department %}
+                    {% tagbox form.clinical_area %}
 
 
-            <table class="striped">
-                <thead>
-                    <tr>
-                        <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
-                        <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5>
-
-                        <!-- Modal Structure -->
-                                <div id="modal1" class="modal">
-                                    <div class="modal-content">
-                                      <h4>How do I know if my documents are complete?</h4>
-                                      <ul>
-                                        <li><p><div class="dashboard__check">&#10003;</div>If you see a green check mark, it means you have <span class="dashboard__green">completed</span> all requirements of the document.</p></li>
-                                        <li><p><div class="dashboard__exclaimation">!</div>If you see a red exclaimation mark, it means your document is <span class="dashboard__red">incomplete and requires edits</span>.</p></li>
-                                        <li><p><div class="dashboard__star">&#9733;</div> If you see a blue star, it means your project is similar to another existing QI project. It is strongly encouraged that any time a similar project exists, you explore the option of collaborating with that existing project. By clicking the Similar Projects link, you will be able to view what similar projects are available to collaborate on.
-                                            <br><br>*NOTE* Similar Projects will only appear if there is at lease 1 project out there that is similar to yours. If any similar projects exist, you have access to view them at any time by clicking the similar projects link. If there are no similar projects to yours, you will not have access to this link.</p></li>
-                                      </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-                                    </div>
-                                </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for project in projects %}
-                        <tr>
-                            <td class="project__title">{{ project.title }}
-                                <div class="dashboard__updated">This project was last updated 10/24/16</div>
-                                <div class="dashboard_btns-edit">
-                                    <form class="dashboard_delete--form" action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to delete this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Delete" /></form>
-
-                                </div>
-                            </td>
-                            <td class="project__title">{{ project.role }}</td>
-
-
-                            {% if project.role == "PI" %}
-
-                                    <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
-                                        <ul>
-                                            {% if project.is_approved %}
-                                                <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
-                                            {% endif %}
-
-                                            <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
-                                            <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">Self Certification</a></li>
-                                            {% if project.has_similar_projects != 0 %}
-                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
-                                            {% endif %}
-                                        </ul></a></td>
-                      
-                            {% endif %}
-                        </tr>
+                    <h5 class="clear__both about__sec--header">Business Address</h5>
+                    {% for business_address in form.business_address.all %}
+                        {% address business_address 'business' forloop.counter %}
+                    {% empty %}
+                        {% address empty_address 'business' %}
                     {% endfor %}
-                </tbody>
-            </table>
 
-    <div class="row">
-        <div class="col s12">
-            <div class="pagination center-align">
-                <span class="step-links">
-                    {% if projects.has_previous %}
-                        <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
-                    {% endif %}
+                    <h5 class="clear__both about__sec--header">Contact Information</h5>
+                    {% form_input form.email %}
+                    {% form_input form.business_phone %}
+                    {% form_input form.contact_phone %}
+                    {% form_input form.webpage_url %}
 
-                    <span class="current">
-                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}
-                    </span>
+                    <h5 class="clear__both about__sec--header">Quality Details</h5>
+                    {% tagbox form.speciality_tags %}
+                    {% tagbox form.expertise_tags %}
+                    {% tagbox form.qi_interest_tags %}
+                    
+                    
 
-                    {% if projects.has_next %}
-                        <a href="?page={{ projects.next_page_number }}"> &gt; </a>
-                    {% endif %}
-                </span>
+                    <p class="about__question clear__both">Is quality improvement a requirement of your training program?</p>
+                    <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
+
+                    
+                    <p>
+                        <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
+                        <label for="qi_required_yes">Yes</label>
+                        <input class="with-gap" name="qi_required" value="false" type="radio" id="qi_required_no" {% ifequal form.qi_required False %} checked {% endifequal %} />
+                        <label for="qi_required_no">No</label>
+                    </p>
+                    {% form_input form.training_program %}
+
+                    <input type="submit"
+                           value="Submit"
+                           class="btn about__submit"
+                           />
+
+                    {% form_input form.last_login True %}
+                    {% form_input form.account_expiration True %}
+                    {% form_input form.account_created True %}
+                </form>
+                
+                 
             </div>
-        </div>
-    </div>
+
+
+            
+
+
 
         </div> <!-- end right side of dashboard -->
     </div> <!-- end dashboard -->
@@ -129,73 +115,12 @@
 
 
 
-</div>
+<!-- </div>
     <div class="headerbg__interiorpg center">
       <h1 class="question__header font__opensans">About You</h1>
       <p class="question__header--sub">Please tell us about yourself by filling out the following form.</p>
     </div>
-<div class="container">
-
-    <form action="{% url 'approver:aboutyou' %}" method="post"
-      onkeypress="return event.keyCode != 13;" class="col s10"
-      autocomplete="off">
-
-    {% csrf_token %}
-
-    {% load form_input %}
-    {% load tagbox %}
-    {% load address %}
-    <h5>Name</h5>
-    {% form_input form.title %}
-    {% form_input form.first_name %}
-    {% form_input form.last_name %}
-    {% tagbox form.suffix_tags %}
-
-    <h5 class="clear__both about__sec--header">Professional Details</h5>
-    {% form_input form.user_name True %}
-    {% form_input form.department %}
-    {% tagbox form.clinical_area %}
-
-
-    <h5 class="clear__both about__sec--header">Business Address</h5>
-    {% for business_address in form.business_address.all %}
-        {% address business_address 'business' forloop.counter %}
-    {% empty %}
-        {% address empty_address 'business' %}
-    {% endfor %}
-
-    <h5 class="clear__both about__sec--header">Contact Information</h5>
-    {% form_input form.email %}
-    {% form_input form.business_phone %}
-    {% form_input form.contact_phone %}
-    {% form_input form.webpage_url %}
-
-    <h5 class="clear__both about__sec--header">Quality Details</h5>
-    {% tagbox form.speciality_tags %}
-    {% tagbox form.expertise_tags %}
-    {% tagbox form.qi_interest_tags %}
-    
-    
-
-    <p class="about__question clear__both">Is quality improvement a requirement of your training program?</p>
-    <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
+<div class="container"> -->
 
     
-    <p>
-        <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
-        <label for="qi_required_yes">Yes</label>
-        <input class="with-gap" name="qi_required" value="false" type="radio" id="qi_required_no" {% ifequal form.qi_required False %} checked {% endifequal %} />
-        <label for="qi_required_no">No</label>
-    </p>
-    {% form_input form.training_program %}
-
-    <input type="submit"
-           value="Submit"
-           class="btn about__submit"
-           />
-
-    {% form_input form.last_login True %}
-    {% form_input form.account_expiration True %}
-    {% form_input form.account_created True %}
-</form>
 

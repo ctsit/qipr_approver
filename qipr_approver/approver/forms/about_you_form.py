@@ -31,8 +31,7 @@ class AboutYouForm():
                       'label': 'Title',
                       'type': 'text',
                       'value': user.person.title or '',
-                      'input_classes': 'about__field--box',
-                      'div_classes': 'about__txtfield--sm'}
+                      'input_classes': 'about__field--box'}
 
         self.department = {'name': 'department',
                            'label': 'Department',
@@ -116,8 +115,7 @@ class AboutYouForm():
                             'filter_field': 'name',
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()],
-                            'input_classes': 'about__field--box',
-                            'div_classes': 'about__txtfield--sm'}
+                            'input_classes': 'about__field--box'}
 
         self.qi_required = user.person.qi_required 
 
