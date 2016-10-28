@@ -521,6 +521,10 @@ form .about__field--box {
 .about__txtfield--date {
     width: 12.5rem;
 }
+
+.about__txtfield--100 {
+    width: 100%;
+}
         
 /*Similar Projects*/
 .btn__similar {

@@ -34,7 +34,7 @@ class ProjectForm():
                         'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
                         'selected': utils.get_related_property(project, "keyword"),
-                        'div_classes': 'about__txtfield--md'}
+                        'div_classes': 'about__txtfield--100'}
 
         self.big_aim = {'name': 'big_aim',
                         'label': 'UF Health Big Aims',
@@ -42,7 +42,7 @@ class ProjectForm():
                         'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim"),
-                        'div_classes': 'about__txtfield--md'}
+                        'div_classes': 'about__txtfield--100'}
 
         self.clinical_area = {'name': 'clinical_area',
                               'label': 'Clinical Area/Unit',
@@ -52,7 +52,7 @@ class ProjectForm():
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(project,"clinical_area"),
-                              'div_classes': 'about__txtfield--md'}
+                              'div_classes': 'about__txtfield--100'}
 
         self.safety_target = {'name': 'safety_target',
                               'label': 'Safety Targets',
@@ -60,7 +60,7 @@ class ProjectForm():
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
                               'selected': utils.get_related_property(project,"safety_target"),
-                              'div_classes': 'about__txtfield--md'}
+                              'div_classes': 'about__txtfield--100'}
 
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',
@@ -68,7 +68,7 @@ class ProjectForm():
                                  'filter_field': 'name',
                                  'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
                                  'selected': utils.get_related_property(project,"clinical_setting"),
-                                 'div_classes': 'about__txtfield--md'}
+                                 'div_classes': 'about__txtfield--100'}
 
         self.description = {'name': 'description',
                             'type': 'text',

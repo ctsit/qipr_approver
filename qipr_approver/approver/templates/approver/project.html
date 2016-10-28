@@ -27,11 +27,38 @@
     <h5 class="project__subhead">Advisors</h5>
     {% tagbox form.advisor form.is_disabled %}
 
-    {% tagbox form.keyword form.is_disabled %}
-    {% tagbox form.big_aim form.is_disabled %}
-    {% tagbox form.safety_target form.is_disabled %}
-    {% tagbox form.clinical_area form.is_disabled %}
-    {% tagbox form.clinical_setting form.is_disabled %}
+
+    <div class="row">
+        <div class="col s12 m6">
+            {% tagbox form.keyword form.is_disabled %}
+        </div>
+        <div class="col s12 m6">
+            {% tagbox form.big_aim form.is_disabled %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {% tagbox form.safety_target form.is_disabled %}
+        </div>
+        <div class="col s12 m6">
+            {% tagbox form.clinical_area form.is_disabled %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {% tagbox form.clinical_setting form.is_disabled %}
+        </div>
+        <div class="col s12 m6">
+            
+        </div>
+    </div>
+    
+    
+    
+    
+    
     {% form_input form.proposed_start_date form.is_disabled %}
     {% form_input form.proposed_end_date form.is_disabled %}
     {% if form.is_disabled %}
