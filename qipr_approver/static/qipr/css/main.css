@@ -244,8 +244,8 @@ nav .button-collapse {
     font-weight: 500;
 }
 
-.dashboard_menu-item:hover {
-    font-weight: 500;
+.dashboard_menu-item a:hover {
+    font-weight: 600;
 }
 
 .dashboard_title-bg {
