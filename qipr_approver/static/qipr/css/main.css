@@ -239,8 +239,12 @@ nav .button-collapse {
     color:black;
 }
 
-.dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited, .dashboard_menu-item:hover {
+.dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited {
     border-left: 3pt #004d9a solid;
+    font-weight: 500;
+}
+
+.dashboard_menu-item:hover {
     font-weight: 500;
 }
 
