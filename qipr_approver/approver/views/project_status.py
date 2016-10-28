@@ -17,9 +17,14 @@ from django.core.urlresolvers import reverse
 def project_status(request, project_id=None):
     context = {
         'content': 'approver/project_status.html',
-        'is_approved': False
+        'is_approved': False,
+        'need_advisor': False,
     }
     project = project_crud.get_project_or_none(project_id)
+    #Returns true if the project needs an associated advisor.
+    if (project.need_advisor is True):
+        context['need_advisor'] = True
+    # Returns desired project and True if approval was confirmed & time stamped
     if project.approval_date:
         context['is_approved'] = True
         context['project'] = project
