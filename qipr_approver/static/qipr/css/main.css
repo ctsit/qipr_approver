@@ -504,8 +504,14 @@ form .about__field--box {
     padding-left: .5rem;
 }
 
-    
+.form-address-wrapper {
+    padding: 1rem 1rem 0;
+}
 
+.collection {
+    border: 1px solid #9e9e9e;
+}
+    
 /*Similar Projects*/
 .btn__similar {
     font-family: 'Open Sans', sans-serif;
