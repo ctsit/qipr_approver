@@ -73,4 +73,7 @@ registry_endpoints = {
     'add_model': '/'.join([registry_host, 'add_model']),
 }
 
-VERSION_NUMBER = '0.3.0'
+app_label = 'approver'
+
+VERSION_NUMBER = '0.4.0'
+

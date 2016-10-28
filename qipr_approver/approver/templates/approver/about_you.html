@@ -1,5 +1,6 @@
 <form action="{% url 'approver:aboutyou' %}" method="post"
-      onkeypress="return event.keyCode != 13;" class="col s10">
+      onkeypress="return event.keyCode != 13;" class="col s10"
+      autocomplete="off">
 
     {% csrf_token %}
     <h1>About You</h1>

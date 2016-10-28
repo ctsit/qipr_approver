@@ -8,7 +8,7 @@ from approver.utils import get_current_user_gatorlink, after_approval
 
 def add_update_response(post_data, session):
     """
-    This function is responsible for updateing responses as a user is
+    This function is responsible for updating responses as a user is
     filling out the project approver form, ajax-style.
     This is important because we want the user to not lose work as
     they are going along but we also dont want the page refreshing constantly
@@ -64,20 +64,25 @@ def save_project_with_form(project, question_form, session):
 
 def approve_or_next_steps(project, user):
     """
-    Checks the project for correct uestion survey responses and
+    Checks the project for correct question survey responses and
     whether there is an advisor on the project
     ...if QI is required for the project
     """
+
     responses = project.response.all()
     total_responses = len(responses)
     is_correct_response = False
-    project.set_need_advisor(user)
+
     if total_responses > 0:
         if __response_count_matches_question_count(responses):
             is_correct_response = reduce(lambda acc,response : acc and response.is_correct_response(), responses, True)
-            if is_correct_response:
-                if project.need_advisor is False:
-                    project.approve(user)
+
+    # A project is only approved if the self certification questions were answered
+    # correctly and the project does not require an advisor (based on if a QI project
+    # is required for the PQIs training program
+    if ((is_correct_response) and (project.need_advisor is False)):
+        project.approve(user)
+
     return after_approval(project)
 
 def __response_count_matches_question_count(response_list):

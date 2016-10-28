@@ -9,6 +9,7 @@ from datetime import timedelta
 import approver.constants as constants
 import django
 from django.db.models import fields
+from django.apps import apps
 
 def user_exists(about_you_form):
     """
@@ -209,3 +210,20 @@ def true_false_to_bool(true_false_string):
             return False
 
     return None
+
+def get_model_from_string(model_name):
+    """
+    This function will take a string name and try to find
+    a model match of it.
+    """
+    app_models = apps.get_app_config(constants.app_label).get_models()
+    for model in app_models:
+        if(model.__name__.lower() == model_name.lower()):
+            return model
+
+    return None
+
+def get_user_from_http_request(request):
+    username = request.session.get(constants.SESSION_VARS['gatorlink'])
+    user = User.objects.get(username=username)
+    return user

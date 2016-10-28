@@ -103,6 +103,7 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=Person,
                 tagging_user=editing_user)
 
+    project.set_need_advisor()
     project.save(editing_user)
 
 def get_project_or_none(project_id):

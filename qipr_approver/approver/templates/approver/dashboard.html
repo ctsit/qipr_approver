@@ -13,28 +13,31 @@
         </div>
 
         <div class="col s12 m10 dashboard_border-left">
-            <h3 class="center-align dashboard_projects-title">QI Projects for Some Person</h3>
+            <h3 class="center-align dashboard_projects-title">QI Projects for {{ person.first_name }} {{ person.last_name }}</h3>
             <div class="row">
                 <div class="col s6">
                     <a class="dashboard_add" href="{% url 'approver:projects' %}"><div class="dashboard_add-btn">+</div><div class="dashboard_add-text">Add Project</div></a>
                 </div>
                  <div class="col s6">
                     <div class="input-field dashboard_search">
-                      <input class="dashboard_search-input" id="search" type="search" required>
-                      <label for="search">Search your projects</label>
-                      <i class="material-icons">close</i>
+                        <form method="post" action="{% url 'approver:dashboard' %}">
+                            {% csrf_token %}
+                            <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                            
+                            <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                        </form>
                     </div>
                 </div>
             </div>
 
-            
+
             <table class="striped">
                 <thead>
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
                         <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
-                        <th class="dashboard_row-title dashboard_row-title-project" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5> 
-                            
+                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5>
+
                         <!-- Modal Structure -->
                                 <div id="modal1" class="modal">
                                     <div class="modal-content">
@@ -57,24 +60,30 @@
                     {% for project in projects %}
                         <tr>
                             <td class="project__title">{{ project.title }}
+                                <div class="dashboard__updated">This project was last updated {{ project.last_modified | date:'M d Y' }}</div>
                                 <div class="dashboard_btns-edit">
                                     <form class="dashboard_delete--form" action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to delete this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Delete" /></form>
+
                                 </div>
                             </td>
                             <td class="project__title">{{ project.role }}</td>
-                            
-                            
+
+
                             {% if project.role == "PI" %}
-                                {% if project.is_approved %}
-                                    <td class="dashboard_status"><a href="{% url 'approver:project_status' project_id=project.pk %}">Approved <span class="dashboard_certificate-btn">view certificate</span></a></td>
-                                {% else %}
-                                    <td class="dashboard_status"><a href="{% url 'approver:approve' project_id=project.pk %}">
+
+                                    <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
+                                            {% if project.is_approved %}
+                                                <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
+                                            {% endif %}
+
                                             <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
-                                            <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">QI Survey</a></li>
-                                            <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="#">Similar Projects</a></li>
+                                            <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">Self Certification</a></li>
+                                            {% if project.has_similar_projects != 0 %}
+                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
+                                            {% endif %}
                                         </ul></a></td>
-                                {% endif %}
+                      
                             {% endif %}
                         </tr>
                     {% endfor %}
@@ -88,11 +97,11 @@
                     {% if projects.has_previous %}
                         <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
                     {% endif %}
-             
+
                     <span class="current">
-                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}.
+                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}
                     </span>
-             
+
                     {% if projects.has_next %}
                         <a href="?page={{ projects.next_page_number }}"> &gt; </a>
                     {% endif %}
@@ -103,5 +112,3 @@
 
         </div> <!-- end right side of dashboard -->
     </div> <!-- end dashboard -->
-
-
