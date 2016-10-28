@@ -501,6 +501,10 @@ td, th {
     float:left;
 }
 
+.row .about__header {
+    padding: 0;
+}
+
 form .about__acctinfo .about__acctinfo--border  {
     border: none;
 }
