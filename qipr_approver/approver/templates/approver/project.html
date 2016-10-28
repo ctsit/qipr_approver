@@ -1,3 +1,10 @@
+</div>
+    <div class="headerbg__interiorpg center">
+      <h1 class="question__header font__opensans">QI Project Information Form</h1>
+      <p class="question__header--sub">Please fill out the following form with information about your unique Quality Improvement project.</p>
+    </div>
+<div class="container">
+
 {% if project_id %}
 <form action="{% url 'approver:projects' project_id=project_id %}" autocomplete="off" method="post"> 
 {% endif %}
@@ -5,15 +12,21 @@
     <form action="{% url 'approver:projects' %}" autocomplete="off" method="post"> 
 {% endif %}
     {% csrf_token %}
-    <h1>Projects</h1>
-  	<p>Enter information about your project</p>
     {% load form_input %}
     {% load form_input_textarea %}
     {% load tagbox %}
+    <h5 class="project__subhead">Project Title</h5>
     {% form_input_textarea form.title form.is_disabled %}
+
+    <h5 class="project__subhead">Project Description</h5>
     {% form_input_textarea form.description form.is_disabled %}
+
+    <h5 class="project__subhead">Collaborators</h5>
     {% tagbox form.collaborator form.is_disabled %}
+
+    <h5 class="project__subhead">Advisors</h5>
     {% tagbox form.advisor form.is_disabled %}
+
     {% tagbox form.keyword form.is_disabled %}
     {% tagbox form.big_aim form.is_disabled %}
     {% tagbox form.safety_target form.is_disabled %}

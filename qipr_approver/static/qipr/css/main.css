@@ -511,7 +511,17 @@ form .about__field--box {
 .collection {
     border: 1px solid #9e9e9e;
 }
-    
+
+/*Project Page*/
+.project__subhead {
+    font-size: 1.4rem;
+    color: #444;
+}
+
+.about__txtfield--date {
+    width: 12.5rem;
+}
+        
 /*Similar Projects*/
 .btn__similar {
     font-family: 'Open Sans', sans-serif;
