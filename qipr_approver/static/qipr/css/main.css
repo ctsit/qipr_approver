@@ -923,6 +923,7 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 
 form .form__input--with-border {
     border: 1px solid #9e9e9e;
+    padding-left: .5rem;
 }
 
 @media screen and (min-width: 500px) {
