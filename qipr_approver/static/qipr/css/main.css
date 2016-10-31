@@ -718,7 +718,7 @@ iframe {
 
 .cert__text, .cert__text--small {
     font-family: "Helvetica", sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 300;
     line-height: 2.2rem;
     margin: 0 auto;
@@ -745,8 +745,6 @@ iframe {
     text-transform: uppercase;
 }
 
-
-
 .cert__text--xsmall {
     font-style: italic;
     font-size: 1rem;
@@ -754,9 +752,7 @@ iframe {
 
 .cert__image {
     height: 6rem;
-    width: 6rem;
     z-index: -1;
-    background-image: url(/static/qipr/img/UF_Seal.gif);
     background-size: contain;
     margin:0 auto;
 }
