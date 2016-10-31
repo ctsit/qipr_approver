@@ -366,10 +366,10 @@ td, th {
 }
 
 .dashboard_stats {
-    padding: 3rem;
-    background-color: #b1dcfb;
+    padding-top: 1rem;
+    background-color: #004d9a;
     margin-bottom: 0;
-    color:#004d9a;
+    color: white;
 }
 
 .dashboard__updated {
