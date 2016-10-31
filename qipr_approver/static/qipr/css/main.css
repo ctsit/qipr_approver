@@ -476,7 +476,7 @@ footer.page-footer .footer-copyright {
 }
 
 .footer__logo--uf {
-   padding: 2.5rem 2rem .8rem;
+    padding: .5rem 2rem .8rem;
 }
 
 .shape__circle {
@@ -831,6 +831,9 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
         padding: 1rem;
         border: #787878 dotted .3rem;
     }
+    .footer__logo--height {
+    height: 3rem;
+    }
 }
 
 @media screen and (min-width: 740px) {
@@ -842,6 +845,12 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 @media screen and (min-width: 789px) {
     .nonapprove__header {
         font-size: 3.5rem;
+    }
+}
+
+@media screen and (min-width: 842px) {
+    .footer__logo--height {
+    height: 4rem;
     }
 }
 
@@ -876,11 +885,32 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
     .bg__ltblue {
         margin-top: -2.96rem;
     }
+
+    .footer__logo--uf {
+        padding-top: .5rem;
+    }
+
+    .footer__logo--height {
+    height: 5rem;
+    }
 }
 
 @media screen and (min-width: 1436px) {
     .bg__ltblue {
         padding-bottom: 5rem !important;
+    }
+
+    .footer__logo--height .footer__logo--ufhealth {
+        height: 6rem;
+    }
+
+    .footer__logo--height .footer__logo--uf {
+        height: 5rem;
+        margin-top: 1rem;
+    }
+
+    .footer__logo--height {
+    height: 6rem;
     }
 }
 
