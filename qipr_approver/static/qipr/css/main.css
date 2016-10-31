@@ -469,6 +469,14 @@ footer.page-footer .footer-copyright {
 
 footer.page-footer .footer-copyright {
     font-weight: 400;
+} 
+
+.footer__logo--ufhealth {
+    padding: 0 3rem;
+}
+
+.footer__logo--uf {
+    padding: 2rem 2rem 1.1rem;
 }
 
 .shape__circle {
