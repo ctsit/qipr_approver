@@ -462,6 +462,14 @@ footer {
     margin-top:0 !important;
 }
 
+footer.page-footer .footer-copyright {
+    color: #004d9a;
+    background-color: rgba(51, 51, 51, 0.18);
+}
+
+footer.page-footer .footer-copyright {
+    font-weight: 400;
+}
 
 .shape__circle {
     width: 75px;
@@ -505,10 +513,6 @@ footer {
 
 .font__arvo {
     font-family: 'Arvo', serif;
-}
-
-.footer__margin {
-
 }
 
 .icon {

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="dashboard_stats">
 	<div class="container">
 		<div class="row">
@@ -17,8 +18,23 @@
     </div>
     </div>
 
-        <footer class="page-footer grey darken-4">
-    <div class="footer-copyright grey darken-4">
+<footer class="page-footer grey lighten-2">
+    <div class="container">
+        <div class="row">
+            <div class="col s5">
+                <h4>Phone: <a href="tel:3522650002">352-265-0002</a></h4>
+            </div>
+            <div class="col s4">
+                <p>The UF Health Sebastian Ferrero Office of Clinical Quality & Patient Safety</p>
+            </div>
+            <div class="col s3 center">
+                <img src="{% static 'qipr/img/UF-Health-logo.png' %}" class="responsive-img">
+                <img src="{% static 'qipr/img/University_of_Florida_Logo.png' %}" class="responsive-img">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
         <div class="container center">
             © 2016 QIPR Approver {{ version_number }}
         </div>
