@@ -4,15 +4,15 @@
 </div>
 
 <form class="nonapprove__center" method="post" onkeypress="return event.keyCode != 13;">
-        {% csrf_token %}
-        <input class="btn__similar btn" type="submit" value="Continue to project submission >>>" />
-    </form>
+    {% csrf_token %}
+    <input class="btn__similar btn" type="submit" value="Continue to project submission >>>" />
+</form>
 <div>
     <table class="striped">
         <thead>
             <tr>
                 <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
-                <th class="dashboard_row-title" data-field="role"><h5>Expected Start Date</h5></th>
+                <th class="dashboard_row-title" data-field="start_date"><h5>Expected Start Date</h5></th>
                 <th class="dashboard_row-title" data-field="relevance"><h5>Relevance</h5></th>
                 <th class="dashboard_row-title" data-field="role"><h5>Contact</h5></th>
             </tr>
@@ -20,26 +20,17 @@
         <tbody>
             {% for member_id, project, similarity in project_scores %}
                 <tr>
-                    <td class="project__title">{{ project.title }} 
+                    <td class="project__title">{{ project.title }}
                         <a class="dashboard_btns-view" href="{% url 'approver:projects' project_id=project.pk %}">View Project</a>
                     </td>
-                   
-                    <td class="project__title">{{ project.role }}</td>
+                    <td class="project__title">{{ project.proposed_start_date | date:"M d Y" }}</td>
                     <td class="project__similarity"><p> {{ similarity | floatformat:2 }} % </p></td>
-                    {% if project.role == "PI" %}
-                        {% if project.is_approved %}
-                            <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
-                        {% else %}
-                            <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
-                        {% endif %}
-                    {% endif %}
-                    <td><div class="project__collaborate"><p><a href="mailto:someemail@ufl.edu?subject=QI Project Collaboration Request&body=Hi <collaborator name>, the QI Registry shows that a project I'm about to begin is a <xx> match with your <some name> project. I'm interested in collaborating with you on your <some name> project. Can we set up a time for us to meet to discuss in greater detail how we can work together? Please reply back to this email at your earliest convenience. Thanks!">Collaborate</a></p></div></td>
+                    <td><div class="project__collaborate"><p><a href="mailto:{{ project.owner.email_address }}?subject=QI Project Collaboration Request&body=Hi {{ project.owner.first_name }} {{ project.owner.last_name }}. The QI Registry shows that a project I am about to begin is a {{ similarity | floatformat:2 }}%25 match with your &quot;{{ project.title }}&quot; project. I am interested in collaborating with you on it. Can we set up a time for us to meet to discuss in greater detail how we can work together? Please reply back to this email at your earliest convenience. Thanks!">Collaborate</a></p></div></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <br/>
-    
 </div>
 
 </div>
@@ -54,7 +45,6 @@
             <div class="col s12 m4">
                 <h3 class="similar__search--search">Start your search here!</h3>
                 <div class="nonapprove__center">
-                    
                     <a href="#"><i class="large material-icons similar__search--searchicon">search</i></a>
                 </div>
             </div>
