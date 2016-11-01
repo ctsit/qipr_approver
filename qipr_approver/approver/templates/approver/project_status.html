@@ -1,13 +1,18 @@
 {% load approved_certificate %}
 {% load staticfiles %}
+
 {% if is_approved %}
 <div class="center">
 	<h1 class="font__roboto">Congratulations!</h1>
 	<h4 class="row font__opensans">Your Quality Improvement Project has been approved.</h4>
 </div>
 {% approved_certificate project %}
-{% endif %}
-{% if not is_approved %}
+{% elif need_advisor %}
+
+<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+<h1>You need an advisor for your project</h1>
+
+{% else %}
 
 <div class="row nonapprove__margin--top">
 	<div class="col s12 m4 nonapprove__center">
