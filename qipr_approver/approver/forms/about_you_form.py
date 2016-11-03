@@ -45,6 +45,15 @@ class AboutYouForm():
                               'input_classes': 'about__field--box',
                               'div_classes': 'about__field--width100'}
 
+        self.self_classification = {'name': 'self_classification',
+                           'label': 'Self Classification',
+                           'placeholder': 'If you selected yes, enter your training program here.',
+                           'type': 'text',
+                           'value': user.person.self_classification or '',
+                           'input_classes': 'about__field--box',
+                           'div_classes': 'about__field--width100',
+                           'options': ['resident', 'fellow', 'nursing fellow', 'medical student', 'veterinary medicine fellow', 'dental fellow', 'clinical faculty', 'other']}
+
         self.business_address = user.person.business_address
 
         self.webpage_url = {'name': 'webpage_url',
@@ -140,3 +149,4 @@ class AboutYouForm():
                            'value': user.person.training or '',
                            'input_classes': 'about__field--box',
                            'div_classes': 'about__question--train'}
+

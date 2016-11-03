@@ -65,7 +65,7 @@
                         <div class="col s12 m6" id ="self_classification_other_div" style='display:none;'>
                             <div class="form-input-wrapper input_{{ form.self_classification.name }}-other {{form.self_classification.div_class_list}} " style=''>
                                 <label for="other_classification">Other classification</label>
-                                <input class="form__input--with-border {{ form.self_classification.input_class_list }}" name="other_classification" type="text" value="{{ value }}" placeholder="Describe other classification" {{ is_disabled }}/>
+                                <input class="form__input--with-border {{ form.self_classification.input_class_list }}" name="other_classification" type="text" value="{{ form.self_classification.other }}" placeholder="Describe other classification" {{ is_disabled }}/>
                              </div>
                         </div>
                     </div>
@@ -123,8 +123,6 @@
                             {% form_input form.training_program %}
                         </div>
                     </div>
-                    
-                    
                     <div class="row">
                         <div class="col s12">
                             <input type="submit"
@@ -140,14 +138,7 @@
                         {% form_input form.account_created True %}
                     </div>
                 </form>
-                
-                 
             </div>
-
-
-            
-
-
 
         </div> <!-- end right side of dashboard -->
     </div> <!-- end dashboard -->

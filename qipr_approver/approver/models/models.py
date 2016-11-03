@@ -124,6 +124,7 @@ class Person(Provenance, Registerable):
     department = models.CharField(max_length=50, null=True)
     qi_required = models.NullBooleanField()
     clinical_area = models.ManyToManyField(ClinicalArea)
+    self_classification = models.CharField(max_length=30)
     tag_property_name = 'email_address'
 
     def __str__(self):

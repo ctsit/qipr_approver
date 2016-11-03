@@ -935,6 +935,7 @@ iframe {
 
 textarea.form__textarea--with-border {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
     height: auto;
@@ -947,6 +948,7 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 
 form .form__input--with-border {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
     padding-left: .5rem;
 }
 

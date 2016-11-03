@@ -282,29 +282,32 @@
 
     // if the other option in self classification on the about you form is selected,
     // show a new text box for the customer to write in the other classification
-    document.getElementById('select-self_classification').onchange = function(){
-        if (this.options[this.selectedIndex].innerHTML == "Other") {
-            //shrink clinical area
-            clinical_area = document.getElementById('tagbox_clinical_area');
-            other_classification_input = document.getElementById('self_classification_other_div');
-            clinical_area.parentElement.classList.remove('m6');
-            clinical_area.parentElement.classList.add('m3');
-            //shrink self classification
-            this.parentElement.parentElement.classList.remove('m6');
-            this.parentElement.parentElement.classList.add('m3');
-            //make the other field show
-            other_classification_input.style.display = 'block';
-        } else {
-            //enlarge clinical area
-            clinical_area = document.getElementById('tagbox_clinical_area');
-            other_classification_input = document.getElementById('self_classification_other_div');
-            clinical_area.parentElement.classList.remove('m3');
-            clinical_area.parentElement.classList.add('m6');
-            //enlarge self classification
-            this.parentElement.parentElement.classList.remove('m3');
-            this.parentElement.parentElement.classList.add('m6');
-            //make the other field disappear 
-            other_classification_input.style.display = 'none';
-        }
+    self_classification = document.getElementById('select-self_classification');
+    if(self_classification){
+        self_classification.onchange = function(){
+            if (this.options[this.selectedIndex].value == "other") {
+                //shrink clinical area
+                clinical_area = document.getElementById('tagbox_clinical_area');
+                other_classification_input = document.getElementById('self_classification_other_div');
+                clinical_area.parentElement.classList.remove('m6');
+                clinical_area.parentElement.classList.add('m3');
+                //shrink self classification
+                this.parentElement.parentElement.classList.remove('m6');
+                this.parentElement.parentElement.classList.add('m3');
+                //make the other field show
+                other_classification_input.style.display = 'block';
+            } else {
+                //enlarge clinical area
+                clinical_area = document.getElementById('tagbox_clinical_area');
+                other_classification_input = document.getElementById('self_classification_other_div');
+                clinical_area.parentElement.classList.remove('m3');
+                clinical_area.parentElement.classList.add('m6');
+                //enlarge self classification
+                this.parentElement.parentElement.classList.remove('m3');
+                this.parentElement.parentElement.classList.add('m6');
+                //make the other field disappear 
+                other_classification_input.style.display = 'none';
+            }
+        };
     };
 }();
