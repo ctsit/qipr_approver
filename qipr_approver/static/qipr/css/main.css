@@ -1093,3 +1093,7 @@ form .form__input--with-border {
     text-decoration: none;
     display: block;
 }
+
+.row .padding--no-right {
+    padding-right: 0;
+}
