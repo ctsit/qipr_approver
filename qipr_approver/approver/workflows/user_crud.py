@@ -53,6 +53,7 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.title = about_you_form.get('title')
     person.department = about_you_form.get('department')
     person.qi_required = true_false_to_bool(about_you_form.get('qi_required'))
+    person.training = about_you_form.get('training_program')
 
     clinical_area = extract_tags(about_you_form, 'clinical_area')
     expertises = extract_tags(about_you_form, 'expertise')

@@ -117,7 +117,7 @@ class Person(Provenance, Registerable):
     qi_interest = models.ManyToManyField(QI_Interest)
     speciality = models.ManyToManyField(Speciality)
     suffix = models.ManyToManyField(Suffix)
-    training = models.ManyToManyField(Training)
+    training = models.CharField(max_length=50, null=True)
     user = models.OneToOneField(User, null=True, related_name="person")
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
