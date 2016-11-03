@@ -530,6 +530,7 @@ form .about__field--box {
 
 .collection {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
 }
 
 .about__field--width100 {
