@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 428 235" style="enable-background:new 0 0 428 235;" xml:space="preserve">
+	 viewBox="0 0 428 166.7" style="enable-background:new 0 0 428 166.7;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#37C5F1;}
+	.st0{fill:#FE980B;}
 	.st1{fill:none;}
 </style>
 <title>qipr_logo_outlines</title>
 <g>
-	<path class="st0" d="M17.6,134.5c0-34.1,24.7-59.7,57.5-59.7c32.5,0,57.4,25.5,57.4,59.7c0,28-16.6,50.1-40.4,57.2
-		c7.6,8.2,14.8,12,23.1,12c5.4,0,10.1-1.3,13.7-4v8.4c-4.4,2.3-9.2,3.4-14.2,3.3c-12.4,0-22.1-7.6-32-18c-2.5,0.5-5,0.7-7.6,0.7
-		C42.3,194.1,17.6,168.8,17.6,134.5z M124.1,134.5c0-29.8-21.6-51.8-49-51.8S26,104.6,26,134.5s21.8,51.9,49.1,51.9
-		S124.1,164.3,124.1,134.5z"/>
-	<path class="st0" d="M163.2,76.8h8.2v115.4h-8.2V76.8z"/>
-	<path class="st0" d="M206.7,76.8h48.1c23.1,0,35.8,12.7,35.8,31.2s-12.7,31.3-35.8,31.3h-39.9v52.9h-8.2V76.8z M254,131.7
-		c18.1,0,28.4-8.6,28.4-23.7c0-15-10.2-23.6-28.4-23.6h-39.1v47.3H254z"/>
-	<path class="st0" d="M316.3,76.8h51.3c22.6,0,35.3,12.4,35.3,30.5c0,16.3-10.1,28.2-28.5,30.3l37.8,54.6h-9.6L365,138.3h-40.4v53.9
-		h-8.2V76.8z M366.9,130.7c17.5,0,27.7-8.2,27.7-23.2c0-14.7-10.2-23.1-27.7-23.1h-42.4v46.3L366.9,130.7L366.9,130.7z"/>
+	<path class="st0" d="M161.1,20.3h8.2v115.4h-8.2V20.3z"/>
+	<path class="st0" d="M204.6,20.3h48.1c23.1,0,35.8,12.7,35.8,31.2s-12.7,31.3-35.8,31.3h-39.9v52.9h-8.2L204.6,20.3L204.6,20.3z
+		 M251.9,75.2c18.1,0,28.4-8.6,28.4-23.7c0-15-10.2-23.6-28.4-23.6h-39.1v47.3H251.9z"/>
+	<path class="st0" d="M314.2,20.3h51.3c22.6,0,35.3,12.4,35.3,30.5c0,16.3-10.1,28.2-28.5,30.3l37.8,54.6h-9.6l-37.6-53.9h-40.4
+		v53.9h-8.2V20.3H314.2z M364.8,74.2c17.5,0,27.7-8.2,27.7-23.2c0-14.7-10.2-23.1-27.7-23.1h-42.4v46.3H364.8L364.8,74.2z"/>
 </g>
-<rect id="_Slice_" x="-216" class="st1" width="645" height="233"/>
+<image style="overflow:visible;" width="3471" height="4694" xlink:href="../../../../../../../Downloads/Orange Q Graphic element_Final_Q_solid.png"  transform="matrix(3.898828e-02 0 0 3.898828e-02 8.2921 4.9226)">
+</image>
+<rect id="_Slice_" y="-27.3" class="st1" width="429" height="233"/>
 </svg>
