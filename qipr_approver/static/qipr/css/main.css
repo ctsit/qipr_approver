@@ -19,6 +19,11 @@ body {
     flex-direction: column;
 }
 
+.container__dashboard {
+    width: 98%;
+    margin: 0 auto;
+    max-width: 1700px;
+}
 
 main {
     flex: 1 0 auto;
@@ -297,8 +302,8 @@ nav .button-collapse {
 }
 
 .dashboard_menu {
-        border-bottom: #d0d0d0 solid 1pt;
-    }
+    border-bottom: #d0d0d0 solid 1pt;
+}
 
 .dashboard_menu-item, .dashboard_menu-item-active {
     padding-left: .7rem;
@@ -316,6 +321,7 @@ nav .button-collapse {
 
 .dashboard_menu-item a:hover {
     font-weight: 600;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .dashboard_title-bg {
@@ -499,8 +505,18 @@ td, th {
     float:left;
 }
 
+.about__header .input_clinical_area ul label {
+    font-size: 0.8rem;
+    color: #9e9e9e;
+}
+
+.row .about__header {
+    padding: 0;
+}
+
 form .about__acctinfo .about__acctinfo--border  {
     border: none;
+    padding-left: 0;
 }
 
 .about__submit {
@@ -518,6 +534,30 @@ form .about__field--box {
 
 .collection {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
+}
+
+.about__field--width100 {
+    width: 100%;
+}
+
+/*Project Page*/
+.about__txtfield--date {
+    width: 12.5rem;
+}
+
+.about__txtfield--100 {
+    width: 100%;
+}
+
+.project__subhead, .input_proposed_start_date label, .input_proposed_end_date label, .input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
+    font-size: 1.3rem;
+    color: #5d5d5d;
+}
+
+.form-input-wrapper textarea.form__textarea--with-border:focus:not([readonly]) {
+    border: 1px solid #e28f41;
+    box-shadow: 1px 1px 2px 1px #e28f41;
 }
 
 /*Similar Projects*/
@@ -725,7 +765,7 @@ iframe {
 .tag__container {
     display: inline;
     float: left;
-    background-color: #e28f41;
+    background-color: #868686;
     border-radius: 10px;
     margin: .3rem;
     padding: .2rem;
@@ -749,6 +789,7 @@ iframe {
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
+    cursor: pointer;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
@@ -789,7 +830,7 @@ iframe {
 }
 
 .headerbg__interiorpg {
-    background-color: #f9e1c4;
+    background-color: rgba(177, 220, 251, 0.49);
 }
 
 .question__header {
@@ -909,6 +950,7 @@ iframe {
 
 textarea.form__textarea--with-border {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
     height: auto;
@@ -921,6 +963,8 @@ textarea.form__textarea--with-border:focus:not([readonly]) {
 
 form .form__input--with-border {
     border: 1px solid #9e9e9e;
+    border-radius: 5px;
+    padding-left: .5rem;
 }
 
 @media screen and (min-width: 500px) {
@@ -985,22 +1029,12 @@ form .form__input--with-border {
     .nonapprove__header {
         font-size: 3.2rem;
     }
+}
 
-    .about__txtfield--sm, .about__txtfield--md, .about__txtfield--name, .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+@media screen and (min-width: 784px) {
+    .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
     float: left;
     margin-right: 2rem;
-    }
-
-    .about__txtfield--sm {
-        width: 6rem;
-    }
-
-    .about__txtfield--md {
-        width: 20rem;
-    }
-
-    .about__txtfield--name {
-        width: 35rem;
     }
 
     .about__sec--header {
@@ -1036,6 +1070,9 @@ form .form__input--with-border {
 }
 
 @media screen and (min-width: 993px) {
+    .container__dashboard {
+        width: 95%;
+    }
     .bg__ltblue {
         margin-top: -2.9rem;
     }
@@ -1052,16 +1089,6 @@ form .form__input--with-border {
         padding-top: 1.5rem !important;
         padding-bottom: 3.5rem !important;
     }
-
-    .about__txtfield--md {
-        width: 21rem;
-    }
-}
-
-@media screen and (min-width: 1161px) {
-    .about__txtfield--name {
-            width: 18rem;
-        }
 }
 
 @media screen and (min-width: 1200px) {
@@ -1100,24 +1127,6 @@ form .form__input--with-border {
         height:50rem;
 
     }
-
-    .about__txtfield--md {
-        width: 25rem;
-    }
-
-    .about__txtfield--name {
-            width: 23rem;
-        }
-}
-
-@media screen and (min-width: 1800px) {
-    .about__txtfield--md {
-        width: 40rem;
-    }
-
-    .about__txtfield--name {
-            width: 32rem;
-        }
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -1141,4 +1150,8 @@ form .form__input--with-border {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+
+.row .padding--no-right {
+    padding-right: 0;
 }
