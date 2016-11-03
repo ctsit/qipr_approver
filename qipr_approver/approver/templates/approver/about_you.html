@@ -1,49 +1,70 @@
-<form action="{% url 'approver:aboutyou' %}" method="post"
+</div>
+    <div class="headerbg__interiorpg center">
+      <h1 class="question__header font__opensans">About You</h1>
+      <p class="question__header--sub">Please tell us about yourself by filling out the following form.</p>
+    </div>
+<div class="container">
+
+    <form action="{% url 'approver:aboutyou' %}" method="post"
       onkeypress="return event.keyCode != 13;" class="col s10"
       autocomplete="off">
 
     {% csrf_token %}
-    <h1>About You</h1>
-    <p>
-        Please tell us about yourself.
-    </p>
+
     {% load form_input %}
     {% load tagbox %}
     {% load address %}
-    {% form_input form.user_name True %}
+    <h5>Name</h5>
+    {% form_input form.title %}
     {% form_input form.first_name %}
     {% form_input form.last_name %}
-    {% form_input form.title %}
+    {% tagbox form.suffix_tags %}
+
+    <h5 class="clear__both about__sec--header">Professional Details</h5>
+    {% form_input form.user_name True %}
     {% form_input form.department %}
     {% tagbox form.clinical_area %}
 
+
+    <h5 class="clear__both about__sec--header">Business Address</h5>
     {% for business_address in form.business_address.all %}
         {% address business_address 'business' forloop.counter %}
     {% empty %}
         {% address empty_address 'business' %}
     {% endfor %}
+
+    <h5 class="clear__both about__sec--header">Contact Information</h5>
     {% form_input form.email %}
-    {% tagbox form.speciality_tags %}
-    {% tagbox form.expertise_tags %}
-    {% tagbox form.qi_interest_tags %}
-    {% tagbox form.suffix_tags %}
     {% form_input form.business_phone %}
     {% form_input form.contact_phone %}
     {% form_input form.webpage_url %}
-    {% form_input form.last_login True %}
-    {% form_input form.account_expiration True %}
-    {% form_input form.account_created True %}
-    Is quality improvement a requirement of your training program?
+
+    <h5 class="clear__both about__sec--header">Quality Details</h5>
+    {% tagbox form.speciality_tags %}
+    {% tagbox form.expertise_tags %}
+    {% tagbox form.qi_interest_tags %}
+    
+    
+
+    <p class="about__question clear__both">Is quality improvement a requirement of your training program?</p>
+    <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
+
+    
     <p>
         <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
         <label for="qi_required_yes">Yes</label>
         <input class="with-gap" name="qi_required" value="false" type="radio" id="qi_required_no" {% ifequal form.qi_required False %} checked {% endifequal %} />
         <label for="qi_required_no">No</label>
-
     </p>
+    {% form_input form.training_program %}
+
     <input type="submit"
            value="Submit"
-           class="btn"
+           class="btn about__submit"
            />
+
+    {% form_input form.last_login True %}
+    {% form_input form.account_expiration True %}
+    {% form_input form.account_created True %}
 </form>
 
