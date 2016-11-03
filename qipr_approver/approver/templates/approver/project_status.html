@@ -9,8 +9,23 @@
 {% approved_certificate project %}
 {% elif need_advisor %}
 
-<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
-<h1>You need an advisor for your project</h1>
+<!-- <img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+<h1>You need an advisor for your project</h1> -->
+
+<div class="row nonapprove__margin--top">
+	<div class="col s5 m12 nonapprove__center">
+		<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+	</div>
+    <div class="col s7 m12">
+  			<h1 class="nonapprove__header center-align">You need an advisor for your project.</h1>
+	</div>
+	<div class="col s12 m12">
+		<p class="nonapprove__body">If you wish to pursue your project, you will need to have an advisor first.  For more information on how to obtain an advisor, please contact the Quality Improvement office between 8am and 5pm Monday - Friday. <a target="_blank" class="nonapprove__body--link" href="http://irb.ufl.edu/myirb.html">http://irb.ufl.edu/myirb.html</a>, which will guide you through the process; or refer you to a contact person.  Thanks!</p>
+	</div>
+	<div class="col s12 nonapprove__center">
+		<img src="{% static 'qipr/img/uf_irb.png' %}" class="center-align nonapprove__irb" alt="University of Florida Institutional Review Board"/>
+	</div>
+</div>
 
 {% else %}
 
