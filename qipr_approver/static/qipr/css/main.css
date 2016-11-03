@@ -607,7 +607,8 @@ iframe {
 }
 
 .nav__logo {
-    height: 90%;
+    margin-top: .5rem;
+    height: 75%;
     padding-left: 0.3rem;
 }
 
