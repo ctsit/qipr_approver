@@ -3,6 +3,7 @@
   body * {
     visibility: hidden;
     }
+    
   #printable, #printable * {
     visibility: visible;
     }
@@ -31,10 +32,9 @@
 
     .cert__image {
     position: absolute;
-    top: 19rem;
-    left: 2rem;
-    height: 7rem;
-    width: 7rem;
+    bottom: 11rem;
+    right: 1.5rem;
+    height: 3rem;
     }
 }
 </style>
@@ -57,7 +57,7 @@
                             {{ project_owner_first_name }} {{ project_owner_last_name }}
                         </div>
                         <div class="cert__text">
-                            Your quality improvement project entitled <br/>
+                            Your quality improvement project entitled
                         "{{ project_title }}"<br/>
                         <b>has been approved on <span class="cert__date">10/21/16</span>.</b>
                         </div>
@@ -65,14 +65,14 @@
                     <br/>
                     <div class="cert__text--small">The QI office wishes your team much success in your efforts to improve patient quality.
                     </div>
-                    <br/><br/>
+                    <br/>
                 
                 <div class="row">    
                     <div class="col s12 cert__text--xsmall"> The project will not involve testing an experimental drug, device, or biologic. It has not received funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is intended to improve or evaluate the practice or process within a particular institution or a specific program.</div>
                 </div>
 
                 <div class="col s12 center">
-                    <img src="{% static 'qipr/img/UF_Seal.gif' %}" class="cert__image">
+                    <img src="{% static 'qipr/img/UF-Health-logo.png' %}" class="cert__image">
                 </div>
             </div>
         </div>
