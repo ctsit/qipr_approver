@@ -158,6 +158,26 @@ nav .button-collapse {
     float: right;
 }
 
+/*404 Page*/
+.error__404 {
+    color: #e28f41;
+    font-size: 20rem;
+    text-align: center;
+    line-height: 16rem;
+}
+
+.error__404--header {
+    color: #686868;
+    font-size: 2.5rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+}
+
+.error__404--header a:hover {
+    color: #004d9a;
+    cursor: pointer;
+}
+
 /*IRB Approval Page*/
 .nonapprove__margin--top {
     margin-top:2rem;

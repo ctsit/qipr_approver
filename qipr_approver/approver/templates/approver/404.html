@@ -1,11 +1,11 @@
 {% load staticfiles %}
 <div class="row nonapprove__margin--top">
-    <div class="col s12 m4 nonapprove__center">
-        <img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+    <div class="col s12  nonapprove__center">
+        <div class="error__404">404</div>
     </div>
-    <div class="col s12 m8">
+    <div class="col s12">
         <div class="valign-wrapper">
-            <h1 class="valign nonapprove__header">Ooops! It appears something went wrong. Try your search again or head back to the <a target="_blank" class="nonapprove__body--link" href="http://irb.ufl.edu/myirb.html">dashboard</a> to view your projects and profile.</h1>
+            <h1 class="valign error__404--header">Ooops! The page you are searching for does not exist or another error occurred. Try your search again or head back to the <a href="{% url 'approver:dashboard' %}">dashboard</a> to view your projects and profile.</h1>
         </div>
     </div>
 </div>
