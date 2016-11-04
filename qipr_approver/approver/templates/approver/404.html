@@ -1,53 +1,11 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% load staticfiles %}
-        <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
-        <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Amiri|Eczar" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        
-
-    </head>
-    <body>
-        <main>
-            <nav>
-                <div class="nav-wrapper bg-blue">
-                    <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
-                        <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.svg' %}">
-                    </a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse hide-on-med-and-up"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-small-only">
-                        <li class="nav_li"><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                        <li class="nav_li"><a href="">Search Registry</a></li>
-                        <li class="nav_li"><a href="">About</a></li>
-                        <li><a class="btn btn__logout" href="{% url 'approver:logout' %}">Logout</a></li>
-                    </ul>
-                    <ul class="side-nav" id="mobile-demo">
-                        <li><a class="" href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                        <li><a class="" href="">Search Registry</a></li>
-                        <li><a class="" href="">About</a></li>
-                        <li><a class="btn" href="{% url 'approver:logout' %}">Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-              
-            <div class="container">
-                
-            </div>
-            {% if toast_text %}
-            <div id="toast" class="cts-toast">
-                <span class="cts-toast__text">{{ toast_text }}</span>
-            </div>
-            {% endif %}
-        </main>
-
-        {% load footer %}
-        {% footer %}
-        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
-        <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
-        <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>
-    </body>
-</html>
+{% load staticfiles %}
+<div class="row nonapprove__margin--top">
+    <div class="col s12 m4 nonapprove__center">
+        <img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+    </div>
+    <div class="col s12 m8">
+        <div class="valign-wrapper">
+            <h1 class="valign nonapprove__header">Ooops! It appears something went wrong. Try your search again or head back to the <a target="_blank" class="nonapprove__body--link" href="http://irb.ufl.edu/myirb.html">dashboard</a> to view your projects and profile.</h1>
+        </div>
+    </div>
+</div>
