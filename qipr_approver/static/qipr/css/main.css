@@ -161,9 +161,9 @@ nav .button-collapse {
 /*404 Page*/
 .error__404 {
     color: #e28f41;
-    font-size: 20rem;
+    font-size: 12rem;
     text-align: center;
-    line-height: 16rem;
+    line-height: 12rem;
 }
 
 .error__404--header {
@@ -176,6 +176,10 @@ nav .button-collapse {
 .error__404--header a:hover {
     color: #004d9a;
     cursor: pointer;
+}
+
+.error__margin {
+    margin: 5rem 0;
 }
 
 /*IRB Approval Page*/
@@ -946,6 +950,11 @@ form .form__input--with-border {
 @media screen and (min-width: 500px) {
     .nonapprove__irb {
     max-width:30rem;
+    }
+
+    .error__404 {
+    font-size: 20rem;
+    line-height: 16rem;
     }
 }
 
