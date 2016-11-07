@@ -9,8 +9,24 @@
 {% approved_certificate project %}
 {% elif need_advisor %}
 
-<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
-<h1>You need an advisor for your project</h1>
+<div class="row nonapprove__margin--top">
+	<div class="col s6 m12 nonapprove__center">
+		<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution--advisor" alt="IRB Caution Sign"/>
+	</div>
+    <div class="col s6 m12">
+  			<h1 class="nonapprove__header--advisor center-align">You need an advisor for your project.</h1>
+	</div>
+	<div class="col s12 m12">
+		<p class="nonapprove__body">If you wish to pursue your project, you will need to have an advisor first.  For more information on how to obtain an advisor, please contact the Quality Improvement office between 8am and 5pm Monday - Friday. Thanks!</p>
+		<p class="nonapprove__body">Email: <a class="nonapprove__body--link" href="mailto:someemail@shands.ufl.edu?subject=QIPR Advisor Request">someemail@shands.ufl.edu</a></p>
+		<p class="nonapprove__body">Phone: <a class="nonapprove__body--link" href="tel:3522650002">352-265-0002</a></p>
+	</div>
+	<div class="row">
+		<div class="col s12">
+			<a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>
+		</div>
+	</div>
+</div>
 
 {% else %}
 

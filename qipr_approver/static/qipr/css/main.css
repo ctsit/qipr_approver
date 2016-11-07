@@ -179,12 +179,19 @@ nav .button-collapse {
     margin-top: 2rem;
 }
 
-.nonapprove__header {
+.nonapprove__header, .nonapprove__header--advisor {
     color: #686868;
-    font-size: 2.5rem;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 600;
     text-align: center;
+}
+
+.nonapprove__header {
+    font-size: 2.5rem;
+}
+
+.nonapprove__header--advisor {
+    font-size: 1.87rem;
 }
 
 .nonapprove__body {
@@ -202,6 +209,10 @@ nav .button-collapse {
 
 .nonapprove__caution {
     width: 18rem;
+}
+
+.nonapprove__caution--advisor {
+    width: 100%;
 }
 
 /*Dashboard*/
@@ -968,9 +979,19 @@ form .form__input--with-border {
     padding-left: .5rem;
 }
 
+@media screen and (min-width: 420px) {
+    .nonapprove__header--advisor {
+            font-size: 2.5rem;
+        }
+}
+
 @media screen and (min-width: 500px) {
     .nonapprove__irb {
     max-width:30rem;
+    }
+
+    .nonapprove__header--advisor {
+        font-size: 3rem;
     }
 }
 
@@ -1000,7 +1021,7 @@ form .form__input--with-border {
         font-size: 3rem;
     }
 
-    .nonapprove__caution {
+    .nonapprove__caution, .nonapprove__caution--advisor {
     width: 19rem;
     }
 }
@@ -1027,7 +1048,7 @@ form .form__input--with-border {
 }
 
 @media screen and (min-width: 740px) {
-    .nonapprove__header {
+    .nonapprove__header, .nonapprove__header--advisor {
         font-size: 3.2rem;
     }
 }
@@ -1044,7 +1065,7 @@ form .form__input--with-border {
 }
 
 @media screen and (min-width: 789px) {
-    .nonapprove__header {
+    .nonapprove__header, .nonapprove__header--advisor {
         font-size: 3.5rem;
     }
 }
