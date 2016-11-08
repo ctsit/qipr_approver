@@ -1,5 +1,5 @@
 from django.utils import timezone
-from approver.models import Project, Keyword, ClinicalArea, ClinicalSetting, SafetyTarget, Person, BigAim
+from approver.models import Project, Keyword, ClinicalArea, ClinicalSetting, Person, BigAim
 from django.contrib.auth.models import User
 from approver import utils
 
@@ -53,13 +53,6 @@ class ProjectForm():
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(project,"clinical_area")}
-
-        self.safety_target = {'name': 'safety_target',
-                              'label': 'Safety Targets',
-                              'model': 'safetytarget',
-                              'filter_field': 'name',
-                              'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
-                              'selected': utils.get_related_property(project,"safety_target")}
 
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',

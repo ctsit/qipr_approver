@@ -66,11 +66,6 @@ class KeywordModel(TestCase):
         self.assertTrue(check_fields(Keyword, "name", "Char", 50))
         self.assertTrue(check_fields(Keyword, "description", "Char", 100))
 
-class SafetyTargetModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(SafetyTarget, "name", "Char", 50))
-        self.assertTrue(check_fields(SafetyTarget, "description", "Char", 100))
-
 class ClinicalAreaModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
         self.assertTrue(check_fields(ClinicalArea, "name", "Char", 50))
