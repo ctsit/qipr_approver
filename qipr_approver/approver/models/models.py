@@ -122,7 +122,7 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
-    qi_required = models.NullBooleanField()
+    qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.CharField(max_length=30)
     tag_property_name = 'email_address'
@@ -175,7 +175,10 @@ class Project(Provenance, Registerable):
         (qi_required) and, if so, if the Project has an associated "advisor".
         Returns True if there is no advisor and there is "qi" required.
         """
-        self.need_advisor = (self.owner.qi_required is True) and (len(self.advisor.all()) <= 0)
+        if self.owner.qi_required == 1 and len(self.advisor.all()) <= 0:
+            self.need_advisor = True
+            print ('You need an advisor')
+        #self.need_advisor = (self.owner.qi_required is True) and (len(self.advisor.all()) <= 0)
 
 class Address(Provenance, Registerable):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")
