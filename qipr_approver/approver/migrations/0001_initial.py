@@ -330,22 +330,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='SafetyTarget',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('in_registry', models.BooleanField(default=False)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('last_modified', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=100)),
-                ('created_by', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('last_modified_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
-        migrations.CreateModel(
             name='Section',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -411,11 +395,6 @@ class Migration(migrations.Migration):
             model_name='question',
             name='section',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='question', to='approver.Section'),
-        ),
-        migrations.AddField(
-            model_name='project',
-            name='safety_target',
-            field=models.ManyToManyField(to='approver.SafetyTarget'),
         ),
         migrations.AddField(
             model_name='person',
