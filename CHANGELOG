@@ -1,3 +1,35 @@
+## [0.5.0] - 2016-11-10
+## Summary
+Dashboard, Proejcts, About you, Similar Projects, and the approver page have all been
+styled the best we could with the knowledge we currently have. The About you page has
+new self classification and training fields. Customers can now also search for their
+own projects on the dashboard and collaborate with PQIs of related projects.
+
+### Added
+* New 404 page (not yet implemented) (Amber Allen)
+* Add self classification field to About You page (Matthew McConnell)
+* Needs advisor page now displays if project does not have an advisor but requires one (Stuart Wehmeyer)
+* Styled Needs Advisor page
+* Footer on pages now includes live stats about projects and users (Stuart Wehmeyer)
+* Add training program to about you form (Matthew McConnell)
+* Create utils function to get a user from an HTTP request (Matthew McConnell)
+* Add the ability to email a PQI for found related projects (Matthew McConnell)
+* Display expected start date on similar projects page (Matthew McConnell)
+* Add a search to the dashboards to search within ones own projects (ndavuluri)
+
+### Changed
+* removed the safety targets field (Stewart Wehmeyer)
+* Changed Logo (#141) (Amber)
+* Styled About You page (Amber Allen)
+* Styled Approver questions page (Amber Allen)
+* Moves selected tags underneath the inputs (Matthew McConnell)
+* Styled Project Page (Amber Allen)
+* Replace UF seal on certificate with UF Health logo. (Amber Allen)
+* Update text in Do I need IRB approval section on landing page. (Amber Allen)
+* Update FAQ questions on landing page. (Amber Allen)
+* Additional Dashboard styling
+
+
 ## [0.4.0] - 2016-10-25
 ## Summary
 

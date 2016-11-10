@@ -1,47 +1,116 @@
-<div>
-    <h3>
-        <a class="btn-floating btn-large waves-effect waves-light btn right" href="{% url 'approver:projects' %}"><i class="material-icons">add</i></a>
-    </h3>
 </div>
-<div>
-    <div style="display:inline">
-        List of Projects:
+<div class="container__dashboard">
+<div class="row dashboard_title-bg">
+        <div class="col s12 dashboard_title">
+                <h3 class="dashboard_title-main">QIPR Dashboard</h3>
+        </div>
     </div>
-    <table class="striped">
-        <thead>
-            <tr>
-                <th data-field="number">#</th>
-                <th data-field="title">Title</th>
-                <th data-field="role">Role</th>
-                <th data-field="Approval">Project Approval</th>
-                <th data-field="delete">Delete?</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for project in projects %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td><a href="{% url 'approver:projects' project_id=project.pk %}" class="project__title">{{ project.title }}</td>
-                    <td class="project__title">{{ project.role }}</td>
-                    {% if project.role == "PI" %}
-                        {% if project.is_approved %}
-                            <td><a href="{% url 'approver:project_status' project_id=project.pk %}">See Certificate</a></td>
-                            <td></td>
-                        {% else %}
-                            <td><a href="{% url 'approver:approve' project_id=project.pk %}">Project Approval</a></td>
-                            <td>
-                                <form action="{% url 'approver:project_del' project_id=project.pk %}" method="post"
-                                      onSubmit="return confirm('Are you sure you want to delete project {{ forloop.counter }}?');">
-                                        {% csrf_token %}
-                                    <button class="btn" type="submit" value="Delete Project"> <i class="material-icons">delete</i></button>
-                                </form>
+
+    <div class="row dashboard_border">
+        <div class="col s12 m2 dashboard_menu">
+            <ul>
+                <li class="dashboard_menu-item-active">Projects</li>
+                <li class="dashboard_menu-item"><a href="{% url 'approver:aboutyou' %}">Profile</a></li>
+            </ul>
+        </div>
+
+        <div class="col s12 m10 dashboard_border-left">
+            <h3 class="center-align dashboard_projects-title">QI Projects for {{ person.first_name }} {{ person.last_name }}</h3>
+            <div class="row">
+                <div class="col s6">
+                    <a class="dashboard_add" href="{% url 'approver:projects' %}"><div class="dashboard_add-btn">+</div><div class="dashboard_add-text">Add Project</div></a>
+                </div>
+                 <div class="col s6">
+                    <div class="input-field dashboard_search">
+                        <form method="post" action="{% url 'approver:dashboard' %}">
+                            {% csrf_token %}
+                            <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                            
+                            <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
+                        <th class="dashboard_row-title" data-field="role"><h5>Role</h5></th>
+                        <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5>
+
+                        <!-- Modal Structure -->
+                                <div id="modal1" class="modal">
+                                    <div class="modal-content">
+                                      <h4>How do I know if my documents are complete?</h4>
+                                      <ul>
+                                        <li><p><div class="dashboard__check">&#10003;</div>If you see a green check mark, it means you have <span class="dashboard__green">completed</span> all requirements of the document.</p></li>
+                                        <li><p><div class="dashboard__exclaimation">!</div>If you see a red exclaimation mark, it means your document is <span class="dashboard__red">incomplete and requires edits</span>.</p></li>
+                                        <li><p><div class="dashboard__star">&#9733;</div> If you see a blue star, it means your project is similar to another existing QI project. It is strongly encouraged that any time a similar project exists, you explore the option of collaborating with that existing project. By clicking the Similar Projects link, you will be able to view what similar projects are available to collaborate on.
+                                            <br><br>*NOTE* Similar Projects will only appear if there is at lease 1 project out there that is similar to yours. If any similar projects exist, you have access to view them at any time by clicking the similar projects link. If there are no similar projects to yours, you will not have access to this link.</p></li>
+                                      </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                                    </div>
+                                </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                        <tr>
+                            <td class="project__title">{{ project.title }}
+                                <div class="dashboard__updated">This project was last updated {{ project.last_modified | date:'M d Y' }}</div>
+                                <div class="dashboard_btns-edit">
+                                    <form class="dashboard_delete--form" action="{% url 'approver:project_del' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to delete this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Delete" /></form>
+
+                                </div>
                             </td>
-                        {% endif %}
+                            <td class="project__title">{{ project.role }}</td>
+
+
+                            {% if project.role == "PI" %}
+
+                                    <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
+                                        <ul>
+                                            {% if project.is_approved %}
+                                                <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
+                                            {% endif %}
+
+                                            <li class="dashboard__list"><div class="dashboard__check">&#10003;</div><a href="{% url 'approver:projects' project_id=project.pk %}">Project Details</a></li>
+                                            <li class="dashboard__list"><div class="dashboard__exclaimation">!</div><a href="{% url 'approver:approve' project_id=project.pk %}">Self Certification</a></li>
+                                            {% if project.has_similar_projects != 0 %}
+                                                <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
+                                            {% endif %}
+                                        </ul></a></td>
+                      
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="pagination center-align">
+                <span class="step-links">
+                    {% if projects.has_previous %}
+                        <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
                     {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 
+                    <span class="current">
+                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}
+                    </span>
 
+                    {% if projects.has_next %}
+                        <a href="?page={{ projects.next_page_number }}"> &gt; </a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+        </div> <!-- end right side of dashboard -->
+    </div> <!-- end dashboard -->
