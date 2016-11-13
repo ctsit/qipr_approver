@@ -56,8 +56,7 @@ def dashboard(request,project_id=None):
             return redirect(reverse("approver:dashboard"))
 
 def get_project_context(request,search_query):
-    username = request.session.get(constants.SESSION_VARS['gatorlink'])
-    user = User.objects.get(username=username)
+    user = utils.get_user_from_http_request(request)
     projects = [__get_project_details(project,"PI") for project in user.person.projects.all().filter(title__icontains=search_query)]
     collaborator_projects = [__get_project_details(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person).filter(title__icontains=search_query)]
     advisor_projects = [__get_project_details(project,"Advisor") for project in Project.objects.filter(advisor=user.person).filter(title__icontains=search_query)]
