@@ -62,10 +62,6 @@ class Keyword(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
-class SafetyTarget(Provenance, NamePrint, TaggedWithName, Registerable):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
 class ClinicalArea(Provenance, NamePrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -117,13 +113,14 @@ class Person(Provenance, Registerable):
     qi_interest = models.ManyToManyField(QI_Interest)
     speciality = models.ManyToManyField(Speciality)
     suffix = models.ManyToManyField(Suffix)
-    training = models.ManyToManyField(Training)
+    training = models.CharField(max_length=50, null=True)
     user = models.OneToOneField(User, null=True, related_name="person")
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
     qi_required = models.NullBooleanField()
     clinical_area = models.ManyToManyField(ClinicalArea)
+    self_classification = models.CharField(max_length=30)
     tag_property_name = 'email_address'
 
     def __str__(self):
@@ -144,7 +141,6 @@ class Project(Provenance, Registerable):
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
-    safety_target = models.ManyToManyField(SafetyTarget)
     title = models.CharField(max_length=300)
 
     def __str__(self):

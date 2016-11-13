@@ -1,24 +1,47 @@
-<div class="dashboard_stats">
+{% load staticfiles %}
+<div class="dashboard_stats center">
 	<div class="container">
 		<div class="row">
             <div class="col s6">
-                    <h5><i class="small material-icons grey-text text-darken-1">assignment</i><span>  # </span>Registered Projects</h5>
+                    <h5><i class="small material-icons white-text text-darken-1">assignment</i><span> {{ count_registered_projects }} </span>Registered Projects</h5>
             </div>
             <div class="col s6">
-                    <h5><i class="small material-icons grey-text text-darken-1">note_add</i><span>  # </span>Projects Added This Month</h5>
+                    <h5><i class="small material-icons white-text text-darken-1">note_add</i><span> {{ count_monthly_projects }} </span>Projects Added This Month</h5>
             </div>
             <div class="col s6">
-                    <h5><i class="small material-icons grey-text text-darken-1">perm_identity</i><span>  # </span>Active Users</h5>
+                    <h5><i class="small material-icons white-text text-darken-1">perm_identity</i><span> {{ count_active_users }} </span>Active Users</h5>
             </div>
             <div class="col s6">
-                    <h5><i class="small material-icons grey-text text-darken-1">grade</i><span>  # </span>Approved Projects</h5>
+                    <h5><i class="small material-icons white-text text-darken-1">grade</i><span> {{ count_approved_projects }} </span>Approved Projects</h5>
             </div>
         </div>
     </div>
     </div>
 
-        <footer class="page-footer grey darken-4">
-    <div class="footer-copyright grey darken-4">
+<footer class="page-footer grey lighten-3">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4 center">
+                <div class="footer__logo--height">
+                    <img src="{% static 'qipr/img/UF-Health-logo.png' %}" class="responsive-img footer__logo--ufhealth">
+                </div>
+                <p>The UF Health Sebastian Ferrero Office of Clinical Quality & Patient Safety</p>
+            </div>
+            <div class="col s12 m4 center">
+                <div class="footer__logo--height">
+                    <img src="{% static 'qipr/img/University_of_Florida_Logo.png' %}" class="responsive-img footer__logo--uf">
+                </div>
+                <p>The University of Florida Clinical and Translational Science Institute</p>
+            </div>
+            <div class="col s12 m4 center">
+                <h5>Contact The QIPR Team</h5>
+                <p>Email: <a href="mailto:someemail@shands.ufl.edu?subject=QIPR Inquiry">someemail@shands.ufl.edu</a></p>
+                <p>Phone: <a href="tel:3522650002">352-265-0002</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
         <div class="container center">
             © 2016 QIPR Approver {{ version_number }}
         </div>

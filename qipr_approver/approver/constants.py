@@ -75,5 +75,4 @@ registry_endpoints = {
 
 app_label = 'approver'
 
-VERSION_NUMBER = '0.4.0'
-
+VERSION_NUMBER = '0.5.1'
