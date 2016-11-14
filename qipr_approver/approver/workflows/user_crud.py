@@ -4,6 +4,7 @@ from approver.utils import extract_tags, update_tags, true_false_to_bool
 
 from django.contrib.auth.models import User
 from django.utils import timezone
+from approver import utils
 
 def create_new_user_from_current_session(session):
     """
@@ -23,7 +24,8 @@ def create_new_user_from_current_session(session):
                         first_name=new_user.first_name,
                         last_name=new_user.last_name,
                         email_address=new_user.email,
-                        last_login_time=now)
+                        last_login_time=now,
+                        account_expiration_time=utils.get_account_expiration_date(now))
 
     new_person.save(last_modified_by=new_user)
 
