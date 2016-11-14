@@ -6,10 +6,10 @@
 <div class="container">
 
 {% if project_id %}
-<form action="{% url 'approver:projects' project_id=project_id %}" autocomplete="off" method="post">
+<form action="{% url 'approver:projects' project_id=project_id %}" onsubmit="submitProject.disabled=true; autocomplete="off" method="post">
 {% endif %}
 {% if not project_id %}
-    <form action="{% url 'approver:projects' %}" autocomplete="off" method="post">
+    <form action="{% url 'approver:projects' %}" onsubmit="submitProject.disabled=true;" autocomplete="off" method="post">
 {% endif %}
     {% csrf_token %}
     {% load form_input %}
@@ -51,6 +51,6 @@
     {% if form.is_disabled %}
         <a href="{% url 'approver:project_status' project_id=project_id %}" class=btn>See Certificate</a>
     {% else %}
-        <input class="btn about__submit" type="submit" value="Submit Project" />
+        <input class="btn about__submit" name="submitProject" type="submit" value="Submit Project" />
     {% endif %}
 </form>
