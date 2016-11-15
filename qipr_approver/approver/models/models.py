@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
+from approver.constants import STATE_CHOICES, COUNTRY_CHOICES, QI_CHECK
 
 from approver import utils
 from approver.models.bridge_models import Registerable
@@ -172,7 +172,7 @@ class Project(Provenance, Registerable):
         """
         Determine if the project needs an advisor based on whether qi is a requirement for the owner.
         """
-        return self.owner.qi_required == 1 and len(self.advisor.all()) == 0
+        return self.owner.qi_required == QI_CHECK['yes'] and len(self.advisor.all()) == 0
 
 class Address(Provenance, Registerable):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")
