@@ -80,7 +80,7 @@ def approve_or_next_steps(project, user):
     # A project is only approved if the self certification questions were answered
     # correctly and the project does not require an advisor (based on if a QI project
     # is required for the PQIs training program
-    if ((is_correct_response) and (project.need_advisor is False)):
+    if (is_correct_response and (project.get_need_advisor() is False)):
         project.approve(user)
 
     return after_approval(project)
