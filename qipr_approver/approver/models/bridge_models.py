@@ -1,10 +1,12 @@
 from django.db import models
+from django.utils import timezone
 
 class Registerable(models.Model):
     in_registry = models.BooleanField(default=False)
+    date_first_registered = models.DateTimeField(null=True)
 
     def register(self):
-        self.in_registry = True
+        self.date_first_registered = timezone.now()
 
     def natural_key(self):
         natural_dict = self.get_natural_dict()

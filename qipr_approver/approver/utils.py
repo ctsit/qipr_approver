@@ -14,12 +14,6 @@ import django
 from django.db.models import fields
 from django.apps import apps
 
-def get_guid():
-    """
-    Wraps the python uuid.uuid4 function and returns the hex value
-    """
-    return uuid.uuid4().hex
-
 def user_exists(about_you_form):
     """
     Returns True if user exists, and False otherwise given an
@@ -57,6 +51,10 @@ def dashboard_redirect_and_toast(request, toast_text):
 
 def after_approval(project):
     return redirect(reverse("approver:project_status") + str(project.id))
+
+def set_guid_if_empty(model):
+    if not model.guid:
+        model.guid = uuid.uuid4().hex
 
 def set_created_by_if_empty(model, user):
     """

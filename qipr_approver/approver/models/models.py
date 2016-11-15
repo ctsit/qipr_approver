@@ -15,10 +15,11 @@ class Provenance(models.Model):
     last_modified_by = models.ForeignKey(User,related_name="+")
     created = models.DateTimeField(auto_now_add=True,editable=False)
     last_modified = models.DateTimeField(auto_now=True,editable=True)
-    guid = models.CharField(max_length=32, editable=False, default=utils.get_guid())
+    guid = models.CharField(max_length=32, editable=False, null=True)
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
+        utils.set_guid_if_empty(self)
         self.audit_trail.user = last_modified_by
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
@@ -133,8 +134,7 @@ class Project(Provenance, Registerable):
         Projects get locked down after they are approved
         or a year after their creation date.
         """
-        if utils.check_is_date_past_year(self.created) or \
-        self.approval_date or self.in_registry:
+        if utils.check_is_date_past_year(self.created) or self.approval_date:
             return False
         return True
 
