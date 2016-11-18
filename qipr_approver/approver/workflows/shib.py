@@ -6,6 +6,7 @@ from django.utils import timezone
 from approver.models import Person
 from approver.constants import SESSION_VARS
 from . import user_crud
+from approver import utils
 
 def add_shib_information_to_session(request):
     """
@@ -36,6 +37,7 @@ def after_validation(request):
     else:
         user = User.objects.get(username=gatorlink)
         user.person.last_login_time = timezone.now()
+        user.person.account_expiration_time=utils.get_account_expiration_date(timezone.now())
         user.person.save(user)
         return redirect(reverse("approver:dashboard"))
 

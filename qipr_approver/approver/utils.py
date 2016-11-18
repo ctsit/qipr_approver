@@ -191,6 +191,10 @@ def check_fields(ModelName,fieldname,type,max_length=None):
             else:
                 return False
 
+def get_account_expiration_date(date):
+    """Account expiration date is an year from last login date"""
+    return date + timedelta(days=365)
+
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
 
