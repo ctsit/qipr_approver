@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from approver.constants import STATE_CHOICES, COUNTRY_CHOICES
+from approver.constants import STATE_CHOICES, COUNTRY_CHOICES, QI_CHECK
 
 from approver import utils
 from approver.models.bridge_models import Registerable
@@ -118,7 +118,7 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
-    qi_required = models.NullBooleanField()
+    qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.CharField(max_length=30)
     tag_property_name = 'email_address'
@@ -137,7 +137,6 @@ class Project(Provenance, Registerable):
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
     keyword = models.ManyToManyField(Keyword)
-    need_advisor = models.NullBooleanField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
@@ -164,13 +163,11 @@ class Project(Provenance, Registerable):
         self.approval_date = timezone.now()
         self.save(user)
 
-    def set_need_advisor(self):
+    def get_need_advisor(self):
         """
-        Checks the need for an advisor. Based on whether Person has need for qi
-        (qi_required) and, if so, if the Project has an associated "advisor".
-        Returns True if there is no advisor and there is "qi" required.
+        Determine if the project needs an advisor based on whether qi is a requirement for the owner.
         """
-        self.need_advisor = (self.owner.qi_required is True) and (len(self.advisor.all()) <= 0)
+        return self.owner.qi_required == QI_CHECK['yes'] and len(self.advisor.all()) == 0
 
 class Address(Provenance, Registerable):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, blank=True, related_name="business_address")

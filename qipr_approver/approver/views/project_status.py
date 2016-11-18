@@ -22,7 +22,7 @@ def project_status(request, project_id=None):
     }
     project = project_crud.get_project_or_none(project_id)
     #Returns true if the project needs an associated advisor.
-    if (project.need_advisor is True):
+    if (project.get_need_advisor()):
         context['need_advisor'] = True
     # Returns desired project and True if approval was confirmed & time stamped
     if project.approval_date:

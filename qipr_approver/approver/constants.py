@@ -21,6 +21,12 @@ SESSION_VARS = {
     'last_name': 'last_name',
 }
 
+QI_CHECK = {
+    'no': 0,
+    'yes': 1,
+    'no_program': 2,
+}
+
 ADDRESS_TYPE= {
     'business': 'business',
     'organization': 'organization',

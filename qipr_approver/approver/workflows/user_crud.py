@@ -54,7 +54,7 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.webpage_url = about_you_form.get('webpage_url')
     person.title = about_you_form.get('title')
     person.department = about_you_form.get('department')
-    person.qi_required = true_false_to_bool(about_you_form.get('qi_required'))
+    person.qi_required = about_you_form.get('qi_required')
     person.training = about_you_form.get('training_program')
     if (about_you_form.get('select-self_classification') != 'other'):
         person.self_classification = about_you_form.get('select-self_classification')
