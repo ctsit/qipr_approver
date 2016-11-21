@@ -21,12 +21,15 @@ from operator import itemgetter
 @login_required
 def dashboard(request,project_id=None):
     if request.method == 'GET' or request.POST.get('search') is not None:
+        super_user = False
+        if utils.get_user_from_http_request(request).is_superuser:
+           super_user = True
         search_query = ""
         if(request.POST.get('search') is not None):
             search_query = request.POST.get('search')
 
         projects = []
-        projects_list = sorted(get_project_context(request,search_query),key=itemgetter('last_modified'),reverse=True)
+        projects_list = sorted(get_project_context(request,search_query,super_user),key=itemgetter('last_modified'),reverse=True)
         paginator = Paginator(projects_list, projects_per_page)
         page = request.GET.get('page')
         try:
@@ -55,8 +58,11 @@ def dashboard(request,project_id=None):
         else:
             return redirect(reverse("approver:dashboard"))
 
-def get_project_context(request,search_query):
+def get_project_context(request,search_query,super_user):
     user = utils.get_user_from_http_request(request)
+    if super_user:
+        projects = [__get_project_details(project,"Super_User") for project in Project.objects.all().filter(title__icontains=search_query)]
+        return projects
     projects = [__get_project_details(project,"PI") for project in user.person.projects.all().filter(title__icontains=search_query)]
     collaborator_projects = [__get_project_details(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person).filter(title__icontains=search_query)]
     advisor_projects = [__get_project_details(project,"Advisor") for project in Project.objects.filter(advisor=user.person).filter(title__icontains=search_query)]

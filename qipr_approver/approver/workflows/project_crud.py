@@ -115,12 +115,19 @@ def project_exists(project_id):
     """
     return (len(Project.objects.filter(id=project_id)) > 0)
 
+def current_user_is_super_user(current_user):
+    return current_user.is_superuser
+
 def curent_user_is_project_owner(current_user, project):
     """
     This returns a boolean about if the current_user.person.id is the
     same as the project.owner.id
     """
     return current_user.person.id == project.owner.id
+
+def is_current_project_editable(current_user,project):
+    return current_user_is_super_user(current_user) or curent_user_is_project_owner(current_user, project)
+
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
     This returns a boolean true if the current_user.person.id is in 

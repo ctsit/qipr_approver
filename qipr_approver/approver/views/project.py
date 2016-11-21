@@ -43,7 +43,7 @@ def project(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if(project_crud.curent_user_is_project_owner(current_user, project) is not True):
+                if(project_crud.is_current_project_editable(current_user, project) is not True):
                     if project_crud.current_user_is_project_advisor_or_collaborator(current_user,project):
                         context['form'] = ProjectForm(project,is_disabled=True)
                         return utils.layout_render(request,context)
