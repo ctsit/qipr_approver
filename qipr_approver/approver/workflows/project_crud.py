@@ -194,7 +194,7 @@ def _calculate_similarity_score(project, member):
 
     if project.category is not None and member.category is not None:
         similarity += category_factor * _jaccard_similarity(project.category.all(), member.category.all())
-    
+
     return similarity
 
 

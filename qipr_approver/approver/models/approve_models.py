@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from approver.models import Provenance, NamePrint, Project
+from approver.models import Provenance, Project
 
 class TextPrint(models.Model):
     def __str__(self):
@@ -11,9 +11,12 @@ class TextPrint(models.Model):
         abstract = True
 
 
-class Section(Provenance, NamePrint):
+class Section(Provenance):
     name = models.CharField(max_length=30)
     sort_order = models.IntegerField(unique=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 class Choice(Provenance, TextPrint):
     text = models.TextField()
