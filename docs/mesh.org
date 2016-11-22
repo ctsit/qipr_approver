@@ -1,9 +1,44 @@
-* DONE create models
-CLOSED: [2016-08-30 Tue 16:45]
-* TODO create parser
-* TODO spilt up giant xml file into something managable
-** create @ delimited xml file to cut on and pip smaller bits
-*** DONE descriptors
-CLOSED: [2016-08-30 Tue 16:47]
-*** TODO qualifiers <- probably dont need it
-*** TODO scr 
+* Mesh keywords setup
+In order to load mesh keywords into a running version of qipr
+a few steps are needed.
+
+** Download mesh ascii files onto machine
+[[https://www.nlm.nih.gov/mesh/download_mesh.html][Files here]] both the qualifiers and descriptors are need. supplementary
+records are not as important and are optional
+** Import step
+From the project root run 'python3 manage.py loadmesh $FILENAME'
+
+NOTE
+Make sure that you run the QUALIFIERS through first as they are 
+needed to properly import the descriptors. 
+
+Once running the qualifiers through it will take a while. Probably
+between 3-5 hours.
+
+* Considerations
+Some fields from mesh keywords were not imported into our representation
+because they were either of little importance, all the same, not understood,
+and or dropped in the interest of getting the feature done. 
+
+If in the future we decide to bring these into our database we will want to 
+add them back into the actions dictionary in the parsers/mesh_ascii module
+along with proper implementations
+
+** dropped fields
+    # 'CX': lambda acc, RHS: set_consider_also(acc, RHS),
+    # 'EC': lambda acc, RHS: set_return(acc, 'annotation', RHS),
+    # 'FX': lambda acc, RHS: add_return(acc, 'forward_reference', RHS, desc_mh_lookup),
+    # 'HM': lambda acc, RHS: add_return(acc, 'heading_mapped_to', RHS, desc_mh_lookup),
+    # 'II': lambda acc, RHS: add_return(acc, 'indexing_information', RHS, desc_mh_lookup),
+    # 'MH_TH': lambda acc, RHS: set_return(acc, 'mesh_heading_thesaurus', RHS),
+    # 'N1': lambda acc, RHS: set_return(acc, 'castype1_name', RHS),
+    # 'OL': lambda acc, RHS: set_return(acc, 'online_note', RHS),
+    # 'PI': lambda acc, RHS: set_return(acc, 'previous_indexing', RHS),
+    # 'PM': lambda acc, RHS: set_return(acc, 'public_mesh_note', RHS),
+    # 'QE': lambda acc, RHS: set_return(acc, 'qualifier_entry_version', RHS),
+    # 'QS': lambda acc, RHS: set_return(acc, 'qualifier_sort_version', RHS),
+    # 'QT': lambda acc, RHS: set_return(acc, 'qualifier_type', RHS),
+    # 'QX': lambda acc, RHS: set_return(acc, 'qualifier_cross_reference', RHS),
+    # 'RH': lambda acc, RHS: set_return(acc, 'running_head', RHS),
+    # 'TH': lambda acc, RHS: set_return(acc, 'thesaurus_identifier', RHS),
+    # 'TN': lambda acc, RHS: set_return(acc, 'tree_node_allowed', RHS),

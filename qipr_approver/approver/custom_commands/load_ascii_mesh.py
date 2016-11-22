@@ -1,4 +1,3 @@
-from approver.models import *
 import approver.parsers.mesh_ascii.actions as mesh_actions
 
 def load_ascii_mesh(argv):
