@@ -60,8 +60,6 @@ class Speciality(Provenance, Tag):
     pass
 class Suffix(Provenance, Tag):
     pass
-class Training(Provenance, Tag):
-    pass
 
 class BigAim(Provenance, Tag):
     sort_order = models.IntegerField(null=True)

@@ -36,21 +36,15 @@ class ProjectTestCase(TestCase):
 
     def test_should_print_text_when_asked_for_string(self):
         title = 'test title'
-        owner = Person(first_name='first', last_name='last', email_address='email')
+        owner = Person(gatorlink='KidCudi')
         project = Project(title=title, owner=owner)
-        test_string = ' '.join([title, str(owner)])
+        test_string = ' '.join([title, str(owner.gatorlink)])
 
         self.assertEqual(str(project), test_string)
 
     def test_should_be_approved_when_approved(self):
         project = Project()
         project.approve(self.user)
-
-        self.assertTrue(project.is_approved())
-
-    def test_should_be_approved_when_in_registry(self):
-        project = Project()
-        project.register()
 
         self.assertTrue(project.is_approved())
 
@@ -66,12 +60,6 @@ class ProjectTestCase(TestCase):
     def test_should_not_be_editable_when_approved(self):
         project = Project()
         project.approve(self.user)
-        self.assertFalse(project.get_is_editable())
-
-    def test_should_not_be_editable_when_in_registry(self):
-        project = Project()
-        project.save(self.user)
-        project.register()
         self.assertFalse(project.get_is_editable())
 
     def test_should_not_be_editable_when_older_than_a_year(self):
