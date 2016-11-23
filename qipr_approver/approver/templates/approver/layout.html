@@ -20,7 +20,7 @@
                     </a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse hide-on-med-and-up"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
-                        {% if not user.is_superuser %}
+                        {% if request.session.su %}
                         <li class="nav_li"><a href="{% url 'approver:dashboard' %}">Admin-Modify Projects</a></li>
                         <li class="nav_li"><a href="{% url 'approver:userlist' %}">Admin-Modify Users</a></li>
                         {% endif %}
