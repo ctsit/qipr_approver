@@ -2,7 +2,7 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
-config.read('/var/www/qipr_approver/qipr_approver/deploy/settings.ini')
+config.read('/var/www/qipr/approver/live/qipr_approver/deploy/settings.ini')
 
 def get_config(key):
     return config.get(config.default_section, key)
