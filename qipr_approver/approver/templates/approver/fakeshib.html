@@ -1,7 +1,8 @@
-<h1>Fake shib</h1>
+<h1>DEMO LOGIN: Please don't use real passwords. </h1>
 <form action="{% url 'approver:shib' %}" method="post">
     {% csrf_token %}
-    <input name="gatorlink" type="text" value="" placeholder="Email"/>
+    <input name="gatorlink" type="text" value="" placeholder="Gatorlink"/>
     <input name="password" type="text" value="" placeholder="Password"/>
     <input type="submit" value="Login" />
 </form>
+<!-- {{ enviro }} -->

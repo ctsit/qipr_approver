@@ -8,7 +8,12 @@ from approver.workflows import shib
 @csrf_protect
 def fake_shib(request):
     if request.method == "GET":
-        return render(request, 'approver/fakeshib.html')
+        context = {
+            'content': 'approver/fakeshib.html',
+            'enviro': request.META
+        }
+        return render(request, 'approver/fakeshib.html',context)
+       # return render(request, 'approver/fakeshib.html')
     elif request.method == "POST":
         return shib.after_validation(request)
     else:
