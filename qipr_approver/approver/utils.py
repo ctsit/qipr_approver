@@ -46,10 +46,6 @@ def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
 
-def userlist_redirect_and_toast(request, toast_text):
-    request.session['toast_text'] = toast_text
-    return redirect(reverse("approver:userlist"))
-
 def after_approval(project):
     return redirect(reverse("approver:project_status") + str(project.id))
 
