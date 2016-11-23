@@ -2,25 +2,25 @@
 #This file will delete all your existing data but it will make the migrations
 #up to date and make your database clean
 
-sudo mysql -e "drop database qipr_approver;"
-sudo mysql -e "create database qipr_approver character set utf8;"
-rm -rf /var/www/qipr-approver/approver/migrations
+sudo mysql -u qipr_a_admin_api -p -e "drop database qipr_approver;"
+sudo mysql -u qipr_a_admin_api -p -e "create database qipr_approver character set utf8;"
+sudo rm -rf /var/www/qipr-approver/approver/migrations
 #Need to Comment out all the urls for the approver app, else the migrations fail
 pushd qipr_approver
-cp urls.py temp_urls.py
-rm urls.py
-cp migration_urls.py urls.py
+sudo cp urls.py temp_urls.py
+sudo rm urls.py
+sudo cp migration_urls.py urls.py
 popd
-rm -rf ./approver/migrations
-python3 manage.py makemigrations approver
-python3 manage.py migrate
-python3 manage.py loaddata ./approver/fixtures/user.json
-python3 manage.py loaddata ./approver/fixtures/*
-pushd qipr_approver
+sudo rm -rf ./approver/migrations
+sudo python3 manage.py makemigrations approver
+sudo python3 manage.py migrate
+sudo python3 manage.py loaddata ./approver/fixtures/user.json
+sudo python3 manage.py loaddata ./approver/fixtures/*
+sudo pushd qipr_approver
 #Adding back the proper urls
-rm urls.py
-cp temp_urls.py urls.py
-rm temp_urls.py
+sudo rm urls.py
+sudo cp temp_urls.py urls.py
+sudo rm temp_urls.py
 popd
 
 #Uncomment below line if you need a superuser for Admin login:Prompts for email,username,password

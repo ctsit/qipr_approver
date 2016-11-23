@@ -19,10 +19,10 @@ def get_config(key):
     return config.get(config.default_section, key)
 
 def define_env():
-    settings_proj_path = 'qipr_approver/qipr_approver/deploy/settings.ini'
+    settings_proj_path = 'live/qipr_approver/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
-        settings_pre_path = '/var/www/'
+        settings_pre_path = '/var/www/qipr/approver/'
     config.read(settings_pre_path + settings_proj_path)
     os.environ['DJANGO_SETTINGS_MODULE'] = "qipr_approver.settings"
     os.environ['DJANGO_CONFIGURATION'] = get_config('configuration')
@@ -52,6 +52,10 @@ DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
 
 ALLOWED_HOSTS = []
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['login.ufl.edu']
 
 # Application definition
 
