@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from approver.forms import AboutYouForm, ProjectForm
 from django.contrib.auth.models import User
@@ -117,7 +117,7 @@ def dashboard_su(request,action=None,project_id=None):
             toast_text = project_crud.current_user_can_unarchive_project(current_user,project)
             request.session['toast'] = toast_text
             return redirect((reverse("approver:dashboard_su")))
-        if(project_id is not None):
+        if action == 'delete' and project_id is not None :
             toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
             request.session['toast'] = toast_text
             return redirect(reverse("approver:dashboard_su"))
