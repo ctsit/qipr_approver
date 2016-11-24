@@ -30,8 +30,6 @@ def project(request, project_id=None):
         else:
             if (project_crud.curent_user_is_project_owner(current_user, project) is True and project.get_is_editable()) or project_crud.current_user_is_superuser:
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
-                if utils.get_user_from_http_request(request).is_superuser:
-                    return redirect(reverse("approver:dashboard"))
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
         return redirect(reverse("approver:similar_projects", args=[str(project.id)]))
