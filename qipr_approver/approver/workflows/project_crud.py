@@ -156,10 +156,11 @@ def current_user_can_perform_project_delete(current_user,project):
     project.delete(current_user)
     return 'Deleted Project'
 
-def current_user_can_perform_project_archive(current_user,project):
+def current_user_can_archive_project(current_user,project):
     """Only Super User can archive projects"""
     project.archived = True
     project.save(current_user)
+    return 'Archived Project'
 
 def get_approved_projects():
     """

@@ -110,7 +110,7 @@ def dashboard_su(request,action=None,project_id=None):
         current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
         project = project_crud.get_project_or_none(project_id)
         if action == 'archive' :
-            toast_text = project_crud.current_user_can_perform_project_archive(current_user,project)
+            toast_text = project_crud.current_user_can_archive_project(current_user,project)
             request.session['toast'] = toast_text
             return redirect((reverse("approver:dashboard_su")))
         if(project_id is not None):
