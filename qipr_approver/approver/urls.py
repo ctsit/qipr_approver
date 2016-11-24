@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^first_login/$', views.first_login, name='firstlogin'),
     url(r'^dashboard/(?P<project_id>[0-9]+)$', views.dashboard, name='project_del'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^dashboard_su/$', views.dashboard_su, name='dashboard_su'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),
     url(r'^api/tags$', api.tags, name='api_tags'),
