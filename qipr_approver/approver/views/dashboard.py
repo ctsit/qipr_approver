@@ -98,7 +98,7 @@ def dashboard_su(request,action=None,project_id=None):
         user = utils.get_user_from_http_request(request)
         person = user.person
         context = {
-            'content': 'approver/dashboard.html',
+            'content': 'approver/dashboard_su.html',
             'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session),
             'search_query': search_query,
