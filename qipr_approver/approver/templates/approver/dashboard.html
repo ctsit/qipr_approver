@@ -85,14 +85,21 @@
                                                 <li class="dashboard__list"><div class="dashboard__star">&#9733;</div><a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a></li>
                                             {% endif %}
                                         </ul></a></td>
-                            {% if request.session.su %}
-                            <td>
-                                <div class="dashboard_btns-edit">
-                                    <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_archive' action='archive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to archive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Archive Projects" /></form>
-                                </div>
-                            </td>
                             {% endif %}
-                      
+                            {% if request.session.su %}
+                                {% if project.is_archived == 0 %}
+                                <td>
+                                    <div class="dashboard_btns-edit">
+                                        <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_archive' action='archive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to archive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Archive Project" /></form>
+                                    </div>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <div class="dashboard_btns-edit">
+                                        <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_archive' action='unarchive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to unarchive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="UnArchive Project" /></form>
+                                    </div>
+                                </td>
+                                {% endif %}
                             {% endif %}
                         </tr>
                     {% endfor %}

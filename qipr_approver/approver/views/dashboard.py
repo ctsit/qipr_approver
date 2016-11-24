@@ -69,7 +69,7 @@ def get_project_context(request,search_query,super_user=False):
 
 def __get_project_details(project, role):
     '''Returns dictionary of all project details that are displayed on Dashboard''' 
-    return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified,'has_similar_projects':len(project_crud.get_similar_projects(project))}
+    return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified,'has_similar_projects':len(project_crud.get_similar_projects(project)),'is_archived':project.archived}
 
 @login_required
 def dashboard_su(request,action=None,project_id=None):
@@ -109,8 +109,12 @@ def dashboard_su(request,action=None,project_id=None):
         '''Performs Project Delete and Archive'''
         current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
         project = project_crud.get_project_or_none(project_id)
-        if action == 'archive' :
+        if action == 'archive' and project_id is not None:
             toast_text = project_crud.current_user_can_archive_project(current_user,project)
+            request.session['toast'] = toast_text
+            return redirect((reverse("approver:dashboard_su")))
+        if action == 'unarchive' and project_id is not None:
+            toast_text = project_crud.current_user_can_unarchive_project(current_user,project)
             request.session['toast'] = toast_text
             return redirect((reverse("approver:dashboard_su")))
         if(project_id is not None):
