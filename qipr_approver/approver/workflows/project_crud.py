@@ -116,7 +116,7 @@ def project_exists(project_id):
     return (len(Project.objects.filter(id=project_id)) > 0)
 
 def current_user_is_superuser(current_user):
-    return current_user.is_superuser
+    return current_user.is_superuser == 1
 
 def curent_user_is_project_owner(current_user, project):
     """

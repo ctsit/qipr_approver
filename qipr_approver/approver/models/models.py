@@ -148,7 +148,7 @@ class Project(Provenance, Registerable):
         return ' '.join([self.title, str(self.owner)])
 
     def is_archived(self):
-        return self.archived
+        return self.archived == 1
 
     def get_is_editable(self):
         """
