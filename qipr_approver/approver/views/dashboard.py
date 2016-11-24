@@ -72,7 +72,7 @@ def __get_project_details(project, role):
     return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified,'has_similar_projects':len(project_crud.get_similar_projects(project))}
 
 @login_required
-def dashboard_su(request):
+def dashboard_su(request,action=None,project_id=None):
     if not utils.get_user_from_http_request(request).is_superuser:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -106,8 +106,13 @@ def dashboard_su(request):
         }
         return utils.layout_render(request, context)
     elif request.method == 'POST':
+        '''Performs Project Delete and Archive'''
         current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
         project = project_crud.get_project_or_none(project_id)
+        if action == 'archive' :
+            toast_text = project_crud.current_user_can_perform_project_archive(current_user,project)
+            request.session['toast'] = toast_text
+            return redirect((reverse("approver:dashboard_su")))
         if(project_id is not None):
             toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
             request.session['toast'] = toast_text
