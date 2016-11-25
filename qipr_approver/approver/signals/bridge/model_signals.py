@@ -7,7 +7,7 @@ from approver.decorators import disable_for_loaddata
 @disable_for_loaddata
 def model_push(**kwargs):
     instance = kwargs.get('instance')
-    if not instance.date_first_registered:
+    if not instance.is_registered():
         push_model(instance)
 
 def connect_model_signals():
