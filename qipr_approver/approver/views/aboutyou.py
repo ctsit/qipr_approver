@@ -19,6 +19,7 @@ def about_you(request):
     context = {
         'content': 'approver/about_you.html',
         'toast_text': None,
+        'su_edit':False,
     }
     if request.method == 'POST':
         about_you_form = request.POST
@@ -50,14 +51,15 @@ def about_you_superuser(request,user_id=None):
     context = {
         'content': 'approver/about_you.html',
         'toast_text': None,
+        'su_edit':True,
+        'userid':user_id,
     }
     if request.method == 'POST':
         about_you_form = request.POST
         user = User.objects.get(id=user_id)
         editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
-        request.session['toast_text'] = 'Profile Saved!'
-        return redirect(reverse("approver:userlist"))
+        return utils.userlist_su_redirect_and_toast(request,"Profile Saved!")
 
     else:
         user = User.objects.get(id=user_id)
