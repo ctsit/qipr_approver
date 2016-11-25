@@ -111,15 +111,12 @@ def dashboard_su(request,action=None,project_id=None):
         project = project_crud.get_project_or_none(project_id)
         if action == 'archive' and project_id is not None:
             toast_text = project_crud.current_user_can_archive_project(current_user,project)
-            request.session['toast'] = toast_text
-            return redirect((reverse("approver:dashboard_su")))
+            return utils.dashboard_su_redirect_and_toast(request, toast_text)
         if action == 'unarchive' and project_id is not None:
             toast_text = project_crud.current_user_can_unarchive_project(current_user,project)
-            request.session['toast'] = toast_text
-            return redirect((reverse("approver:dashboard_su")))
+            return utils.dashboard_su_redirect_and_toast(request, toast_text)
         if action == 'delete' and project_id is not None :
             toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
-            request.session['toast'] = toast_text
-            return redirect(reverse("approver:dashboard_su"))
+            return utils.dashboard_su_redirect_and_toast(request, toast_text)
         else:
             return redirect(reverse("approver:dashboard_su"))
