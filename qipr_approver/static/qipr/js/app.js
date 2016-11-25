@@ -87,7 +87,7 @@
     function doneTyping (node) {
         //do something
         $.ajax({
-            url: 'http://localhost:8080/api/tags',
+            url: window.location.protocol + '//' + window.location.hostname + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
