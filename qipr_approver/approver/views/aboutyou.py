@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect
 def about_you(request):
     context = {
         'content': 'approver/about_you.html',
-        'toast_text': None,
+        'toast_text': utils.get_and_reset_toast(request.session),
         'su_edit':False,
     }
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def about_you_superuser(request,user_id=None):
 
     context = {
         'content': 'approver/about_you.html',
-        'toast_text': None,
+        'toast_text': utils.get_and_reset_toast(request.session),
         'su_edit':True,
         'userid':user_id,
     }
