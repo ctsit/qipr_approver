@@ -71,7 +71,7 @@
                             <td class="project__title">{{ project.role }}</td>
 
 
-                            {% if project.role == "PI" or "Super_User" %}
+                            {% if project.role == "PI" %}
 
                                     <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                         <ul>
