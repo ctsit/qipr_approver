@@ -1,3 +1,12 @@
+## [0.6.1] - 2016-11-27
+## Summary
+ Two small bug fixes: one was a left over model attribute which no longer existed throwing
+ errors when called and one which fixed how active users are counted to give a proper count.
+
+### Fixed
+* fix the logic to count active users based on their account expiration time. (Matthew McConnell)
+* Replace a forgotten date_first_registered attribute in model_signals (Matthew McConnell)
+
 ## [0.6.0] - 2016-11-25
 ## Summary
  This update adds the connection points for registry. There are also a few bug fixes including
