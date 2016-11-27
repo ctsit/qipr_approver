@@ -1,3 +1,32 @@
+## [0.6.1] - 2016-11-27
+## Summary
+ Two small bug fixes: one was a left over model attribute which no longer existed throwing
+ errors when called and one which fixed how active users are counted to give a proper count.
+
+### Fixed
+* fix the logic to count active users based on their account expiration time. (Matthew McConnell)
+* Replace a forgotten date_first_registered attribute in model_signals (Matthew McConnell)
+
+## [0.6.0] - 2016-11-25
+## Summary
+ This update adds the connection points for registry. There are also a few bug fixes including
+ fixing a JS API call, preventing multiple adding of projects, and making the dashboard search
+ case insensitive. An additional option was added to the about you forms "Is Quality improvement
+ a requirement of your program" question.
+
+### Added
+* Feature/api bridge for connecting Registry (PFWhite)
+* Feature/third qi choice on About you regarding if quality improvement is a requirement of their program(#153) (stewhat)
+* Issue #142 Account expiration should be 1 year from last_login date (ndavuluri)
+
+### Changed
+* Update email message to include link to project (Matthew McConnell)
+
+### Fixed
+* make the tag request go to the right endpoint (#155) (PFWhite)
+* Disabling the Submit Project button to avoid multiple form submissions (ndavuluri)
+* Issue #114 Dashboard search should be case insensitive (ndavuluri)
+
 ## [0.5.1] - 2016-11-10
 ## Summary
 Original merge was missing commits, forcing them back in.
