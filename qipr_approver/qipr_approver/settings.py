@@ -19,7 +19,7 @@ def get_config(key):
     return config.get(config.default_section, key)
 
 def define_env():
-    settings_proj_path = 'live/qipr_approver/qipr_approver/deploy/settings.ini'
+    settings_proj_path = 'live/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
         settings_pre_path = '/var/www/qipr/approver/'
@@ -152,5 +152,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'approver/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
