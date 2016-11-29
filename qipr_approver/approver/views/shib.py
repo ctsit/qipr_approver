@@ -7,10 +7,10 @@ from approver.constants import SHIB_ENABLED
 
 #TODO: implement real shib and get rid of this fake shib endpoint
 @csrf_protect
-def fake_shib(request):
+def shib_login(request):
     if SHIB_ENABLED == 'false':
         if request.method == "GET":
-            return render(request, 'approver/fakeshib.html')
+            return render(request, 'approver/shib.html')
         elif request.method == "POST":
             return shib.after_validation(request)
         else:
