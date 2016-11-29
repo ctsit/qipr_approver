@@ -1,3 +1,11 @@
+## [0.6.2] - 2016-11-29
+## Summary
+ Fixed a bug causing projects to seem like they were approved and sending them
+ over to registry
+
+### Fixed:
+ * Conditionally pushing projects to registry (Patrick White)
+
 ## [0.6.1] - 2016-11-27
 ## Summary
  Two small bug fixes: one was a left over model attribute which no longer existed throwing
