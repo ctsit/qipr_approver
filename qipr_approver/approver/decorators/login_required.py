@@ -15,6 +15,12 @@ def login_required(view_function):
         return redirect(reverse("approver:shib"))
 
     def __shib_validated(request):
+        """
+        Shibboleth places a token in the HTTP_EPPN meta data key to prove
+        it has authenticated properly. So, if SHIB is enabled, and has this
+        key, it is assumed validated. If SHIB is not enabled, this doesn't
+        matter.
+        """
         return ((SHIB_ENABLED == 'true' and request.META.get('HTTP_EPPN')) or (SHIB_ENABLED == 'false'))
 
     return wrapped_view

@@ -12,8 +12,6 @@ def add_shib_information_to_session(request):
     This function takes the information we have received from shib
     and places it inside the session.
     """
-    """This will need to be changed when we get shib hooked up
-    TODO:set expiry and other sessiony things"""
     request.session[SESSION_VARS['gatorlink']] = __get_gatorlink_from_request(request)
     request.session[SESSION_VARS['email']] = __get_email_from_request(request)
     request.session[SESSION_VARS['first_name']] = request.META.get('HTTP_GIVENNAME') or ''
@@ -21,12 +19,7 @@ def add_shib_information_to_session(request):
 
 def after_validation(request):
     """This function is to be called with what shib sends us"""
-    """
-    Note that this will need to be changed when the real shib gets hooked up.
-    Wont be adding cleartext cookie stuff, apache will hijack the
-    requests and add thigns to the header which is where we will pull
-    the gatorlink from
-    """
+
     gatorlink = __get_gatorlink_from_request(request)
     add_shib_information_to_session(request)
     if len(User.objects.filter(username=gatorlink)) == 0:
