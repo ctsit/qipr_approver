@@ -59,7 +59,7 @@
                         <div class="cert__text">
                             Your quality improvement project entitled
                         "{{ project_title }}"<br/>
-                        <b>has been approved on <span class="cert__date">10/21/16</span>.</b>
+                        <b>has been approved on <span class="cert__date">{{ project_approval_date | date:"SHORT_DATE_FORMAT" }}</span>.</b>
                         </div>
                     </div>
                     <br/>
