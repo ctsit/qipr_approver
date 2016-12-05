@@ -14,16 +14,19 @@ class ProjectForm():
         self.title = {'name': 'title',
                       'type': 'text',
                       'rows': 2,
+                      'placeholder': 'Full project title goes here',
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
                              'model': 'person',
+                             'placeholder': 'Type collaborator name, then click "enter" to save',
                              'filter_field': 'email_address',
                              'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
         self.advisor = {'name': 'advisor',
                         'model': 'person',
+                        'placeholder': 'Type advisor, then click "enter" to save',
                         'filter_field': 'email_address',
                         'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
@@ -31,6 +34,7 @@ class ProjectForm():
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',
                         'model': 'keyword',
+                        'placeholder': 'Type keyword, then click "enter" to save',
                         'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
                         'selected': utils.get_related_property(project, "keyword"),
@@ -39,6 +43,7 @@ class ProjectForm():
         self.big_aim = {'name': 'big_aim',
                         'label': 'UF Health Big Aims',
                         'model': 'bigaim',
+                        'placeholder': 'Type big aim, then click "enter" to save',
                         'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
                         'selected': utils.get_related_property(project, "big_aim"),
@@ -49,6 +54,7 @@ class ProjectForm():
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(project,"clinical_area"),
                               'model': 'clinicalarea',
+                              'placeholder': 'Type clinical area, then click "enter" to save',
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(project,"clinical_area"),
@@ -57,6 +63,7 @@ class ProjectForm():
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',
                                  'model': 'clinicalsetting',
+                                 'placeholder': 'Type clinical setting, then click "enter" to save',
                                  'filter_field': 'name',
                                  'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
                                  'selected': utils.get_related_property(project,"clinical_setting"),
@@ -64,7 +71,8 @@ class ProjectForm():
 
         self.description = {'name': 'description',
                             'type': 'text',
-                            'rows': 3,
+                            'rows': 10,
+                            'placeholder': 'Give a brief description about your Quality Improvement project',
                             'value': project.description or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',
