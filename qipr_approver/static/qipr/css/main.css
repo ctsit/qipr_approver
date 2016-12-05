@@ -991,6 +991,7 @@ textarea.form__textarea--with-border {
     padding-top: 5px;
     padding-bottom: 5px;
     height: auto;
+    padding-left: .5rem;
 }
 
 textarea.form__textarea--with-border:focus:not([readonly]) {
