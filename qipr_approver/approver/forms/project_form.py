@@ -26,7 +26,7 @@ class ProjectForm():
 
         self.advisor = {'name': 'advisor',
                         'model': 'person',
-                        'placeholder': 'Type advisor, then click "enter" to save',
+                        'placeholder': 'Type advisor name, then click "enter" to save',
                         'filter_field': 'email_address',
                         'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
