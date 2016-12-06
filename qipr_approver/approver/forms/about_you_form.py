@@ -53,7 +53,6 @@ class AboutYouForm():
                            'type': 'text',
                            'value': user.person.self_classification or '',
                            'input_classes': 'about__field--box',
-                           'div_classes': 'about__field--width100',
                            'options': ['resident', 'fellow', 'nursing fellow', 'medical student', 'veterinary medicine fellow', 'dental fellow', 'clinical faculty', 'other']}
 
         self.business_address = user.person.business_address

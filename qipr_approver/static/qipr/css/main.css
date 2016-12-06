@@ -574,7 +574,11 @@ form .about__field--box {
 }
 
 .about__field--width100 {
-    width: 100%;
+    width: 97%;
+}
+
+.col.about__selfclass {
+    padding-top: 1rem;
 }
 
 /*Project Page*/
