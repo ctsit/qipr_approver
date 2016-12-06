@@ -71,8 +71,9 @@ class ProjectForm():
 
         self.description = {'name': 'description',
                             'type': 'text',
-                            'rows': 10,
-                            'placeholder': 'Give a brief description about your Quality Improvement project',
+                            
+                            'input_classes': ['description__height'], 
+                            'placeholder': 'Give a brief description about your Quality Improvement project (up to 250 words)',
                             'value': project.description or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',

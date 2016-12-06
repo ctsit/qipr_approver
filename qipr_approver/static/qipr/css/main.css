@@ -1005,6 +1005,10 @@ form .form__input--with-border {
     padding-left: .5rem;
 }
 
+textarea.description__height {
+    min-height: 18rem;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
