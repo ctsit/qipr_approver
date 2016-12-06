@@ -581,6 +581,10 @@ form .about__field--box {
     padding-top: 1rem;
 }
 
+select:focus {
+    outline: 1px solid #ffaa00;
+}
+
 /*Project Page*/
 .about__txtfield--date {
     width: 12.5rem;
@@ -846,6 +850,10 @@ iframe {
     cursor: pointer;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+}
+
+.tag__delete:hover {
+    color: #b1dcfb;
 }
 
 .tag__list--loading {
