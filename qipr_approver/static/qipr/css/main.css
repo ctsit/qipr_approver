@@ -437,7 +437,10 @@ td, th {
 .dashboard_status {
     padding-left:2rem;
     min-width: 13rem;
-    padding-top: 0;
+}
+
+.dashboard_status--margin {
+    margin-top: 0;
 }
 
 .dashboard__check {
@@ -913,6 +916,8 @@ iframe {
 .back__dashboard:hover {
     color: #004d9a;
 }
+
+
 
 .btmnav {
     text-align:center;
