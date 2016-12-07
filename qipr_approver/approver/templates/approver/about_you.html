@@ -123,9 +123,11 @@
                                 <input class="with-gap" name="qi_required" value="0" type="radio" id="qi_required_no" {% ifequal form.qi_required 0 %} checked {% endifequal %} />
                                 <label for="qi_required_no">No</label>
                                 <input class="with-gap" name="qi_required" value="2" type="radio" id="qi_required_na" {% ifequal form.qi_required 2 %} checked {% endifequal %} />
-                                <label for="qi_required_na">I am not in a training program</label>
+                                <label class="qi_required_na" for="qi_required_na">I am not in a training program</label>
                             </p>
-                            {% form_input form.training_program %}
+                            <p>
+                                {% form_input form.training_program %}
+                            </p>
                         </div>
                     </div>
                     <div class="row">
