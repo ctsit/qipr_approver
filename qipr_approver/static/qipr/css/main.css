@@ -536,7 +536,11 @@ td, th {
 }
 
 .about__question--train {
-    width: 28rem;
+    max-width: 28rem;
+}
+
+[type="radio"]:not(:checked) + label.qi_required_na, [type="radio"]:checked + label.qi_required_na {
+    height: inherit;
 }
 
 .about__acctinfo {
