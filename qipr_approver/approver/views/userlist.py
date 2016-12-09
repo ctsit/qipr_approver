@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.models import User
 from django.shortcuts import render
 import approver.utils as utils
+from approver.models import Person
 from django.contrib.auth.decorators import user_passes_test
 from approver.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -13,7 +13,7 @@ def userlist(request):
 	if utils.get_user_from_http_request(request).is_superuser:
 		if request.method == 'GET':
 			users = []
-			userlist = User.objects.all()
+			userlist = Person.objects.all()
 			paginator = Paginator(userlist, users_per_page)
 			page = request.GET.get('page')
 			try:
