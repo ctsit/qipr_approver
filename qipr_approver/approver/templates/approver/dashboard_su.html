@@ -20,22 +20,16 @@
 
 
 <div class="container__dashboard">
-<div class="row dashboard_title-bg">
-        <div class="col s12 dashboard_title">
-                <h3 class="dashboard_title-main">QIPR Dashboard</h3>
-        </div>
-    </div>
-
-    <div class="row dashboard_border">
-        <div class="col s12 m2 dashboard_menu">
-            <ul>
-                <li class="dashboard_menu-item-active">Projects</li>
-                <li class="dashboard_menu-item"><a href="{% url 'approver:aboutyou' %}">Profile</a></li>
-            </ul>
+    <div class="row dashboard_border margin-top">
+        <div class="headerbg__admin center">
+            <div class="container">
+              <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI Project List</h1>
+              <p class="question__header--sub">!!! Note this page is only to be accessed and edited by administrators. If you are not sure if you should have administrator access, please contact <a href="tel:3522650002">352-265-0002</a></p>
+            </div>
         </div>
 
-        <div class="col s12 m10 dashboard_border-left">
-            <h3 class="center-align dashboard_projects-title">QI Projects for {{ person.first_name }} {{ person.last_name }}</h3>
+            
+        <div class="col s12 m12 dashboard_border-left">
             <div class="row">
                 <div class="col s6">
                     <a class="dashboard_add" href="{% url 'approver:projects' %}"><div class="dashboard_add-btn">+</div><div class="dashboard_add-text">Add Project</div></a>

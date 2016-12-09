@@ -1004,6 +1004,20 @@ form .form__input--with-border {
     padding-left: .5rem;
 }
 
+/*Admin Pages*/
+.margin-top {
+    margin-top: 1rem;
+}
+
+.headerbg__admin {
+    background-color: #fecb85;
+}
+
+.icon__admin {
+    position: relative;
+    top: .5rem;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
