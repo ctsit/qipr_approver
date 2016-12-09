@@ -1018,6 +1018,14 @@ form .form__input--with-border {
     top: .5rem;
 }
 
+.dashboard_btns-admin {
+    display: inline;
+}
+
+.dashboard_btns-admin a:hover {
+    color: #004d9a;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
