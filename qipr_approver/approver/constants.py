@@ -55,6 +55,8 @@ answer_submit_names = {
 
 projects_per_page = 25
 
+users_per_page = 25
+
 description_factor = 25
 
 keyword_factor = 25
