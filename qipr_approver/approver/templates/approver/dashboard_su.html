@@ -32,7 +32,7 @@
         <div class="col s12 m12 dashboard_border-left">
             <div class="row">
                  <div class="col s12">
-                    <div class="input-field dashboard_search left">
+                    <div class="input-field dashboard_search">
                         <form method="post" action="{% url 'approver:dashboard_su' %}">
                             {% csrf_token %}
                             <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
@@ -101,7 +101,12 @@
                             <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                 <ul>
                                     {% if project.is_approved %}
-                                        <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
+                                        <li class="dashboard__list">
+                                            <div class="dashboard__edit">
+                                                <i class="material-icons">mode_edit</i>
+                                            </div>
+                                            <a href="{% url 'approver:project_status' project_id=project.pk %}">Certificate</a>
+                                        </li>
                                     {% endif %}
 
                                     <li class="dashboard__list">
@@ -117,7 +122,7 @@
                                     </li>
                                     {% if project.has_similar_projects != 0 %}
                                         <li class="dashboard__edit">
-                                            <div class="dashboard__star">
+                                            <div class="dashboard__edit">
                                                 <i class="material-icons">mode_edit</i>
                                             </div>
                                             <a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Similar Projects</a>
