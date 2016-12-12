@@ -31,12 +31,14 @@ class AboutYouForm():
                       'input_classes': 'about__field--box'}
 
         self.department = {'name': 'department',
+                           'placeholder': 'List your primary department',
                            'label': 'Department',
                            'type': 'text',
                            'value': user.person.department or '',
                            'input_classes': 'about__field--box'}
 
         self.clinical_area = {'name': 'clinical_area',
+                              'placeholder': 'Type clinical area(s) & click "enter" to save',
                               'label': 'Clinical Area',
                               'model': 'clinicalarea',
                               'filter_field': 'name',
@@ -51,19 +53,19 @@ class AboutYouForm():
                            'type': 'text',
                            'value': user.person.self_classification or '',
                            'input_classes': 'about__field--box',
-                           'div_classes': 'about__field--width100',
                            'options': ['resident', 'fellow', 'nursing fellow', 'medical student', 'veterinary medicine fellow', 'dental fellow', 'clinical faculty', 'other']}
 
         self.business_address = user.person.business_address
 
         self.webpage_url = {'name': 'webpage_url',
+                            'placeholder': 'Enter dept webpage url here',
                             'label': 'Webpage URL',
                             'type': 'text',
                             'value': user.person.webpage_url or '',
                             'input_classes': 'about__field--box'}
 
         self.email = {'name': 'email',
-                      'placeholder': 'janedoe@ufl.edu',
+                      'placeholder': 'janedoe@shands.ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
                       'value': user.email or '',
@@ -84,6 +86,7 @@ class AboutYouForm():
                               'input_classes': 'about__field--box'}
 
         self.speciality_tags = {'name': 'speciality',
+                                'placeholder': 'Click "enter" to save',
                                 'label': 'Speciality',
                                 'model': 'speciality',
                                 'filter_field': 'name',
@@ -93,6 +96,7 @@ class AboutYouForm():
                                 'div_classes': 'about__field--width100'}
 
         self.qi_interest_tags = {'name': 'qi_interest',
+                                 'placeholder': 'Click "enter" to save',
                                  'label': 'Quality Improvement Interests',
                                  'model': 'qi_interest',
                                  'filter_field': 'name',
@@ -102,6 +106,7 @@ class AboutYouForm():
                                  'div_classes': 'about__field--width100'}
 
         self.expertise_tags = {'name': 'expertise',
+                               'placeholder': 'Click "enter" to save',
                                'label': 'Expertise',
                                'model': 'expertise',
                                'filter_field': 'name',

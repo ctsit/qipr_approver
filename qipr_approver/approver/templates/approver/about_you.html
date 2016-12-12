@@ -1,5 +1,5 @@
 </div>
-<div class="container__dashboard">
+<div class="container__dashboard relative__height">
 <div class="row dashboard_title-bg">
         <div class="col s12 dashboard_title">
                 <h3 class="dashboard_title-main">QIPR Dashboard</h3>
@@ -55,10 +55,10 @@
                         <div class="col s12 m6">
                             {% form_input form.department %}
                         </div>
-                        <div class="col s12 m6">
+                        <div class="col s12 m6 bg__tags--blue1">
                             {% tagbox form.clinical_area %}
                         </div>
-                        <div class="padding--no-right col s12 m6 ">
+                        <div class="padding--no-right col s12 m6 about__selfclass">
                             {% form_select form.self_classification %}
                         </div>
                         <!-- If Other is selected, show a text field to enter it -->
@@ -99,13 +99,16 @@
 
                     <div class="row">
                         <h5 class="col s12 about__sec--header">Quality Details</h5>
-                        <div class="col s12 m4">
+
+                        <p class="col s12 about__question--sub">For this section, start typing your response and a drop down list will populate to select from. You may add as many responses you need to accurately answer the questions. If you do not see a result that matches what you're looking for, please type the speciality, expertise, or quality improvement interest of your choice and click 'enter' to save your unique entry. If you would like to delete an entry click the 'x' to the right of the entry tag.</p>
+                        
+                        <div class="col s12 m4 bg__tags--blue1">
                             {% tagbox form.speciality_tags %}
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s12 m4 bg__tags--blue2">
                             {% tagbox form.expertise_tags %}
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s12 m4 bg__tags--blue1">
                             {% tagbox form.qi_interest_tags %}
                         </div>
                     </div>
@@ -120,9 +123,11 @@
                                 <input class="with-gap" name="qi_required" value="0" type="radio" id="qi_required_no" {% ifequal form.qi_required 0 %} checked {% endifequal %} />
                                 <label for="qi_required_no">No</label>
                                 <input class="with-gap" name="qi_required" value="2" type="radio" id="qi_required_na" {% ifequal form.qi_required 2 %} checked {% endifequal %} />
-                                <label for="qi_required_na">I am not in a training program</label>
+                                <label class="qi_required_na" for="qi_required_na">I am not in a training program</label>
                             </p>
-                            {% form_input form.training_program %}
+                            <p>
+                                {% form_input form.training_program %}
+                            </p>
                         </div>
                     </div>
                     <div class="row">
