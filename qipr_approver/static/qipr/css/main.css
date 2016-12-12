@@ -1005,6 +1005,10 @@ form .form__input--with-border {
 }
 
 /*Admin Pages*/
+.navbar-fixed--admin {
+    z-index: 996;
+}
+
 .margin-top {
     margin-top: 1rem;
 }
@@ -1024,6 +1028,17 @@ form .form__input--with-border {
 
 .dashboard_btns-admin a:hover {
     color: #004d9a;
+}
+
+.dashboard__edit {
+    display: inline;
+    color: #757575;
+}
+
+.dashboard__edit i {
+    font-size: 1.3rem;
+    position: relative;
+    top: .2rem;
 }
 
 @media screen and (min-width: 420px) {
