@@ -11,5 +11,6 @@ def approved_certificate(project):
         'project_owner_last_name': project.owner.last_name,
         'project_title': project.title,
         'project_collab': project.collaborator.all(),
+        'project_approval_date': project.approval_date,
     }
     return project_details
