@@ -94,6 +94,7 @@ class Person(Provenance, Registerable):
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.CharField(max_length=30)
     tag_property_name = 'email_address'
+    is_admin = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
@@ -126,9 +127,6 @@ class Project(Provenance, Registerable):
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner.gatorlink)])
-
-    def is_archived(self):
-        return self.archived == 1
 
     def get_is_editable(self):
         """
