@@ -1,3 +1,16 @@
+## [0.7.0] - 2016-12-12
+## Summary
+ Improved the usability on About you and Project page
+
+### Added
+* Add placeholder text to tag-input-entry on project page (Amber Allen)
+* Add placeholder text and helper paragraph to about you page. (Amber Allen)
+* Add placeholder text to advisor field on project entry page (Amber Allen)
+* Add helper paragraph under collaborators and advisors on project.html (Amber Allen)
+* Add unique placeholder text to input fields on project info form (Amber Allen)
+* Add back to dashboard link on certificate page (Amber Allen)
+* Add back to dashboard link on irb approval page. (Amber Allen)
+
 ## [0.6.2] - 2016-11-29
 ## Summary
  Fixed a bug causing projects to seem like they were approved and sending them

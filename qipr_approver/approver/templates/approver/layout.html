@@ -24,6 +24,7 @@
                             {% if request.session.su %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard_su' %}">Modify Projects</a></li>
                             <li class="nav_li"><a href="{% url 'approver:userlist' %}">Modify Users</a></li>
+
                             {% endif %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
                             <li class="nav_li"><a href="">Search Registry</a></li>

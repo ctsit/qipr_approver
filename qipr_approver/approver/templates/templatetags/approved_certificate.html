@@ -31,9 +31,6 @@
     }   
 
     .cert__image {
-    position: absolute;
-    bottom: 11rem;
-    right: 1.5rem;
     height: 3rem;
     }
 }
@@ -45,6 +42,8 @@
     <div class="col s12 cert__print--btn">
         <input class="btn" type="button" onClick="window.print()" value="Print Your Certificate"/>
     </div>
+
+    <a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>
 </div>
 
 <div class="row center">
@@ -63,7 +62,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="cert__text--small">The QI office wishes your team much success in your efforts to improve patient quality.
+                    <div class="cert__text--small">The UF Health Sebastian Ferrero Office of Clinical Quality & Patient Safety wishes your team much success in your efforts to improve patient quality.
                     </div>
                     <br/>
                 

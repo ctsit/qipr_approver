@@ -115,7 +115,7 @@ def project_exists(project_id):
     return (len(Project.objects.filter(id=project_id)) > 0)
 
 def current_user_is_superuser(current_user):
-    return current_user.is_superuser == 1
+    return current_user.person.is_admin
 
 def curent_user_is_project_owner(current_user, project):
     """
@@ -145,7 +145,7 @@ def current_user_can_perform_project_delete(current_user,project):
     user is the owner for the project and the project is editable.
     """
     toast_message = ""
-    if current_user.is_superuser:
+    if current_user.person.is_admin:
         project.delete(current_user)
         return 'Deleted Project'
     if(toast_message == "" and project is None):

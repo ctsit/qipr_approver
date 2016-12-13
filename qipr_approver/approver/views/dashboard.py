@@ -73,13 +73,12 @@ def __get_project_details(project, role):
 
 @login_required
 def dashboard_su(request,action=None,project_id=None):
-    if not utils.get_user_from_http_request(request).is_superuser:
+    active_person = utils.get_user_from_http_request(request).person
+    if not active_person.is_admin:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     if request.method == 'GET' or request.POST.get('search') is not None:
-        super_user = False
-        if utils.get_user_from_http_request(request).is_superuser:
-           super_user = True
+        super_user = active_person.is_admin 
         search_query = ""
         if(request.POST.get('search') is not None):
             search_query = request.POST.get('search')
@@ -102,7 +101,7 @@ def dashboard_su(request,action=None,project_id=None):
             'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session),
             'search_query': search_query,
-            'person': person
+            'person': active_person
         }
         return utils.layout_render(request, context)
     elif request.method == 'POST':
