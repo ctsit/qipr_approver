@@ -1,5 +1,5 @@
-</div>
-<div class="container__dashboard">
+ </div>
+<div class="container__dashboard relative__height">
 <div class="row dashboard_title-bg">
         <div class="col s12 dashboard_title">
                 <h3 class="dashboard_title-main">QIPR Dashboard</h3>
@@ -74,7 +74,7 @@
                             {% if project.role == "PI" %}
 
                                     <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
-                                        <ul>
+                                        <ul class="dashboard_status--margin">
                                             {% if project.is_approved %}
                                                 <li class="dashboard_approved"><div class="dashboard_approved-text">Approved</div> <a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">view certificate</span></a></li>
                                             {% endif %}

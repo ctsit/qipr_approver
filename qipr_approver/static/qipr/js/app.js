@@ -87,7 +87,7 @@
     function doneTyping (node) {
         //do something
         $.ajax({
-            url: 'http://localhost:8080/api/tags',
+            url: window.location.protocol + '//' + window.location.hostname + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
@@ -201,7 +201,7 @@
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
-            icontext = document.createTextNode('cancel'),
+            icontext = document.createTextNode('close'),
             tagtext = document.createTextNode(text);
 
         container.appendChild(li);
@@ -210,7 +210,7 @@
         tagDelete.appendChild(icontext);
 
         li.classList.add('tag');
-        tagDelete.classList.add('tiny');
+        //tagDelete.classList.add('tiny');
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
