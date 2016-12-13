@@ -18,6 +18,7 @@
     <input id="tag-input-entry_{{ name }}"
            class="tagbox__input form__input--with-border"
            type="text"
+           placeholder="{{ placeholder }}"
            data-list="datalist_{{ name }}"
            data-model="{{ model }}"
            data-filter_field="{{ filter_field }}"
@@ -38,7 +39,7 @@
         <div class="tag__container">
             <li class="tag" >{{ option }}</li>
             {% if disabled != "disabled" %}
-            <i class="tiny tag__delete">cancel</i>
+            <i class="tag__delete">close</i>
             {% endif %}
         </div>
         {% endfor %}
