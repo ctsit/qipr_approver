@@ -1069,6 +1069,10 @@ textarea.description__height {
     .dashboard_border-left {
     border-left: #d0d0d0 solid 1pt;
     }
+
+    #quality--details label {
+    min-height: 48px;
+    }
 }
 
 @media screen and (min-width: 609px) {
