@@ -1,41 +1,69 @@
 </div>
-<div>
-<table class="striped">
-    <thead>
-        <tr>
-            <th class="dashboard_row-title" data-field="title"><h5>UserName</h5></th>
-            <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
-            <th class="dashboard_row-title" data-field="role"><h5>Last Name</h5></th>
-            <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
-	</thead>
-	<tbody>
-		{% for user in users %}
-			<tr>
-			    <td>{{ user.gatorlink }}</td>
-			    <td>{{ user.first_name }}</td>
-			    <td>{{ user.last_name }}</td>
-			    <td><a href="{% url 'approver:about_you_superuser' user_id=user.pk %}">Edit User</a></td>
-			</tr>
-		{% endfor %}
-	</tbody>
-</table>
+{% load staticfiles %}
+<div class="navbar-fixed navbar-fixed--admin">
+    <nav>
+        <div class="nav-wrapper orange">
+            <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
+                <div class="container">
+                    <h4>Administrator</h4>
+                </div>
+            </a>
+            
+        </div>
+    </nav>
+</div>
+
 <div class="row">
-        <div class="col s12">
-            <div class="pagination center-align">
-                <span class="step-links">
-                    {% if users.has_previous %}
-                        <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ users.number }} of {{ users.paginator.num_pages }}
-                    </span>
-
-                    {% if users.has_next %}
-                        <a href="?page={{ users.next_page_number }}"> &gt; </a>
-                    {% endif %}
-                </span>
+    <div class="col s12">
+        <div class="row margin-top">
+             <div class="col s12">
+                <div class="input-field dashboard_search">
+                    <form method="post" action="{% url 'approver:dashboard_su' %}">
+                        {% csrf_token %}
+                        <input placeholder="Search user" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                        
+                        <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                    </form>
+                </div>
             </div>
         </div>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th class="dashboard_row-title" data-field="role"><h5>Last Name</h5></th>
+                    <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
+                    <th class="dashboard_row-title" data-field="title"><h5>Email</h5></th>
+                    <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
+        	</thead>
+        	<tbody>
+        		{% for user in users %}
+        			<tr>
+        			    <td>{{ user.last_name }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.gatorlink }}</td>
+        			    <td><a href="{% url 'approver:about_you_superuser' user_id=user.pk %}">Edit User</a></td>
+        			</tr>
+        		{% endfor %}
+        	</tbody>
+        </table>
+        <!-- <div class="row">
+            <div class="col s12">
+                <div class="pagination center-align">
+                    <span class="step-links">
+                        {% if users.has_previous %}
+                            <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ users.number }} of {{ users.paginator.num_pages }}
+                        </span>
+
+                        {% if users.has_next %}
+                            <a href="?page={{ users.next_page_number }}"> &gt; </a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div> -->
     </div>
 </div>
