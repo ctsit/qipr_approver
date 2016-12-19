@@ -85,7 +85,7 @@ registry_endpoints = {
 
 app_label = 'approver'
 
-total_qualifiers_2016 = 82
+total_qualifiers_2017 = 80
 
 SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'false')
 

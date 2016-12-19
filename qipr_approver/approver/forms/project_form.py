@@ -32,9 +32,11 @@ class ProjectForm():
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
-                        'label': 'MeSH Keywords',
-                        'options': filter(utils.is_not_none, [item.mesh_heading for item in Descriptor.objects.all()]),
-                        'selected': utils.get_related_property(project, "mesh_keyword")}
+                             'label': 'MeSH Keywords',
+                             'model': 'descriptor',
+                             'filter_field': 'mesh_heading',
+                             'options': filter(utils.is_not_none, [item.mesh_heading for item in Descriptor.objects.all()]),
+                             'selected': utils.get_related_property(project, "mesh_keyword")}
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',
@@ -76,8 +78,7 @@ class ProjectForm():
 
         self.description = {'name': 'description',
                             'type': 'text',
-                            
-                            'input_classes': ['description__height'], 
+                            'input_classes': ['description__height'],
                             'placeholder': 'Give a brief description about your Quality Improvement project (up to 250 words)',
                             'value': project.description or ''}
 

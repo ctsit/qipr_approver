@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from approver.models import *
 import approver.utils as utils
-from approver.constants import total_qualifiers_2016
+from approver.constants import total_qualifiers_2017
 
 fixture_user = User.objects.get(id=1)
 
@@ -74,7 +74,7 @@ def set_qualifiers(model, quals):
     quals = quals.split(' ')
     for qual in quals:
         if len(qual) == 2:
-            if qualifier_count == total_qualifiers_2016:
+            if qualifier_count == total_qualifiers_2017:
                 qualifier = Qualifier.objects.get(abbreviation=qual)
             else:
                 qualifier = utils.get_or_instantiate(Qualifier, {'abbreviation': qual})
