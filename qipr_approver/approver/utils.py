@@ -1,7 +1,10 @@
+from datetime import timedelta
+import uuid
+
+import django
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from datetime import timedelta
@@ -9,6 +12,7 @@ from datetime import timedelta
 import approver.constants as constants
 import django
 from django.db.models import fields
+from django.apps import apps
 
 def user_exists(about_you_form):
     """
@@ -47,6 +51,10 @@ def dashboard_redirect_and_toast(request, toast_text):
 
 def after_approval(project):
     return redirect(reverse("approver:project_status") + str(project.id))
+
+def set_guid_if_empty(model):
+    if not model.guid:
+        model.guid = uuid.uuid4().hex
 
 def set_created_by_if_empty(model, user):
     """
@@ -139,6 +147,8 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
         if isinstance(tag, tag_model):
             taggable.add(tag)
 
+    # this should do a diff and only save if it changed
+    # either that or save all the diffrent tag types at once
     model.save(tagging_user)
 
 def get_related(model, related_model_name):
@@ -190,6 +200,10 @@ def check_fields(ModelName,fieldname,type,max_length=None):
             else:
                 return False
 
+def get_account_expiration_date(date):
+    """Account expiration date is an year from last login date"""
+    return date + timedelta(days=365)
+
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
 
@@ -229,3 +243,20 @@ def true_false_to_bool(true_false_string):
             return False
 
     return None
+
+def get_model_from_string(model_name):
+    """
+    This function will take a string name and try to find
+    a model match of it.
+    """
+    app_models = apps.get_app_config(constants.app_label).get_models()
+    for model in app_models:
+        if(model.__name__.lower() == model_name.lower()):
+            return model
+
+    return None
+
+def get_user_from_http_request(request):
+    username = request.session.get(constants.SESSION_VARS['gatorlink'])
+    user = User.objects.get(username=username)
+    return user

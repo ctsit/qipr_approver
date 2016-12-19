@@ -34,6 +34,8 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_HOST'] = get_config('database_host')
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
     os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
+    os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port')
+    os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
 
 define_env()
 

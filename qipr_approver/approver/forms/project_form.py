@@ -1,5 +1,5 @@
 from django.utils import timezone
-from approver.models import Project, Keyword, Descriptor, ClinicalArea, ClinicalSetting, SafetyTarget, Person, BigAim
+from approver.models import Project, Keyword, ClinicalArea, ClinicalSetting, Person, BigAim, Descriptor
 from django.contrib.auth.models import User
 from approver import utils
 
@@ -12,18 +12,22 @@ class ProjectForm():
         self.is_disabled = is_disabled
 
         self.title = {'name': 'title',
-                      'label': 'Title',
                       'type': 'text',
                       'rows': 2,
+                      'placeholder': 'Full project title goes here',
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
-                             'label': 'Collaborators',
+                             'model': 'person',
+                             'placeholder': 'Type collaborator name, then click "enter" to save',
+                             'filter_field': 'email_address',
                              'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
         self.advisor = {'name': 'advisor',
-                        'label': 'Advisors',
+                        'model': 'person',
+                        'placeholder': 'Type advisor name, then click "enter" to save',
+                        'filter_field': 'email_address',
                         'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 
@@ -34,43 +38,59 @@ class ProjectForm():
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',
+                        'model': 'keyword',
+                        'placeholder': 'Type keyword, then click "enter" to save',
+                        'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in Keyword.objects.all()]),
-                        'selected': utils.get_related_property(project, "keyword")}
+                        'selected': utils.get_related_property(project, "keyword"),
+                        'div_classes': 'about__txtfield--100'}
 
         self.big_aim = {'name': 'big_aim',
-                        'label': 'Big Aims',
+                        'label': 'UF Health Big Aims',
+                        'model': 'bigaim',
+                        'placeholder': 'Type big aim, then click "enter" to save',
+                        'filter_field': 'name',
                         'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
-                        'selected': utils.get_related_property(project, "big_aim")}
+                        'selected': utils.get_related_property(project, "big_aim"),
+                        'div_classes': 'about__txtfield--100'}
 
         self.clinical_area = {'name': 'clinical_area',
-                               'label': 'Clinical Area',
-                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
-                               'selected': utils.get_related_property(project,"clinical_area")}
-
-        self.safety_target = {'name': 'safety_target',
-                               'label': 'Safety Targets',
-                               'options': filter(utils.is_not_none, [item.name for item in SafetyTarget.objects.all()]),
-                               'selected': utils.get_related_property(project,"safety_target")}
+                              'label': 'Clinical Area/Unit',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(project,"clinical_area"),
+                              'model': 'clinicalarea',
+                              'placeholder': 'Type clinical area, then click "enter" to save',
+                              'filter_field': 'name',
+                              'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
+                              'selected': utils.get_related_property(project,"clinical_area"),
+                              'div_classes': 'about__txtfield--100'}
 
         self.clinical_setting = {'name': 'clinical_setting',
                                  'label': 'Clinical Setting',
+                                 'model': 'clinicalsetting',
+                                 'placeholder': 'Type clinical setting, then click "enter" to save',
+                                 'filter_field': 'name',
                                  'options': filter(utils.is_not_none, [item.name for item in ClinicalSetting.objects.all()]),
-                                 'selected': utils.get_related_property(project,"clinical_setting")}
+                                 'selected': utils.get_related_property(project,"clinical_setting"),
+                                 'div_classes': 'about__txtfield--100'}
 
         self.description = {'name': 'description',
-                            'label': 'Description',
                             'type': 'text',
-                            'rows': 3,
+                            
+                            'input_classes': ['description__height'], 
+                            'placeholder': 'Give a brief description about your Quality Improvement project (up to 250 words)',
                             'value': project.description or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',
                                     'input_classes': ['datepicker'],
                                     'label': 'Proposed Start Date',
                                     'type': 'date',
-                                    'value': utils.format_date(start_date)}
+                                    'value': utils.format_date(start_date),
+                                    'div_classes': 'about__txtfield--date'}
 
         self.proposed_end_date = {'name': 'proposed_end_date',
                                   'input_classes': ['datepicker'],
                                    'label': 'Proposed End Date',
                                    'type': 'date',
-                                   'value': utils.format_date(end_date)}
+                                   'value': utils.format_date(end_date),
+                                   'div_classes': 'about__txtfield--date'}

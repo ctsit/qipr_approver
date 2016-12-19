@@ -1,48 +1,151 @@
-<form action="{% url 'approver:aboutyou' %}" method="post"
-      onkeypress="return event.keyCode != 13;" class="col s10">
+</div>
+<div class="container__dashboard relative__height">
+<div class="row dashboard_title-bg">
+        <div class="col s12 dashboard_title">
+                <h3 class="dashboard_title-main">QIPR Dashboard</h3>
+        </div>
+    </div>
 
-    {% csrf_token %}
-    <h1>About You</h1>
-    <p>
-        Please tell us about yourself.
-    </p>
-    {% load form_input %}
-    {% load tagbox %}
-    {% load address %}
-    {% form_input form.user_name True %}
-    {% form_input form.first_name %}
-    {% form_input form.last_name %}
-    {% form_input form.title %}
-    {% form_input form.department %}
-    {% tagbox form.clinical_area %}
+    <div class="row dashboard_border">
+        <div class="col s12 m2 dashboard_menu">
+            <ul>
+                <li class="dashboard_menu-item"><a href="{% url 'approver:dashboard' %}">Projects</a></li>
+                <li class="dashboard_menu-item-active">Profile</li>
+            </ul>
+        </div>
 
-    {% for business_address in form.business_address.all %}
-        {% address business_address 'business' forloop.counter %}
-    {% empty %}
-        {% address empty_address 'business' %}
-    {% endfor %}
-    {% form_input form.email %}
-    {% tagbox form.speciality_tags %}
-    {% tagbox form.expertise_tags %}
-    {% tagbox form.qi_interest_tags %}
-    {% tagbox form.suffix_tags %}
-    {% form_input form.business_phone %}
-    {% form_input form.contact_phone %}
-    {% form_input form.webpage_url %}
-    {% form_input form.last_login True %}
-    {% form_input form.account_expiration True %}
-    {% form_input form.account_created True %}
-    Is quality improvement a requirement of your training program?
-    <p>
-        <input class="with-gap" name="qi_required" value ="true" type="radio" id="qi_required_yes" {% ifequal form.qi_required True %} checked {% endifequal %} />
-        <label for="qi_required_yes">Yes</label>
-        <input class="with-gap" name="qi_required" value="false" type="radio" id="qi_required_no" {% ifequal form.qi_required False %} checked {% endifequal %} />
-        <label for="qi_required_no">No</label>
+        <div class="col s12 m10 dashboard_border-left about__header">
+            <div class="headerbg__interiorpg center">
+              <h1 class="question__header font__opensans">About You</h1>
+              <p class="question__header--sub">Please tell us about yourself by filling out the following form.</p>
+            </div>
+            <div class="row">
+                <form action="{% url 'approver:aboutyou' %}" method="post"
+      onkeypress="return event.keyCode != 13;" class="col s12"
+      autocomplete="off">
 
-    </p>
-    <input type="submit"
-           value="Submit"
-           class="btn"
-           />
-</form>
+                    {% csrf_token %}
 
+                    {% load form_input %}
+                    {% load tagbox %}
+                    {% load address %}
+                    {% load form_select %}
+
+                    <div class="row">
+                        <h5 class="col s12">Name</h5>
+                        <div class="col s12 m2">
+                            {% form_input form.title %}
+                        </div>
+                        <div class="col s12 m4">
+                            {% form_input form.first_name %}
+                        </div>
+                        <div class="col s12 m4">
+                            {% form_input form.last_name %}
+                        </div>
+                        <div class="col s12 m2">
+                            {% tagbox form.suffix_tags %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="col s12 about__sec--header">Professional Details</h5>
+                        <div class="col s12 m6">
+                            {% form_input form.user_name True %}
+                        </div>
+                        <div class="col s12 m6">
+                            {% form_input form.department %}
+                        </div>
+                        <div class="col s12 m6 bg__tags--blue1">
+                            {% tagbox form.clinical_area %}
+                        </div>
+                        <div class="padding--no-right col s12 m6 about__selfclass">
+                            {% form_select form.self_classification %}
+                        </div>
+                        <!-- If Other is selected, show a text field to enter it -->
+                        <div class="col s12 m6" id ="self_classification_other_div" style='display:none;'>
+                            <div class="form-input-wrapper input_{{ form.self_classification.name }}-other {{form.self_classification.div_class_list}} " style=''>
+                                <label for="other_classification">Other classification</label>
+                                <input class="form__input--with-border {{ form.self_classification.input_class_list }}" name="other_classification" type="text" value="{{ form.self_classification.other }}" placeholder="Describe other classification" {{ is_disabled }}/>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="col s12 about__sec--header">Business Address</h5>
+                        <div class="col s12">
+                            {% for business_address in form.business_address.all %}
+                                {% address business_address 'business' forloop.counter %}
+                            {% empty %}
+                                {% address empty_address 'business' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="col s12 about__sec--header">Contact Information</h5>
+                        <div class="col s12 m6">
+                            {% form_input form.email %}
+                        </div>
+                        <div class="col s12 m6">
+                            {% form_input form.business_phone %}
+                        </div>
+                        <div class="col s12 m6">
+                            {% form_input form.contact_phone %}
+                        </div>
+                        <div class="col s12 m6">
+                            {% form_input form.webpage_url %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="col s12 about__sec--header">Quality Details</h5>
+
+                        <p class="col s12 about__question--sub">For this section, start typing your response and a drop down list will populate to select from. You may add as many responses you need to accurately answer the questions. If you do not see a result that matches what you're looking for, please type the speciality, expertise, or quality improvement interest of your choice and click 'enter' to save your unique entry. If you would like to delete an entry click the 'x' to the right of the entry tag.</p>
+                        
+                        <div class="col s12 m4 bg__tags--blue1">
+                            {% tagbox form.speciality_tags %}
+                        </div>
+                        <div class="col s12 m4 bg__tags--blue2">
+                            {% tagbox form.expertise_tags %}
+                        </div>
+                        <div class="col s12 m4 bg__tags--blue1">
+                            {% tagbox form.qi_interest_tags %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="about__question clear__both">Is quality improvement a requirement of your training program?</p>
+                            <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
+                            <p>
+                                <input class="with-gap" name="qi_required" value ="1" type="radio" id="qi_required_yes" {% ifequal form.qi_required 1 %} checked {% endifequal %} />
+                                <label for="qi_required_yes">Yes</label>
+                                <input class="with-gap" name="qi_required" value="0" type="radio" id="qi_required_no" {% ifequal form.qi_required 0 %} checked {% endifequal %} />
+                                <label for="qi_required_no">No</label>
+                                <input class="with-gap" name="qi_required" value="2" type="radio" id="qi_required_na" {% ifequal form.qi_required 2 %} checked {% endifequal %} />
+                                <label class="qi_required_na" for="qi_required_na">I am not in a training program</label>
+                            </p>
+                            <p>
+                                {% form_input form.training_program %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="submit"
+                                   value="Save"
+                                   class="btn about__submit"
+                                   />
+                        </div>
+                    </div>
+
+                    <div class="row col">
+                        {% form_input form.last_login True %}
+                        {% form_input form.account_expiration True %}
+                        {% form_input form.account_created True %}
+                    </div>
+                </form>
+            </div>
+
+        </div> <!-- end right side of dashboard -->
+    </div> <!-- end dashboard -->

@@ -4,8 +4,9 @@ from approver import views, api
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^shib/$', views.fake_shib, name='shib'),
+    url(r'^shib/$', views.shib_login, name='shib'),
     url(r'^projects/$', views.project, name='projects'),
+    url(r'^projects/similar/(?P<project_id>[0-9]+)/(?P<from_page>\w+)$', views.similar_projects, name='similar_projects'),
     url(r'^projects/similar/(?P<project_id>[0-9]+)/$', views.similar_projects, name='similar_projects'),
     url(r'^projects/(?P<project_id>[0-9]+)/$', views.project, name='projects'),
     url(r'^approver/$', views.approve, name='approve'),
@@ -19,5 +20,7 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^api/$', api.index, name='api_index'),
     url(r'^api/users$', api.users, name='api_users'),
-    url(r'^logout/$', logout, {'next_page': '/shib'}, name='logout'),
+    url(r'^api/tags$', api.tags, name='api_tags'),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
+    url(r'^error404/$', views.error404, name='error404'),
 ]

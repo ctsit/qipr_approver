@@ -1,5 +1,137 @@
+## [0.7.0] - 2016-12-12
+## Summary
+ Improved the usability on About you and Project page
+
+### Added
+* Add placeholder text to tag-input-entry on project page (Amber Allen)
+* Add placeholder text and helper paragraph to about you page. (Amber Allen)
+* Add placeholder text to advisor field on project entry page (Amber Allen)
+* Add helper paragraph under collaborators and advisors on project.html (Amber Allen)
+* Add unique placeholder text to input fields on project info form (Amber Allen)
+* Add back to dashboard link on certificate page (Amber Allen)
+* Add back to dashboard link on irb approval page. (Amber Allen)
+
+## [0.6.2] - 2016-11-29
+## Summary
+ Fixed a bug causing projects to seem like they were approved and sending them
+ over to registry
+
+### Fixed:
+ * Conditionally pushing projects to registry (Patrick White)
+
+## [0.6.1] - 2016-11-27
+## Summary
+ Two small bug fixes: one was a left over model attribute which no longer existed throwing
+ errors when called and one which fixed how active users are counted to give a proper count.
+
+### Fixed
+* fix the logic to count active users based on their account expiration time. (Matthew McConnell)
+* Replace a forgotten date_first_registered attribute in model_signals (Matthew McConnell)
+
+## [0.6.0] - 2016-11-25
+## Summary
+ This update adds the connection points for registry. There are also a few bug fixes including
+ fixing a JS API call, preventing multiple adding of projects, and making the dashboard search
+ case insensitive. An additional option was added to the about you forms "Is Quality improvement
+ a requirement of your program" question.
+
+### Added
+* Feature/api bridge for connecting Registry (PFWhite)
+* Feature/third qi choice on About you regarding if quality improvement is a requirement of their program(#153) (stewhat)
+* Issue #142 Account expiration should be 1 year from last_login date (ndavuluri)
+
+### Changed
+* Update email message to include link to project (Matthew McConnell)
+
+### Fixed
+* make the tag request go to the right endpoint (#155) (PFWhite)
+* Disabling the Submit Project button to avoid multiple form submissions (ndavuluri)
+* Issue #114 Dashboard search should be case insensitive (ndavuluri)
+
+## [0.5.1] - 2016-11-10
+## Summary
+Original merge was missing commits, forcing them back in.
+
+## [0.5.0] - 2016-11-10
+## Summary
+Dashboard, Proejcts, About you, Similar Projects, and the approver page have all been
+styled the best we could with the knowledge we currently have. The About you page has
+new self classification and training fields. Customers can now also search for their
+own projects on the dashboard and collaborate with PQIs of related projects.
+
+### Added
+* New 404 page (not yet implemented) (Amber Allen)
+* Add self classification field to About You page (Matthew McConnell)
+* Needs advisor page now displays if project does not have an advisor but requires one (Stuart Wehmeyer)
+* Styled Needs Advisor page
+* Footer on pages now includes live stats about projects and users (Stuart Wehmeyer)
+* Add training program to about you form (Matthew McConnell)
+* Create utils function to get a user from an HTTP request (Matthew McConnell)
+* Add the ability to email a PQI for found related projects (Matthew McConnell)
+* Display expected start date on similar projects page (Matthew McConnell)
+* Add a search to the dashboards to search within ones own projects (ndavuluri)
+
+### Changed
+* removed the safety targets field (Stewart Wehmeyer)
+* Changed Logo (#141) (Amber)
+* Styled About You page (Amber Allen)
+* Styled Approver questions page (Amber Allen)
+* Moves selected tags underneath the inputs (Matthew McConnell)
+* Styled Project Page (Amber Allen)
+* Replace UF seal on certificate with UF Health logo. (Amber Allen)
+* Update text in Do I need IRB approval section on landing page. (Amber Allen)
+* Update FAQ questions on landing page. (Amber Allen)
+* Additional Dashboard styling
+
+
+## [0.4.0] - 2016-10-25
+## Summary
+
+### Added
+* Add space on certificate for the date (Amber Allen)
+* On QI survey page, add buttons at bottom to save and continue, save and exit, and continue as well as a back to dashboard link (Amber Allen)
+* Adds the required Nursing Units to the Clinical Area dropdown and updates the label to include the word units (Matthew McConnell)
+* Randomize order of project approval questions. Reason : In order to prevent customers from quickly selecting the answers which would get an approval, randomize the questions so that each has to be read and thought about before being answered (ndavuluri)
+
+### Changed
+* Change some help message text (Matthew McConnell)
+* Recreate and style approval certificate
+* Arrange projects chronologically most recent first on dashboard #106 . Sorting based on last_modified (ndavuluri)
+* Created brand new "Similar Projects" page with a collaborate button
+* Created brand new "Needs IRB Approval" page with new styling
+* ISSUE #105 . Logout should return to landing page (ndavuluri)
+* Issue #95 . Updated values for Big Aims (ndavuluri)
+* Recreated and styled brand new dashboard
+* Adding pagination for Dashboard
+* Updating big Aims to UF Health Big Aims. (ndavuluri)
+* Exclude tags which are already selected (Matthew McConnell)
+* Replacing lines with Boxes for input fields (ndavuluri)
+* Data fields now pull from the database while user types and show the top 10 matching results using AJAX on the About You and Projects page
+
+### Fixed
+* All proper suffixes show (Matthew McConnell)
+* Fixes a bug which cased ascii characters to be displayed in the help text on approver questions (Matthew McConnell)
+* Issue 95 : Update project similarity matching values (ndavuluri)
+* Title misspelling on Project Page(#92) (stewhat)
+
+## [0.3.0] - 2016-10-04
+## Summary
+ 0.3.0 adds a new feature which compares a project to other projects and returns a score to help customers determine if there is one similar already in the system. There was bug fix from 0.2.0 which prevents the same tag from being added via the drop down list. Finally, the Gatorlink field was made uneditable.
+
+### Added
+ * place filler text in the about you page text input fields (Stewart Wehmeyer)
+ * Added new get_similar_projects function to get list of projects that are similar to the current project being queried for. used jaccard similarity ratio for the same. Algorithm needs to be further discussed and improved (Tarun Gupta Akirala)
+
+### Changed
+ * make gatorlink field uneditable and post successfully (Stewart Wehmeyer)
+
+### Fixed
+ * Fix bug where tags we're being added through dropdown even if they already existed (Matthew McConnell)
+
+
 ## [0.2.0] - 2016-09-20
 ## Summary
+Added many new fields to both the project and about you pages. Added unit tests and fixed bugs discovered.
 
 ### Added
 * Add unit, title, department. and qi required input fields to about you form (Matthew McConnell)

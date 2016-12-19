@@ -14,8 +14,9 @@ def form_input(input_dict, is_disabled=False):
     value: the value of the input. Not checked or validated
     placeholder: example text to prompt customers to fill in text fields
     """
-    input_classes = input_dict.get('input_classes') or []
-    input_dict['input_class_list'] = ' '.join([str(cls) for cls in input_classes])
+    input_dict['input_class_list'] = input_dict.get('input_classes') or []
+    input_dict['div_class_list'] = input_dict.get('div_classes') or []
+
     if is_disabled:
         input_dict['is_disabled'] = "disabled"
     else:

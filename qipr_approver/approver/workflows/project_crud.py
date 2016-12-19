@@ -1,4 +1,4 @@
-from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, SafetyTarget, BigAim
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags
 import approver.utils as utils
@@ -6,6 +6,7 @@ import approver.utils as utils
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
 from django.db.models.query import QuerySet
+from approver.constants import description_factor,keyword_factor,title_factor,big_aim_factor,category_factor,clinical_area_factor,clinical_setting_factor
 
 
 def create_or_update_project(current_user, project_form, project_id=None):
@@ -58,7 +59,6 @@ def update_project_from_project_form(project, project_form, editing_user):
     collaborator = extract_tags(project_form, 'collaborator')
     keyword = extract_tags(project_form, 'keyword')
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
-    safety_target = extract_tags(project_form, 'safety_target')
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
@@ -89,12 +89,6 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_property='clinical_setting',
                 tags=clinical_setting,
                 tag_model=ClinicalSetting,
-                tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='safety_target',
-                tags=safety_target,
-                tag_model=SafetyTarget,
                 tagging_user=editing_user)
 
     update_tags(model=project,
@@ -181,25 +175,9 @@ def get_similar_projects(project):
 def _calculate_similarity_score(project, member):
 
     '''
-    Need to be improved based on priority. Remove static values and read from a file.
+    Need to be improved based on priority.
     Sum can be 100 to scale from zero to 100 (like a percentage)
-
-    keyword - 25
-    title - 20
-    big_aim - 15
-    category - 5
-    clinical area - 10
-    clinical setting - 10
-    description - 10
     '''
-
-    keyword_factor = 25
-    title_factor = 20
-    big_aim_factor = 15
-    category_factor = 5
-    clinical_area_factor = 10
-    clinical_setting_factor = 10
-    description_factor = 10
 
     similarity = 0.0
 
@@ -223,7 +201,7 @@ def _calculate_similarity_score(project, member):
 
     if project.category is not None and member.category is not None:
         similarity += category_factor * _jaccard_similarity(project.category.all(), member.category.all())
-    
+
     return similarity
 
 
