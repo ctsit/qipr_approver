@@ -424,7 +424,7 @@ td, th {
 
 .dashboard_status a {
     font-weight: 600;
-    color: #757575;
+    font-size: 1.1rem;
 }
 
 .dashboard_status a:hover {
@@ -433,7 +433,9 @@ td, th {
 
 .dashboard__list {
     padding-bottom: .3rem;
+    margin-bottom: .3rem;
 }
+
 .dashboard_status {
     padding-left:2rem;
     min-width: 13rem;
@@ -446,13 +448,13 @@ td, th {
 .dashboard__check {
     color: #4caf50;
     display: inline;
-    margin-right: .5rem;
+    margin-left: .3rem;
 }
 
 .dashboard__star {
     color: #0089ec;
     display: inline;
-    margin-right: .5rem;
+    margin-left: .3rem;
 }
 
 .dashboard__red {
@@ -472,7 +474,7 @@ td, th {
     color: white;
     border-radius: 1rem;
     padding: 0 .5rem;
-    margin-right: .5rem;
+    margin-left: .3rem;
     text-align: center;
 }
 
@@ -675,8 +677,7 @@ select:focus {
     margin-bottom:0;
 }
 
-.project__collaborate {
-    width: 7rem;
+.project__collaborate, .dashboard__status--btns {
     height: 2rem;
     line-height: 2rem;
     background-color: #004d9a;
@@ -685,11 +686,23 @@ select:focus {
     border-radius: .3rem;
 }
 
-.project__collaborate a {
+.project__collaborate {
+    width: 7rem;
+}
+
+.dashboard__status--btns {
+    display: inline;
+    padding: .4rem;
+}
+
+.project__collaborate a, .dashboard__status--btns a {
     color: white;
 }
 
-.project__collaborate:hover {
+.dashboard__status--btns a:hover {
+    color:inherit;
+}
+.project__collaborate:hover, .dashboard__status--btns:hover {
     background-color: #0169d2;
 
 }
