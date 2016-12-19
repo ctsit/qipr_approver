@@ -383,12 +383,9 @@ nav .button-collapse {
 }
 
 .dashboard_approved {
-    margin-bottom: 1.5rem;
+    margin-bottom: .7rem;
     font-size: 1.5rem;
     font-weight: 400;
-    text-align:center;
-    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
-    border: #004d9a .3rem solid;
     border-radius: .3rem;
 }
 
@@ -449,12 +446,14 @@ td, th {
     color: #4caf50;
     display: inline;
     margin-left: .3rem;
+    float: left;
 }
 
 .dashboard__star {
     color: #0089ec;
     display: inline;
     margin-left: .3rem;
+    float: left;
 }
 
 .dashboard__red {
@@ -476,6 +475,7 @@ td, th {
     padding: 0 .5rem;
     margin-left: .3rem;
     text-align: center;
+    float: left;
 }
 
 
@@ -484,11 +484,11 @@ td, th {
 }
 
 .dashboard_certificate-btn {
-    background-color: #004d9a;
+    background-color: #039be5;
     color: white;
-    padding: .2rem;
+    padding: .3rem;
     font-size: 1.08rem;
-    display: block;
+    border-radius: .2rem;
     height: 2rem;
     line-height:1.8rem;
     text-align: center;
@@ -497,7 +497,7 @@ td, th {
 }
 
 .dashboard_certificate-btn:hover {
-    background-color: #039be5;
+    background-color: rgb(4, 173, 255);
 }
 
 .dashboard_stats {
@@ -678,8 +678,6 @@ select:focus {
 }
 
 .project__collaborate, .dashboard__status--btns {
-    height: 2rem;
-    line-height: 2rem;
     background-color: #004d9a;
     color: white;
     text-align: center;
@@ -687,12 +685,20 @@ select:focus {
 }
 
 .project__collaborate {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.project__collaborate {
     width: 7rem;
 }
 
 .dashboard__status--btns {
-    display: inline;
     padding: .4rem;
+    max-width: 130px;
+    float: left;
+    white-space: normal;
+    margin-bottom: .6rem;
 }
 
 .project__collaborate a, .dashboard__status--btns a {
