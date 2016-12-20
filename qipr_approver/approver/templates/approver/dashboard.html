@@ -77,11 +77,10 @@
                                         <ul class="dashboard_status--margin">
                                             {% if project.is_approved %}
                                                 <li class="dashboard__list">
-                                                    <div class="dashboard_approved dashboard__status--btns">
+                                                    <div class="dashboard_certificate-btn dashboard__status--btns">
                                                         <a href="{% url 'approver:project_status' project_id=project.pk %}">View Certificate</a>
                                                     </div>
                                                 </li>
-                                                <!-- <li class="dashboard_approved"><a href="{% url 'approver:project_status' project_id=project.pk %}"><span class="dashboard_certificate-btn">View Certificate</span></a></li> -->
                                             {% endif %}
 
                                             <li class="dashboard__list">

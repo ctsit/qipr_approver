@@ -382,22 +382,6 @@ nav .button-collapse {
     color: #004d9a;
 }
 
-.dashboard_approved {
-    margin-bottom: .7rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-    border-radius: .3rem;
-}
-
-.dashboard_approved-text  {
-    font-weight: 300;
-    color: #004d9a;
-}
-
-.dashboard_approved-text:hover  {
-    color:#004d9a;
-}
-
 .dashboard_delete--form input:focus {
     outline: none;
 }
@@ -442,62 +426,8 @@ td, th {
     margin-top: 0;
 }
 
-.dashboard__check {
-    color: #4caf50;
-    display: inline;
-    margin-left: .3rem;
-    float: left;
-}
-
-.dashboard__star {
-    color: #0089ec;
-    display: inline;
-    margin-left: .3rem;
-    float: left;
-}
-
-.dashboard__red {
-    color: #f44336;
-    text-transform:uppercase;
-}
-
-.dashboard__green {
-    color: #4caf50;
-    text-transform:uppercase;
-}
-
-.dashboard__exclaimation {
-    background-color: #f44336;
-    display: inline;
-    font-weight: 600;
-    color: white;
-    border-radius: 1rem;
-    padding: 0 .5rem;
-    margin-left: .3rem;
-    text-align: center;
-    float: left;
-}
-
-
 .dashboard_row-title-project {
     padding-left:2rem;
-}
-
-.dashboard_certificate-btn {
-    background-color: #039be5;
-    color: white;
-    padding: .3rem;
-    font-size: 1.08rem;
-    border-radius: .2rem;
-    height: 2rem;
-    line-height:1.8rem;
-    text-align: center;
-    margin-top: 0.5rem;
-    margin: 0 auto;
-}
-
-.dashboard_certificate-btn:hover {
-    background-color: rgb(4, 173, 255);
 }
 
 .dashboard_stats {
@@ -695,10 +625,14 @@ select:focus {
 
 .dashboard__status--btns {
     padding: .4rem;
-    max-width: 160px;
+    width: 160px;
     float: left;
     white-space: normal;
     margin-bottom: .6rem;
+}
+
+.dashboard_certificate-btn {
+    background-color: #039be5;
 }
 
 .project__collaborate a, .dashboard__status--btns a {
@@ -710,7 +644,10 @@ select:focus {
 }
 .project__collaborate:hover, .dashboard__status--btns:hover {
     background-color: #0169d2;
+}
 
+.dashboard_certificate-btn:hover {
+    background-color: rgb(4, 173, 255);
 }
 
 footer {
