@@ -561,11 +561,7 @@ select:focus {
 
 /*Similar Projects*/
 .btn__similar {
-    font-family: 'Open Sans', sans-serif;
     font-size: 1.4rem;
-    color: #444;
-    background-color: #e0e0e0 !important;
-    font-weight: 300;
 }
 
 .similar__header {
