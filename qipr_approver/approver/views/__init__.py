@@ -1,7 +1,7 @@
 from approver.views.aboutyou import about_you,about_you_superuser
 from approver.views.index import index
 from approver.views.dashboard import dashboard,dashboard_su
-from approver.views.fake_shib import fake_shib
+from approver.views.shib import shib_login
 from approver.views.dashboard import dashboard,dashboard_su
 from approver.views.shib import shib_login
 
