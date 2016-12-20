@@ -6,7 +6,7 @@
 <div class="container">
 
 {% if project_id %}
-<form action="{% url 'approver:projects' project_id=project_id %}" onsubmit="submitProject.disabled=true; autocomplete="off" method="post">
+<form action="{% url 'approver:projects' project_id=project_id %}" onsubmit="submitProject.disabled=true;" autocomplete="off" method="post">
 {% endif %}
 {% if not project_id %}
     <form action="{% url 'approver:projects' %}" onsubmit="submitProject.disabled=true;" autocomplete="off" method="post">
@@ -15,33 +15,37 @@
     {% load form_input %}
     {% load form_input_textarea %}
     {% load tagbox %}
-    <h5 class="project__subhead">Project Title</h5>
-    {% form_input_textarea form.title form.is_disabled %}
+    <div class="row">
+        <h5 class="project__subhead">Project Title</h5>
+        {% form_input_textarea form.title form.is_disabled %}
 
-    <h5 class="project__subhead">Project Description</h5>
-    {% form_input_textarea form.description form.is_disabled %}
+        <h5 class="project__subhead">Project Description</h5>
+        {% form_input_textarea form.description form.is_disabled %}
 
-    <h5 class="project__subhead">Collaborators</h5>
-    {% tagbox form.collaborator form.is_disabled %}
-
-    <h5 class="project__subhead">Advisors</h5>
-    {% tagbox form.advisor form.is_disabled %}
+        <h5 class="project__subhead">Collaborators</h5>
+        <p>Start typing the collaborator's name and an email list should populate to choose from. If you do not see the name of your collaborator, please type their email address then click 'enter' to save.</p>
+        {% tagbox form.collaborator form.is_disabled %}
+    
+        <h5 class="project__subhead">Advisors</h5>
+        <p>Start typing the advisor's name and an email list should populate to choose from. If you do not see the name of your advisor, please type their email address then click 'enter' to save.</p>
+        {% tagbox form.advisor form.is_disabled %}
+    </div>
 
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m6 bg__tags--blue1">
             {% tagbox form.keyword form.is_disabled %}
         </div>
-        <div class="col s12 m6">
+        <div class="col s12 m6 bg__tags--blue2">
             {% tagbox form.big_aim form.is_disabled %}
         </div>
     </div>
 
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m6 bg__tags--blue2">
             {% tagbox form.clinical_area form.is_disabled %}
         </div>
 
-        <div class="col s12 m6">
+        <div class="col s12 m6 bg__tags--blue1">
             {% tagbox form.clinical_setting form.is_disabled %}
         </div>
     </div>
