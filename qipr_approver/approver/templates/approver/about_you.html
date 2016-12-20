@@ -125,12 +125,18 @@
                             <p class="about__question clear__both">Is quality improvement a requirement of your training program?</p>
                             <p class="about__question--sub">Please select one of the following options. People who might be in a training program include, but are not limited to, nursing fellows, residents, medical students, fellows, or other trainees.</p>
                             <p>
-                                <input class="with-gap" name="qi_required" value ="1" type="radio" id="qi_required_yes" {% ifequal form.qi_required 1 %} checked {% endifequal %} />
-                                <label for="qi_required_yes">Yes</label>
-                                <input class="with-gap" name="qi_required" value="0" type="radio" id="qi_required_no" {% ifequal form.qi_required 0 %} checked {% endifequal %} />
-                                <label for="qi_required_no">No</label>
-                                <input class="with-gap" name="qi_required" value="2" type="radio" id="qi_required_na" {% ifequal form.qi_required 2 %} checked {% endifequal %} />
-                                <label class="qi_required_na" for="qi_required_na">I am not in a training program</label>
+                                <div>
+                                    <input class="with-gap" name="qi_required" value ="1" type="radio" id="qi_required_yes" {% ifequal form.qi_required 1 %} checked {% endifequal %} />
+                                    <label for="qi_required_yes">Yes</label>
+                                </div>
+                                <div>
+                                    <input class="with-gap" name="qi_required" value="0" type="radio" id="qi_required_no" {% ifequal form.qi_required 0 %} checked {% endifequal %} />
+                                    <label for="qi_required_no">No</label>
+                                </div>
+                                <div>
+                                    <input class="with-gap" name="qi_required" value="2" type="radio" id="qi_required_na" {% ifequal form.qi_required 2 %} checked {% endifequal %} />
+                                    <label class="qi_required_na" for="qi_required_na">I am not in a training program</label>
+                                </div>
                             </p>
                             <p>
                                 {% form_input form.training_program %}
