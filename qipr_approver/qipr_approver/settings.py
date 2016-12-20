@@ -19,10 +19,13 @@ def get_config(key):
     return config.get(config.default_section, key)
 
 def define_env():
-    settings_proj_path = 'qipr/approver/qipr_approver/deploy/settings.ini'
+    settings_proj_path = '/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
-        settings_pre_path = '/var/www/'
+        settings_pre_path = '/var/www/qipr/approver'
+    elif os.getenv('TRAVIS', False):
+        settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None)
+
     config.read(settings_pre_path + settings_proj_path)
     os.environ['DJANGO_SETTINGS_MODULE'] = "qipr_approver.settings"
     os.environ['DJANGO_CONFIGURATION'] = get_config('configuration')
