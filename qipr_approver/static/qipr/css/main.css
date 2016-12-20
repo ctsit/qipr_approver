@@ -338,6 +338,7 @@ nav .button-collapse {
 
 .dashboard__question:hover {
     background-color: #0089ec;
+    color: white;
 }
 
 .dashboard_menu {
@@ -547,6 +548,8 @@ select:focus {
 
 .col.bg__tags--blue1, .col.bg__tags--blue2 {
     padding: 1rem;
+    border-radius: .5rem;
+    border: grey solid 1pt;
 }
 
 .project__subhead, .input_proposed_start_date label, .input_proposed_end_date label, .input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
