@@ -79,24 +79,30 @@
 
                     <div class="row">
                         <h5 class="col s12 about__sec--header">Professional Details</h5>
-                        <div class="col s12 m6">
+                        <!-- <div class="col s12 m6">
                             {% form_input form.user_name True %}
-                        </div>
-                        <div class="col s12 m6">
-                            {% form_input form.department %}
-                        </div>
-                        <div class="col s12 m6 bg__tags--blue1">
-                            {% tagbox form.clinical_area %}
-                        </div>
-                        <div class="padding--no-right col s12 m6 about__selfclass">
-                            {% form_select form.self_classification %}
-                        </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col s12 m6">
+                                {% form_input form.department %}
+                            </div>
+                            
+                            <div class="padding--no-right col s12 m6">
+                                {% form_select form.self_classification %}
+                            </div>
                         <!-- If Other is selected, show a text field to enter it -->
-                        <div class="col s12 m6" id ="self_classification_other_div" style='display:none;'>
-                            <div class="form-input-wrapper input_{{ form.self_classification.name }}-other {{form.self_classification.div_class_list}} " style=''>
-                                <label for="other_classification">Other classification</label>
-                                <input class="form__input--with-border {{ form.self_classification.input_class_list }}" name="other_classification" type="text" value="{{ form.self_classification.other }}" placeholder="Describe other classification" {{ is_disabled }}/>
-                             </div>
+                            <div class="col s12 m3" id ="self_classification_other_div" style='display:none;'>
+                                <div class="form-input-wrapper input_{{ form.self_classification.name }}-other {{form.self_classification.div_class_list}} " style=''>
+                                    <label for="other_classification">Other classification</label>
+                                    <input class="form__input--with-border {{ form.self_classification.input_class_list }}" name="other_classification" type="text" value="{{ form.self_classification.other }}" placeholder="Describe other classification" {{ is_disabled }}/>
+                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 m6 bg__tags--blue1">
+                                {% tagbox form.clinical_area %}
+                            </div>
                         </div>
                     </div>
 
