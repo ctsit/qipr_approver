@@ -24,8 +24,8 @@ def define_env():
     if os.getenv('CI', None) == None:
         settings_pre_path = '/var/www/qipr/approver'
     elif os.getenv('TRAVIS', False):
-        settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None)
-
+        settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None) + '/qipr_approver'
+    print(settings_pre_path + settings_proj_path)
     config.read(settings_pre_path + settings_proj_path)
     os.environ['DJANGO_SETTINGS_MODULE'] = "qipr_approver.settings"
     os.environ['DJANGO_CONFIGURATION'] = get_config('configuration')
