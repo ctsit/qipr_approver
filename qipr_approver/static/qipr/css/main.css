@@ -631,6 +631,15 @@ select:focus {
     margin-bottom: .6rem;
 }
 
+.dashboard__status--disabled {
+    background-color: #dddddd;
+}
+
+.dashboard__status--disabled a {
+    color: #bdbdbd;
+    font-weight: 400;
+}
+
 .dashboard_certificate-btn {
     background-color: #039be5;
 }
