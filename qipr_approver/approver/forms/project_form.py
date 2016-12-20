@@ -74,8 +74,7 @@ class ProjectForm():
 
         self.description = {'name': 'description',
                             'type': 'text',
-                            
-                            'input_classes': ['description__height'], 
+                            'input_classes': ['description__height'],
                             'placeholder': 'Give a description of your Quality Improvement project here (Please use at least 250 words. When filled, this input box holds roughly 250 words.)',
                             'value': project.description or ''}
 

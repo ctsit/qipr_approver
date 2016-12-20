@@ -63,6 +63,5 @@ def get_project_context(request,search_query):
     return projects + collaborator_projects + advisor_projects
 
 def __get_project_details(project, role):
-    '''Returns dictionary of all project details that are displayed on Dashboard''' 
+    '''Returns dictionary of all project details that are displayed on Dashboard'''
     return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified,'has_similar_projects':len(project_crud.get_similar_projects(project))}
-    
