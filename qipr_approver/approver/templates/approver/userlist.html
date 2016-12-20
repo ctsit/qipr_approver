@@ -1,0 +1,41 @@
+</div>
+<div>
+<table class="striped">
+    <thead>
+        <tr>
+            <th class="dashboard_row-title" data-field="title"><h5>UserName</h5></th>
+            <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
+            <th class="dashboard_row-title" data-field="role"><h5>Last Name</h5></th>
+            <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
+	</thead>
+	<tbody>
+		{% for person in persons_page %}
+			<tr>
+			    <td>{{ person.gatorlink }}</td>
+			    <td>{{ person.first_name }}</td>
+			    <td>{{ person.last_name }}</td>
+			    <td><a href="{% url 'approver:about_you_superuser' person_id=person.id %}">Edit User</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<div class="row">
+        <div class="col s12">
+            <div class="pagination center-align">
+                <span class="step-links">
+                    {% if persons_page.has_previous %}
+                        <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ persons_page.number }} of {{ persons_page.paginator.num_pages }}
+                    </span>
+
+                    {% if persons_page.has_next %}
+                        <a href="?page={{ persons_page.next_page_number }}"> &gt; </a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

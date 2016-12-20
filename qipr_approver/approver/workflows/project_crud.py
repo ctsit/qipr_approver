@@ -114,12 +114,19 @@ def project_exists(project_id):
     """
     return (len(Project.objects.filter(id=project_id)) > 0)
 
+def current_user_is_superuser(current_user):
+    return current_user.person.is_admin
+
 def curent_user_is_project_owner(current_user, project):
     """
     This returns a boolean about if the current_user.person.id is the
     same as the project.owner.id
     """
     return current_user.person.id == project.owner.id
+
+def is_current_project_editable(current_user,project):
+    return current_user_is_superuser(current_user) or curent_user_is_project_owner(current_user, project)
+
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
     This returns a boolean true if the current_user.person.id is in 
@@ -138,6 +145,9 @@ def current_user_can_perform_project_delete(current_user,project):
     user is the owner for the project and the project is editable.
     """
     toast_message = ""
+    if current_user.person.is_admin:
+        project.delete(current_user)
+        return 'Deleted Project'
     if(toast_message == "" and project is None):
         toast_message = 'Project with id {} does not exist.'.format(project_id)
         return toast_message
@@ -147,6 +157,18 @@ def current_user_can_perform_project_delete(current_user,project):
         return 'You are not allowed to delete/edit this project.'
     project.delete(current_user)
     return 'Deleted Project'
+
+def current_user_can_archive_project(current_user,project):
+    """Only Super User can archive projects"""
+    project.archived = True
+    project.save(current_user)
+    return 'Archived Project'
+
+def current_user_can_unarchive_project(current_user,project):
+    """Only Super User can unarchive projects"""
+    project.archived = False
+    project.save(current_user)
+    return 'UnArchived Project'
 
 def get_approved_projects():
     """
