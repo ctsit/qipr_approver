@@ -298,6 +298,7 @@ def add_new_ssh_key_as_string(ssh_public_key_string, name):
     This function will add the passed ssh key string to the deploy user to enable
     passwordless login
     Note: Admin must be true in the environment
+    TODO: validate string is valid ssh key
 
     ssh_public_key_string: the actual public key string
     name: the name of the user this key is tied to
