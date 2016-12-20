@@ -33,6 +33,10 @@ p, a {
     font-family: 'Open Sans', sans-serif;
     }
 
+a:hover {
+    color: #004d9a;
+}    
+
 h3 {
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -80,10 +84,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .landing__FAQ--font {
     font-size:1.25rem;
-}
-
-.landing__FAQ--font a:hover {
-    color: #efaf2e;
 }
 
 .landing__FAQ--font li {
@@ -157,7 +157,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 nav ul a.btn:hover, .side-nav a.btn:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
     background-color: #e47004;
-    }
+}
+
+nav ul a:hover { 
+    color: white;
+}
 
 nav .button-collapse {
     float: right;
@@ -224,11 +228,11 @@ nav .button-collapse {
 
 .nonapprove__body--link {
     font-weight: 600;
-    color: #fec56f;
+    color: #039be5;
 }
 
 .nonapprove__body--link:hover {
-    color: #686868;
+    color: #004d9a;
 }
 
 .nonapprove__caution {
@@ -694,7 +698,8 @@ footer.page-footer .footer-copyright {
 
 .btn:hover, .btn-large:hover, .btn:focus {
     background-color: #e87910;
-    }
+    color: white;
+}
 
 .clear__both {
     clear:both;
