@@ -695,7 +695,7 @@ select:focus {
 
 .dashboard__status--btns {
     padding: .4rem;
-    max-width: 130px;
+    max-width: 160px;
     float: left;
     white-space: normal;
     margin-bottom: .6rem;
