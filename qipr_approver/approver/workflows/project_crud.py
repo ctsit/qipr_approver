@@ -49,6 +49,10 @@ def update_project_from_project_form(project, project_form, editing_user):
 
     project.title = project_form.get('title')
     project.description = project_form.get('description')
+    project.objective = project_form.get('objective')
+    project.scope = project_form.get('scope')
+    project.measures = project_form.get('measures')
+    project.milestones = project_form.get('milestones')
     project.proposed_start_date = parse_date(project_form.get('proposed_start_date'))
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
 

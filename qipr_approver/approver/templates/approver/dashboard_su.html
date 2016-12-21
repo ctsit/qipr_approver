@@ -4,45 +4,47 @@
 
 <div class="navbar-fixed navbar-fixed--admin">
     <nav>
-                <div class="nav-wrapper orange">
-                    <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
-                        <div class="container">
-                            <h4>Administrator</h4>
-                        </div>
-                    </a>
-                    
+        <div class="nav-wrapper orange">
+            <a id="icon-container" class="left" href="{% url 'approver:index' %}">
+                <div class="container">
+                    <h4>Administrator</h4>
                 </div>
-            </nav>
+            </a>
         </div>
+    </nav>
+</div>
 
+<div class="row dashboard_border ">
+    <div class="col s12 m2 dashboard_menu">
+        <ul>
+            <li class="dashboard_menu-item-active"><a href="{% url 'approver:dashboard_su' %}">Modify Projects</a></li>
+            <li class="dashboard_menu-item"><a href="{% url 'approver:userlist' %}">Modify Users</a></li>
+        </ul>
+    </div>
 
-
-
-
-<div class="container__dashboard">
-    <div class="row dashboard_border margin-top">
-        <div class="headerbg__admin center">
-            <div class="container">
-              <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI Project List</h1>
-              <p class="question__header--sub">!!! Note this page is only to be accessed and edited by administrators. If you are not sure if you should have administrator access, please contact <a href="tel:3522650002">352-265-0002</a></p>
+    <div class="col s12 m10 dashboard_border-left">
+       <div class="row margin-top">
+            <div class="headerbg__admin center">
+                <div class="container">
+                  <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI Project List</h1>
+                  <p class="question__header--sub"></p>
+                </div>
             </div>
-        </div>
 
-            
-        <div class="col s12 m12 dashboard_border-left">
-            <div class="row">
-                 <div class="col s12">
-                    <div class="input-field dashboard_search">
-                        <form method="post" action="{% url 'approver:dashboard_su' %}">
-                            {% csrf_token %}
-                            <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
-                            
-                            <input class="dashboard__search--projects" type="submit" value="&#128270;">
-                        </form>
+            <div class="col s12 m12">
+                <div class="row">
+                     <div class="col s12">
+                        <div class="input-field dashboard_search">
+                            <form method="post" action="{% url 'approver:dashboard_su' %}">
+                                {% csrf_token %}
+                                <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                                
+                                <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
 
             <table class="striped">
                 <thead>
@@ -135,25 +137,25 @@
                 </tbody>
             </table>
 
-    <div class="row">
-        <div class="col s12">
-            <div class="pagination center-align">
-                <span class="step-links">
-                    {% if projects.has_previous %}
-                        <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
-                    {% endif %}
+            <div class="row">
+                <div class="col s12">
+                    <div class="pagination center-align">
+                        <span class="step-links">
+                            {% if projects.has_previous %}
+                                <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
+                            {% endif %}
 
-                    <span class="current">
-                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}
-                    </span>
+                            <span class="current">
+                                Page {{ projects.number }} of {{ projects.paginator.num_pages }}
+                            </span>
 
-                    {% if projects.has_next %}
-                        <a href="?page={{ projects.next_page_number }}"> &gt; </a>
-                    {% endif %}
-                </span>
+                            {% if projects.has_next %}
+                                <a href="?page={{ projects.next_page_number }}"> &gt; </a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-        </div> <!-- end right side of dashboard -->
-    </div> <!-- end dashboard -->
+        </div> <!-- end margin-top -->
+    </div><!-- end dashboard_border-left -->
+</div><!-- end dashboard_border -->
