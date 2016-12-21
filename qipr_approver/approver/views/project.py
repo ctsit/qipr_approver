@@ -60,7 +60,10 @@ def project(request, project_id=None):
                         return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
                 else:
                     if (project.get_is_editable() is not True):
-                        context['form'] = ProjectForm(project,is_disabled=True)
+                        if (project_crud.current_user_is_superuser(current_user)):
+                            context['form'] = ProjectForm(project,is_disabled=False)
+                        else:
+                            context['form'] = ProjectForm(project,is_disabled=True)
                         return utils.layout_render(request,context)
                     else:
                         context['form'] = ProjectForm(project)
