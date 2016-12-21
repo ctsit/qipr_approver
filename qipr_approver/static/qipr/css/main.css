@@ -351,7 +351,7 @@ nav .button-collapse {
 
 .dashboard_menu-item-active, .dashboard_menu-item:active, .dashboard_menu-item:visited {
     border-left: 3pt #004d9a solid;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .dashboard_menu-item a:hover {
@@ -1042,6 +1042,43 @@ textarea.description__height {
 
 textarea.textarea__height {
     min-height: 9rem;
+}
+
+/*Admin Pages*/
+.navbar-fixed--admin {
+    z-index: 996;
+}
+
+.margin-top {
+    margin-top: 1rem;
+}
+
+.headerbg__admin {
+    background-color: #fecb85;
+}
+
+.icon__admin {
+    position: relative;
+    top: .5rem;
+}
+
+.dashboard_btns-admin {
+    display: inline;
+}
+
+.dashboard_btns-admin a:hover {
+    color: #004d9a;
+}
+
+.dashboard__edit {
+    display: inline;
+    color: #757575;
+}
+
+.dashboard__edit i {
+    font-size: 1.3rem;
+    position: relative;
+    top: .2rem;
 }
 
 @media screen and (min-width: 420px) {
