@@ -29,9 +29,13 @@ def project(request, project_id=None):
         if(project is None):
             project = project_crud.create_or_update_project(current_user, project_form, project_id)
         else:
-            if project.is_archived() and not project_crud.current_user_is_superuser(current_user):
+            if project.archived and not project_crud.current_user_is_superuser(current_user):
                 return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
-            if (project_crud.curent_user_is_project_owner(current_user, project) is True and project.get_is_editable() and not project.is_archived()) or project_crud.current_user_is_superuser:
+            if project_crud.curent_user_is_project_owner(current_user, project) is not True and project_crud.current_user_is_superuser:
+                project = project_crud.create_or_update_project(current_user, project_form, project_id)
+                return utils.dashboard_su_redirect_and_toast(request, 'Project is Saved.')
+
+            if (project_crud.curent_user_is_project_owner(current_user, project) is True and project.get_is_editable() and not project.archived):
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
@@ -46,7 +50,7 @@ def project(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if project.is_archived() and not project_crud.current_user_is_superuser(current_user) :
+                if project.archived and not project_crud.current_user_is_superuser(current_user) :
                     return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
                 if(project_crud.is_current_project_editable(current_user, project) is not True):
                     if project_crud.current_user_is_project_advisor_or_collaborator(current_user,project):

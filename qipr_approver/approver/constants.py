@@ -87,4 +87,7 @@ registry_endpoints = {
 
 app_label = 'approver'
 
-VERSION_NUMBER = '0.6.2'
+
+SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'false')
+
+VERSION_NUMBER = '0.7.0'
