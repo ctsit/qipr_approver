@@ -4,12 +4,6 @@ from approver import utils
 class AboutYouForm():
 
     def __init__(self, user=User()):
-        self.user_name = {'name': 'user_name',
-                          'label': 'Gatorlink',
-                          'type': 'text',
-                          'value': user.username or '',
-                          'input_classes': 'about__field--box'}
-
         self.first_name = {'name': 'first_name',
                            'placeholder': 'Jane',
                            'label': 'First Name',
