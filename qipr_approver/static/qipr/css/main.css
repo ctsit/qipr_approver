@@ -1040,6 +1040,10 @@ textarea.description__height {
     min-height: 18rem;
 }
 
+textarea.textarea__height {
+    min-height: 9rem;
+}
+
 /*Admin Pages*/
 .navbar-fixed--admin {
     z-index: 996;

@@ -14,11 +14,14 @@ def push_model(model):
     api_user = User.objects.get(username=api_username)
     json_data = jsonify(model)
     json_data = add_model_class_name(json_data, model)
-
-    response = requests.post(registry_endpoints.get('add_model'), data=json_data)
-    if response.status_code == 200 and not model.is_registered():
-        model.register()
-        model.save(api_user)
+    response = None
+    try:
+        response = requests.post(registry_endpoints.get('add_model'), data=json_data)
+        if response.status_code == 200 and not model.is_registered():
+            model.register()
+            model.save(api_user)
+    except requests.exceptions.RequestException as e:
+        print(e)
     return response
 
 def add_model_class_name(data, model):
