@@ -78,6 +78,30 @@ class ProjectForm():
                             'placeholder': 'Give a description of your Quality Improvement project here (Please use at least 250 words. When filled, this input box holds roughly 250 words.)',
                             'value': project.description or ''}
 
+        self.objective = {'name': 'objective',
+                          'type': 'text',
+                          'input_classes': ['textarea__height'],
+                          'placeholder': 'Give a brief description about your Quality Improvement project\'s objectives (up to 250 words)',
+                          'value': project.objective or ''}
+
+        self.scope = {'name': 'scope',
+                      'type': 'text',
+                      'input_classes': ['textarea__height'],
+                      'placeholder': 'Give a brief description about your Quality Improvement project\'s scope (up to 250 words)',
+                      'value': project.scope or ''}
+
+        self.measures = {'name': 'measures',
+                         'type': 'text',
+                         'input_classes': ['textarea__height'],
+                         'placeholder': 'Give a brief description about your Quality Improvement project\'s measures (up to 250 words)',
+                         'value': project.measures or ''}
+
+        self.milestones = {'name': 'milestones',
+                           'type': 'text',
+                           'input_classes': ['textarea__height'],
+                           'placeholder': 'Give a brief description about your Quality Improvement project\'s milestones (up to 250 words)',
+                           'value': project.milestones or ''}
+
         self.proposed_start_date = {'name': 'proposed_start_date',
                                     'input_classes': ['datepicker'],
                                     'label': 'Proposed Start Date',

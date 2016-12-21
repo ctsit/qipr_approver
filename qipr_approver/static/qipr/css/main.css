@@ -1013,6 +1013,10 @@ textarea.description__height {
     min-height: 18rem;
 }
 
+textarea.textarea__height {
+    min-height: 9rem;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
