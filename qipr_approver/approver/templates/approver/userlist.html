@@ -13,9 +13,16 @@
     </nav>
 </div>
 
-<div class="row">
-    <div class="col s12">
-        <div class="row margin-top">
+<div class="row dashboard_border">
+        <div class="col s12 m2 dashboard_menu">
+            <ul>
+                <li class="dashboard_menu-item"><a href="">Modify Projects</a></li>
+                <li class="dashboard_menu-item-active"><a href="">Modify Users</a></li>
+            </ul>
+        </div>
+
+        <div class="col s12 m10 dashboard_border-left">
+           <div class="row margin-top">
              <div class="col s12">
                 <div class="input-field dashboard_search">
                     <form method="post" action="{% url 'approver:dashboard_su' %}">
@@ -34,37 +41,24 @@
                     <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
                     <th class="dashboard_row-title" data-field="title"><h5>Email</h5></th>
                     <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
-        	</thead>
-        	<tbody>
-        		{% for user in users %}
-        			<tr>
-        			    <td>{{ user.last_name }}</td>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.last_name }}</td>
                         <td>{{ user.first_name }}</td>
                         <td>{{ user.gatorlink }}</td>
-        			    <td><a href="{% url 'approver:about_you_superuser' user_id=user.pk %}">Edit User</a></td>
-        			</tr>
-        		{% endfor %}
-        	</tbody>
+                        <td><a href="{% url 'approver:about_you_superuser' user_id=user.pk %}">Edit User</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
-        <!-- <div class="row">
-            <div class="col s12">
-                <div class="pagination center-align">
-                    <span class="step-links">
-                        {% if users.has_previous %}
-                            <a href="?page={{ projects.previous_page_number }}"> &lt; </a>
-                        {% endif %}
-
-                        <span class="current">
-                            Page {{ users.number }} of {{ users.paginator.num_pages }}
-                        </span>
-
-                        {% if users.has_next %}
-                            <a href="?page={{ users.next_page_number }}"> &gt; </a>
-                        {% endif %}
-                    </span>
-                </div>
-
-            </div>
-        </div> -->
+        </div>
     </div>
-</div>
+
+
+
+
+
+
+
