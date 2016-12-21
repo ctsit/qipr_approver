@@ -117,7 +117,7 @@ def project_exists(project_id):
 def current_user_is_superuser(current_user):
     return current_user.person.is_admin
 
-def curent_user_is_project_owner(current_user, project):
+def current_user_is_project_owner(current_user, project):
     """
     This returns a boolean about if the current_user.person.id is the
     same as the project.owner.id
@@ -125,7 +125,7 @@ def curent_user_is_project_owner(current_user, project):
     return current_user.person.id == project.owner.id
 
 def is_current_project_editable(current_user,project):
-    return current_user_is_superuser(current_user) or curent_user_is_project_owner(current_user, project)
+    return current_user_is_superuser(current_user) or current_user_is_project_owner(current_user, project)
 
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
@@ -151,7 +151,7 @@ def current_user_can_perform_project_delete(current_user,project):
     if(toast_message == "" and project is None):
         toast_message = 'Project with id {} does not exist.'.format(project_id)
         return toast_message
-    if(toast_message == "" and curent_user_is_project_owner(current_user, project) is not True):
+    if(toast_message == "" and current_user_is_project_owner(current_user, project) is not True):
         return 'You are not authorized to delete this project.'
     if (toast_message == "" and project.get_is_editable() is not True):
         return 'You are not allowed to delete/edit this project.'
