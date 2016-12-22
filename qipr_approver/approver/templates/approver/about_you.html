@@ -20,10 +20,11 @@
               <p class="question__header--sub">Please tell us about yourself by filling out the following form.</p>
             </div>
             <div class="row">
-                <form action="{% url 'approver:aboutyou' %}" method="post"
-      onkeypress="return event.keyCode != 13;" class="col s12"
-      autocomplete="off">
-
+                {% if su_edit %}
+                    <form action="{% url 'approver:about_you_superuser' person_id=userid %}" method="post" onkeypress="return event.keyCode != 13;" class="col 12" autocomplete="off">
+                {% else %}
+                    <form action="{% url 'approver:aboutyou' %}" method="post"  onkeypress="return event.keyCode != 13;" class="col s12" autocomplete="off">
+                {% endif %}
                     {% csrf_token %}
 
                     {% load form_input %}

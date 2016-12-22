@@ -39,5 +39,6 @@ def after_validation(request):
         user.person.last_login_time = timezone.now()
         user.person.account_expiration_time=utils.get_account_expiration_date(timezone.now())
         user.person.save(user)
+        request.session['su'] = user.person.is_admin
         return redirect(reverse("approver:dashboard"))
 
