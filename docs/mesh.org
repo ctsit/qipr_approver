@@ -12,7 +12,7 @@ NOTE
 Make sure that you run the QUALIFIERS through first as they are 
 needed to properly import the descriptors. 
 
-Once running the qualifiers through it will take a while. Probably
+Once running the descriptors through it will take a while. Probably
 between 3-5 hours.
 
 * Considerations

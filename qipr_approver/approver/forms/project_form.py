@@ -38,7 +38,7 @@ class ProjectForm():
                              'model': 'descriptor',
                              'filter_field': 'mesh_heading',
                              'options': filter(utils.is_not_none, [item.mesh_heading for item in Descriptor.objects.all()]),
-                             'selected': utils.get_related_property(project, "mesh_keyword")}
+                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading")}
 
         self.keyword = {'name': 'keyword',
                         'label': 'Keywords',

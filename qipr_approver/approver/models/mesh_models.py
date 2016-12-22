@@ -95,6 +95,7 @@ class Descriptor(MeshModel):
     related_registry_number = models.ManyToManyField(RegistryNumber)
     semantic_type = models.ManyToManyField(SemanticType)
     project = models.ForeignKey(Project, related_name='mesh_keyword', null=True)
+    tag_property_name = 'mesh_heading'
 
     def __str__(self):
         return str(self.mesh_heading) + ' ' + str(self.mesh_tree_number)
