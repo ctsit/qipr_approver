@@ -66,7 +66,7 @@ def update_project_from_project_form(project, project_form, editing_user):
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
-                tags=keyword,
+                tags=mesh_keyword,
                 tag_model=Descriptor,
                 tagging_user=editing_user)
 
