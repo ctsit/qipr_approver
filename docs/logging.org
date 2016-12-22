@@ -1,0 +1,45 @@
+* Scenario
+We need to log all routes accessed so we can report that information.
+When this is done we will be able to see where people went in their 
+workflows and where they got stuck as well as what they did 
+
+Sessions need to expire for this to work. Sessions should last 20min 17sec
+* Implementation
+Logging decorator, dynamic wrapping?
+
+This decorator gets applied in the urls.py file dynamically. Note that this will
+mutate the module so it is important to do this in the right order
+
+Need a new model for the logs
+
+| column name    | type        | purpose                                |
+|----------------+-------------+----------------------------------------|
+| id             | serial      | primary key                            |
+| gatorlink      | foreign key | shows who did what                     |
+| url            | text        | the url that was accessed              |
+| ip             | ip type     | save the ip of the person who accessed |
+| user agent     | var char    | user agent of the browser              |
+| previous_log   | foreign key | the log we came from                   |
+| time requested | datetime    | see when they did what they did        |
+| time responded | datetime    | see when they did what they did        |
+| http_verb      | varchar     | the http verb                          |
+| post_data      | text        | json data of what was posted           |
+| response_code  | varchar     | status code of response                |
+
+User agent model. Auto fills in the has on save. Should not be able to 
+edit hash
+
+| col name  | types       | purpose                                      |
+|-----------+-------------+----------------------------------------------|
+| ua_string | text        | the string that was in the user agent header |
+| ua_hash   | var char 32 | hash for the user agent for faster lookups   |
+
+Decorator reads the request, builds the models, saves the models
+
+
+* ToDo
+- [X] AccessLog Model
+- [X] UserAgent Model
+- [X] Decorator attached
+- [X] Adjacency
+ 

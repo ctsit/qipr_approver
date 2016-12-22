@@ -35,13 +35,13 @@ def after_validation(request):
         return redirect(reverse("approver:dashboard"))
 
 def __get_email_from_request(request):
-    if SHIB_ENABLED == 'true':
+    if utils.shib_enabled():
         return request.META.get('HTTP_MAIL')
     else:
         return request.POST.get('gatorlink') + '@ufl.edu'
 
 def __get_gatorlink_from_request(request):
-    if SHIB_ENABLED == 'true':
+    if utils.shib_enabled():
         return request.META.get('HTTP_GLID')
     else:
         return request.POST.get('gatorlink')

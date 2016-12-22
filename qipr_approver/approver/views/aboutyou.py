@@ -25,7 +25,7 @@ def about_you(request):
         about_you_form = request.POST
         username = request.session.get(constants.SESSION_VARS['gatorlink'])
         user = User.objects.get(username=username)
-        editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+        editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request))
 
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
         return utils.dashboard_redirect_and_toast(request, 'Profile Saved!')
@@ -57,7 +57,7 @@ def about_you_superuser(request,person_id=None):
     if request.method == 'POST':
         about_you_form = request.POST
         user = Person.objects.get(id=person_id).user
-        editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+        editing_user = User.objects.get(username=utils.get_current_user_gatorlink(request))
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
         return utils.userlist_su_redirect_and_toast(request,"Profile Saved!")
 

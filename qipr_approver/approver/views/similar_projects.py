@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 
 @login_required
 def similar_projects(request, project_id=None,from_page=None):
-    
     project = project_crud.get_project_or_none(project_id)
 
     if project is None:
@@ -26,7 +25,7 @@ def similar_projects(request, project_id=None,from_page=None):
                     'content': 'approver/similar_projects.html',
                     'project_scores': project_scores,
                     'project_id' : project_id,
-                }        
+                }
         return utils.layout_render(request, context)
 
     elif request.method == 'POST':
