@@ -4,12 +4,6 @@ from approver import utils
 class AboutYouForm():
 
     def __init__(self, user=User()):
-        self.user_name = {'name': 'user_name',
-                          'label': 'Gatorlink',
-                          'type': 'text',
-                          'value': user.username or '',
-                          'input_classes': 'about__field--box'}
-
         self.first_name = {'name': 'first_name',
                            'placeholder': 'Jane',
                            'label': 'First Name',
@@ -26,20 +20,21 @@ class AboutYouForm():
 
         self.title = {'name': 'title',
                       'label': 'Title',
+                      'placeholder': 'e.g. Mrs.',
                       'type': 'text',
                       'value': user.person.title or '',
                       'input_classes': 'about__field--box'}
 
         self.department = {'name': 'department',
-                           'placeholder': 'List your primary department',
-                           'label': 'Department',
+                           'placeholder': 'e.g. Pediatrics',
+                           'label': 'What is your primary department?',
                            'type': 'text',
                            'value': user.person.department or '',
                            'input_classes': 'about__field--box'}
 
         self.clinical_area = {'name': 'clinical_area',
-                              'placeholder': 'Type clinical area(s) & click "enter" to save',
-                              'label': 'Clinical Area',
+                              'placeholder': 'e.g. NICU 2',
+                              'label': 'What is your clinical area? Press "enter" to save',
                               'model': 'clinicalarea',
                               'filter_field': 'name',
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
@@ -86,18 +81,18 @@ class AboutYouForm():
                               'input_classes': 'about__field--box'}
 
         self.speciality_tags = {'name': 'speciality',
-                                'placeholder': 'Click "enter" to save',
-                                'label': 'Speciality',
+                                'placeholder': 'e.g. Pediatric Nephrology',
+                                'label': 'What is your speciality or certification? Press "enter" to save.',
                                 'model': 'speciality',
                                 'filter_field': 'name',
                                 'options': [item.name for item in Speciality.objects.all()],
                                 'selected': [item.name for item in user.person.speciality.all()],
-                                'input_classes': 'about__field--box',
+                                'input_classes': 'about__field--box, about__details--height',
                                 'div_classes': 'about__field--width100'}
 
         self.qi_interest_tags = {'name': 'qi_interest',
-                                 'placeholder': 'Click "enter" to save',
-                                 'label': 'Quality Improvement Interests',
+                                 'placeholder': 'e.g. Transitions in Care',
+                                 'label': 'List your Quality Improvement Interests. Press "enter" to save.',
                                  'model': 'qi_interest',
                                  'filter_field': 'name',
                                  'options': [item.name for item in QI_Interest.objects.all()],
@@ -106,8 +101,8 @@ class AboutYouForm():
                                  'div_classes': 'about__field--width100'}
 
         self.expertise_tags = {'name': 'expertise',
-                               'placeholder': 'Click "enter" to save',
-                               'label': 'Expertise',
+                               'placeholder': 'e.g. Nephrotic Syndrome',
+                               'label': 'What is your area of expertise? Press "enter" to save.',
                                'model': 'expertise',
                                'filter_field': 'name',
                                'options': [item.name for item in Expertise.objects.all()],
@@ -116,7 +111,8 @@ class AboutYouForm():
                                'div_classes': 'about__field--width100'}
 
         self.suffix_tags = {'name': 'suffix',
-                            'label': 'Suffix',
+                            'label': 'Degree/Suffix',
+                            'placeholder': 'e.g. PhD or M.D.',
                             'model': 'suffix',
                             'filter_field': 'name',
                             'options': [item.name for item in Suffix.objects.all()],
