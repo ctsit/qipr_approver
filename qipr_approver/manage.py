@@ -13,5 +13,8 @@ if __name__ == "__main__":
     if sys.argv[1] == 'loadmesh':
         from approver.custom_commands import loadmesh
         loadmesh(sys.argv)
+    elif sys.argv[1] == 'loadpeople':
+        from approver.custom_commands import loadpeople
+        loadpeople(sys.argv)
     else:
         execute_from_command_line(sys.argv)
