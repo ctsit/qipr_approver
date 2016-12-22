@@ -84,7 +84,7 @@
     };
 
     var getHostnameSuffix = function () {
-        return window.location.hostname === 'qipr.ctsi.ufl.edu' ? '/approver' : '';
+        return window.location.hostname.includes('qipr.ctsi.ufl.edu') ? '/approver' : '';
     };
 
     //user is "finished typing," do something
