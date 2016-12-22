@@ -21,6 +21,7 @@ def create_new_user_from_current_session(session):
     new_user.save()
 
     new_person = Person(user=new_user,
+                        gatorlink=new_user.username,
                         first_name=new_user.first_name,
                         last_name=new_user.last_name,
                         email_address=new_user.email,
