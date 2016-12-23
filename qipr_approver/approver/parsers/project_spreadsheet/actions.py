@@ -1,4 +1,3 @@
-import pdb
 from django.contrib.auth.models import User
 
 from approver.models import Project, Person
@@ -32,7 +31,6 @@ def make_project(field_index_map, line):
             field_name = field_index_map[str(index)]
             project_dict[field_name] = datum
 
-    # pdb.set_trace()
     project = get_or_instantiate(Project, {'title':project_dict['title']})
 
     for key in project_dict.keys():
