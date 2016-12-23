@@ -35,7 +35,7 @@ def approve(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if(project_crud.curent_user_is_project_owner(current_user, project) is not True
+                if(project_crud.current_user_is_project_owner(current_user, project) is not True
                    or project.get_is_editable() is not True):
                     return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
                 else:

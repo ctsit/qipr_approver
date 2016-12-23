@@ -8,56 +8,55 @@
                     <h4>Administrator</h4>
                 </div>
             </a>
-            
         </div>
     </nav>
 </div>
 
 <div class="row dashboard_border">
-        <div class="col s12 m2 dashboard_menu">
-            <ul>
-                <li class="dashboard_menu-item"><a href="{% url 'approver:dashboard_su' %}">Modify Projects</a></li>
-                <li class="dashboard_menu-item-active"><a href="{% url 'approver:userlist' %}">Modify Users</a></li>
-            </ul>
-        </div>
 
-    <div class="col s12 m10 dashboard_border-left">
-       <div class="row margin-top">
-          <div class="headerbg__admin center">
-              <div class="container">
-                <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI User List</h1>
-                <p class="question__header--sub"></p>
-              </div>
+  <div class="col s12 m2 dashboard_menu">
+      <ul>
+          <li class="dashboard_menu-item"><a href="{% url 'approver:dashboard_su' %}">Modify Projects</a></li>
+          <li class="dashboard_menu-item-active"><a href="{% url 'approver:userlist' %}">Modify Users</a></li>
+      </ul>
+  </div>
+
+  <div class="col s12 m10 dashboard_border-left">
+     <div class="row margin-top">
+      <div class="headerbg__admin center">
+          <div class="container">
+            <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI User List</h1>
+            <p class="question__header--sub"></p>
           </div>
+      </div>
            <div class="col s12">
               <div class="input-field dashboard_search">
                   <form method="post" action="{% url 'approver:dashboard_su' %}">
                       {% csrf_token %}
                       <input placeholder="Search user" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
-
                       <input class="dashboard__search--projects" type="submit" value="&#128270;">
                   </form>
               </div>
           </div>
-        </div>
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th class="dashboard_row-title" data-field="role"><h5>Last Name</h5></th>
-                    <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
-                    <th class="dashboard_row-title" data-field="title"><h5>Email</h5></th>
-                    <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                    <tr>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.first_name }}</td>
-                        <td>{{ user.gatorlink }}</td>
-                        <td><a href="{% url 'approver:about_you_superuser' user_id=user.pk %}">Edit User</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+      </div>
+      <table class="striped">
+          <thead>
+              <tr>
+                  <th class="dashboard_row-title" data-field="role"><h5>Last Name</h5></th>
+                  <th class="dashboard_row-title" data-field="role"><h5>First Name</h5></th>
+                  <th class="dashboard_row-title" data-field="title"><h5>Email</h5></th>
+                  <th class="dashboard_row-title" data-field="role"><h5>Edit User</h5></th>
+          </thead>
+          <tbody>
+              {% for person in persons_page %}
+		          <tr>
+		              <td>{{ person.gatorlink }}</td>
+		              <td>{{ person.first_name }}</td>
+		              <td>{{ person.last_name }}</td>
+		              <td><a href="{% url 'approver:about_you_superuser' person_id=person.id %}">Edit User</a></td>
+		          </tr>
+	            {% endfor %}
+          </tbody>
+      </table>
+  </div>
 </div>

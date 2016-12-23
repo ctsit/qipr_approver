@@ -31,8 +31,8 @@ class ProjectWorkFlowTestCase(TestCase):
 	def test_project_exists(self):
 		self.assertEquals(project_crud.project_exists(-1),False)
 
-	def test_curent_user_is_project_owner(self):
-		self.assertTrue(project_crud.curent_user_is_project_owner(self.user,self.project))
+	def test_current_user_is_project_owner(self):
+		self.assertTrue(project_crud.current_user_is_project_owner(self.user,self.project))
 
 	def test_current_user_is_project_advisor_or_collaborator(self):
 		self.assertFalse(project_crud.current_user_is_project_advisor_or_collaborator(self.user,self.project))
