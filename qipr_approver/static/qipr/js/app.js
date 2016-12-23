@@ -83,11 +83,16 @@
         window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
+    var getHostnameSuffix = function () {
+        return window.location.hostname.includes('qipr.ctsi.ufl.edu') ? '/approver' : '';
+    };
+
     //user is "finished typing," do something
     function doneTyping (node) {
         //do something
+        var suffix = getHostnameSuffix();
         $.ajax({
-            url: window.location.protocol + '//' + window.location.hostname + '/api/tags',
+            url: window.location.protocol + '//' + window.location.hostname + suffix + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
