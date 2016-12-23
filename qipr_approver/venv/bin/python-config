@@ -1,4 +1,4 @@
-#!/var/www/qipr_approver/venv/bin/python
+#!/var/www/qipr/approver/venv/bin/python
 
 import sys
 import getopt
