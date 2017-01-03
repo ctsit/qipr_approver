@@ -44,6 +44,7 @@ AllRegistryModels = [
     Position,
     Project,
     QI_Interest,
+    Self_Classification,
     Speciality,
     Suffix,
     Training,

@@ -1,4 +1,4 @@
-from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea
+from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea, Self_Classification
 from django.contrib.auth.models import User
 from approver import utils
 class AboutYouForm():
@@ -43,12 +43,11 @@ class AboutYouForm():
                               'div_classes': 'about__field--width100'}
 
         self.self_classification = {'name': 'self_classification',
-                           'label': 'Self Classification',
-                           'placeholder': 'If you selected yes, enter your training program here.',
-                           'type': 'text',
-                           'value': user.person.self_classification or '',
-                           'input_classes': 'about__field--box',
-                           'options': ['resident', 'fellow', 'nursing fellow', 'medical student', 'veterinary medicine fellow', 'dental fellow', 'clinical faculty', 'other']}
+                        'label': 'Self Classification',
+                        'selected': getattr(user.person.self_classification,'name',''),
+                        'other': user.person.other_self_classification or '',
+                        'options':  Self_Classification.objects.values_list('name', flat=True).order_by('sort_order'),
+                        'input_class_list': 'about__field-box'}
 
         self.business_address = user.person.business_address
 
