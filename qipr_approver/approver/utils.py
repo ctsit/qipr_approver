@@ -268,3 +268,19 @@ def get_user_from_http_request(request):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
     return user
+
+def extract_model(model, filter_field, filter_value):
+    """
+    This function returns a single model object matching the the filter field and value
+    If more than one model matches, it will return None
+
+    Keyword arguments:
+    model -- the name of the model
+    filter_field -- the name of the field filtering on
+    filter_value -- the value to search for given the field
+    """
+
+    try:
+        return model.objects.get(**{filter_field: filter_value})
+    except MultipleObjectsReturned:
+        return None

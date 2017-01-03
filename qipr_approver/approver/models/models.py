@@ -38,6 +38,24 @@ class Provenance(models.Model):
     class Meta:
         abstract = True
 
+class dataList(Registerable):
+    name = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, null=True)
+    sort_order = models.IntegerField(null=True)
+
+    def __str__(self, delimiter=' '):
+        return delimiter.join([self.name, self.description or ''])
+
+    def get_natural_dict(self):
+        return {
+            'name': str(self.name),
+            'description': str(self.description),
+        }
+
+    class Meta:
+        abstract = True
+
+
 class Organization(Provenance, Registerable):
     org_name = models.CharField(max_length= 400)
 
@@ -48,6 +66,8 @@ class Training(Provenance, TagPrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200, null=True)
 
+class BigAim(Provenance, dataList):
+    pass
 class Category(Provenance, Tag):
     pass
 class ClinicalArea(Provenance, Tag):
@@ -62,17 +82,15 @@ class Position(Provenance, Tag):
     pass
 class QI_Interest(Provenance, Tag):
     pass
+class Self_Classification(Provenance, dataList):
+    pass
 class Speciality(Provenance, Tag):
     pass
 class Suffix(Provenance, Tag):
     pass
 
-class BigAim(Provenance, Tag):
-    sort_order = models.IntegerField(null=True)
-
 class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
-
 class ClinicalDepartment(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 
@@ -98,7 +116,9 @@ class Person(Provenance, Registerable):
     department = models.CharField(max_length=50, null=True)
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
-    self_classification = models.CharField(max_length=30)
+    self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
+                                            related_name="person")
+    other_self_classification = models.CharField(max_length=100, null=True)
     tag_property_name = 'email_address'
     is_admin = models.BooleanField(default=False)
 
@@ -118,7 +138,7 @@ class Person(Provenance, Registerable):
 class Project(Provenance, Registerable):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
     approval_date = models.DateTimeField(null=True)
-    big_aim = models.ManyToManyField(BigAim)
+    big_aim = models.ForeignKey(BigAim, null=True, on_delete=models.SET_NULL, related_name="projects")
     category = models.ManyToManyField(Category)
     clinical_area = models.ManyToManyField(ClinicalArea)
     clinical_setting = models.ManyToManyField(ClinicalSetting)
