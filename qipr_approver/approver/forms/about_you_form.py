@@ -44,6 +44,7 @@ class AboutYouForm():
 
         self.self_classification = {'name': 'self_classification',
                         'label': 'Self Classification',
+                        'placeholder': 'Self Classification',
                         'selected': getattr(user.person.self_classification,'name',''),
                         'other': user.person.other_self_classification or '',
                         'options':  Self_Classification.objects.values_list('name', flat=True).order_by('sort_order'),

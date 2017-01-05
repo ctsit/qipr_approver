@@ -38,7 +38,7 @@ class Provenance(models.Model):
     class Meta:
         abstract = True
 
-class dataList(Registerable):
+class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
@@ -66,7 +66,7 @@ class Training(Provenance, TagPrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200, null=True)
 
-class BigAim(Provenance, dataList):
+class BigAim(Provenance, DataList):
     pass
 class Category(Provenance, Tag):
     pass
@@ -82,7 +82,7 @@ class Position(Provenance, Tag):
     pass
 class QI_Interest(Provenance, Tag):
     pass
-class Self_Classification(Provenance, dataList):
+class Self_Classification(Provenance, DataList):
     pass
 class Speciality(Provenance, Tag):
     pass
