@@ -50,14 +50,12 @@ class ProjectForm():
                         'selected': utils.get_related_property(project, "keyword"),
                         'div_classes': 'about__txtfield--100'}
 
-        self.big_aim = {'name': 'big_aim',
-                        'label': 'Please indicate the UF Health Big Aims relating to your project. Type keyword, then press "enter" to save',
-                        'model': 'bigaim',
-                        'placeholder': 'e.g. Zero Harm and/or Increase Value',
-                        'filter_field': 'name',
-                        'options': filter(utils.is_not_none, [item.name for item in BigAim.objects.all()]),
-                        'selected': utils.get_related_property(project, "big_aim"),
-                        'div_classes': 'about__txtfield--100'}
+        self.bigaim = {'name': 'big_aim',
+                       'label': 'Please indicate the UF Health Big Aims relating to your project',
+                       'placeholder': 'UF Health Big Aim',
+                       'selected': getattr(project.big_aim,'name',''),
+                       'options':  BigAim.objects.values_list('name', flat=True).order_by('sort_order'),
+                       'input_class_list': ''}
 
         self.clinical_area = {'name': 'clinical_area',
                               'label': 'OPTIONAL: What is the Clinical Area/Unit of your project? Type clinical area, then press "enter" to save',

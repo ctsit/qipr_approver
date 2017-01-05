@@ -1,6 +1,6 @@
 from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor
 from approver.constants import SESSION_VARS
-from approver.utils import extract_tags, update_tags
+from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
 
 from django.contrib.auth.models import User
@@ -55,9 +55,9 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.milestones = project_form.get('milestones')
     project.proposed_start_date = parse_date(project_form.get('proposed_start_date'))
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
+    project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
     advisor = extract_tags(project_form, 'advisor')
-    big_aim = extract_tags(project_form, 'big_aim')
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     collaborator = extract_tags(project_form, 'collaborator')
@@ -75,13 +75,6 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tags=keyword,
                 tag_model=Keyword,
                 tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='big_aim',
-                tags=big_aim,
-                tag_model=BigAim,
-                tagging_user=editing_user)
-
 
     update_tags(model=project,
                 tag_property='clinical_area',
@@ -217,7 +210,7 @@ def _calculate_similarity_score(project, member):
         similarity += description_factor * _jaccard_similarity(project.description, member.description)
 
     if project.big_aim is not None and member.big_aim is not None:
-        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.all(), member.big_aim.all())
+        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.name, member.big_aim.name)
 
     if project.clinical_setting is not None and member.clinical_setting is not None:
         similarity += clinical_setting_factor * _jaccard_similarity(project.clinical_setting.all(), member.clinical_setting.all())

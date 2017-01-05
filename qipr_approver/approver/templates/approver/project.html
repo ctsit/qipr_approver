@@ -15,6 +15,7 @@
     {% load form_input %}
     {% load form_input_textarea %}
     {% load tagbox %}
+    {% load form_select %}
     <div class="row">
         <h5 class="project__subhead">Project Title</h5>
         {% form_input_textarea form.title form.is_disabled %}
@@ -48,8 +49,8 @@
             {% tagbox form.keyword form.is_disabled %}
         </div>
         <div class="col s12 m6 bg__tags--blue2">
-            {% tagbox form.big_aim form.is_disabled %}
-        </div>
+            {%  form_select form.bigaim form.is_disabled %}
+        </div> 
     </div>
 
     <div class="row">
