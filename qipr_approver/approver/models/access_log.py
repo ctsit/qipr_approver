@@ -36,16 +36,16 @@ class AccessLog(models.Model):
 
     Also Tags are registerable with the registry
     """
-    time_requested = models.DateTimeField(auto_now_add=True,editable=False)
-    time_responded = models.DateTimeField(auto_now=True)
     gatorlink = models.CharField(max_length=50, null=True)
+    http_verb = models.CharField(max_length=10)
     ip = models.GenericIPAddressField()
     previous_log = models.ForeignKey('self', null=True, related_name="next_log")
-    url = models.TextField()
-    user_agent = models.ForeignKey(UserAgent, related_name="+")
-    http_verb = models.CharField(max_length=10)
     request_body = models.TextField(null=True)
     response_code = models.IntegerField(null=True)
+    time_requested = models.DateTimeField(auto_now_add=True,editable=False)
+    time_responded = models.DateTimeField(auto_now=True)
+    url = models.TextField()
+    user_agent = models.ForeignKey(UserAgent, related_name="+")
 
     def add_user_agent(self, ua_string):
         ua_hash = get_hash(ua_string)

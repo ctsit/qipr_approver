@@ -12,6 +12,7 @@ def log_access(view_function):
     easy adjacency stuff
     """
     def wrapped_view(request, *args, **kwargs):
+        request.session.set_expiry(SESSION_VARS['timeout_time'])
         log = __before_view(request, *args, **kwargs)
 
         response = view_function(request, *args, **kwargs)
