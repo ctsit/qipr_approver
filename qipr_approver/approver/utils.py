@@ -3,6 +3,7 @@ import uuid
 
 import django
 from django.contrib.auth.models import User
+from django.core.exceptions import MultipleObjectsReturned
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -283,4 +284,6 @@ def extract_model(model, filter_field, filter_value):
     try:
         return model.objects.get(**{filter_field: filter_value})
     except MultipleObjectsReturned:
+        return None
+    except model.DoesNotExist:
         return None
