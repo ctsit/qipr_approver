@@ -153,6 +153,17 @@ img.bigaims__img {
     background-color: #ecc475 !important;
 }
 
+
+/*Landing Page About QIPR Section*/
+.about__header {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+.about__collab {
+    clear: both;
+}
+
 /*Landing Page Find Manage Create Section*/
 .bg__img-graphs {
     background: url("../img/hero_img-charts.jpg") no-repeat bottom center;
@@ -1295,7 +1306,11 @@ textarea.textarea__height {
     }
 
     img.bigaims__img {
-    max-width: 100%;
+        max-width: 100%;
+    }
+
+    .about__collab {
+        clear: none;
     }
 }
 
@@ -1330,6 +1345,12 @@ textarea.textarea__height {
     .footer__logo--height {
     height: 6rem;
    }
+}
+
+@media screen and (min-width: 1484px) {
+    .about__header {
+        font-size: 2rem;
+    }
 }
 
 @media screen and (min-width: 1600px) {
