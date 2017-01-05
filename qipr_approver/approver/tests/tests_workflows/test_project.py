@@ -21,15 +21,15 @@ class ProjectWorkFlowTestCase(TestCase):
 			self.assertNotEqual(project_crud.get_project_or_none(project.id),None)
 
 	def test_get_project_should_return_none(self):
-		self.assertEquals(project_crud.get_project_or_none(-1),None)
+		self.assertEqual(project_crud.get_project_or_none(-1),None)
 
 	def test_project_should_exists(self):
 		projects = Project.objects.all()
 		for project in projects:
-			self.assertEquals(project_crud.project_exists(project.id),True)
+			self.assertEqual(project_crud.project_exists(project.id),True)
 
 	def test_project_exists(self):
-		self.assertEquals(project_crud.project_exists(-1),False)
+		self.assertEqual(project_crud.project_exists(-1),False)
 
 	def test_current_user_is_project_owner(self):
 		self.assertTrue(project_crud.current_user_is_project_owner(self.user,self.project))

@@ -27,7 +27,7 @@ def is_foreign_key_to(model_name, field_name, related_model_name):
     is not a foriegn key,it will error with AttributeError
     """
     try:
-        return model_name._meta.get_field(field_name).rel.to is related_model_name
+        return model_name._meta.get_field(field_name).remote_field.model is related_model_name
     except AttributeError:
         return False
 

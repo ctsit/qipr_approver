@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from django.contrib.auth.views import logout
-from approver import views, api
+from approver import views, api, constants
 
+app_name = constants.app_label
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^shib/$', views.shib_login, name='shib'),

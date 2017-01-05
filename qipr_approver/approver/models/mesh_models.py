@@ -51,11 +51,6 @@ class RegistryNumber(Provenance):
     def __str__(self):
         return str(self.name)
 
-class Qualifier(MeshModel):
-    qualifier_established = models.CharField(null=True, max_length=25)
-    abbreviation = models.CharField(max_length=2)
-    sub_heading = models.CharField(max_length=50)
-
 class Source(Provenance):
     name = models.CharField(max_length=200)
 
@@ -90,11 +85,11 @@ class Descriptor(MeshModel):
     forward_reference = models.ManyToManyField('self')
     major_descriptor_date = models.DateField(null=True)
     mesh_heading = models.CharField(max_length=150)
-    mesh_tree_number = models.ForeignKey(MeshTreeNumber, related_name='descriptor', null=True)
+    mesh_tree_number = models.ForeignKey(MeshTreeNumber, on_delete=models.CASCADE, related_name='descriptor', null=True)
     pharmacological_action = models.ManyToManyField(PharmacologicalAction)
     related_registry_number = models.ManyToManyField(RegistryNumber)
     semantic_type = models.ManyToManyField(SemanticType)
-    project = models.ForeignKey(Project, related_name='mesh_keyword', null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='mesh_keyword', null=True)
     tag_property_name = 'mesh_heading'
 
     def __str__(self):

@@ -11,10 +11,10 @@ from approver.models.bridge_models import Registerable
 from approver.models.tag_models import Tag, TagPrint, TaggedWithName
 
 class Provenance(models.Model):
-    created_by = models.ForeignKey(User,editable=False,related_name="+")
-    last_modified_by = models.ForeignKey(User,related_name="+")
-    created = models.DateTimeField(auto_now_add=True,editable=False)
-    last_modified = models.DateTimeField(auto_now=True,editable=True)
+    created_by = models.ForeignKey(User, editable=False, on_delete=models.CASCADE, related_name="+")
+    last_modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_modified = models.DateTimeField(auto_now=True, editable=True)
     guid = models.CharField(max_length=32, editable=False, null=True)
 
     def save(self, last_modified_by, *args, **kwargs):
@@ -92,7 +92,7 @@ class Person(Provenance, Registerable):
     speciality = models.ManyToManyField(Speciality)
     suffix = models.ManyToManyField(Suffix)
     training = models.CharField(max_length=50, null=True)
-    user = models.OneToOneField(User, null=True, related_name="person")
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name="person")
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
