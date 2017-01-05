@@ -139,6 +139,68 @@ textarea.materialize-textarea:focus:not([readonly]) {
     background-color: #ecc475 !important;
 }
 
+/*Landing Page Find Manage Create Section*/
+.bg__img-graphs {
+    background: url("../img/hero_img-charts.jpg") no-repeat bottom center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:80rem;
+}
+
+.box-white {
+    background-color: white;
+    border: 10px solid #e8e8e8;
+    width: 100% !important;
+    margin-bottom:1.5rem;
+}
+
+.fcm__text-box {
+    font-size:1.2rem;
+}
+
+.fcm__titles {
+    font-size: 3rem;
+    padding-top: 2rem;
+}
+
+.create__img {
+    padding: 0 2rem 1rem;
+    max-width:300px !important;
+}
+
+.manage__btn {
+    margin: .75rem 0;
+    background-color: #999;
+    font-size: 1.1rem;
+    padding: .25rem 1rem .6rem;
+    line-height: 1.1rem;
+    width: 100%;
+    white-space: normal;
+    height: 4.5rem;
+}
+
+.manage__btn:hover, .manage__btn:focus {
+    color: #ababab;
+}
+
+.manage__icon {
+    font-size: 1.5rem !important;
+    position: relative;
+    top: .35rem;
+}
+
+.search__icon {
+    color:#999;
+    font-size:6rem !important;
+}
+
+.search__icon:hover {
+    color:orange;
+    cursor: pointer;
+}
+
 
 /*Navbar*/
 .nav_li {
@@ -1073,6 +1135,10 @@ textarea.textarea__height {
     font-size: 20rem;
     line-height: 16rem;
     }
+
+    .bg__img-graphs {
+    height:75rem;
+    }
 }
 
 @media screen and (min-width: 601px) {
@@ -1086,6 +1152,21 @@ textarea.textarea__height {
 
     #quality--details label {
     min-height: 48px;
+    }
+
+    .bg__img-graphs {
+    height: 45rem;
+    }
+
+    .box-white {
+    width: 32% !important;
+    margin: 1%;
+    border: 5px solid #e8e8e8;
+    height: 380px;
+    }
+
+    .create__img {
+    max-width: 100% !important;
     }
 }
 
@@ -1157,6 +1238,14 @@ textarea.textarea__height {
 @media screen and (min-width: 791px) {
     .about__txtfield--md {
         width: 22rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .box-white {
+        width: 30% !important;
+        margin: 3%;
+        border: 10px solid #e8e8e8;
     }
 }
 @media screen and (min-width: 842px) {
