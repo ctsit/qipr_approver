@@ -87,6 +87,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
     padding-top: .5rem;
 }
 
+.signin {
+    color: white;
+    font-size: 1.3rem;
+}
+
 .landing__FAQ--font {
     font-size:1.25rem;
 }
@@ -107,6 +112,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
     margin-top:1rem;
 }
 
+img.bigaims__img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
 .text__med {
     font-size:1.5rem;
 }
@@ -115,7 +126,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .learn__getstarted {
     background-color:#004d9a;
     margin: 0 -0.75rem 2rem;
-    padding: 1rem 0rem .1rem;
+    padding: 1.5rem 0rem;
 }
 
 .learn__btns--fcm {
@@ -124,9 +135,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .learn__btns--fcmtxt {
-    width: 18rem;
     font-size: 2rem;
-    text-transform: lowercase;
+    text-transform: capitalize;
     height: 3.5rem;
     line-height: 3.5rem;
 }
@@ -1272,8 +1282,11 @@ textarea.textarea__height {
     .container__dashboard {
         width: 95%;
     }
+
     .bg__ltblue {
         margin-top: -2.9rem;
+        padding-top: 5rem !important;
+        padding-bottom: 3.5rem;
     }
 
     .video__alignment {
@@ -1283,11 +1296,6 @@ textarea.textarea__height {
 
     img.bigaims__img {
     max-width: 100%;
-    }
-
-    .bg__ltblue {
-        padding-top: 1.5rem !important;
-        padding-bottom: 3.5rem !important;
     }
 }
 
