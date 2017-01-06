@@ -63,12 +63,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .bg__img {
-    background: url("../img/shands__bgimage.jpg") no-repeat top center fixed;
+    background: url("../img/shands__bgimage.jpg") no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 50rem;
+    min-height: 80rem;
 }
 
 .bg__ltblue {
@@ -77,7 +77,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
     opacity: 0.95;
     padding-top: 3rem !important;
     padding-bottom: 2rem !important;
-    margin-bottom: 2rem;
 }
 
 .text__callout {
@@ -98,6 +97,37 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .header {
     padding-bottom: 2rem;
+}
+
+.div-pointer-container {
+    height: 40px;
+    margin-top: -40px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+
+.div-pointer-down--transparent {
+    position: relative;
+    margin: 0 auto;
+    pointer-events: none;
+    border: solid #FFF;
+    border-top-color: transparent;
+    z-index: 10;
+    border-width: 25px;
+}
+
+.div-pointer-container:before, .div-pointer-container:after {
+    content: " ";
+    color: transparent;
+    background-color: #FFF;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: block;
 }
 
 .landing__FAQ--font {
@@ -1328,6 +1358,14 @@ textarea.textarea__height {
 
     .landing__steps--border {
         border-right: thin solid #757575;
+    }
+
+    .bg__img {
+        min-height: 55rem;
+    }
+
+    .div-pointer-down--transparent {   
+        border-width: 40px;
     }
 }
 
