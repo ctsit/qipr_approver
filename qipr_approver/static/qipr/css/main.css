@@ -63,7 +63,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .bg__img {
-    background: url("../img/shands__bgimage.jpg") no-repeat top center;
+    background: url("../img/cancer_hospital.png") no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -1411,6 +1411,12 @@ textarea.textarea__height {
 @media screen and (min-width: 1600px) {
     img.bigaims__img {
         max-width: 30rem;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .bg__img {
+        background-position: center;
     }
 }
 
