@@ -11,7 +11,8 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <nav>
+     <div class="navbar-fixed">
+      <nav>
         <div class="nav-wrapper bg-blue">
           <a href="#" class="brand-logo">
               <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
@@ -21,6 +22,7 @@
               <li class="nav_li"><a href="{% url 'approver:shib' %}">Register</a></li>
           </ul>
         </div>
+      </div>
     </nav>
     <main>
       <div class="bg__img">
