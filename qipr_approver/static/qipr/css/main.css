@@ -50,6 +50,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
     box-shadow: 0 1px 0 0 #ffaa00;
 }
 
+.sec-pad {
+    padding: 4rem 0;
+}
+
 .marginbtm0 {
     margin-bottom: 0;
 }
@@ -64,7 +68,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height:inherit;
+    min-height: 50rem;
 }
 
 .bg__ltblue {
@@ -90,6 +94,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .signin {
     color: white;
     font-size: 1.3rem;
+}
+
+.header {
+    padding-bottom: 2rem;
 }
 
 .landing__FAQ--font {
@@ -1311,6 +1319,15 @@ textarea.textarea__height {
 
     .about__collab {
         clear: none;
+    }
+    
+    .landing__steps {
+        height: 14rem;
+        padding: 1rem;
+    }
+
+    .landing__steps--border {
+        border-right: thin solid #757575;
     }
 }
 
