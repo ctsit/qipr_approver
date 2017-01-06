@@ -928,7 +928,6 @@ iframe {
 }
 
 .cert__border {
-    max-width: 68rem;
     height: auto;
     padding: 1.2rem;
     text-align: center;
@@ -998,6 +997,7 @@ iframe {
 
 .congrats__sub {
     font-weight: 300;
+    padding-bottom: 2rem;
 }
 
 textarea.form__textarea--with-border {
