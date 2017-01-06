@@ -1317,6 +1317,12 @@ textarea.textarea__height {
     }
 }
 
+@media screen and (min-width: 880px) {
+    .fcm__text-box {
+        height: 7.5rem;
+    }
+}
+
 @media screen and (min-width: 958px) {
     .cert__text--name {
         font-size: 3.7rem;
@@ -1369,6 +1375,12 @@ textarea.textarea__height {
     }
 }
 
+@media screen and (min-width: 1105px) {
+    .fcm__text-box {
+        height: 6.5rem;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .bg__ltblue {
         margin-top: -2.96rem;
@@ -1400,6 +1412,10 @@ textarea.textarea__height {
     .footer__logo--height {
     height: 6rem;
    }
+
+   .fcm__text-box {
+        height: 5.6rem;
+    }
 }
 
 @media screen and (min-width: 1484px) {
