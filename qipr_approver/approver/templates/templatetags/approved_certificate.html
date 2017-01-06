@@ -26,6 +26,11 @@
     border: #787878 dotted .3rem;
     }
 
+    .cert__image--pos {
+    position: relative;
+    bottom: 25px;
+    }
+
     .cert__text--header {
     padding-top: 1.5rem;
     font-size: 4rem;
@@ -41,6 +46,8 @@
 
     .cert__image {
     height: 3rem;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
     }
 }
 </style>
@@ -96,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="col s12 center">
+                <div class="col s12 center cert__image--pos">
                     <img src="{% static 'qipr/img/UF-Health-logo.png' %}" class="cert__image">
                 </div>
             </div>
