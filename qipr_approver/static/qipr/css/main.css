@@ -255,12 +255,12 @@ img.bigaims__img {
 }
 
 .search__icon {
-    color:#999;
+    color: #ef6c00;
     font-size:6rem !important;
 }
 
 .search__icon:hover {
-    color:orange;
+    color: #004d9a;
     cursor: pointer;
 }
 
