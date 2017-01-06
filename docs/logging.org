@@ -4,13 +4,14 @@ When this is done we will be able to see where people went in their
 workflows and where they got stuck as well as what they did 
 
 Sessions need to expire for this to work. Sessions should last 20min 17sec
-* Implementation
-Logging decorator, dynamic wrapping?
+
+* TODO Implementation
+Logging decorator
 
 This decorator gets applied in the urls.py file dynamically. Note that this will
 mutate the module so it is important to do this in the right order
 
-Need a new model for the logs
+AccessLog model
 
 | column name    | type        | purpose                                |
 |----------------+-------------+----------------------------------------|
@@ -18,13 +19,17 @@ Need a new model for the logs
 | gatorlink      | foreign key | shows who did what                     |
 | url            | text        | the url that was accessed              |
 | ip             | ip type     | save the ip of the person who accessed |
-| user agent     | var char    | user agent of the browser              |
+| user_agent     | var char    | user agent of the browser              |
 | previous_log   | foreign key | the log we came from                   |
-| time requested | datetime    | see when they did what they did        |
-| time responded | datetime    | see when they did what they did        |
+| time_requested | datetime    | see when the user requested the route  |
+| time_responded | datetime    | see when the user got the response     |
 | http_verb      | varchar     | the http verb                          |
 | post_data      | text        | json data of what was posted           |
 | response_code  | varchar     | status code of response                |
+
+Models also have a next_log property when accessed within python. This allows
+for easily building out the chain of events.
+
 
 User agent model. Auto fills in the has on save. Should not be able to 
 edit hash
@@ -36,10 +41,13 @@ edit hash
 
 Decorator reads the request, builds the models, saves the models
 
+Session expiry is implemented almost exactly the same. Uses a decorator
+which is dynamically applied in the urls.py file.
 
 * ToDo
 - [X] AccessLog Model
 - [X] UserAgent Model
 - [X] Decorator attached
 - [X] Adjacency
+- [X] Session expiry
  

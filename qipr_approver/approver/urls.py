@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.views import logout
 from approver import views, api, utils, constants
-from approver.decorators import log_access
+from approver.decorators import log_access, session_expire
 
 def wrap_module_views(module, decorator):
     mod_dir = dir(module)
@@ -12,6 +12,9 @@ def wrap_module_views(module, decorator):
 
 wrap_module_views(views, log_access)
 wrap_module_views(api, log_access)
+
+wrap_module_views(views, session_expire)
+wrap_module_views(api, session_expire)
 
 app_name = constants.app_label
 urlpatterns = [
