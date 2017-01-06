@@ -1,28 +1,27 @@
-from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
-
 from approver.constants import SESSION_VARS, SHIB_ENABLED
 from approver.models import AccessLog
 from approver import utils
 
-def log_access(view_function):
+def log_access(get_response):
     """
     This is a decorator that will log people's access
     and add the previous_log_id to the session for
     easy adjacency stuff
     """
-    def wrapped_view(request, *args, **kwargs):
-        log = __before_view(request, *args, **kwargs)
+    def middleware(request):
+        if __is_logging(request):
+            log = __before_view(request)
 
-        response = view_function(request, *args, **kwargs)
+        response = get_response(request)
 
-        __after_view(response, log)
+        if __is_logging(request):
+            __after_view(response, log)
 
         return response
 
-    return wrapped_view
+    return middleware
 
-def __before_view(request, *args, **kwargs):
+def __before_view(request):
     """
     Does the logging with the information in the request
     """
@@ -77,3 +76,18 @@ def __after_view(response, log):
     log.reason_phrase = response.reason_phrase
     log.save()
 
+def __is_logging(request):
+    """
+    This function should return true unless there is some reason you dont
+    want to log the request. For instance, if requesting the favicon
+    """
+    is_logging = True
+
+    path = request.get_full_path()
+    pieces = path.split('/')
+
+    # dont log static file requests
+    if 'static' in pieces:
+        is_logging = False
+
+    return is_logging

@@ -1,20 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.views import logout
-from approver import views, api, utils, constants
-from approver.decorators import log_access, session_expire
-
-def wrap_module_views(module, decorator):
-    mod_dir = dir(module)
-    for key in mod_dir:
-        value = getattr(module, key)
-        if utils.is_callable(value):
-            setattr(module, key, decorator(value))
-
-wrap_module_views(views, log_access)
-wrap_module_views(api, log_access)
-
-wrap_module_views(views, session_expire)
-wrap_module_views(api, session_expire)
+from approver import views, api, constants
 
 app_name = constants.app_label
 urlpatterns = [
