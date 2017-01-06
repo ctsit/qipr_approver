@@ -5,11 +5,8 @@ workflows and where they got stuck as well as what they did
 
 Sessions need to expire for this to work. Sessions should last 20min 17sec
 
-* TODO Implementation
-Logging decorator
-
-This decorator gets applied in the urls.py file dynamically. Note that this will
-mutate the module so it is important to do this in the right order
+* Implementation
+Logging middleware
 
 AccessLog model
 
@@ -41,13 +38,12 @@ edit hash
 
 Decorator reads the request, builds the models, saves the models
 
-Session expiry is implemented almost exactly the same. Uses a decorator
-which is dynamically applied in the urls.py file.
+Session expiry is implemented almost exactly the same. Uses a middleware
 
 * ToDo
 - [X] AccessLog Model
 - [X] UserAgent Model
-- [X] Decorator attached
+- [X] Middleware made
 - [X] Adjacency
 - [X] Session expiry
  
