@@ -1052,7 +1052,6 @@ iframe {
 }
 
 .cert__border {
-    max-width: 68rem;
     height: auto;
     padding: 1.2rem;
     text-align: center;
@@ -1110,6 +1109,19 @@ iframe {
 
 .cert__print--btn {
     margin-bottom: 2rem;
+}
+
+.cert__list--pd ul, .criteria ul  {
+    padding-left: 2rem;
+}
+
+.cert__list--pd ul, .cert__list--pd ul li, .criteria ul, .criteria ul li {
+    list-style-type: square;
+}
+
+.congrats__sub {
+    font-weight: 300;
+    padding-bottom: 2rem;
 }
 
 textarea.form__textarea--with-border {

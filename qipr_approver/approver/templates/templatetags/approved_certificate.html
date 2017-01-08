@@ -1,5 +1,13 @@
 <style>
 @media print {
+    html, body {
+    /*changing width to 100% causes huge overflow and wrap*/
+    height:100%; 
+    overflow: hidden;
+    background: #FFF; 
+    font-size: 9.5pt;
+  }
+
   body * {
     visibility: hidden;
     }
@@ -11,10 +19,16 @@
     position: absolute;
     left: 0;
     top: 0;
+    height: 100%;
     }
   .cert__border--inner {
     padding: .5rem;
     border: #787878 dotted .3rem;
+    }
+
+    .cert__image--pos {
+    position: relative;
+    bottom: 25px;
     }
 
     .cert__text--header {
@@ -32,6 +46,8 @@
 
     .cert__image {
     height: 3rem;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
     }
 }
 </style>
@@ -40,7 +56,7 @@
 
 <div class="row center">
     <div class="col s12 cert__print--btn">
-        <input class="btn" type="button" onClick="window.print()" value="Print Your Certificate"/>
+        <input class="btn" type="button" onClick="window.print()" value="Print & Share Your Certificate"/>
     </div>
 
     <a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>
@@ -50,7 +66,7 @@
     <div class="col s12">
         <div class="cert__border" id="printable">
             <div class="cert__border--inner">
-                    <div class="cert__text--header">Certificate of Approval</div>
+                    <div class="cert__text--header">Certificate of Registration</div>
                     <div>
                         <div class="cert__text--name">
                             {{ project_owner_first_name }} {{ project_owner_last_name }}
@@ -67,10 +83,27 @@
                     <br/>
                 
                 <div class="row">    
-                    <div class="col s12 cert__text--xsmall"> The project will not involve testing an experimental drug, device, or biologic. It has not received funding to be conducted as a human subjects research study. It is not a multi-site project. It is not a systemic investigation designed with the intent to contribute to generalizable knowledge. The results of the project will not be published, presented or disseminated outside of the institution conducting it. The project will occur regardless of whether individuals conducting it may benefit professionally from it. The project is intended to improve or evaluate the practice or process within a particular institution or a specific program.</div>
+                    <div class="col s12 cert__text--xsmall"> This registration confirms that you have answered the criteria questions accurately and have not knowingly and willfully made false statements. If your project changes in design or focus, please re-register this quality improvement project. QI Project Criteria includes the following:</div>
+
+                     <div class="col s6 left-align cert__list--pd">
+                        <ul>
+                            <li>The project is intended to improve or evaluate the practice or process within a particular institution or a specific program.</li>
+                            <li>The project will not involve testing an experimental drug, device, or biologic. </li>
+                            <li>It has not received funding to be conducted as a human subjects research study. </li>
+                            <li>It is not a multi-site project. </li>
+                            <li>You will abide by all HIPAA privacy rules </li>
+                        </ul>
+                     </div>
+                      <div class="col s6 left-align cert__list--pd">
+                        <ul>
+                            <li>It is not a systemic investigation designed with the intent to contribute to generalizable knowledge.</li>
+                            <li>The results of this project are intended for quality improvement at this institution.  At the outset, the project is not intended for publication, presentation or dissemination outside of the institution</li>
+                            <li>The project will occur regardless of whether individuals conducting it may benefit professionally from it.</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="col s12 center">
+                <div class="col s12 center cert__image--pos">
                     <img src="{% static 'qipr/img/UF-Health-logo.png' %}" class="cert__image">
                 </div>
             </div>
