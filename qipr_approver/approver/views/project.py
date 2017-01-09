@@ -16,6 +16,7 @@ from django.core.urlresolvers import reverse
 
 @login_required
 def project(request, project_id=None):
+    '''Project can be viewed only if it is not archived. SuperUser can edit the archived project'''
     context = {
         'content': 'approver/project.html',
         'project_id': project_id,
@@ -28,7 +29,13 @@ def project(request, project_id=None):
         if(project is None):
             project = project_crud.create_or_update_project(current_user, project_form, project_id)
         else:
-            if project_crud.curent_user_is_project_owner(current_user, project) is True and project.get_is_editable():
+            if project.archived and not project_crud.current_user_is_superuser(current_user):
+                return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
+            if project_crud.current_user_is_project_owner(current_user, project) is not True and project_crud.current_user_is_superuser:
+                project = project_crud.create_or_update_project(current_user, project_form, project_id)
+                return utils.dashboard_su_redirect_and_toast(request, 'Project is Saved.')
+
+            if (project_crud.current_user_is_project_owner(current_user, project) is True and project.get_is_editable() and not project.archived):
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
@@ -43,7 +50,9 @@ def project(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if(project_crud.curent_user_is_project_owner(current_user, project) is not True):
+                if project.archived and not project_crud.current_user_is_superuser(current_user) :
+                    return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
+                if(project_crud.is_current_project_editable(current_user, project) is not True):
                     if project_crud.current_user_is_project_advisor_or_collaborator(current_user,project):
                         context['form'] = ProjectForm(project,is_disabled=True)
                         return utils.layout_render(request,context)
@@ -51,7 +60,10 @@ def project(request, project_id=None):
                         return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
                 else:
                     if (project.get_is_editable() is not True):
-                        context['form'] = ProjectForm(project,is_disabled=True)
+                        if (project_crud.current_user_is_superuser(current_user)):
+                            context['form'] = ProjectForm(project,is_disabled=False)
+                        else:
+                            context['form'] = ProjectForm(project,is_disabled=True)
                         return utils.layout_render(request,context)
                     else:
                         context['form'] = ProjectForm(project)

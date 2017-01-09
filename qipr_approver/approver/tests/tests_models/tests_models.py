@@ -53,7 +53,8 @@ class TrainingModel(TestCase):
 
 class BigAimModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(BigAim, "name", "Char", 50))
+        self.assertTrue(check_fields(BigAim, "name", "Char", 400))
+        self.assertTrue(check_fields(BigAim, "description", "Char", 400))
         self.assertTrue(check_fields(BigAim, "sort_order", "Integer"))
 
 class CategoryModel(TestCase):

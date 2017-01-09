@@ -104,9 +104,9 @@ function apply_fixtures() {
 }
 
 function install_qipr_approver_fresh_vm () {
-    pushd /var/www/qipr_approver
-        create_virtualenv
-        pip_dependencies
+    pushd /var/www/qipr/approver
+        #create_virtualenv
+        #pip_dependencies
         create_database
         migrate_application_database
         apply_fixtures
@@ -115,9 +115,9 @@ function install_qipr_approver_fresh_vm () {
 }
 
 function install_qipr_approver() {
-    pushd /var/www/qipr_approver
-        create_virtualenv
-        pip_dependencies
+    pushd /var/www/qipr/approver
+        #create_virtualenv
+        #pip_dependencies
         migrate_application_database
         apply_fixtures
     popd

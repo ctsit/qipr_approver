@@ -1,9 +1,9 @@
 <div class="form-input-wrapper input_{{ name }} {{div_class_list}} ">
     <label for="{{ name }}">{{ label }}</label>
-    <select class="form__input--with-border {{ input_class_list }} browser-default" name="select-{{ name }}" id="select-{{ name }}">
-        <option disabled selected value> -- {{ label }} -- </option>
+    <select class="form__input--with-border {{ input_class_list }} browser-default" name="select-{{ name }}" id="select-{{ name }}" {{ is_disabled }}>
+        <option disabled selected value> -- {{ placeholder }} -- </option>
         {% for option in options %}
-        <option value="{{ option }}" {% if other and 'other' == option or value == option  %}selected{% endif %}>{{ option | title }}</option>
+        <option value="{{ option }}" {% if other and 'other' == option or selected == option %}selected{% endif %}>{{ option | title }}</option>
         {% endfor %}
     </select>
 </div>

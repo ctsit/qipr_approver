@@ -19,10 +19,13 @@ def get_config(key):
     return config.get(config.default_section, key)
 
 def define_env():
-    settings_proj_path = 'qipr_approver/qipr_approver/deploy/settings.ini'
+    settings_proj_path = '/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
-        settings_pre_path = '/var/www/'
+        settings_pre_path = '/var/www/qipr/approver'
+    elif os.getenv('TRAVIS', False):
+        settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None) + '/qipr_approver'
+    print(settings_pre_path + settings_proj_path)
     config.read(settings_pre_path + settings_proj_path)
     os.environ['DJANGO_SETTINGS_MODULE'] = "qipr_approver.settings"
     os.environ['DJANGO_CONFIGURATION'] = get_config('configuration')
@@ -35,6 +38,7 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
     os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
     os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port')
+    os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
 
 define_env()
 
@@ -51,7 +55,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [get_config('approver_host')]
 
 
 # Application definition
@@ -66,7 +70,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

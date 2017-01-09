@@ -1,6 +1,6 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea
+from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
-from approver.utils import extract_tags, update_tags, true_false_to_bool
+from approver.utils import extract_tags, update_tags, true_false_to_bool, extract_model
 
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -21,6 +21,7 @@ def create_new_user_from_current_session(session):
     new_user.save()
 
     new_person = Person(user=new_user,
+                        gatorlink=new_user.username,
                         first_name=new_user.first_name,
                         last_name=new_user.last_name,
                         email_address=new_user.email,
@@ -56,10 +57,12 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.department = about_you_form.get('department')
     person.qi_required = about_you_form.get('qi_required')
     person.training = about_you_form.get('training_program')
-    if (about_you_form.get('select-self_classification') != 'other'):
-        person.self_classification = about_you_form.get('select-self_classification')
+    person.self_classification = extract_model(Self_Classification, "name", about_you_form.get('select-self_classification') or '')
+    if (about_you_form.get('select-self_classification') == 'other'):
+        person.other_self_classification = about_you_form.get('other_classification')
     else:
-        person.self_classification = about_you_form.get('other_classification') or about_you_form.get('select-self_classification')
+        person.other_self_classification = None
+
     clinical_area = extract_tags(about_you_form, 'clinical_area')
     expertises = extract_tags(about_you_form, 'expertise')
     qi_interest = extract_tags(about_you_form, 'qi_interest')

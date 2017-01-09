@@ -83,11 +83,16 @@
         window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
+    var getHostnameSuffix = function () {
+        return window.location.hostname.includes('qipr.ctsi.ufl.edu') ? '/approver' : '';
+    };
+
     //user is "finished typing," do something
     function doneTyping (node) {
         //do something
+        var suffix = getHostnameSuffix();
         $.ajax({
-            url: window.location.protocol + '//' + window.location.hostname + '/api/tags',
+            url: window.location.protocol + '//' + window.location.hostname + suffix + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
@@ -286,22 +291,14 @@
     if(self_classification){
         self_classification.onchange = function(){
             if (this.options[this.selectedIndex].value == "other") {
-                //shrink clinical area
-                clinical_area = document.getElementById('tagbox_clinical_area');
                 other_classification_input = document.getElementById('self_classification_other_div');
-                clinical_area.parentElement.classList.remove('m6');
-                clinical_area.parentElement.classList.add('m3');
                 //shrink self classification
                 this.parentElement.parentElement.classList.remove('m6');
                 this.parentElement.parentElement.classList.add('m3');
                 //make the other field show
                 other_classification_input.style.display = 'block';
             } else {
-                //enlarge clinical area
-                clinical_area = document.getElementById('tagbox_clinical_area');
                 other_classification_input = document.getElementById('self_classification_other_div');
-                clinical_area.parentElement.classList.remove('m3');
-                clinical_area.parentElement.classList.add('m6');
                 //enlarge self classification
                 this.parentElement.parentElement.classList.remove('m3');
                 this.parentElement.parentElement.classList.add('m6');

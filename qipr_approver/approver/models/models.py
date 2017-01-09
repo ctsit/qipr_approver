@@ -11,26 +11,50 @@ from approver.models.bridge_models import Registerable
 from approver.models.tag_models import Tag, TagPrint, TaggedWithName
 
 class Provenance(models.Model):
-    created_by = models.ForeignKey(User,editable=False,related_name="+")
-    last_modified_by = models.ForeignKey(User,related_name="+")
-    created = models.DateTimeField(auto_now_add=True,editable=False)
-    last_modified = models.DateTimeField(auto_now=True,editable=True)
+    created_by = models.ForeignKey(User, editable=False, on_delete=models.CASCADE, related_name="+")
+    last_modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_modified = models.DateTimeField(auto_now=True, editable=True)
     guid = models.CharField(max_length=32, editable=False, null=True)
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
+        try:
+            self.audit_trail.user = last_modified_by
+        except:
+            pass
         utils.set_guid_if_empty(self)
-        self.audit_trail.user = last_modified_by
         self.last_modified_by = last_modified_by
         super(Provenance, self).save(*args, **kwargs)
 
     def delete(self, last_modified_by, *args, **kwargs):
-        self.audit_trail.user = last_modified_by
+        try:
+            self.audit_trail.user = last_modified_by
+        except:
+            pass
         self.last_modified_by = last_modified_by
         super(Provenance, self).delete(*args, **kwargs)
 
     class Meta:
         abstract = True
+
+class DataList(Registerable):
+    name = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, null=True)
+    sort_order = models.IntegerField(null=True)
+
+    def __str__(self, delimiter=' '):
+        return delimiter.join([self.name, self.description or ''])
+
+    def get_natural_dict(self):
+        return {
+            'name': str(self.name),
+            'description': str(self.description),
+        }
+
+    class Meta:
+        abstract = True
+
 
 class Organization(Provenance, Registerable):
     org_name = models.CharField(max_length= 400)
@@ -42,6 +66,8 @@ class Training(Provenance, TagPrint, TaggedWithName, Registerable):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200, null=True)
 
+class BigAim(Provenance, DataList):
+    pass
 class Category(Provenance, Tag):
     pass
 class ClinicalArea(Provenance, Tag):
@@ -56,17 +82,15 @@ class Position(Provenance, Tag):
     pass
 class QI_Interest(Provenance, Tag):
     pass
+class Self_Classification(Provenance, DataList):
+    pass
 class Speciality(Provenance, Tag):
     pass
 class Suffix(Provenance, Tag):
     pass
 
-class BigAim(Provenance, Tag):
-    sort_order = models.IntegerField(null=True)
-
 class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
-
 class ClinicalDepartment(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 
@@ -86,14 +110,17 @@ class Person(Provenance, Registerable):
     speciality = models.ManyToManyField(Speciality)
     suffix = models.ManyToManyField(Suffix)
     training = models.CharField(max_length=50, null=True)
-    user = models.OneToOneField(User, null=True, related_name="person")
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name="person")
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
-    self_classification = models.CharField(max_length=30)
+    self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
+                                            related_name="person")
+    other_self_classification = models.CharField(max_length=100, null=True)
     tag_property_name = 'email_address'
+    is_admin = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
@@ -111,17 +138,22 @@ class Person(Provenance, Registerable):
 class Project(Provenance, Registerable):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
     approval_date = models.DateTimeField(null=True)
-    big_aim = models.ManyToManyField(BigAim)
+    big_aim = models.ForeignKey(BigAim, null=True, on_delete=models.SET_NULL, related_name="projects")
     category = models.ManyToManyField(Category)
     clinical_area = models.ManyToManyField(ClinicalArea)
     clinical_setting = models.ManyToManyField(ClinicalSetting)
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
+    objective = models.TextField()
+    scope = models.TextField()
+    measures = models.TextField()
+    milestones = models.TextField()
     keyword = models.ManyToManyField(Keyword)
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
     title = models.CharField(max_length=300)
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner.gatorlink)])

@@ -3,6 +3,7 @@ import uuid
 
 import django
 from django.contrib.auth.models import User
+from django.core.exceptions import MultipleObjectsReturned
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -48,6 +49,14 @@ def set_toast(session, toast_text):
 def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
+
+def dashboard_su_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:dashboard_su"))
+
+def userlist_su_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:userlist"))
 
 def after_approval(project):
     return redirect(reverse("approver:project_status") + str(project.id))
@@ -207,6 +216,26 @@ def get_account_expiration_date(date):
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
 
+def get_or_instantiate(Model, kwargs):
+    """
+    This tries to get a model matching the kwargs.
+    If it cant be found. It will instantiate one.
+    NOTE: this will not save the object
+    """
+    try:
+        return Model.objects.get(**kwargs)
+    except:
+        return Model(**kwargs)
+
+def save_all(iterable, user):
+    """
+    Saves every item in iterable with the user passed
+    NOTE: This will exhaust iterators, Take care
+    """
+    for item in iterable:
+        item.save(user)
+
+
 def is_not_none(item):
     return item != None
 
@@ -240,3 +269,21 @@ def get_user_from_http_request(request):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
     return user
+
+def extract_model(model, filter_field, filter_value):
+    """
+    This function returns a single model object matching the the filter field and value
+    If more than one model matches, it will return None
+
+    Keyword arguments:
+    model -- the name of the model
+    filter_field -- the name of the field filtering on
+    filter_value -- the value to search for given the field
+    """
+
+    try:
+        return model.objects.get(**{filter_field: filter_value})
+    except MultipleObjectsReturned:
+        return None
+    except model.DoesNotExist:
+        return None

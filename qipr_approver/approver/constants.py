@@ -55,6 +55,8 @@ answer_submit_names = {
 
 projects_per_page = 25
 
+users_per_page = 25
+
 description_factor = 25
 
 keyword_factor = 25
@@ -73,7 +75,7 @@ api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'
 
-registry_host = 'http://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
+registry_host = 'https://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
 registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
 
@@ -85,4 +87,8 @@ registry_endpoints = {
 
 app_label = 'approver'
 
-VERSION_NUMBER = '0.7.0'
+total_qualifiers_2017 = 80
+
+SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'false')
+
+VERSION_NUMBER = '0.8.0'

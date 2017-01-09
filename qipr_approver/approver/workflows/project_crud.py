@@ -1,6 +1,6 @@
-from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor
 from approver.constants import SESSION_VARS
-from approver.utils import extract_tags, update_tags
+from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
 
 from django.contrib.auth.models import User
@@ -49,28 +49,32 @@ def update_project_from_project_form(project, project_form, editing_user):
 
     project.title = project_form.get('title')
     project.description = project_form.get('description')
+    project.objective = project_form.get('objective')
+    project.scope = project_form.get('scope')
+    project.measures = project_form.get('measures')
+    project.milestones = project_form.get('milestones')
     project.proposed_start_date = parse_date(project_form.get('proposed_start_date'))
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
+    project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
     advisor = extract_tags(project_form, 'advisor')
-    big_aim = extract_tags(project_form, 'big_aim')
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     collaborator = extract_tags(project_form, 'collaborator')
     keyword = extract_tags(project_form, 'keyword')
+    mesh_keyword = extract_tags(project_form, 'mesh_keyword')
+
+    update_tags(model=project,
+                tag_property='mesh_keyword',
+                tags=mesh_keyword,
+                tag_model=Descriptor,
+                tagging_user=editing_user)
 
     update_tags(model=project,
                 tag_property='keyword',
                 tags=keyword,
                 tag_model=Keyword,
                 tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='big_aim',
-                tags=big_aim,
-                tag_model=BigAim,
-                tagging_user=editing_user)
-
 
     update_tags(model=project,
                 tag_property='clinical_area',
@@ -114,12 +118,19 @@ def project_exists(project_id):
     """
     return (len(Project.objects.filter(id=project_id)) > 0)
 
-def curent_user_is_project_owner(current_user, project):
+def current_user_is_superuser(current_user):
+    return current_user.person.is_admin
+
+def current_user_is_project_owner(current_user, project):
     """
     This returns a boolean about if the current_user.person.id is the
     same as the project.owner.id
     """
     return current_user.person.id == project.owner.id
+
+def is_current_project_editable(current_user,project):
+    return current_user_is_superuser(current_user) or current_user_is_project_owner(current_user, project)
+
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
     This returns a boolean true if the current_user.person.id is in 
@@ -138,15 +149,30 @@ def current_user_can_perform_project_delete(current_user,project):
     user is the owner for the project and the project is editable.
     """
     toast_message = ""
+    if current_user.person.is_admin:
+        project.delete(current_user)
+        return 'Deleted Project'
     if(toast_message == "" and project is None):
         toast_message = 'Project with id {} does not exist.'.format(project_id)
         return toast_message
-    if(toast_message == "" and curent_user_is_project_owner(current_user, project) is not True):
+    if(toast_message == "" and current_user_is_project_owner(current_user, project) is not True):
         return 'You are not authorized to delete this project.'
     if (toast_message == "" and project.get_is_editable() is not True):
         return 'You are not allowed to delete/edit this project.'
     project.delete(current_user)
     return 'Deleted Project'
+
+def current_user_can_archive_project(current_user,project):
+    """Only Super User can archive projects"""
+    project.archived = True
+    project.save(current_user)
+    return 'Archived Project'
+
+def current_user_can_unarchive_project(current_user,project):
+    """Only Super User can unarchive projects"""
+    project.archived = False
+    project.save(current_user)
+    return 'UnArchived Project'
 
 def get_approved_projects():
     """
@@ -184,7 +210,7 @@ def _calculate_similarity_score(project, member):
         similarity += description_factor * _jaccard_similarity(project.description, member.description)
 
     if project.big_aim is not None and member.big_aim is not None:
-        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.all(), member.big_aim.all())
+        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.name, member.big_aim.name)
 
     if project.clinical_setting is not None and member.clinical_setting is not None:
         similarity += clinical_setting_factor * _jaccard_similarity(project.clinical_setting.all(), member.clinical_setting.all())

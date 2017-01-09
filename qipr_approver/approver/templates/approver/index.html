@@ -1,124 +1,192 @@
 <html>
-    <head>
-        {% load staticfiles %}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+      {% load staticfiles %}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
-        <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Arvo|Open+Sans|Roboto+Condensed|Source+Sans+Pro" rel="stylesheet">
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <nav>
-            <div class="nav-wrapper bg-blue">
-              <a href="#" class="brand-logo">
-                  <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
-              </a>
-              <ul class="right">
-                  <li><a href="{% url 'approver:shib' %}">Login</a></li>
-                  <li><a href="{% url 'approver:shib' %}">Register</a></li>
-              </ul>
+      <link href="{% static 'qipr/css/materialize.css' %}" type="text/css" rel="stylesheet"/>
+      <link href="{% static 'qipr/css/main.css' %}" type="text/css" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Arvo|Open+Sans|Roboto+Condensed|Source+Sans+Pro" rel="stylesheet">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
+      <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+     <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper bg-blue">
+          <a href="#" class="brand-logo">
+              <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
+          </a>
+          <ul class="right">
+              <li class="nav_li"><a href="{% url 'approver:shib' %}">Login</a></li>
+              <li class="nav_li"><a href="{% url 'approver:shib' %}">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="bg__img">
+          <div class="container">
+            <div class="row center marginbtm0">
+              <br><br>
+              <div class="col s12 l5 light video__alignment">
+                   <!-- <div class="video-container">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
+                    </div> -->
+                    <img class="bigaims__img responsive-img" src="{% static 'qipr/img/big_aims_2016.png' %}">
+              </div>
+              
+              <!-- REMOVE THE BELOW LINE OF CODE CODE WHEN VIDEO IS REPLACED AND CHANGE VIDEO COLUMN TO S12 L6 -->
+              <div class="col s1 l1">&nbsp</div>
+
+
+              <div class="col s12 l5 bg__ltblue">
+                <h1 class="font__roboto header center white-text">Learn About CQI</h1>
+                <p class="text__med font__sourcesans">Start a <span class="text__callout font__arvo">Continuous Quality Improvement </span>project.</p>
+                <div class="learn__getstarted">
+                  <div class="text__med font__opensans white-text">Get started now.</div> 
+                </div>
+                 
+                <div class="col s12 learn__btns--fcm">
+                  <a class="orange darken-3 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">Create Account</a>
+                </div>
+                 
+                <div class="col s12 ">
+                  <a href="#" class="font__opensans signin">Sign In >></a>
+                </div>
+              </div>
             </div>
-        </nav>
-        <main>
-            <div class="bg__img">
-                <div class="container">
-                  <div class="row center">
-                    <br><br>
-                    <div class="col s12 l6 light video__alignment">
-                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
-                          </div>
-                    </div>
+          </div>
+        </div>
+        
+        <!-- Transparent Down Arrow -->
+        <div class="div-pointer-container">
+          <div class="div-pointer-down--transparent"></div>
+        </div>
 
-                    <div class="col s12 l5 bg__ltblue">
-                      <h1 class="font__roboto header center white-text">Learn About CQI</h1>
-                      <p class="text__med font__sourcesans">Start a <span class="text__callout font__arvo">Continuous Quality Improvement </span>project.</p>
-                      <div class="learn__getstarted">
-                        <div class="text__med font__opensans white-text">Get started now.</div> 
-                        <div class="text__med font__opensans white-text">&#x25BC;</div>                      
-                      </div>
-                       
-                       <div class="col s12 learn__btns--fcm">
-                         <a class="orange darken-3 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">find</a>
-                       </div>
-                       <div href="#" class="col s12 learn__btns--fcm">
-                        <a href="#" class="orange darken-1 learn__btns--fcmtxt font__opensans btn waves-effect waves-light" type="submit" name="action">create</a>
-                      </div>
-                       <div class="col s12 learn__btns--fcm">
-                        <a href="#" class="orange lighten-2 learn__btns--fcmtxt learn__btns--manage font__opensans btn waves-effect waves-light" type="submit" name="action">manage</a>
-                      </div>
-                    </div>
+        <!-- About QIPR Section -->
+        <section class="valign-wrapper sec-pad">
+          <div class="container valign">
+              <div class="row">
+                <div class="col s12">
+                    <h2 class="header grey-text text-darken-3 center font__roboto">Get Started With QIPR</h2>
+                </div>
 
+                <div class="col s12 m6 l3 landing__steps landing__steps--border">
+                    <h3 class="aboutqipr__header grey-text text-darken-3 center font__opensans">Set-up Your Profile</h3>
+                    <p class="center">Tell us a little bit about yourself. What are your project interests as an employee, student, or fellow?</p>
+                </div>
+
+                <div class="col s12 m6 l3 landing__steps landing__steps--border">
+                    <h3 class="aboutqipr__header grey-text text-darken-3 center font__opensans">Fill Out Project Form</h3>
+                    <p class="center">We want to know what you're working on. Don't spare any details here!</p>
+                </div>  
+
+                <div class="col s12 m6 l3 about__collab landing__steps landing__steps--border">
+                    <h3 class="aboutqipr__header grey-text text-darken-3 center font__opensans">Collaborate With Peers</h3>
+                    <p class="center">Match with others at UF Health who are working on similar QI projects.</p>
+                </div>
+
+                <div class="col s12 m6 l3 landing__steps">
+                    <h3 class="aboutqipr__header grey-text text-darken-3 center font__opensans">Start Your Project</h3>
+                    <p class="center">You will know immediately once your project is registered, giving you the freedom to begin your project.</p>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Find, Create, Manage Section -->
+        <section class="bg__img-graphs valign-wrapper">
+          <div class="container valign">
+              <div class="row">
+                <article class="col s4 box-white center-align">
+                  <h2 class="fcm__titles blue-text text-darken-4">find</h2>
+                    <p class="fcm__text-box">Have an existing Quality Improvement project? Search our existing projects.</p>
+                    <a href=""><i class="search__icon create__img medium material-icons">search</i></a>
+                </article>
+
+                <article class="col s4 box-white center-align">
+                  <h2 class="fcm__titles blue-text text-darken-4">create</h2>
+                  <p class="fcm__text-box">Work at UF Health? Create your own Quality Improvement project with QIPR Approver.</p>
+                  <!-- <img class="responsive-img create__img" src="{% static 'qipr/img/UF-Health-logo.png' %}"> -->
+                  <a href=""><i class="search__icon create__img medium material-icons">dashboard</i></a>
+                </article>
+
+                <article class="col s4 box-white center-align">
+                  <h2 class="fcm__titles blue-text text-darken-4">manage</h2>
+                  <p class="fcm__text-box">Make sure your project stays up to date! Head to QIPR Approver to manage your project.</p>
+                  <button class="orange darken-3 manage__btn font__opensans btn waves-effect waves-light">Manage Account<span><i class="small material-icons manage__icon">play_arrow</i></span></button>
+                </article>
+              </div>
+            </div>
+        </section>
+
+       <!-- FAQs Section -->
+        <section class="section sec-pad lighten-4">
+          <div class="container">
+              <div class="row home__section">
+                  <div class="col s12">
+                      <h2 class="header grey-text text-darken-3 center font__roboto">Frequently Asked Questions</h2>
                   </div>
-                </div>
+                  <div class="col s12 l6 font__opensans">
+                      <div class="shape__circle">
+                          <div class="shape__circle--text white-text">?</div>
+                      </div>
+                      <h5 class="text__blue">What is QIPR?</h5>
+                      <p class="landing__FAQ--font landing__FAQ--padding">The Quality Improvement Performance Registry (QIPR) for UF Health quality improvement projects. </p>
+                  </div>
+                  <div class="col s12 l6 font__opensans">
+                      <div class="shape__circle">
+                          <div class="shape__circle--text white-text">?</div>
+                      </div>
+                      <h5 class="text__blue">What do I need to get started?</h5>
+                      <ul class="landing__FAQ--font landing_FAQ--bullets">
+                        <li><a href="#">Search QIPR</a> to learn about existing quality improvement projects </li>
+                        <li>Make sure you have a mentor for your project if you are a resident/trainee/student</li>
+                        <li>Complete <a target="_blank" href="{% static 'qipr/img/process_improvement_team_charter.pdf' %}">QI project charter</a></li>
+                      </ul>
+                  </div>
+                  <div class="col s12 l6 font__opensans">
+                      <div class="shape__circle">
+                          <div class="shape__circle--text white-text">?</div>
+                      </div>
+                      <h5 class="text__blue">Why should I use QIPR?</h5>
+                      <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
+                        <li>Share your QI projects, learn from others, and see current improvement projects to connect and collaborate</li>
+                        <li>Apply credit to New Innovations (for Residents and Magnet  only)</li>
+                        <li>Access to BMJ Quality website to manage projects and facilitate QI publications and presentations</li>
+                        <li>Access to Quality Department experts and data resources</li>
+                      </ul>
+                  </div>
+                  <div class="col s12 l6 font__opensans">
+                      <div class="shape__circle">
+                          <div class="shape__circle--text white-text">?</div>
+                      </div>
+                      <h5 class="text__blue">Do I need IRB approval?</h5>
+                      <p class="landing__FAQ--font">Most QI projects do not require IRB approval if they meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>. If the project does not meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>, the IRB will need to review the project. QIPR will help to determine if the project meets <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>.</p>
+                  </div>
+                  <div class="col s12 l6 font__opensans clear__both">
+                      <div class="shape__circle">
+                          <div class="shape__circle--text white-text">?</div>
+                      </div>
+                      <h5 class="text__blue">How can I get help? </h5>
+                      <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
+                        <li>Visit the <a href="https://ufhealth.org/quality-and-patient-safety/welcome" target="_blank">Quality Improvement Resources and Education</a> website</li>
+                        <li>Call us <a href="tel:352-265-0002">352-265-0002</a></li>
+                      </ul>
+                  </div>
               </div>
-              <div class="section no-pad-bot  lighten-4">
-                <div class="container">
-                    <div class="row home__section">
-                        <div class="col s12">
-                            <h2 class="header grey-text text-darken-3 center font__opensans">Frequently Asked Questions</h2>
-                        </div>
-                        <div class="col s12 l6 font__opensans">
-                            <div class="shape__circle">
-                                <div class="shape__circle--text white-text">?</div>
-                            </div>
-                            <h5 class="text__blue">What is QIPR?</h5>
-                            <p class="landing__FAQ--font landing__FAQ--padding">The Quality Improvement Performance Registry (QIPR) for UF Health quality improvement projects. </p>
-                        </div>
-                        <div class="col s12 l6 font__opensans">
-                            <div class="shape__circle">
-                                <div class="shape__circle--text white-text">?</div>
-                            </div>
-                            <h5 class="text__blue">What do I need to get started?</h5>
-                            <ul class="landing__FAQ--font landing_FAQ--bullets">
-                              <li><a href="#">Search QIPR</a> to learn about existing quality improvement projects </li>
-                              <li>Make sure you have a mentor for your project if you are a resident/trainee/student</li>
-                              <li>Complete <a href="#">QI project charter</a></li>
-                            </ul>
-                        </div>
-                        <div class="col s12 l6 font__opensans">
-                            <div class="shape__circle">
-                                <div class="shape__circle--text white-text">?</div>
-                            </div>
-                            <h5 class="text__blue">Why should I use QIPR?</h5>
-                            <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
-                              <li>Share your QI projects, learn from others, and see current improvement projects to connect and collaborate</li>
-                              <li>Apply credit to New Innovations (for Residents and Magnet  only)</li>
-                              <li>Access to BMJ Quality website to manage projects and facilitate QI publications and presentations</li>
-                              <li>Access to Quality Department experts and data resources</li>
-                            </ul>
-                        </div>
-                        <div class="col s12 l6 font__opensans">
-                            <div class="shape__circle">
-                                <div class="shape__circle--text white-text">?</div>
-                            </div>
-                            <h5 class="text__blue">Do I need IRB approval?</h5>
-                            <p class="landing__FAQ--font">Most QI projects do not require IRB approval if they meet <a href="#">QI criteria</a>. If the project does not meet <a href="#">QI criteria</a>, the IRB will need to review the project. QIPR will help to determine if the project meets <a href="#">QI criteria</a>.</p>
-                        </div>
-                        <div class="col s12 l6 font__opensans clear__both">
-                            <div class="shape__circle">
-                                <div class="shape__circle--text white-text">?</div>
-                            </div>
-                            <h5 class="text__blue">How can I get help? </h5>
-                            <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
-                              <li>Visit the <a href="https://ufhealth.org/quality-and-patient-safety/welcome">Quality Improvement Resources and Education</a> website</li>
-                              <li>Call us <a href="tel:352-265-0002">352-265-0002</a></li>
-                              <li>Email us <a href="mailto:someone@shands.ufl.edu?Subject=QIPR%20Help" target="_top">someone@shands.ufl.edu</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-              </div>
+          </div>
+        </section>
 
-        </main>
-        {% load footer %}
-        {% footer %}
+      
 
-        <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
-        <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
-        <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>
-    </body>
+    </main>
+    {% load footer %}
+    {% footer %}
+
+    <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>
+  </body>
 </html>
