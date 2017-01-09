@@ -31,7 +31,8 @@ def __before_view(request):
         gatorlink = None
     url = request.get_full_path()
     ip = request.META.get('REMOTE_ADDR')
-    user_agent_string = request.META.get('HTTP_USER_AGENT').encode('utf-8')
+    user_agent_data = request.META.get('HTTP_USER_AGENT')
+    user_agent_string = user_agent_data.encode('utf-8') if user_agent_data else 'NONE'.encode('utf-8')
     http_verb = request.method
     request_body = request.body
 
