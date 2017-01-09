@@ -155,6 +155,12 @@
         node.addEventListener("blur", function(event) {
             closeDropDowns();
         });
+        node.addEventListener("click", function(event) {
+            startTypingTimer(node);
+        });
+        node.addEventListener("focus", function(event) {
+            startTypingTimer(node);
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.search(invisibleSpace) > -1){
