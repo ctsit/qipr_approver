@@ -550,7 +550,6 @@ td, th {
 
 .dashboard_status {
     padding-left:2rem;
-    min-width: 13rem;
 }
 
 .dashboard_status--margin {
@@ -758,7 +757,6 @@ select:focus {
 
 .dashboard__status--btns {
     padding: .4rem;
-    width: 160px;
     float: left;
     white-space: normal;
     margin-bottom: .6rem;
@@ -902,7 +900,6 @@ iframe {
 
 .project__title--forms {
     float: right;
-    min-width: 14rem;
 }
 .tag-holder {
     display: inline-block;
@@ -1284,6 +1281,18 @@ textarea.textarea__height {
     .dashboard_search {
         width: 17.5rem;
         float: right;
+    }
+
+    .dashboard__status--btns {
+        width: 160px;
+    }
+
+    .dashboard_status {
+        min-width: 13rem;
+    }
+
+    .project__title--forms {
+        min-width: 14rem;
     }
 }
 
