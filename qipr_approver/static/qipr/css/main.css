@@ -68,7 +68,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 83.5rem;
+    min-height: 79.5rem;
 }
 
 .bg__ltblue {
@@ -93,10 +93,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .signin {
     color: white;
     font-size: 1.3rem;
-}
-
-.header {
-    padding-bottom: 2rem;
 }
 
 .div-pointer-container {
@@ -147,7 +143,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .video__alignment {
-    margin-top:1rem;
+    margin-top: 1rem;
 }
 
 img.bigaims__img {
@@ -1378,7 +1374,7 @@ textarea.textarea__height {
     }
 
     .bg__img {
-        min-height: 55rem;
+        min-height: 49rem;
     }
 
     .div-pointer-down--transparent {   
@@ -1406,11 +1402,23 @@ textarea.textarea__height {
     }
 }
 
-@media screen and (min-width: 1436px) {
-    .bg__ltblue {
-        padding-bottom: 5rem !important;
+@media screen and (min-width: 1313px) {
+    .bg__img {
+        background-position: center;
+        min-height: 42rem;
     }
 
+    .video__alignment {
+        margin-top: 2rem;
+    }
+
+    .bg__ltblue {
+    padding-top: 3rem !important;
+    padding-bottom: 2.5rem !important;
+    }
+}
+
+@media screen and (min-width: 1436px) {
     .footer__logo--height .footer__logo--ufhealth {
         height: 6rem;
     }
@@ -1435,17 +1443,28 @@ textarea.textarea__height {
     }
 }
 
+@media screen and (min-width: 1500px) {
+    .bg__img {
+        min-height: 45rem;
+    }
+
+    .header {
+        padding-bottom: 1rem;
+    }
+
+    .bg__ltblue {
+        padding-top: 6rem !important;
+        padding-bottom: 3.5rem !important;
+        max-width: 33rem;
+    }
+}
+
 @media screen and (min-width: 1600px) {
     img.bigaims__img {
         max-width: 30rem;
     }
 }
 
-@media screen and (min-width: 1800px) {
-    .bg__img {
-        background-position: center;
-    }
-}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
