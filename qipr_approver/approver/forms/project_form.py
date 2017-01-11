@@ -51,7 +51,7 @@ class ProjectForm():
                         'div_classes': 'about__txtfield--100'}
 
         self.bigaim = {'name': 'big_aim',
-                       'label': 'Please indicate the UF Health Big Aims relating to your project',
+                       'label': 'Please indicate the UF Health Big Aims relating to your project. Big aims <a href="google.com"></a>',
                        'placeholder': 'UF Health Big Aim',
                        'selected': getattr(project.big_aim,'name',''),
                        'options':  BigAim.objects.values_list('name', flat=True).order_by('sort_order'),

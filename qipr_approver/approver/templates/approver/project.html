@@ -36,28 +36,33 @@
         <h5 class="project__subhead">Advisors</h5>
         <p>Start typing the advisor's name and an email list should populate to choose from. If you do not see the name of your advisor, please type their email address then press 'enter' to save.</p>
         {% tagbox form.advisor form.is_disabled %}
+
+        <h5 class="project__subhead">UF Health Big Aims</h5>
+        <p>Please indicate the UF Health Big Aims relating to your project. To find out more about the UF Health Big Aims, please visit the <a href="https://ufhealth.org/quality-and-patient-safety/welcome#aims" target="_blank">UF Health Quality and Patient Safety page</a>.</p>
+        {%  form_select form.bigaim form.is_disabled %}
     </div>
 
-    <div class="row">
-        <div class="col s12 m6 bg__tags--blue1">
-            {% tagbox form.keyword form.is_disabled %}
-        </div>
+    <!-- <div class="row">
+        
         <div class="col s12 m6 bg__tags--blue2">
             {%  form_select form.bigaim form.is_disabled %}
         </div> 
-    </div>
+    </div> -->
 
     <div class="row">
-        <div class="col s12 m12 bg__tags--blue1">
-            {% tagbox form.mesh_keyword form.is_disabled %}
+        <div class="col s12 bg__tags--blue1">
+            {% tagbox form.keyword form.is_disabled %}
         </div>
+        <!-- <div class="col s12 m12 bg__tags--blue1">
+            {% tagbox form.mesh_keyword form.is_disabled %}
+        </div> -->
     </div>
 
     <div class="row">
-        <div class="col s12 m6 bg__tags--blue2">
+        <div class="col s12 m6 bg__tags--blue1">
             {% tagbox form.clinical_setting form.is_disabled %}
         </div>
-        <div class="col s12 m6 bg__tags--blue1">
+        <div class="col s12 m6 bg__tags--blue2">
             {% tagbox form.clinical_area form.is_disabled %}
         </div>
     </div>
