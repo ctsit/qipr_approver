@@ -677,6 +677,10 @@ select:focus {
     min-width: 100%;
 }
 
+.about__sectionspacing {
+    margin-top: 1.66rem;
+}
+
 .col.bg__tags--blue1, .col.bg__tags--blue2, .col.about__bgtags--blue1, .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.about__bgtags--blue4 {
     background-color: rgb(243, 250, 255);
     padding: 1rem;
@@ -684,7 +688,7 @@ select:focus {
     border: grey solid 1pt;
 }
 
-.col.about__bgtags--blue2, .col.about__bgtags--blue3 {
+.col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.bg__tags--blue2.s12  {
     margin-top: 1rem;
 }
 
@@ -1298,7 +1302,7 @@ textarea.textarea__height {
         width: 31%; 
     }
 
-    .col.about__bgtags--blue2, .col.about__bgtags--blue3 {
+    .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.bg__tags--blue2.s12 {
         margin-top: 0;
     }
 }
