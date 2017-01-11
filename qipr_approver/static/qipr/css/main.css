@@ -156,6 +156,11 @@ img.bigaims__img {
     font-size:1.5rem;
 }
 
+.databar__icons {
+    position: relative;
+    top: .3rem;
+}
+
 /*Landing Page*/
 .learn__getstarted {
     background-color:#004d9a;
