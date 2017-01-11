@@ -450,6 +450,18 @@ nav .button-collapse {
     color: grey;
 }
 
+.dashboard_row-id {
+    padding-left: .5rem;
+}
+
+.dashboard_row-id {
+    padding-left: .5rem;
+}
+
+.dashboard_column-id {
+    padding-left: 1rem;
+}
+
 .dashboard__question {
     font-size: 1.1rem;
     display: inline-block;
