@@ -95,8 +95,7 @@ def dashboard_su(request,action=None,project_id=None):
         except EmptyPage:
                 projects = paginator.page(paginator.num_pages)
 
-        user = utils.get_user_from_http_request(request)
-        person = user.person
+        person = request.user.person
         context = {
             'content': 'approver/dashboard_su.html',
             'projects': projects,
