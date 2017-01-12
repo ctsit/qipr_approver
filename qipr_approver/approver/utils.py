@@ -46,6 +46,10 @@ def get_and_reset_toast(session):
 def set_toast(session, toast_text):
     session['toast_text'] = toast_text
 
+def about_you_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:aboutyou"))
+
 def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
