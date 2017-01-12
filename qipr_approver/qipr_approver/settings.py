@@ -76,10 +76,19 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'approver.middleware.debug_shib.DebugShibMiddleware',
+    'approver.middleware.approver_shibboleth_middleware.ApproverShibbolethMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.RemoteUserBackend',
+]
+
+#Set if shib is enabled or not
+SHIB_ENABLED = True #get_config('shib_enabled').lower() == 'true'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 
