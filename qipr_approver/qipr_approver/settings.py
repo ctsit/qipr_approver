@@ -88,7 +88,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 #Set if shib is enabled or not
-SHIB_ENABLED = True #get_config('shib_enabled').lower() == 'true'
+SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
 LOGIN_URL = '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'

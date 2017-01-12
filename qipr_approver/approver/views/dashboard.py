@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -73,10 +73,9 @@ def __get_project_details(project, role):
     return {'title':project.title,'pk':project.pk,'role':role, 'is_approved':project.is_approved, 'last_modified':project.last_modified,'has_similar_projects':len(project_crud.get_similar_projects(project)),'is_archived':project.archived}
 
 @login_required
+@user_passes_test(lambda u: u.person.is_admin)
 def dashboard_su(request,action=None,project_id=None):
     active_person = request.user.person
-    if not active_person.is_admin:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     if request.method == 'GET' or request.POST.get('search') is not None:
         super_user = active_person.is_admin
