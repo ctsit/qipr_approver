@@ -2,8 +2,9 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.conf import settings
 
-from approver.constants import SESSION_VARS, SHIB_ENABLED
+from approver.constants import SESSION_VARS
 from . import user_crud
 from approver import utils
 
@@ -35,13 +36,13 @@ def after_validation(request):
         return redirect(reverse("approver:dashboard"))
 
 def __get_email_from_request(request):
-    if SHIB_ENABLED == 'true':
+    if settings.SHIB_ENABLED:
         return request.META.get('HTTP_MAIL')
     else:
         return request.POST.get('gatorlink') + '@ufl.edu'
 
 def __get_gatorlink_from_request(request):
-    if SHIB_ENABLED == 'true':
+    if settings.SHIB_ENABLED:
         return request.META.get('HTTP_GLID')
     else:
         return request.POST.get('gatorlink')

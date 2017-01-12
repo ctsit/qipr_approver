@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_protect
+from django.conf import settings
 
 from approver.workflows import shib
-from approver.constants import SHIB_ENABLED
 
 @csrf_protect
 def shib_login(request):
@@ -13,11 +14,14 @@ def shib_login(request):
     If not, the login page should be displayed (GET) and
     processed through the workflow when submitted (POST)
     """
-    if SHIB_ENABLED == 'true':
-        if (request.META.get('HTTP_EPPN')):
-            return shib.after_validation(request)
+    new_person = request.session.pop('IS_NEW_PERSON',False)
+    if settings.SHIB_ENABLED:
+        if new_person: 
+            #This is a new person, they should visit the about you page first
+            return redirect(reverse("approver:aboutyou"))
         else:
-            raise Http404('There is a problem with your Shibboleth django settings')
+            #This person is not new and should go to the dashboard
+            return redirect(reverse("approver:dashboard"))
     else:
         if request.method == "GET":
             return render(request, 'approver/shib.html')

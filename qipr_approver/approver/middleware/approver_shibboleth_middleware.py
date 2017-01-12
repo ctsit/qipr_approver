@@ -54,7 +54,8 @@ class ApproverShibbolethMiddleware():
             # User is valid.  Set request.user and persist user in the session
             # by logging the user in.
             request.user = user
-            self.update_or_create_person(request)
+            created = self.update_or_create_person(request)
+            request.session['IS_NEW_PERSON'] = created
             user.save()
             auth.login(request, user)
 
@@ -63,6 +64,7 @@ class ApproverShibbolethMiddleware():
 
     def update_or_create_person(self, request):
         #creates a new person        #add fake shib variables here
+        created = False
         defaults={
                 'first_name':request.META['HTTP_GIVENNAME'],
                 'last_name':request.META['HTTP_SN'],
@@ -80,8 +82,9 @@ class ApproverShibbolethMiddleware():
             person = Person(**defaults)
             person.user = request.user
             person.save(request.user)
+            created = True
 
-        return person
+        return created
 
     def _remove_invalid_user(self, request):
         """
