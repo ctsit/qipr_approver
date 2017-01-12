@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
-from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
-from approver.workflows import shib
-
-@csrf_protect
 def shib_login(request):
     """
     If Shibboleth is enabled on this server, a request
@@ -23,9 +19,4 @@ def shib_login(request):
             #This person is not new and should go to the dashboard
             return redirect(reverse("approver:dashboard"))
     else:
-        if request.method == "GET":
-            return render(request, 'approver/shib.html')
-        elif request.method == "POST":
-            return shib.after_validation(request)
-        else:
-            raise Http404('This url only supports POST and GET.')
+        raise Http404('This application requires Shibboleth to be running')
