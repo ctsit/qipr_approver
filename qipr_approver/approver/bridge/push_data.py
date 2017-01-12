@@ -11,10 +11,11 @@ from approver.constants import registry_endpoints, api_username, bridge_key
 
 def push_model(model):
     api_user = User.objects.get(username=api_username)
-    json_data = process_data(model)
+    json_data, req_hash = process_data(model)
     response = None
+    url = '/'.join([registry_endpoints.get('add_model'), req_hash])
     try:
-        response = requests.post(registry_endpoints.get('add_model'), data=json_data, verify=False)
+        response = requests.post(url, data=json_data, verify=False)
         if response.status_code == 200 and not model.is_registered():
             model.register()
             model.save(api_user)
@@ -32,8 +33,8 @@ def process_data(model):
     """
     json_data = jsonify(model)
     json_data = add_model_class_name(json_data, model)
-    json_data = add_hash(json_data, bridge_key)
-    return json_data
+    req_hash = get_hash(json_data, bridge_key)
+    return json_data, req_hash
 
 def jsonify(model):
     return serializers.serialize('json', [model], use_natural_foreign_keys=True, use_natural_primary_keys=True)
@@ -50,13 +51,10 @@ def add_model_class_name(data, model):
     model_dict[0]['fields']['model_class_name'] = model.__class__.__name__
     return json.dumps(model_dict)
 
-def add_hash(json_data, bridge_key):
+def get_hash(json_data, bridge_key):
     """
-    Adds an md5 hash as hex so the registry can verify add_model validity
+    Adds an md5 hash as hex so the registry can verify add_model validity.
+    Meant to be passed as a url parameter
     """
     to_hash = json_data.encode('utf-8') + bridge_key.encode('utf-8')
-    hash = hashlib.md5(to_hash).hexdigest()
-
-    model_dict = json.loads(json_data)
-    model_dict[0]['hash'] = hash
-    return json.dumps(model_dict)
+    return hashlib.md5(to_hash).hexdigest()
