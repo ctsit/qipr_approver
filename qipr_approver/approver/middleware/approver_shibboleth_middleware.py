@@ -3,8 +3,11 @@ from django.contrib import auth
 from django.core.exceptions import MiddlewareNotUsed, ImproperlyConfigured
 from django.conf import settings
 from django.contrib.auth import load_backend
+from django.utils import timezone
 
-from approver.models import Person
+from approver.models import Person, Address
+from approver import utils
+
 
 class ApproverShibbolethMiddleware():
     header = "REMOTE_USER"
@@ -69,8 +72,9 @@ class ApproverShibbolethMiddleware():
                 'first_name':request.META['HTTP_GIVENNAME'],
                 'last_name':request.META['HTTP_SN'],
                 'gatorlink':request.META['HTTP_GLID'],
-                'email_address':request.META['HTTP_MAIL'] 
-                #address=create_address(request.META['HTTP_POSTALADDRESS']
+                'email_address':request.META['HTTP_MAIL'],
+                'last_login_time': timezone.now(),
+                'account_expiration_time':utils.get_account_expiration_date(timezone.now()),
                 }
 
         try:
@@ -84,7 +88,25 @@ class ApproverShibbolethMiddleware():
             person.save(request.user)
             created = True
 
+        self._add_person_address(request, person)
         return created
+
+    def _add_person_address(self, request, person):
+        ADDRESS1 = 0
+        CITY = 1
+        STATE = 2
+        ZIPCODE = 3
+        address_string = request.META.get('HTTP_POSTALADDRESS')
+        if address_string:
+            address_parts = address_string.split('$')
+            address_params = {'address1':address_parts[ADDRESS1],
+                              'city':address_parts[CITY],
+                              'state':address_parts[STATE],
+                              'zip_code':address_parts[ZIPCODE],}
+
+            address = Address(**address_params)
+            address.person = person
+            address.save(person.user)
 
     def _remove_invalid_user(self, request):
         """
