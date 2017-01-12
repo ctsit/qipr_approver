@@ -75,7 +75,9 @@ api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'
 
-registry_host = 'https://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
+protocol = 'http://' if (os.environ['DJANGO_CONFIGURATION'] == 'development') else 'https://'
+
+registry_host = protocol + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
 registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
 
