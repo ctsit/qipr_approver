@@ -16,7 +16,7 @@ def shib_login(request):
     """
     new_person = request.session.pop('IS_NEW_PERSON',False)
     if settings.SHIB_ENABLED:
-        if new_person: 
+        if new_person:
             #This is a new person, they should visit the about you page first
             return redirect(reverse("approver:aboutyou"))
         else:
