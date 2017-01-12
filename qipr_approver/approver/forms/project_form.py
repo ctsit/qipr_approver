@@ -15,6 +15,7 @@ class ProjectForm():
                       'type': 'text',
                       'rows': 2,
                       'placeholder': 'Full project title goes here',
+                      'required': True,
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
@@ -79,6 +80,7 @@ class ProjectForm():
 
         self.description = {'name': 'description',
                             'type': 'text',
+                            'required': True,
                             'input_classes': ['description__height'],
                             'placeholder': 'Give a description of your Quality Improvement project here (Please use at least 250 words. When filled, this input box holds roughly 250 words.)',
                             'value': project.description or ''}

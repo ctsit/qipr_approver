@@ -16,6 +16,7 @@ def form_input(input_dict, is_disabled=False):
     """
     input_dict['input_class_list'] = input_dict.get('input_classes') or []
     input_dict['div_class_list'] = input_dict.get('div_classes') or []
+    input_dict['required'] = 'required_form-input' if input_dict.get('required') else ''
 
     if is_disabled:
         input_dict['is_disabled'] = "disabled"

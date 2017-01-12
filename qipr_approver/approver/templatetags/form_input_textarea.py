@@ -14,6 +14,7 @@ def form_input_textarea(input_dict, is_disabled=False):
     """
     input_classes = input_dict.get('input_classes') or []
     input_dict['input_class_list'] = ' '.join([str(cls) for cls in input_classes])
+    input_dict['required'] = 'required_form-input' if input_dict.get('required') else ''
     if is_disabled:
         input_dict['is_disabled'] = "disabled"
     else:

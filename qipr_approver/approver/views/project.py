@@ -20,6 +20,7 @@ def project(request, project_id=None):
     context = {
         'content': 'approver/project.html',
         'project_id': project_id,
+        'toast_text': utils.get_and_reset_toast(request.session),
     }
     current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
     if request.method == 'POST':
@@ -39,6 +40,10 @@ def project(request, project_id=None):
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
+
+        if (not project.title or not project.description):
+            return utils.project_redirect_and_toast(request, project.id, "Title and Description are required.")
+
         return redirect(reverse("approver:similar_projects", args=[str(project.id)]))
 
     else:

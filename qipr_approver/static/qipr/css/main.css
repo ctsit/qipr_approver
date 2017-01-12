@@ -687,6 +687,19 @@ select:focus {
     box-shadow: 1px 1px 2px 1px #e28f41;
 }
 
+.required_form-input input {
+    border-color: red !important;
+}
+
+.required_form-input textarea {
+    border-color: red !important;
+}
+
+.required_form-input label::after {
+    content: " *";
+    color: red;
+}
+
 .seecert__btn {
     margin-top: 1rem;
 }

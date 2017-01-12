@@ -1,4 +1,13 @@
-<div class="form-input-wrapper input_{{ name }} {{div_class_list}} ">
+<div class="form-input-wrapper
+            {{ required }}
+            input_{{ name }}
+            {{div_class_list}} ">
     <label for="{{ name }}">{{ label }}</label>
-    <input class="form__input--with-border {{ input_class_list }}" name="{{ name }}" type="{{ type }}" value="{{ value }}" placeholder="{{ placeholder }}" {{ is_disabled }}/>
+    <input class="form__input--with-border {{ input_class_list }}"
+           name="{{ name }}"
+           type="{{ type }}"
+           value="{{ value }}"
+           placeholder="{{ placeholder }}"
+           {{ is_disabled }}/>
 </div>
+
