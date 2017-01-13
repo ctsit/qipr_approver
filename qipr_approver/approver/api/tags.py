@@ -14,9 +14,12 @@ def tags(request):
         matches = list_top_matches(model, search_value, filter_fields, exclude_tags)
         matches = unique_only(matches)
 
-        listv = [get_string(match, filter_fields) for match in matches]
+        display = [get_string(match, filter_fields) for match in matches]
+        tag_props = [getattr(model, model.tag_property) for model in matches]
 
-        return JsonResponse(listv, safe=False)
+        data = get_data(display, tag_props, model_name)
+
+        return JsonResponse(data, safe=False)
 
 def list_top_matches(model, search_value, filter_fields, exclude_tags=[]):
     lists = []
@@ -35,4 +38,14 @@ def get_string(model, fields):
 
 def unique_only(models):
     return set(models)
+
+def get_data(display, tag_props, model_name):
+    data = []
+    for index, item in enumerate(display):
+        data.append({
+            'display': display[index],
+            'tag_prop': tag_props[index],
+            'model_name': model_name
+        })
+    return data
 

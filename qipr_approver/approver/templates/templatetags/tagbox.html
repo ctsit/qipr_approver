@@ -37,9 +37,9 @@
     <ul id="tag-holder_{{ name }}" class="tag-holder">
         {% for option in selected %}
         <div class="tag__container">
-            <li class="tag" >{{ option }}</li>
+            <li class="tag">{{ option }}</li>
             {% if disabled != "disabled" %}
-            <i class="tag__delete">close</i>
+            <i class="material-icons tag delete">ic_close</i>
             {% endif %}
         </div>
         {% endfor %}

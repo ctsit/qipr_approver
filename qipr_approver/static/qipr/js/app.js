@@ -103,11 +103,13 @@
                 optionList = $('#' + jnode.attr('data-list'));
                 optionList.empty();
                 $.each(data, function( i, l ){
-                    optionList.append($("<li>" + l + "</li>")
+                    optionList.append($("<li>" + l.display + "</li>")
                                       .attr("value", l)
                                       .mousedown(function() {
+                                          var tagProp = l.tag_prop,
+                                              model_name = l.model_name;
                                           node.value = $(this).text();
-                                          addTag(node);
+                                          addTag(node, {tagProp:tagProp, model_name:model_name});
                                           $(this).remove();
                                       }));
                 });
@@ -179,7 +181,7 @@
         }
     };
 
-    addTag = function(inputNode) {
+    addTag = function(inputNode, customAttrs) {
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
@@ -187,7 +189,7 @@
 
         if (text) {
             if (addValue(name, text)){
-                tag = createtag(text);
+                tag = createtag(text, customAttrs);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
             }
@@ -202,11 +204,12 @@
         return inputString.replace(/\u200B/g, '');
     };
 
-    createtag = function(text) {
+    createtag = function(text, customAttrs) {
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
             icontext = document.createTextNode('close'),
+            keys = Object.keys(customAttrs),
             tagtext = document.createTextNode(text);
 
         container.appendChild(li);
@@ -215,7 +218,9 @@
         tagDelete.appendChild(icontext);
 
         li.classList.add('tag');
-        //tagDelete.classList.add('tiny');
+        keys.forEach(function (key) {
+            li.setAttribute(('data-' + key), customAttrs[key]);
+        });
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
