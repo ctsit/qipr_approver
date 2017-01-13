@@ -15,7 +15,7 @@ class Provenance(models.Model):
     last_modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_modified = models.DateTimeField(auto_now=True, editable=True)
-    guid = models.CharField(max_length=32, editable=False, null=True)
+    guid = models.CharField(max_length=32, default=utils.get_guid, editable=False)
 
     def save(self, last_modified_by, *args, **kwargs):
         utils.set_created_by_if_empty(self, last_modified_by)
