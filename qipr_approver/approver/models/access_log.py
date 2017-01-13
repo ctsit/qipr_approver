@@ -27,14 +27,8 @@ class UserAgent(models.Model):
 
 class AccessLog(models.Model):
     """
-
-    name: the name of the tag
-    description: the developer's way of understanding the tag
-    __str__: Inherited from the TagPrint class
-    tag_property_name: always of value 'name'
-    get_natural_dict: returns a dictionary describing the tag
-
-    Also Tags are registerable with the registry
+    This model logs a bunch of information about the request and response
+    as a middleware. 
     """
     gatorlink = models.CharField(max_length=50, null=True)
     http_verb = models.CharField(max_length=10)
