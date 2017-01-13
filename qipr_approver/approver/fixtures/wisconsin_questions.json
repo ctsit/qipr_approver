@@ -77,25 +77,6 @@
 },
 {
   "model": "approver.question",
-  "pk": 5,
-  "fields": {
-    "created_by": 1,
-    "last_modified_by": 1,
-    "created": "2016-08-12T17:36:52Z",
-    "last_modified": "2016-08-12T17:36:52Z",
-    "section": 1,
-    "text": "Will the results of the project be published, presented or disseminated outside of the institution conducting it?",
-    "description": "The purpose of this question is to determine whether, at the outset of the project, the intention is to disseminate results outside of the institution or program conducting the project. If there is no intention for disseminating results outside of the institution or program conducting the project, the answer should be \"No\". Lack of dissemination of information is generally a strong indicator that a project does not constitute research. If there is a potential for results to be disseminated outside of the institution or program conducting the project, then the answer is \"Yes\". Note that program evaluation and QI projects can be published or presented, but they should not be described as research studies.",
-    "sort_order": 5,
-    "correct_choice": 2,
-    "choice": [
-      1,
-      2
-    ]
-  }
-},
-{
-  "model": "approver.question",
   "pk": 6,
   "fields": {
     "created_by": 1,
