@@ -8,6 +8,7 @@
            type="{{ type }}"
            value="{{ value }}"
            placeholder="{{ placeholder }}"
-           {{ is_disabled }}/>
+           {{ is_disabled }}
+           {% if required %} required {% endif %}/>
 </div>
 

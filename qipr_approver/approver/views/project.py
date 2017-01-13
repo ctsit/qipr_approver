@@ -41,7 +41,7 @@ def project(request, project_id=None):
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
 
-        if (not project.title or not project.description):
+        if (not project.title.strip() or not project.description.strip()):
             return utils.project_redirect_and_toast(request, project.id, "Title and Description are required.")
 
         return redirect(reverse("approver:similar_projects", args=[str(project.id)]))

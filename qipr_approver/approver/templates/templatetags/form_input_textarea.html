@@ -2,5 +2,10 @@
             {{ required }}
             input_{{ name }}">
     <label for="{{ name }}">{{ label }}</label>
-    <textarea class="{{ input_class_list }} materialize-textarea form__textarea--with-border" name="{{ name }}" rows="{{ rows }}" placeholder="{{placeholder}}" {{ is_disabled }}>{{ value }}</textarea>
+    <textarea class="{{ input_class_list }} materialize-textarea form__textarea--with-border"
+              name="{{ name }}"
+              rows="{{ rows }}"
+              placeholder="{{placeholder}}"
+              {{ is_disabled }}
+              {% if required %} required {% endif %}>{{ value }}</textarea>
 </div>
