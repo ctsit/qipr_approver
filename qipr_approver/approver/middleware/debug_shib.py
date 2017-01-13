@@ -2,6 +2,10 @@ from django.core.exceptions import MiddlewareNotUsed
 from django.conf import settings
 
 class DebugShibMiddleware(object):
+    """
+    This Middleware simply injects some fake
+    Shibboleth-like variables into the request Metadata.
+    """
     def __init__(self, get_response):
         self.get_response = get_response
         if not settings.DEBUG:
