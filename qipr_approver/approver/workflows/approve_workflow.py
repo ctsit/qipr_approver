@@ -16,7 +16,6 @@ def add_update_response(post_data, request):
     Also this function is used by the form update so we dont duplicate code
     """
     api_response = {}
-    session = request.session
 
     question_id = int(post_data.get(answer_submit_names.get('question_id')))
     project_id = int(post_data.get(answer_submit_names.get('project_id')))
