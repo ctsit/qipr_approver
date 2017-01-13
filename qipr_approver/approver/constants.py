@@ -77,6 +77,8 @@ api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'
 
+bridge_key = os.environ['QIPR_SHARED_BRIDGE_KEY']
+
 registry_host = 'http://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
 registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
@@ -93,4 +95,4 @@ total_qualifiers_2017 = 80
 
 SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'false')
 
-VERSION_NUMBER = '0.7.0'
+VERSION_NUMBER = '0.8.0'

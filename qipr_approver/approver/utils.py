@@ -79,7 +79,10 @@ def after_approval(project):
 
 def set_guid_if_empty(model):
     if not model.guid:
-        model.guid = uuid.uuid4().hex
+        model.guid = get_guid()
+
+def get_guid():
+    return uuid.uuid4().hex
 
 def set_created_by_if_empty(model, user):
     """
