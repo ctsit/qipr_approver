@@ -610,7 +610,7 @@ td, th {
 }
 
 .about__question--train {
-    max-width: 28rem;
+    max-width: 31rem;
 }
 
 [type="radio"]:not(:checked) + label.qi_required_na, [type="radio"]:checked + label.qi_required_na {
