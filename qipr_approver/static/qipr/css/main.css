@@ -681,6 +681,10 @@ select:focus {
     margin-top: 1.66rem;
 }
 
+.emailtag__margin {
+    margin-bottom: 2rem;
+}
+
 .col.bg__tags--blue1, .col.bg__tags--blue2, .col.about__bgtags--blue1, .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.about__bgtags--blue4 {
     background-color: rgb(243, 250, 255);
     padding: 1rem;
