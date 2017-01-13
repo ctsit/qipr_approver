@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.core.exceptions import MiddlewareNotUsed, ImproperlyConfigured
 from django.conf import settings
 from django.contrib.auth import load_backend
+from django.contrib.auth.backends import RemoteUserBackend
 from django.utils import timezone
 
 from approver.models import Person, Address
