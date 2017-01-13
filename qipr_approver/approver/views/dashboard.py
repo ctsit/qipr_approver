@@ -47,7 +47,7 @@ def dashboard(request,project_id=None):
         }
         return utils.layout_render(request, context)
     elif request.method == 'POST':
-        current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+        current_user = User.objects.get(username=utils.get_current_user_gatorlink(request))
         project = project_crud.get_project_or_none(project_id)
         if(project_id is not None):
             toast_text = project_crud.current_user_can_perform_project_delete(current_user,project)
@@ -106,7 +106,7 @@ def dashboard_su(request,action=None,project_id=None):
         return utils.layout_render(request, context)
     elif request.method == 'POST':
         '''Performs Project Delete and Archive'''
-        current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+        current_user = User.objects.get(username=utils.get_current_user_gatorlink(request))
         project = project_crud.get_project_or_none(project_id)
         if action == 'archive' and project_id is not None:
             toast_text = project_crud.current_user_can_archive_project(current_user,project)

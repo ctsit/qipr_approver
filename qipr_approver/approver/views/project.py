@@ -21,7 +21,7 @@ def project(request, project_id=None):
         'content': 'approver/project.html',
         'project_id': project_id,
     }
-    current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+    current_user = User.objects.get(username=utils.get_current_user_gatorlink(request))
     if request.method == 'POST':
         project_form = request.POST
         title = project_form.get('title')

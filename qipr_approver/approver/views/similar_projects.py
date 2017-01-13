@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 @login_required
 def similar_projects(request, project_id=None,from_page=None):
-
+  
     project = project_crud.get_project_or_none(project_id)
 
     if project is None:

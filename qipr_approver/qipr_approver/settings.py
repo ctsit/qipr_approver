@@ -80,6 +80,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'approver.middleware.session_expire',
+    'approver.middleware.log_access',
 ]
 
 ROOT_URLCONF = 'qipr_approver.urls'

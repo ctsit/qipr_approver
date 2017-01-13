@@ -19,6 +19,8 @@ SESSION_VARS = {
     'email': 'email',
     'first_name': 'first_name',
     'last_name': 'last_name',
+    'previous_log_id': 'previous_log_id',
+    'timeout_time': 1217
 }
 
 QI_CHECK = {
