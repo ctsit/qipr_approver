@@ -1,4 +1,3 @@
-
 from django.contrib import auth
 from django.core.exceptions import MiddlewareNotUsed, ImproperlyConfigured
 from django.conf import settings
@@ -10,7 +9,17 @@ from approver.models import Person, Address
 from approver import utils
 
 
-class ApproverShibbolethMiddleware():
+class ApproverShibbolethMiddleware(object):
+    """
+    This middleware functions very similiarly to the
+    Django RemoteUserMiddleware (in fact, it's mostly
+    the same code). The biggest difference is after the user
+    is authenticated and/or created, a person is created
+    from the user and saved as well.  If the person is newly
+    created, this middleware adds a session variable
+    IS_NEW_PERSON which gets consumed when upon going through
+    the shib view.
+    """
     header = "REMOTE_USER"
     force_logout_if_no_header = True
 
@@ -67,7 +76,11 @@ class ApproverShibbolethMiddleware():
         return response
 
     def update_or_create_person(self, request):
-        #creates a new person        #add fake shib variables here
+        """
+        This function will either create or update a Person object
+        based on the authenticated user. It will add or update values
+        found in the request META data which are supplied from Shibboleth.
+        """
         created = False
         defaults={
                 'first_name':request.META['HTTP_GIVENNAME'],
@@ -93,6 +106,13 @@ class ApproverShibbolethMiddleware():
         return created
 
     def _add_person_address(self, request, person):
+        """
+        Shibboleth provides an address in the form
+        address1$city$state$tenDigitZip
+
+        This function parses that string and creates an address object using the
+        given person.
+        """
         ADDRESS1 = 0
         CITY = 1
         STATE = 2
