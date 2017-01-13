@@ -86,7 +86,7 @@ class ProjectForm():
         self.overall_goal = {'name': 'overall_goal',
                              'type': 'text',
                              'input_classes': ['textarea__height'],
-                             'placeholder': 'Give a brief description about your Quality Improvement project\'s objectives (up to 250 words)',
+                             'placeholder': "The overall goal of this project is: (Why are you doing this, what is it that's driving you?)",
                              'value': project.overall_goal or ''}
 
         self.measures = {'name': 'measures',
