@@ -21,7 +21,7 @@ class ProjectForm():
                              'model': 'person',
                              'placeholder': 'e.g. Alligator, Albert',
                              'label': 'Type collaborator name, then press "enter" to save',
-                             'filter_field': 'email_address',
+                             'filter_field': ';'.join(['email_address','first_name', 'last_name']),
                              'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                              'selected': utils.get_related_property(project, "collaborator", 'email_address')}
 
@@ -29,7 +29,7 @@ class ProjectForm():
                         'model': 'person',
                         'placeholder': 'e.g. Alligator, Alberta',
                         'label': 'Type advisor name, then press "enter" to save',
-                        'filter_field': 'email_address',
+                        'filter_field': ';'.join(['email_address','first_name', 'last_name']),
                         'options': filter(utils.is_not_none, [item.email_address for item in Person.objects.all()]),
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 

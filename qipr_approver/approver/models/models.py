@@ -123,7 +123,7 @@ class Person(Provenance, Registerable):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
+        return self.first_name + ', ' + self.last_name + ' (' + self.email_address + ')'
 
     def get_natural_dict(self):
         return {
