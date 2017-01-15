@@ -1,0 +1,49 @@
+* Scenario
+We need to log all routes accessed so we can report that information.
+When this is done we will be able to see where people went in their 
+workflows and where they got stuck as well as what they did 
+
+Sessions need to expire for this to work. Sessions should last 20min 17sec
+
+* Implementation
+Logging middleware
+
+AccessLog model
+
+| column name    | type        | purpose                                |
+|----------------+-------------+----------------------------------------|
+| id             | serial      | primary key                            |
+| gatorlink      | foreign key | shows who did what                     |
+| url            | text        | the url that was accessed              |
+| ip             | ip type     | save the ip of the person who accessed |
+| user_agent     | var char    | user agent of the browser              |
+| previous_log   | foreign key | the log we came from                   |
+| time_requested | datetime    | see when the user requested the route  |
+| time_responded | datetime    | see when the user got the response     |
+| http_verb      | varchar     | the http verb                          |
+| post_data      | text        | json data of what was posted           |
+| response_code  | varchar     | status code of response                |
+
+Models also have a next_log property when accessed within python. This allows
+for easily building out the chain of events.
+
+
+User agent model. Auto fills in the has on save. Should not be able to 
+edit hash
+
+| col name  | types       | purpose                                      |
+|-----------+-------------+----------------------------------------------|
+| ua_string | text        | the string that was in the user agent header |
+| ua_hash   | var char 32 | hash for the user agent for faster lookups   |
+
+Decorator reads the request, builds the models, saves the models
+
+Session expiry is implemented almost exactly the same. Uses a middleware
+
+* ToDo
+- [X] AccessLog Model
+- [X] UserAgent Model
+- [X] Middleware made
+- [X] Adjacency
+- [X] Session expiry
+ 

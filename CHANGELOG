@@ -1,3 +1,33 @@
+## [0.8.0] = 2016-01-08
+## Summary
+  This release adds a two admin pages - one for users and one for projects. Admins have the
+  ability to edit/delete and archive projects. New fields were added to the project page to
+  capture the objective, scope, measures, and milestones. The certificate and landing page
+  were remade to make them easier to understand and follow.
+
+### Added
+* Added a project import utility (#212) (PFWhite)
+* Added a People import utility (#211) (PFWhite)
+* Add a new fab file with updated settings.ini to facilitate deployments (Matthew McConnell)
+* Added Objective, scope, measures, and milestones fields to projects. Issue 179 (Patrick White)
+* Added id column to projects on Dash. Issue 182 (Patrick White)
+* add the new shib_enabled setting to the settings.ini file (Matthew McConnell)
+* Admin page to view users
+* Admin page to view all projects in order to edit or archive them (ndavuluri)
+* Styled admin pages (Amber)
+
+### Fixed
+* Added dynamic hostname fix. Issue 176 (#201) (PFWhite)
+
+### Changed
+* Updated wording and layout of registered certificate (Amber)
+* Updated landing page to be more user friendly (#221) (Amber)
+* Upgrades django to 1.10.5 and updates dependencies (Matthew McConnell)
+* Convert bigaims to a dropdown (Matthew McConnell)
+* Issue 162. Delete and Self Certificate Questions should not be shown after project approval (ndavuluri)
+* Remove gatorlink in About You as it is not editable (ndavuluri)
+
+
 ## [0.7.0] - 2016-12-12
 ## Summary
  Improved the usability on About you and Project page

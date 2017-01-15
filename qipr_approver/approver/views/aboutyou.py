@@ -21,7 +21,6 @@ def about_you(request):
         about_you_form = request.POST
         user = request.user
         editing_user = request.user
-
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
         return utils.dashboard_redirect_and_toast(request, 'Profile Saved!')
 
