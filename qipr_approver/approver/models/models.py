@@ -42,6 +42,7 @@ class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
+    tag_property_name = 'name'
 
     def __str__(self, delimiter=' '):
         return delimiter.join([self.name, self.description or ''])

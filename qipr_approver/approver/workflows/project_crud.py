@@ -37,6 +37,10 @@ def create_new_project_from_user_form(current_user, form):
 
     return new_project
 
+def __is_email(tag):
+    if '@' in tag:
+        return tag
+
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -57,23 +61,16 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
     project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
-    advisor = extract_tags(project_form, 'advisor')
+    advisor = [tag for tag in extract_tags(project_form, 'advisor') if __is_email(tag)]
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
-    collaborator = extract_tags(project_form, 'collaborator')
-    keyword = extract_tags(project_form, 'keyword')
+    collaborator = [tag for tag in extract_tags(project_form, 'collaborator') if __is_email(tag)]
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
                 tags=mesh_keyword,
                 tag_model=Descriptor,
-                tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='keyword',
-                tags=keyword,
-                tag_model=Keyword,
                 tagging_user=editing_user)
 
     update_tags(model=project,

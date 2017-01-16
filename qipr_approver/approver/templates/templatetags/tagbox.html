@@ -23,6 +23,7 @@
            data-model="{{ model }}"
            data-filter_field="{{ filter_field }}"
            data-tagHolder="tag-holder_{{ name }}"
+           data-tagProp="{{ tag_prop }}"
            {{ disabled }}>
 
     <div class="dropdown">
@@ -41,7 +42,7 @@
         <div class="tag__container">
             <li class="tag">{{ option }}</li>
             {% if disabled != "disabled" %}
-            <i class="material-icons tag delete">ic_close</i>
+            <i class="material-icons tag__delete">ic_close</i>
             {% endif %}
         </div>
         {% endfor %}

@@ -185,12 +185,12 @@
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
-            tagProp = customAttrs.tagProp,
-            key;
+            taggedWith = inputNode.getAttribute('data-tagProp'),
+            tagProp = (customAttrs || {}).tagProp;
 
         if (text) {
-            if (addValue(name, tagProp)){
-                tag = createtag(text, customAttrs);
+            if (addValue(name, tagProp, text)){
+                tag = createtag(text, customAttrs, taggedWith);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
             }
@@ -205,16 +205,20 @@
         return inputString.replace(/\u200B/g, '');
     };
 
-    createtag = function(text, customAttrs) {
+    createtag = function(text, customAttrs, taggedWith) {
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
             icontext = document.createTextNode('close'),
-            keys = Object.keys(customAttrs),
-            tagtext = document.createTextNode(text);
+            keys = Object.keys(customAttrs || {}),
+            tagtext = document.createTextNode(text),
+            isEmail = taggedWith === 'email_address';
 
         container.appendChild(li);
         container.appendChild(tagDelete);
+        if (isEmail && (text.search('@') === -1)) {
+            container.style.backgroundColor = 'red';
+        }
         li.appendChild(tagtext);
         tagDelete.appendChild(icontext);
 
@@ -233,11 +237,12 @@
         return container;
     };
 
-    addValue = function (name, val) {
+    addValue = function (name, val, text) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
-            values = hiddenInputNode.value.split(';');
-        if (!tagAlreadyExists(values,val)){
-            values.push(val);
+            values = hiddenInputNode.value.split(';'),
+            item = val || text;
+        if (!tagAlreadyExists(values,item)){
+            values.push(item);
             hiddenInputNode.value = values.join(';');
             return true;
         }
@@ -252,8 +257,9 @@
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
             value = event.target.parentElement.children[0].getAttribute('data-tagProp'),//the li
+            text = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
-        removeValue(getTagboxData(event.target, 'name'), value);
+        removeValue(getTagboxData(event.target, 'name'), value || text);
         parent.removeChild(removeMe);
     };
 
