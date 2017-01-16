@@ -185,10 +185,11 @@
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
+            tagProp = customAttrs.tagProp,
             key;
 
         if (text) {
-            if (addValue(name, text)){
+            if (addValue(name, tagProp)){
                 tag = createtag(text, customAttrs);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
@@ -250,7 +251,7 @@
 
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
-            value = event.target.parentElement.children[0].textContent,//the li
+            value = event.target.parentElement.children[0].getAttribute('data-tagProp'),//the li
             parent = removeMe.parentElement;
         removeValue(getTagboxData(event.target, 'name'), value);
         parent.removeChild(removeMe);

@@ -11,27 +11,38 @@ def tags(request):
         model = get_model_from_string(model_name)
 
         #call out and search the model database for values that are similar to passed string
-        matches = list_top_matches(model, search_value, filter_fields, exclude_tags)
+        matches = list_top_matches(model, search_value, filter_fields)
         matches = unique_only(matches)
 
+        matches = remove_present(matches, filter_fields, exclude_tags)
+
         display = [get_string(match, filter_fields) for match in matches]
-        tag_props = [getattr(model, model.tag_property) for model in matches]
+        tag_props = [getattr(model, model.tag_property_name) for model in matches]
 
         data = get_data(display, tag_props, model_name)
 
         return JsonResponse(data, safe=False)
 
-def list_top_matches(model, search_value, filter_fields, exclude_tags=[]):
+def list_top_matches(model, search_value, filter_fields):
     lists = []
     for filter_field in filter_fields:
         lists.append(model.objects.filter(**{(filter_field + '__icontains'): search_value}))
-    for index, results in enumerate(lists):
-        results.exclude(**{(filter_fields[index]+'__in'): exclude_tags})
     matches = []
     for list_item in lists:
         for item in list_item:
             matches.append(item)
     return matches[:10]
+
+def remove_present(matches, fields, tags):
+    old = []
+    for match in matches:
+        for field in fields:
+            for tag in tags:
+                if getattr(match, field) == tag:
+                    old.append(match)
+    for item in old:
+        matches.remove(item)
+    return matches
 
 def get_string(model, fields):
     return str(model)

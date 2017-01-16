@@ -22,6 +22,7 @@
            data-list="datalist_{{ name }}"
            data-model="{{ model }}"
            data-filter_field="{{ filter_field }}"
+           data-tagHolder="tag-holder_{{ name }}"
            {{ disabled }}>
 
     <div class="dropdown">
@@ -29,6 +30,7 @@
     </div>
 
     <input style="display: none"
+           class="tagbox__input__hidden"
            id="tag-input_{{ name }}"
            name="{{ name }}"
            type="text"
