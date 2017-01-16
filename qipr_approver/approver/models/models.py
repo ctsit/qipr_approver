@@ -42,6 +42,7 @@ class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
+    tag_property_name = 'name'
 
     def __str__(self, delimiter=' '):
         return delimiter.join([self.name, self.description or ''])
@@ -123,7 +124,8 @@ class Person(Provenance, Registerable):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
+        strs = [str(item) for item in [self.first_name, self.last_name, '(' +self.email_address + ')'] if len(item)]
+        return ', '.join(strs)
 
     def get_natural_dict(self):
         return {

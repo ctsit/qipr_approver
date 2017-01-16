@@ -103,11 +103,13 @@
                 optionList = $('#' + jnode.attr('data-list'));
                 optionList.empty();
                 $.each(data, function( i, l ){
-                    optionList.append($("<li>" + l + "</li>")
+                    optionList.append($("<li>" + l.display + "</li>")
                                       .attr("value", l)
                                       .mousedown(function() {
+                                          var tagProp = l.tag_prop,
+                                              model_name = l.model_name;
                                           node.value = $(this).text();
-                                          addTag(node);
+                                          addTag(node, {tagProp:tagProp, model_name:model_name});
                                           $(this).remove();
                                       }));
                 });
@@ -179,15 +181,16 @@
         }
     };
 
-    addTag = function(inputNode) {
+    addTag = function(inputNode, customAttrs) {
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
-            key;
+            taggedWith = inputNode.getAttribute('data-tagProp'),
+            tagProp = (customAttrs || {}).tagProp;
 
         if (text) {
-            if (addValue(name, text)){
-                tag = createtag(text);
+            if (addValue(name, tagProp, text)){
+                tag = createtag(text, customAttrs, taggedWith);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
             }
@@ -202,20 +205,27 @@
         return inputString.replace(/\u200B/g, '');
     };
 
-    createtag = function(text) {
+    createtag = function(text, customAttrs, taggedWith) {
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
             icontext = document.createTextNode('close'),
-            tagtext = document.createTextNode(text);
+            keys = Object.keys(customAttrs || {}),
+            tagtext = document.createTextNode(text),
+            isEmail = taggedWith === 'email_address';
 
         container.appendChild(li);
         container.appendChild(tagDelete);
+        if (isEmail && (text.search('@') === -1)) {
+            container.style.backgroundColor = 'red';
+        }
         li.appendChild(tagtext);
         tagDelete.appendChild(icontext);
 
         li.classList.add('tag');
-        //tagDelete.classList.add('tiny');
+        keys.forEach(function (key) {
+            li.setAttribute(('data-' + key), customAttrs[key]);
+        });
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
@@ -227,11 +237,12 @@
         return container;
     };
 
-    addValue = function (name, val) {
+    addValue = function (name, val, text) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
-            values = hiddenInputNode.value.split(';');
-        if (!tagAlreadyExists(values,val)){
-            values.push(val);
+            values = hiddenInputNode.value.split(';'),
+            item = val || text;
+        if (!tagAlreadyExists(values,item)){
+            values.push(item);
             hiddenInputNode.value = values.join(';');
             return true;
         }
@@ -245,9 +256,10 @@
 
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
-            value = event.target.parentElement.children[0].textContent,//the li
+            value = event.target.parentElement.children[0].getAttribute('data-tagProp'),//the li
+            text = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
-        removeValue(getTagboxData(event.target, 'name'), value);
+        removeValue(getTagboxData(event.target, 'name'), value || text);
         parent.removeChild(removeMe);
     };
 
