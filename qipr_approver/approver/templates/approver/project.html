@@ -23,18 +23,19 @@
         <h5 class="project__subhead">Project Description</h5>
         {% form_input_textarea form.description form.is_disabled %}
 
-        <h5 class="project__subhead">Overall Project Goal</h5>
-        {% form_input_textarea form.goal form.is_disabled %}
+        <h5 class="project__subhead">Overall Goal</h5>
+        {% form_input_textarea form.overall_goal form.is_disabled %}
 
         <h5 class="project__subhead">Measures</h5>
         {% form_input_textarea form.measures form.is_disabled %}
 
         <h5 class="project__subhead">Collaborators</h5>
         <p>Start typing the collaborator's name and an email list should populate to choose from. If you do not see the name of your collaborator, please type their email address then press 'enter' to save.</p>
+
         <div class="col s12 bg__tags--blue1 emailtag__margin">
             {% tagbox form.collaborator form.is_disabled %}
         </div>
-    
+
         <h5 class="project__subhead about__sectionspacing">Advisors</h5>
         <p>Start typing the advisor's name and an email list should populate to choose from. If you do not see the name of your advisor, please type their email address then press 'enter' to save.</p>
         <div class="col s12 bg__tags--blue1 emailtag__margin">

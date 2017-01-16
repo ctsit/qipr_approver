@@ -83,16 +83,16 @@ class ProjectForm():
                             'placeholder': 'Give a description of your Quality Improvement project here (Please use at least 250 words. When filled, this input box holds roughly 250 words.)',
                             'value': project.description or ''}
 
-        self.goal = {'name': 'goal',
-                          'type': 'text',
-                          'input_classes': ['textarea__height'],
-                          'placeholder': 'What is the primary purpose of this project? The main goal of the project is to.. (up to 250 words)',
-                          'value': project.objective or ''}
+        self.overall_goal = {'name': 'overall_goal',
+                             'type': 'text',
+                             'input_classes': ['textarea__height'],
+                             'placeholder': "The overall goal of this project is: (Why are you doing this, what is it that's driving you?)",
+                             'value': project.overall_goal or ''}
 
         self.measures = {'name': 'measures',
                          'type': 'text',
                          'input_classes': ['textarea__height'],
-                         'placeholder': 'What specifically are you measuring and how do you know you\'ve reached your goal or not. Ex. Number of times people wash their hands per day. This value goes from 5 per day to 12 or greater. (up to 250 words)',
+                         'placeholder': 'What specifically are you measuring and how do you know you’ve reached your goal or not. Ex. Number of times people wash their hands per day. This value goes from 5 per day to 12 or greater.',
                          'value': project.measures or ''}
 
         self.proposed_start_date = {'name': 'proposed_start_date',
