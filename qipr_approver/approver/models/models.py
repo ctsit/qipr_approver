@@ -124,7 +124,8 @@ class Person(Provenance, Registerable):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.first_name + ', ' + self.last_name + ' (' + self.email_address + ')'
+        strs = [str(item) for item in [self.first_name, self.last_name, '(' +self.email_address + ')'] if len(item)]
+        return ', '.join(strs)
 
     def get_natural_dict(self):
         return {
