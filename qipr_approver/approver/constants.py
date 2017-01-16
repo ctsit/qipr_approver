@@ -77,7 +77,9 @@ gatorlink_header = 'Glid'
 
 bridge_key = os.environ['QIPR_SHARED_BRIDGE_KEY']
 
-registry_host = 'http://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
+protocol = 'http://' if (os.environ['DJANGO_CONFIGURATION'] == 'development') else 'https://'
+
+registry_host = protocol + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
 registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
 
