@@ -19,9 +19,14 @@ def about_you(request):
     }
     if request.method == 'POST':
         about_you_form = request.POST
+        
         user = request.user
         editing_user = request.user
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+        person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+
+        if (not person.first_name.strip() or not person.last_name.strip()):
+            return utils.about_you_redirect_and_toast(request, "First and last name are required.")
         return utils.dashboard_redirect_and_toast(request, 'Profile Saved!')
 
     else:
@@ -35,8 +40,8 @@ def about_you(request):
 @login_required
 @user_passes_test(lambda u: u.person.is_admin)
 def about_you_superuser(request,person_id=None):
-    '''Super Users should be able to view/change all the user information with 
-    About You form. Users that are created through Django Admin and have no person 
+    '''Super Users should be able to view/change all the user information with
+    About You form. Users that are created through Django Admin and have no person
     assosiated will not be editable by super user'''
     context = {
         'content': 'approver/about_you.html',

@@ -9,12 +9,14 @@ class AboutYouForm():
                            'label': 'First Name',
                            'type': 'text',
                            'value': user.person.first_name or '',
+                           'required': True,
                            'input_classes': 'about__field--box'}
 
         self.last_name = {'name': 'last_name',
                           'placeholder': 'Doe',
                           'label': 'Last Name',
                           'type': 'text',
+                          'required': True,
                           'value': user.person.last_name or '',
                           'input_classes': 'about__field--box'}
 
