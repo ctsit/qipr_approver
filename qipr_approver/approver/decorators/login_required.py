@@ -1,7 +1,8 @@
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
-from approver.constants import SESSION_VARS, SHIB_ENABLED
+from approver.constants import SESSION_VARS
 
 def login_required(view_function):
     """
@@ -21,6 +22,6 @@ def login_required(view_function):
         key, it is assumed validated. If SHIB is not enabled, this doesn't
         matter.
         """
-        return ((SHIB_ENABLED == 'true' and request.META.get('HTTP_EPPN')) or (SHIB_ENABLED == 'false'))
+        return ((settings.SHIB_ENABLED and request.META.get('HTTP_EPPN')) or not settings.SHIB_ENABLED)
 
     return wrapped_view

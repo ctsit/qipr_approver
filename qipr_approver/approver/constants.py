@@ -19,6 +19,8 @@ SESSION_VARS = {
     'email': 'email',
     'first_name': 'first_name',
     'last_name': 'last_name',
+    'previous_log_id': 'previous_log_id',
+    'timeout_time': 1217
 }
 
 QI_CHECK = {
@@ -75,15 +77,27 @@ api_username = 'admin_api_user'
 
 gatorlink_header = 'Glid'
 
-registry_host = 'https://' + os.environ['QIPR_APPROVER_REGISTRY_HOST']
+bridge_key = os.environ['QIPR_SHARED_BRIDGE_KEY']
+
+protocol = 'http://' if (os.environ['DJANGO_CONFIGURATION'] == 'development') else 'https://'
+
+registry_host = protocol + os.environ['QIPR_APPROVER_REGISTRY_HOST']
 
 registry_port = os.environ['QIPR_APPROVER_REGISTRY_PORT']
 
+registry_path = os.environ['QIPR_APPROVER_REGISTRY_PATH']
+
 registry_hostport = registry_host + (':' + registry_port if registry_port else '')
+
+registry_hostportpath = registry_hostport + ( registry_path if registry_path else '')
+
+registry_search_path = registry_hostportpath + '/search'
 
 registry_endpoints = {
     'add_model': '/'.join([registry_hostport, 'api', 'add_model']),
 }
+
+base_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST'] + os.environ['QIPR_APPROVER_APPROVER_PATH']
 
 app_label = 'approver'
 

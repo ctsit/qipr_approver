@@ -610,7 +610,7 @@ td, th {
 }
 
 .about__question--train {
-    max-width: 28rem;
+    max-width: 31rem;
 }
 
 [type="radio"]:not(:checked) + label.qi_required_na, [type="radio"]:checked + label.qi_required_na {
@@ -668,6 +668,8 @@ select:focus {
     outline: 1px solid #ffaa00;
 }
 
+
+
 /*Project Page*/
 .about__txtfield--date {
     width: 12.5rem;
@@ -679,6 +681,10 @@ select:focus {
 
 .about__sectionspacing {
     margin-top: 1.66rem;
+}
+
+.emailtag__margin {
+    margin-bottom: 2rem;
 }
 
 .col.bg__tags--blue1, .col.bg__tags--blue2, .col.about__bgtags--blue1, .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.about__bgtags--blue4 {
@@ -697,6 +703,10 @@ select:focus {
     width: 98%;
 }
 
+.suffix__adjust.bg__tags--blue1 {
+    margin-top: 1rem;
+}
+
 .project__subhead, .input_proposed_start_date label, .input_proposed_end_date label, .input_keyword ul label, .input_big_aim ul label, .input_safety_target ul label, .input_clinical_area ul label, .input_clinical_setting ul label {
     font-size: 1.3rem;
     color: #5d5d5d;
@@ -705,6 +715,19 @@ select:focus {
 .form-input-wrapper textarea.form__textarea--with-border:focus:not([readonly]) {
     border: 1px solid #e28f41;
     box-shadow: 1px 1px 2px 1px #e28f41;
+}
+
+.required_form-input input {
+    border-color: red !important;
+}
+
+.required_form-input textarea {
+    border-color: red !important;
+}
+
+.required_form-input label::after {
+    content: " *";
+    color: red;
 }
 
 .seecert__btn {
@@ -1304,6 +1327,11 @@ textarea.textarea__height {
 
     .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.bg__tags--blue2.s12 {
         margin-top: 0;
+    }
+
+    .suffix__adjust.bg__tags--blue1 {
+        margin-top: -.5rem;
+        padding-top: .5rem;
     }
 }
 

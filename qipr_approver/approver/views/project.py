@@ -4,15 +4,15 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 from approver.models import Project
 from approver.forms import AboutYouForm, ProjectForm
 from approver.workflows import project_crud
-from approver.decorators import login_required
 import approver.constants as constants
 import approver.utils as utils
-from django.core.urlresolvers import reverse
 
 @login_required
 def project(request, project_id=None):
@@ -20,8 +20,9 @@ def project(request, project_id=None):
     context = {
         'content': 'approver/project.html',
         'project_id': project_id,
+        'toast_text': utils.get_and_reset_toast(request.session),
     }
-    current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+    current_user = request.user
     if request.method == 'POST':
         project_form = request.POST
         title = project_form.get('title')
@@ -39,6 +40,10 @@ def project(request, project_id=None):
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
             else:
                 return utils.dashboard_redirect_and_toast(request, 'You are not allowed to edit this project'.format(project_id))
+
+        if (not project.title.strip() or not project.description.strip()):
+            return utils.project_redirect_and_toast(request, project.id, "Title and Description are required.")
+
         return redirect(reverse("approver:similar_projects", args=[str(project.id)]))
 
     else:

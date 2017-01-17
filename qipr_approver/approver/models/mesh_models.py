@@ -93,7 +93,7 @@ class Descriptor(MeshModel):
     tag_property_name = 'mesh_heading'
 
     def __str__(self):
-        return str(self.mesh_heading) + ' ' + str(self.mesh_tree_number)
+        return str(self.mesh_heading)
 
 class SCR(MeshModel):
     cas_registry_number = models.CharField(null=True, max_length=40)

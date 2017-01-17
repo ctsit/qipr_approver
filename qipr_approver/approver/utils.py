@@ -15,6 +15,19 @@ import django
 from django.db.models import fields
 from django.apps import apps
 
+def shib_enabled():
+    return constants.SHIB_ENABLED == 'true'
+
+def is_callable(item):
+    """
+    Used to check if items in a module are functions
+    """
+    try:
+        getattr(item, '__call__')
+        return True
+    except:
+        return False
+
 def user_exists(about_you_form):
     """
     Returns True if user exists, and False otherwise given an
@@ -28,15 +41,21 @@ def layout_render(request, context):
     It adds context['content'] into the layout.html so that the nav bar is
     present as well as css and javascript
     """
+    context['base_url'] = constants.base_url
+    context['registry_search_url'] = constants.registry_search_path
+    context['faq_url'] = constants.registry_hostportpath
     return render(request, 'approver/layout.html', context)
 
-def get_current_user_gatorlink(session):
+def get_current_user_gatorlink(request):
     """
     Gets the current user's gatorlink
     We don't return the user here because the util file shall
     not have a dependency on the models
     """
-    return session.get(constants.SESSION_VARS['gatorlink'])
+    if shib_enabled():
+        return request.META.get('HTTP_GLID')
+    else:
+        return request.session.get(constants.SESSION_VARS['gatorlink'])
 
 def get_and_reset_toast(session):
     toast = session.get("toast_text")
@@ -45,6 +64,14 @@ def get_and_reset_toast(session):
 
 def set_toast(session, toast_text):
     session['toast_text'] = toast_text
+
+def project_redirect_and_toast(request, project_id, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:projects", kwargs={'project_id':project_id}))
+
+def about_you_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:aboutyou"))
 
 def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
@@ -63,7 +90,10 @@ def after_approval(project):
 
 def set_guid_if_empty(model):
     if not model.guid:
-        model.guid = uuid.uuid4().hex
+        model.guid = get_guid()
+
+def get_guid():
+    return uuid.uuid4().hex
 
 def set_created_by_if_empty(model, user):
     """

@@ -5,23 +5,58 @@ def tags(request):
     if request.method == 'POST':
         #Get the string passed back and search for the right data
         search_value = request.POST.get('tagString')
-        filter_field = request.POST.get('filter_field')
+        filter_fields = request.POST.get('filter_field').split(";")
         exclude_tags = request.POST.get('exclude_tags').split(";")
         model_name = request.POST.get('model_name')
         model = get_model_from_string(model_name)
 
         #call out and search the model database for values that are similar to passed string
-        ten_matches = list_top_ten_matches(model, search_value, filter_field, exclude_tags)
-        listv=[]
-        for matches in ten_matches:
-            listv.append(matches.get(filter_field))
+        matches = list_top_matches(model, search_value, filter_fields)
+        matches = unique_only(matches)
 
-        return JsonResponse(listv, safe=False)
+        display = [get_string(match, filter_fields) for match in matches]
+        tag_props = [getattr(model, model.tag_property_name) for model in matches]
 
-def list_top_ten_matches(model, search_value, filter_field, exclude_tags=[]):
-    model_filter = filter_field + '__icontains'
-    exclude_filter = filter_field + '__in'
-    return_list = model.objects.filter(**{ model_filter: search_value}).values(filter_field)
-    if(exclude_tags):
-        return_list = return_list.exclude(**{exclude_filter: exclude_tags})
-    return return_list[:10]
+        data = get_data(display, tag_props, model_name)
+
+        return JsonResponse(data, safe=False)
+
+def list_top_matches(model, search_value, filter_fields):
+    lists = []
+    for filter_field in filter_fields:
+        lists.append(model.objects.filter(**{(filter_field + '__icontains'): search_value}))
+    matches = []
+    for list_item in lists:
+        for item in list_item:
+            matches.append(item)
+    return matches[:10]
+
+def remove_present(matches, fields, tags=[]):
+    old = []
+    for match in matches:
+        for field in fields:
+            for tag in tags:
+                if getattr(match, field) == tag:
+                    old.append(match)
+        try:
+            matches.remove(item)
+        except:
+            pass
+    return matches
+
+def get_string(model, fields):
+    return str(model)
+
+def unique_only(models):
+    return set(models)
+
+def get_data(display, tag_props, model_name):
+    data = []
+    for index, item in enumerate(display):
+        data.append({
+            'display': display[index],
+            'tag_prop': tag_props[index],
+            'model_name': model_name
+        })
+    return data
+
