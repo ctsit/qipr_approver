@@ -93,8 +93,7 @@ class ApproverShibbolethMiddleware(object):
 
         try:
             person = Person.objects.get(user=request.user)
-            for field, value in defaults.items():
-               setattr(person, field, value)
+            person.account_expiration_time = utils.get_account_expiration_date(timezone.now())
             person.save(request.user)
         except Person.DoesNotExist:
             person = Person(**defaults)
@@ -102,7 +101,8 @@ class ApproverShibbolethMiddleware(object):
             person.save(request.user)
             created = True
 
-        self._add_person_address(request, person)
+        if not person.business_address.count():
+            self._add_person_address(request, person)
         return created
 
     def _add_person_address(self, request, person):
