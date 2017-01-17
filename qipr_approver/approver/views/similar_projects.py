@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
 from approver.workflows import project_crud
+from approver import constants
 
 import approver.utils as utils
 
@@ -27,6 +28,7 @@ def similar_projects(request, project_id=None,from_page=None):
                     'content': 'approver/similar_projects.html',
                     'project_scores': project_scores,
                     'project_id' : project_id,
+                    'registry_search_url' : constants.registry_search_path
                 }
         return utils.layout_render(request, context)
 

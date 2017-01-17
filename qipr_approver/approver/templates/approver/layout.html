@@ -24,8 +24,8 @@
                             <li class="nav_li"><a href="{% url 'approver:dashboard_su' %}">Admin</a></li>
                             {% endif %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                            <li class="nav_li"><a href="">Search Registry</a></li>
-                            <li class="nav_li"><a href="">FAQs</a></li>
+                            <li class="nav_li"><a href="{{ registry_search_url }}">Search Registry</a></li>
+                            <li class="nav_li"><a href="{{ faq_url }}">FAQs</a></li>
                             <li><a class="btn btn__logout" href="{% url 'approver:logout' %}">Logout</a></li>
                         </ul>
                         <ul class="side-nav" id="mobile-demo">
@@ -33,7 +33,7 @@
                             <li><a href="{% url 'approver:dashboard_su' %}">Admin</a></li>
                             {% endif %}
                             <li><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                            <li><a href="">Search Registry</a></li>
+                            <li><a href="{{ registry_search_url }}">Search Registry</a></li>
                             <li><a href="">FAQs</a></li>
                             <li><a class="btn" href="{% url 'approver:logout' %}">Logout</a></li>
                         </ul>
