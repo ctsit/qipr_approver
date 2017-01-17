@@ -28,7 +28,6 @@ class ProjectTestCase(TestCase):
         self.assertTrue(is_foreign_key_to(Project, "clinical_area", ClinicalArea))
         self.assertTrue(is_foreign_key_to(Project, "clinical_setting", ClinicalSetting))
         self.assertTrue(is_foreign_key_to(Project, "collaborator", Person))
-        self.assertTrue(is_foreign_key_to(Project, "keyword", Keyword))
         self.assertTrue(is_foreign_key_to(Project, "owner", Person))
         self.assertTrue(check_fields(Project, "approval_date", "DateTime"))
         self.assertTrue(check_fields(Project, "proposed_end_date", "DateTime"))
