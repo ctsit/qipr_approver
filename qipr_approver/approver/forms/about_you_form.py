@@ -65,7 +65,7 @@ class AboutYouForm():
                       'placeholder': 'janedoe@shands.ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
-                      'value': user.email or '',
+                      'value': user.person.email_address or '',
                       'input_classes': 'about__field--box'}
 
         self.business_phone = {'name': 'business_phone',

@@ -20,8 +20,7 @@ def add_update_response(post_data, request):
     question_id = int(post_data.get(answer_submit_names.get('question_id')))
     project_id = int(post_data.get(answer_submit_names.get('project_id')))
     choice_id = int(post_data.get(answer_submit_names.get('choice_id')))
-    editing_user_gatorlink = get_current_user_gatorlink(request)
-    editing_user = User.objects.get(username=editing_user_gatorlink)
+    editing_user = request.user
 
     question = Question.objects.get(id=question_id)
     project = Project.objects.get(id=project_id)

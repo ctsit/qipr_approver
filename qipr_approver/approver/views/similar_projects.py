@@ -1,13 +1,14 @@
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 from approver.workflows import project_crud
-from approver.decorators import login_required
+
 import approver.utils as utils
-from django.core.urlresolvers import reverse
 
 @login_required
 def similar_projects(request, project_id=None,from_page=None):
-  
+
     project = project_crud.get_project_or_none(project_id)
 
     if project is None:
