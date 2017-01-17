@@ -10,7 +10,9 @@ import approver.utils as utils
 from approver.views.dashboard import dashboard
 
 def index(request):
-    if(utils.get_current_user_gatorlink(request)):
-        return dashboard(request)
-    else:
-        return render(request, 'approver/index.html')
+    context = {
+        'content': 'approver/index.html',
+        'registry_search_url': constants.registry_search_path
+    }
+
+    return render(request, 'approver/index.html', context )
