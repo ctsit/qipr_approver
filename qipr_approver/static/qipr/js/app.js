@@ -83,16 +83,16 @@
         window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
-    var getHostnameSuffix = function () {
-        return window.location.hostname.includes('qipr.ctsi.ufl.edu') ? '/approver' : '';
+    var getBaseURL = function () {
+        return document.getElementById('BASE_URL').innerHTML;
     };
 
     //user is "finished typing," do something
     function doneTyping (node) {
         //do something
-        var suffix = getHostnameSuffix();
+        var baseURL = getBaseURL();
         $.ajax({
-            url: window.location.protocol + '//' + window.location.hostname + suffix + '/api/tags',
+            url: baseURL + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
@@ -286,7 +286,7 @@
     $('.modal-trigger').leanModal();
 
     window.submit_answer = function (questionId, projectId, choiceId) {
-        window.$.ajax('/answer_submit/', {
+        window.$.ajax(getBaseURL() + '/answer_submit/', {
             method: 'POST',
             data: {
                 choice_id: choiceId,

@@ -8,10 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Amiri|Eczar" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        
-
     </head>
     <body>
+        <div id="BASE_URL" style="display: none">{{base_url}}</div>
         <main>
             <div class="navbar-fixed">
                 <nav>
@@ -42,7 +41,6 @@
                 </nav>
             </div>
 
-              
             <div class="container">
                 {% include content %}
             </div>

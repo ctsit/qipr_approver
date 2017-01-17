@@ -41,6 +41,7 @@ def layout_render(request, context):
     It adds context['content'] into the layout.html so that the nav bar is
     present as well as css and javascript
     """
+    context['base_url'] = constants.base_url
     return render(request, 'approver/layout.html', context)
 
 def get_current_user_gatorlink(request):
