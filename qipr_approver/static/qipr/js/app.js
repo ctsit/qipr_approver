@@ -9,7 +9,7 @@
                 var self = this;
                 this.toast = document.getElementById('toast') || undefined;
 
-                this.show = () => {
+                this.show = function() {
                     window.setTimeout(function () {
                         if (self.toast) {
                             self.toast.classList.add('cts-toast--active');
@@ -17,7 +17,7 @@
                     }, timeToShow);
                 };
 
-                this.hide = () => {
+                this.hide = function() {
                     window.setTimeout(function () {
                         if (self.toast) {
                             self.toast.classList.remove('cts-toast--active');
@@ -25,7 +25,7 @@
                     }, timeToHide);
                 };
 
-                this.flash = () => {
+                this.flash = function() {
                     this.show();
                     this.hide();
                 };
@@ -124,7 +124,7 @@
 
     // Close the dropdown menu if the user clicks outside of it
     $(document).click( function(event) {
-        if (!event.target.matches('dropdown')) {
+        if (!event.target.classList.contains('dropdown')) {
             closeDropDowns();
         }
     });
@@ -146,7 +146,7 @@
 
     tagboxInputs = document.getElementsByClassName("tagbox__input");
 
-    Array.prototype.forEach.call(tagboxInputs, (node) => {
+    Array.prototype.forEach.call(tagboxInputs, function(node) {
         node.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode == 13) {
@@ -157,9 +157,15 @@
         node.addEventListener("blur", function(event) {
             closeDropDowns();
         });
+        node.addEventListener("click", function(event) {
+            startTypingTimer(node);
+        });
+        node.addEventListener("focus", function(event) {
+            startTypingTimer(node);
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
-            if (event.target.value.includes(invisibleSpace)){
+            if (event.target.value.search(invisibleSpace) > -1){
                 addTag(this);
             }
             startTypingTimer(node);
@@ -266,13 +272,13 @@
     removeValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
-        values = values.filter((item) => item !== val);
+        values = values.filter(function(item) {return item !== val;});
         hiddenInputNode.value = values.join(';');
     };
 
     delete_tags = document.getElementsByClassName("tag__delete");
 
-    Array.prototype.forEach.call(delete_tags, (node) => {
+    Array.prototype.forEach.call(delete_tags, function(node) {
         node.addEventListener('click', deleteTag);
     });
 
