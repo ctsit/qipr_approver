@@ -39,18 +39,20 @@ class AboutYouForm():
                               'label': 'What is your clinical area? Press "enter" to save',
                               'model': 'clinicalarea',
                               'filter_field': 'name',
+                              'tag_prop': ClinicalArea.tag_property_name,
                               'options': filter(utils.is_not_none, [item.name for item in ClinicalArea.objects.all()]),
                               'selected': utils.get_related_property(user.person,"clinical_area"),
                               'input_classes': 'about__field--box',
                               'div_classes': 'about__field--width100'}
 
         self.self_classification = {'name': 'self_classification',
-                        'label': 'Self Classification',
-                        'placeholder': 'Self Classification',
-                        'selected': getattr(user.person.self_classification,'name',''),
-                        'other': user.person.other_self_classification or '',
-                        'options':  Self_Classification.objects.values_list('name', flat=True).order_by('sort_order'),
-                        'input_class_list': 'about__field-box'}
+                                    'label': 'Self Classification',
+                                    'placeholder': 'Self Classification',
+                                    'selected': getattr(user.person.self_classification,'name',''),
+                                    'other': user.person.other_self_classification or '',
+                                    'tag_prop': Self_Classification.tag_property_name,
+                                    'options':  Self_Classification.objects.values_list('name', flat=True).order_by('sort_order'),
+                                    'input_class_list': 'about__field-box'}
 
         self.business_address = user.person.business_address
 
@@ -65,7 +67,7 @@ class AboutYouForm():
                       'placeholder': 'janedoe@shands.ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
-                      'value': user.email or '',
+                      'value': user.person.email_address or '',
                       'input_classes': 'about__field--box'}
 
         self.business_phone = {'name': 'business_phone',
@@ -86,6 +88,7 @@ class AboutYouForm():
                                 'placeholder': 'e.g. Pediatric Nephrology',
                                 'label': 'What is your speciality or certification? Press "enter" to save.',
                                 'model': 'speciality',
+                                'tag_prop': Speciality.tag_property_name,
                                 'filter_field': 'name',
                                 'options': [item.name for item in Speciality.objects.all()],
                                 'selected': [item.name for item in user.person.speciality.all()],
@@ -97,6 +100,7 @@ class AboutYouForm():
                                  'label': 'List your Quality Improvement Interests. Press "enter" to save.',
                                  'model': 'qi_interest',
                                  'filter_field': 'name',
+                                 'tag_prop': QI_Interest.tag_property_name,
                                  'options': [item.name for item in QI_Interest.objects.all()],
                                  'selected': [item.name for item in user.person.qi_interest.all()],
                                  'input_classes': 'about__field--box',
@@ -107,6 +111,7 @@ class AboutYouForm():
                                'label': 'What is your area of expertise? Press "enter" to save.',
                                'model': 'expertise',
                                'filter_field': 'name',
+                               'tag_prop': Expertise.tag_property_name,
                                'options': [item.name for item in Expertise.objects.all()],
                                'selected': [item.name for item in user.person.expertise.all()],
                                'input_classes': 'about__field--box',
@@ -117,12 +122,13 @@ class AboutYouForm():
                             'placeholder': 'e.g. PhD or M.D.',
                             'model': 'suffix',
                             'filter_field': 'name',
+                            'tag_prop': Suffix.tag_property_name,
                             'options': [item.name for item in Suffix.objects.all()],
                             'selected': [item.name for item in user.person.suffix.all()],
                             'input_classes': 'about__field--box',
                             'div_classes': 'about__field--width100'}
 
-        self.qi_required = user.person.qi_required 
+        self.qi_required = user.person.qi_required
 
         self.last_login = {'name': 'last_login',
                            'label': 'Last Login',

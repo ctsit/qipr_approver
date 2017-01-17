@@ -9,7 +9,7 @@ class TaggedWithName(models.Model):
 
 class TagPrint(models.Model):
     def __str__(self, delimiter=' '):
-        return delimiter.join([self.name, self.description or ''])
+        return str(self.name)
 
     class Meta:
         abstract = True

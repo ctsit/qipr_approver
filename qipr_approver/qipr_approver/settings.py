@@ -38,6 +38,7 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
     os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
     os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port')
+    os.environ['QIPR_SHARED_BRIDGE_KEY'] = get_config('shared_bridge_key')
     os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
 
 define_env()
@@ -76,10 +77,22 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'approver.middleware.debug_shib.DebugShibMiddleware',
+    'approver.middleware.approver_shibboleth_middleware.ApproverShibbolethMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'approver.middleware.session_expire',
+    'approver.middleware.log_access',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.RemoteUserBackend',
+]
+
+#Set if shib is enabled or not
+SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
+LOGIN_URL = '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 

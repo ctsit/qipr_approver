@@ -10,7 +10,7 @@ import approver.utils as utils
 from approver.views.dashboard import dashboard
 
 def index(request):
-    if(utils.get_current_user_gatorlink(request.session)):
+    if(utils.get_current_user_gatorlink(request)):
         return dashboard(request)
     else:
         return render(request, 'approver/index.html')
