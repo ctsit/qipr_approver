@@ -37,6 +37,7 @@ AllRegistryModels = [
     ClinicalArea,
     ClinicalDepartment,
     ClinicalSetting,
+    Descriptor,
     Expertise,
     Keyword,
     Organization,
