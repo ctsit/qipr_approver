@@ -198,8 +198,8 @@ def _calculate_similarity_score(project, member):
     if project.title is not None and member.title is not None:
         similarity += title_factor * _jaccard_similarity(project.title, member.title)
 
-    if project.keyword is not None and member.keyword is not None:
-        similarity += keyword_factor * _jaccard_similarity(project.keyword.all(), member.keyword.all())
+    if project.mesh_keyword is not None and member.mesh_keyword is not None:
+        similarity += keyword_factor * _jaccard_similarity(project.mesh_keyword.all(), member.mesh_keyword.all())
 
     if project.description is not None and member.description is not None:
         similarity += description_factor * _jaccard_similarity(project.description, member.description)
@@ -222,7 +222,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(element.name)
+        res.add(getattr(element, element.tag_property_name))
     return res
 
 def _jaccard_similarity(doc1, doc2):
