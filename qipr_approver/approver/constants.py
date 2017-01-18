@@ -103,6 +103,6 @@ app_label = 'approver'
 
 total_qualifiers_2017 = 80
 
-SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'false')
+SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'true')
 
-VERSION_NUMBER = '0.8.0'
+VERSION_NUMBER = '1.0.0'
