@@ -22,6 +22,8 @@
            data-list="datalist_{{ name }}"
            data-model="{{ model }}"
            data-filter_field="{{ filter_field }}"
+           data-tagHolder="tag-holder_{{ name }}"
+           data-tagProp="{{ tag_prop }}"
            {{ disabled }}>
 
     <div class="dropdown">
@@ -29,6 +31,7 @@
     </div>
 
     <input style="display: none"
+           class="tagbox__input__hidden"
            id="tag-input_{{ name }}"
            name="{{ name }}"
            type="text"
@@ -37,9 +40,9 @@
     <ul id="tag-holder_{{ name }}" class="tag-holder">
         {% for option in selected %}
         <div class="tag__container">
-            <li class="tag" >{{ option }}</li>
+            <li class="tag">{{ option }}</li>
             {% if disabled != "disabled" %}
-            <i class="tag__delete">close</i>
+            <i class="material-icons tag__delete">ic_close</i>
             {% endif %}
         </div>
         {% endfor %}

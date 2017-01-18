@@ -9,7 +9,7 @@
                 var self = this;
                 this.toast = document.getElementById('toast') || undefined;
 
-                this.show = () => {
+                this.show = function() {
                     window.setTimeout(function () {
                         if (self.toast) {
                             self.toast.classList.add('cts-toast--active');
@@ -17,7 +17,7 @@
                     }, timeToShow);
                 };
 
-                this.hide = () => {
+                this.hide = function() {
                     window.setTimeout(function () {
                         if (self.toast) {
                             self.toast.classList.remove('cts-toast--active');
@@ -25,7 +25,7 @@
                     }, timeToHide);
                 };
 
-                this.flash = () => {
+                this.flash = function() {
                     this.show();
                     this.hide();
                 };
@@ -83,16 +83,16 @@
         window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
     };
 
-    var getHostnameSuffix = function () {
-        return window.location.hostname.includes('qipr.ctsi.ufl.edu') ? '/approver' : '';
+    var getBaseURL = function () {
+        return document.getElementById('BASE_URL').innerHTML;
     };
 
     //user is "finished typing," do something
     function doneTyping (node) {
         //do something
-        var suffix = getHostnameSuffix();
+        var baseURL = getBaseURL();
         $.ajax({
-            url: window.location.protocol + '//' + window.location.hostname + suffix + '/api/tags',
+            url: baseURL + '/api/tags',
             type: 'post',
             data: {"tagString": node.value,
                    "model_name": getTagboxData(node, 'model'),
@@ -103,11 +103,13 @@
                 optionList = $('#' + jnode.attr('data-list'));
                 optionList.empty();
                 $.each(data, function( i, l ){
-                    optionList.append($("<li>" + l + "</li>")
+                    optionList.append($("<li>" + l.display + "</li>")
                                       .attr("value", l)
                                       .mousedown(function() {
+                                          var tagProp = l.tag_prop,
+                                              model_name = l.model_name;
                                           node.value = $(this).text();
-                                          addTag(node);
+                                          addTag(node, {tagProp:tagProp, model_name:model_name});
                                           $(this).remove();
                                       }));
                 });
@@ -122,7 +124,7 @@
 
     // Close the dropdown menu if the user clicks outside of it
     $(document).click( function(event) {
-        if (!event.target.matches('dropdown')) {
+        if (!event.target.classList.contains('dropdown')) {
             closeDropDowns();
         }
     });
@@ -144,7 +146,7 @@
 
     tagboxInputs = document.getElementsByClassName("tagbox__input");
 
-    Array.prototype.forEach.call(tagboxInputs, (node) => {
+    Array.prototype.forEach.call(tagboxInputs, function(node) {
         node.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode == 13) {
@@ -155,9 +157,15 @@
         node.addEventListener("blur", function(event) {
             closeDropDowns();
         });
+        node.addEventListener("click", function(event) {
+            startTypingTimer(node);
+        });
+        node.addEventListener("focus", function(event) {
+            startTypingTimer(node);
+        });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
-            if (event.target.value.includes(invisibleSpace)){
+            if (event.target.value.search(invisibleSpace) > -1){
                 addTag(this);
             }
             startTypingTimer(node);
@@ -179,15 +187,16 @@
         }
     };
 
-    addTag = function(inputNode) {
+    addTag = function(inputNode, customAttrs) {
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
             tagHolderId = 'tag-holder_' + name,
-            key;
+            taggedWith = inputNode.getAttribute('data-tagProp'),
+            tagProp = (customAttrs || {}).tagProp;
 
         if (text) {
-            if (addValue(name, text)){
-                tag = createtag(text);
+            if (addValue(name, tagProp, text)){
+                tag = createtag(text, customAttrs, taggedWith);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
             }
@@ -202,20 +211,27 @@
         return inputString.replace(/\u200B/g, '');
     };
 
-    createtag = function(text) {
+    createtag = function(text, customAttrs, taggedWith) {
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
             icontext = document.createTextNode('close'),
-            tagtext = document.createTextNode(text);
+            keys = Object.keys(customAttrs || {}),
+            tagtext = document.createTextNode(text),
+            isEmail = taggedWith === 'email_address';
 
         container.appendChild(li);
         container.appendChild(tagDelete);
+        if (isEmail && (text.search('@') === -1)) {
+            container.style.backgroundColor = 'red';
+        }
         li.appendChild(tagtext);
         tagDelete.appendChild(icontext);
 
         li.classList.add('tag');
-        //tagDelete.classList.add('tiny');
+        keys.forEach(function (key) {
+            li.setAttribute(('data-' + key), customAttrs[key]);
+        });
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
@@ -227,11 +243,12 @@
         return container;
     };
 
-    addValue = function (name, val) {
+    addValue = function (name, val, text) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
-            values = hiddenInputNode.value.split(';');
-        if (!tagAlreadyExists(values,val)){
-            values.push(val);
+            values = hiddenInputNode.value.split(';'),
+            item = val || text;
+        if (!tagAlreadyExists(values,item)){
+            values.push(item);
             hiddenInputNode.value = values.join(';');
             return true;
         }
@@ -245,22 +262,23 @@
 
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
-            value = event.target.parentElement.children[0].textContent,//the li
+            value = event.target.parentElement.children[0].getAttribute('data-tagProp'),//the li
+            text = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
-        removeValue(getTagboxData(event.target, 'name'), value);
+        removeValue(getTagboxData(event.target, 'name'), value || text);
         parent.removeChild(removeMe);
     };
 
     removeValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
-        values = values.filter((item) => item !== val);
+        values = values.filter(function(item) {return item !== val;});
         hiddenInputNode.value = values.join(';');
     };
 
     delete_tags = document.getElementsByClassName("tag__delete");
 
-    Array.prototype.forEach.call(delete_tags, (node) => {
+    Array.prototype.forEach.call(delete_tags, function(node) {
         node.addEventListener('click', deleteTag);
     });
 
@@ -274,7 +292,7 @@
     $('.modal-trigger').leanModal();
 
     window.submit_answer = function (questionId, projectId, choiceId) {
-        window.$.ajax('/answer_submit/', {
+        window.$.ajax(getBaseURL() + '/answer_submit/', {
             method: 'POST',
             data: {
                 choice_id: choiceId,
@@ -284,6 +302,16 @@
             }
         });
     };
+
+    window.dashSearch = document.getElementById('dash-search-text');
+
+    if (window.dashSearch) {
+        window.dashSearch.addEventListener('keypress', function (event) {
+            if (event.keyCode == 13) {
+                document.getElementById('dash-search-button').click();
+            }
+        }); 
+    }
 
     // if the other option in self classification on the about you form is selected,
     // show a new text box for the customer to write in the other classification

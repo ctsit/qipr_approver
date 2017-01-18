@@ -15,8 +15,8 @@ import configparser
 
 config = configparser.ConfigParser()
 
-def get_config(key):
-    return config.get(config.default_section, key)
+def get_config(key, section=config.default_section):
+    return config.get(section, key)
 
 def define_env():
     settings_proj_path = '/qipr_approver/deploy/settings.ini'
@@ -36,8 +36,12 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_PASSWORD'] = get_config('database_password')
     os.environ['QIPR_APPROVER_DATABASE_HOST'] = get_config('database_host')
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
-    os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
-    os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port')
+    os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host', 'hosts')
+    os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port', 'hosts')
+    os.environ['QIPR_APPROVER_REGISTRY_PATH'] = get_config('registry_path', 'hosts')
+    os.environ['QIPR_APPROVER_APPROVER_HOST'] = get_config('approver_host', 'hosts')
+    os.environ['QIPR_APPROVER_APPROVER_PATH'] = get_config('approver_path', 'hosts')
+    os.environ['QIPR_SHARED_BRIDGE_KEY'] = get_config('shared_bridge_key')
     os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
 
 define_env()
@@ -55,7 +59,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
 
-ALLOWED_HOSTS = [get_config('approver_host')]
+ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
 
 
 # Application definition
@@ -76,10 +80,22 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'approver.middleware.debug_shib.DebugShibMiddleware',
+    'approver.middleware.approver_shibboleth_middleware.ApproverShibbolethMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'approver.middleware.session_expire',
+    'approver.middleware.log_access',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.RemoteUserBackend',
+]
+
+#Set if shib is enabled or not
+SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
+LOGIN_URL = '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 
@@ -152,5 +168,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = get_config('approver_path','hosts') + '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

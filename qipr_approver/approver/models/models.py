@@ -8,40 +8,16 @@ from approver.constants import STATE_CHOICES, COUNTRY_CHOICES, QI_CHECK
 from approver import utils
 from approver import constants
 from approver.models.bridge_models import Registerable
+from approver.models.provenance import Provenance
 from approver.models.tag_models import Tag, TagPrint, TaggedWithName
+from approver.models.mesh_models import Descriptor
 
-class Provenance(models.Model):
-    created_by = models.ForeignKey(User, editable=False, on_delete=models.CASCADE, related_name="+")
-    last_modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    last_modified = models.DateTimeField(auto_now=True, editable=True)
-    guid = models.CharField(max_length=32, editable=False, null=True)
-
-    def save(self, last_modified_by, *args, **kwargs):
-        utils.set_created_by_if_empty(self, last_modified_by)
-        try:
-            self.audit_trail.user = last_modified_by
-        except:
-            pass
-        utils.set_guid_if_empty(self)
-        self.last_modified_by = last_modified_by
-        super(Provenance, self).save(*args, **kwargs)
-
-    def delete(self, last_modified_by, *args, **kwargs):
-        try:
-            self.audit_trail.user = last_modified_by
-        except:
-            pass
-        self.last_modified_by = last_modified_by
-        super(Provenance, self).delete(*args, **kwargs)
-
-    class Meta:
-        abstract = True
 
 class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
+    tag_property_name = 'name'
 
     def __str__(self, delimiter=' '):
         return delimiter.join([self.name, self.description or ''])
@@ -123,7 +99,8 @@ class Person(Provenance, Registerable):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return ' '.join([str(item) for item in [self.first_name, self.last_name, self.email_address]])
+        strs = [str(item) for item in [self.first_name, self.last_name, '(' +self.email_address + ')'] if len(item)]
+        return ', '.join(strs)
 
     def get_natural_dict(self):
         return {
@@ -138,22 +115,20 @@ class Person(Provenance, Registerable):
 class Project(Provenance, Registerable):
     advisor = models.ManyToManyField(Person, related_name="advised_projects")
     approval_date = models.DateTimeField(null=True)
+    archived = models.BooleanField(default=False)
     big_aim = models.ForeignKey(BigAim, null=True, on_delete=models.SET_NULL, related_name="projects")
-    category = models.ManyToManyField(Category)
-    clinical_area = models.ManyToManyField(ClinicalArea)
+    category = models.ManyToManyField(Category, related_name='projects')
+    clinical_area = models.ManyToManyField(ClinicalArea, related_name='projects')
     clinical_setting = models.ManyToManyField(ClinicalSetting)
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
-    objective = models.TextField()
-    scope = models.TextField()
     measures = models.TextField()
-    milestones = models.TextField()
-    keyword = models.ManyToManyField(Keyword)
+    overall_goal = models.TextField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
     title = models.CharField(max_length=300)
-    archived = models.BooleanField(default=False)
+    mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
 
     def __str__(self):
         return ' '.join([self.title, str(self.owner.gatorlink)])
@@ -181,7 +156,7 @@ class Project(Provenance, Registerable):
             'description': self.description,
             'owner': self.owner.natural_key(),
             'collaborators': [item.natural_key() for item in self.collaborator.all()],
-            'keyword': [item.natural_key() for item in self.keyword.all()],
+            'mesh_keyword': [item.natural_key() for item in self.mesh_keyword.all()],
             'model_class_name': self.__class__.__name__,
         }
 

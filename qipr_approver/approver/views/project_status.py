@@ -1,17 +1,9 @@
 import json
 
-from django.shortcuts import render,redirect
-from django.http import HttpResponse, Http404
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.models import User
-from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-from approver.models import Project
 from approver.workflows import project_crud
-from approver.decorators import login_required
-import approver.constants as constants
 import approver.utils as utils
-from django.core.urlresolvers import reverse
 
 @login_required
 def project_status(request, project_id=None):

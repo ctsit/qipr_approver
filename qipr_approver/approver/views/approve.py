@@ -1,18 +1,12 @@
 import json
 
-from django.shortcuts import render,redirect
-from django.http import HttpResponse, Http404
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
-from approver.models import Project
-from approver.forms import QuestionForm, ProjectForm
+from approver.forms import QuestionForm
 from approver.workflows import project_crud, approve_workflow
-from approver.decorators import login_required
-import approver.constants as constants
+
 import approver.utils as utils
-from django.core.urlresolvers import reverse
 
 @login_required
 def approve(request, project_id=None):
@@ -21,11 +15,11 @@ def approve(request, project_id=None):
         'project_id': project_id,
         'toast_text': utils.get_and_reset_toast(request.session)
     }
-    current_user = User.objects.get(username=utils.get_current_user_gatorlink(request.session))
+    current_user = request.user 
     if request.method == 'POST':
         question_form = request.POST
         project = project_crud.get_project_or_none(project_id)
-        approve_workflow.save_project_with_form(project, question_form, request.session)
+        approve_workflow.save_project_with_form(project, question_form, request)
         return approve_workflow.approve_or_next_steps(project, current_user)
 
     else:

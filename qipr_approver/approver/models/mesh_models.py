@@ -1,6 +1,7 @@
 from django.db import models
 
-from approver.models import Project, Provenance
+from approver.models.bridge_models import Registerable
+from approver.models.provenance import Provenance
 
 class MeshModel(Provenance):
     date_added = models.DateField(null=True)
@@ -75,7 +76,7 @@ class Qualifier(MeshModel):
     def __str__(self):
         return str(self.sub_heading)
 
-class Descriptor(MeshModel):
+class Descriptor(MeshModel, Registerable):
     allowable_qualifiers = models.ManyToManyField(Qualifier, related_name='+')
     cas_registry_number = models.CharField(null=True, max_length=40)
     descriptor_class = models.CharField(null=True, max_length=1)
@@ -89,11 +90,15 @@ class Descriptor(MeshModel):
     pharmacological_action = models.ManyToManyField(PharmacologicalAction)
     related_registry_number = models.ManyToManyField(RegistryNumber)
     semantic_type = models.ManyToManyField(SemanticType)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='mesh_keyword', null=True)
     tag_property_name = 'mesh_heading'
 
     def __str__(self):
-        return str(self.mesh_heading) + ' ' + str(self.mesh_tree_number)
+        return str(self.mesh_heading)
+
+    def get_natural_dict(self):
+        return {
+            'mesh_heading': str(self.mesh_heading),
+        }
 
 class SCR(MeshModel):
     cas_registry_number = models.CharField(null=True, max_length=40)

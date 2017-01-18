@@ -26,7 +26,7 @@
        <div class="row margin-top">
             <div class="headerbg__admin center">
                 <div class="container">
-                  <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> CQI Project List</h1>
+                  <h1 class="question__header font__opensans"><i class="icon__admin medium material-icons">settings</i> QI Project List</h1>
                   <p class="question__header--sub"></p>
                 </div>
             </div>
@@ -37,9 +37,9 @@
                         <div class="input-field dashboard_search">
                             <form method="post" action="{% url 'approver:dashboard_su' %}">
                                 {% csrf_token %}
-                                <input placeholder="Search your project title" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
+                                <input placeholder="Search your project title" class="dashboard_search-input" id="dash-search-text" type="search" name="search" value={{ search_query }} >
                                 
-                                <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                                <input class="dashboard__search--projects" id="dash-search-button" type="submit" value="&#128270;">
                             </form>
                         </div>
                     </div>

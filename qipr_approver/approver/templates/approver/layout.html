@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +8,11 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Amiri|Eczar" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 
     </head>
     <body>
+        <div id="BASE_URL" style="display: none">{{base_url}}</div>
         <main>
             <div class="navbar-fixed">
                 <nav>
@@ -21,20 +22,20 @@
                         </a>
                         <a href="#" data-activates="mobile-demo" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
-                            {% if request.session.su %}
+                            {% if request.user.person.is_admin %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard_su' %}">Admin</a></li>
                             {% endif %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                            <li class="nav_li"><a href="">Search Registry</a></li>
-                            <li class="nav_li"><a href="">FAQs</a></li>
+                            <li class="nav_li"><a href="{{ registry_search_url }}">Search Registry</a></li>
+                            <li class="nav_li"><a href="{{ faq_url }}">FAQs</a></li>
                             <li><a class="btn btn__logout" href="{% url 'approver:logout' %}">Logout</a></li>
                         </ul>
                         <ul class="side-nav" id="mobile-demo">
-                            {% if request.session.su %}
+                            {% if request.user.person.is_admin %}
                             <li><a href="{% url 'approver:dashboard_su' %}">Admin</a></li>
                             {% endif %}
                             <li><a href="{% url 'approver:dashboard' %}">Dashboard</a></li>
-                            <li><a href="">Search Registry</a></li>
+                            <li><a href="{{ registry_search_url }}">Search Registry</a></li>
                             <li><a href="">FAQs</a></li>
                             <li><a class="btn" href="{% url 'approver:logout' %}">Logout</a></li>
                         </ul>
@@ -42,7 +43,6 @@
                 </nav>
             </div>
 
-              
             <div class="container">
                 {% include content %}
             </div>
