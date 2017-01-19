@@ -12,7 +12,7 @@ def build_field_index_map(acc, header_line):
         'gatorlink': 'gatorlink',
         'uf_business_email': 'email_address'
     }
-    csv_fields = [field.lower() for field in header_line.split('|')]
+    csv_fields = [field.lower().strip() for field in header_line.split('|')]
     field_index_map = {}
     for field in csv_fields:
         if model_mapping.get(field):

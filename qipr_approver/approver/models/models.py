@@ -98,6 +98,14 @@ class Person(Provenance, Registerable):
     tag_property_name = 'email_address'
     is_admin = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        try:
+            for char in constants.invalid_email_characters:
+                self.email_address = self.email_address.replace(char, '')
+        except:
+            pass
+        super(Person, self).save(*args, **kwargs)
+
     def __str__(self):
         first_name = self.first_name or ''
         last_name = self.last_name or ''
