@@ -19,7 +19,10 @@ def approve(request, project_id=None):
     if request.method == 'POST':
         question_form = request.POST
         project = project_crud.get_project_or_none(project_id)
-        approve_workflow.save_project_with_form(project, question_form, request)
+        project = approve_workflow.save_project_with_form(project, question_form, request)
+
+        request.access_log.model = project
+
         return approve_workflow.approve_or_next_steps(project, current_user)
 
     else:

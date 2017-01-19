@@ -30,6 +30,7 @@ class AccessLog(models.Model):
     This model logs a bunch of information about the request and response
     as a middleware. 
     """
+    guid_changed = models.CharField(max_length=32, null=True)
     gatorlink = models.CharField(max_length=50, null=True)
     http_verb = models.CharField(max_length=10)
     ip = models.GenericIPAddressField()
