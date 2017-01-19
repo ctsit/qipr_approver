@@ -19,24 +19,26 @@ def approve(request, project_id=None):
     if request.method == 'POST':
         question_form = request.POST
         project = project_crud.get_project_or_none(project_id)
-        approve_workflow.save_project_with_form(project, question_form, request)
+        project = approve_workflow.save_project_with_form(project, question_form, request)
+
+        request.access_log.model = project
+
         return approve_workflow.approve_or_next_steps(project, current_user)
 
     else:
         now = timezone.now()
-        if(project_id is not None):
+        if(project_id):
             project = project_crud.get_project_or_none(project_id)
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if(project_crud.current_user_is_project_owner(current_user, project) is not True
-                   or project.get_is_editable() is not True):
-                    return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
-                else:
+                if(project_crud.is_current_project_editable(current_user,project)):
                     question_form = QuestionForm(project_id=project_id)
                     context['sorted_questions'] = question_form.get_random_questions()
 
                     return utils.layout_render(request, context)
+                else:
+                    return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
         else:
             return utils.dashboard_redirect_and_toast(request, 'You need to have a project.')
 

@@ -10,12 +10,12 @@ def log_access(get_response):
     """
     def middleware(request):
         if __is_logging(request):
-            log = __before_view(request)
+            request.access_log = __before_view(request)
 
         response = get_response(request)
 
         if __is_logging(request):
-            __after_view(response, log)
+            __after_view(response, request.access_log)
 
         return response
 
@@ -26,7 +26,7 @@ def __before_view(request):
     Does the logging with the information in the request
     """
     try:
-        gatorlink = utils.get_current_user_gatorlink(request)
+        gatorlink = request.user.person.gatorlink
     except:
         gatorlink = None
     url = request.get_full_path()
@@ -75,6 +75,10 @@ def __after_view(response, log):
     """
     log.response_code = response.status_code
     log.reason_phrase = response.reason_phrase
+    try:
+        log.guid_changed = log.model.guid
+    except:
+        pass
     log.save()
 
 def __is_logging(request):
