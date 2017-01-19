@@ -20,3 +20,7 @@ def __is_project(model):
 def connect_model_signals():
     for model in AllRegistryModels:
         post_save.connect(model_push, model)
+
+def disconnect_for_loading():
+    for model in AllRegistryModels:
+        post_save.disconnect(model_push, model)
