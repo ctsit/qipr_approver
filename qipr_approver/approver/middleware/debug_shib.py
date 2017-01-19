@@ -8,7 +8,7 @@ class DebugShibMiddleware(object):
     """
     def __init__(self, get_response):
         self.get_response = get_response
-        if not settings.DEBUG:
+        if not settings.DEBUG_FAKE_SHIB:
             raise MiddlewareNotUsed
 
     def __call__(self, request):
