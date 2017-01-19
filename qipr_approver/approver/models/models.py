@@ -99,7 +99,10 @@ class Person(Provenance, Registerable):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        strs = [str(item) for item in [self.first_name, self.last_name, '(' +self.email_address + ')'] if len(item)]
+        first_name = self.first_name or ''
+        last_name = self.last_name or ''
+        email_address = '(' +self.email_address + ')' if self.email_address else ''
+        strs = [str(item) for item in [first_name, last_name, email_address] if len(item)]
         return ', '.join(strs)
 
     def get_natural_dict(self):

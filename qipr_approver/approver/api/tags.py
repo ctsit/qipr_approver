@@ -38,10 +38,6 @@ def remove_present(matches, fields, tags=[]):
             for tag in tags:
                 if getattr(match, field) == tag:
                     old.append(match)
-        try:
-            matches.remove(item)
-        except:
-            pass
     return matches
 
 def get_string(model, fields):
