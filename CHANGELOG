@@ -1,4 +1,13 @@
-## [1.0.0] - 2016-01-17
+## [1.0.01] - 2017-01-19
+## Summary
+ This update disables signals while loading data from outside sources. It also
+ has more robust handing of errors
+
+### Added
+ * Signals no longer are fired while import data (PFWhite)
+ * Django wont die with missing data (PFWhite)
+
+## [1.0.0] - 2017-01-17
 ## Summary
  This update finalizes design changes across the app, adds better authentication
  methods, and implements better security for requests.
