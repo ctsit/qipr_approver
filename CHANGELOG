@@ -1,3 +1,12 @@
+## [1.0.2] - 2017-01-19
+## Summary
+ This release corrects the slow down issue and address some other bugs discovered in release
+### Fixed
+* Give admins the ability to edit and submit project approver questions (Matthew McConnell)
+* Guids on access log for easier auditing (Patrick White)
+* Create a setting for the fake shib middleware to turn on instead of debug (Matthew McConnell)
+* Update the way access log gets gatorlink (Matthew McConnell)
+
 ## [1.0.01] - 2017-01-19
 ## Summary
  This update disables signals while loading data from outside sources. It also
