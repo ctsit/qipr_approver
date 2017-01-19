@@ -98,8 +98,19 @@ class Person(Provenance, Registerable):
     tag_property_name = 'email_address'
     is_admin = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        try:
+            for char in constants.invalid_email_characters:
+                self.email_address = self.email_address.replace(char, '')
+        except:
+            pass
+        super(Person, self).save(*args, **kwargs)
+
     def __str__(self):
-        strs = [str(item) for item in [self.first_name, self.last_name, '(' +self.email_address + ')'] if len(item)]
+        first_name = self.first_name or ''
+        last_name = self.last_name or ''
+        email_address = '(' +self.email_address + ')' if self.email_address else ''
+        strs = [str(item) for item in [first_name, last_name, email_address] if len(item)]
         return ', '.join(strs)
 
     def get_natural_dict(self):
@@ -131,7 +142,12 @@ class Project(Provenance, Registerable):
     mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
 
     def __str__(self):
-        return ' '.join([self.title, str(self.owner.gatorlink)])
+        title = self.title or 'NO TITLE'
+        try:
+            owner_gatorlink = str(self.owner.gatorlink)
+        except:
+            owner_gatorlink = 'NO GATORLINK FOR OWNER'
+        return ' '.join([title, owner_gatorlink])
 
     def get_is_editable(self):
         """

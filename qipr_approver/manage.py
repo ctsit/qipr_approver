@@ -10,13 +10,18 @@ if __name__ == "__main__":
     import django
     django.setup()
 
+    from approver.signals.bridge.all_signals import disconnect_signals
+
     if sys.argv[1] == 'loadmesh':
+        disconnect_signals()
         from approver.custom_commands import loadmesh
         loadmesh(sys.argv)
     elif sys.argv[1] == 'loadpeople':
+        disconnect_signals()
         from approver.custom_commands import loadpeople
         loadpeople(sys.argv)
     elif sys.argv[1] == 'loadprojects':
+        disconnect_signals()
         from approver.custom_commands import loadprojects
         loadprojects(sys.argv)
     else:

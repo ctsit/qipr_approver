@@ -41,6 +41,7 @@ def make_project(field_index_map, line):
 
     fixture_save(project)
     related_person_add(project, project_dict)
+    fixture_save(project)
 
     return field_index_map
 
