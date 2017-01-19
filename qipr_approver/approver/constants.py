@@ -105,4 +105,9 @@ total_qualifiers_2017 = 80
 
 SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'true')
 
-VERSION_NUMBER = '1.0.0'
+VERSION_NUMBER = '1.0.01'
+
+invalid_email_characters = [
+    '"',
+    ' ',
+]
