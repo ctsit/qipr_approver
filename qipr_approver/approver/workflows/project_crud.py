@@ -124,7 +124,9 @@ def current_user_is_project_owner(current_user, project):
     return current_user.person.id == project.owner.id
 
 def is_current_project_editable(current_user,project):
-    return current_user_is_superuser(current_user) or current_user_is_project_owner(current_user, project)
+    return current_user_is_superuser(current_user) or (
+           current_user_is_project_owner(current_user, project) and
+           project.get_is_editable())
 
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
