@@ -134,7 +134,12 @@ class Project(Provenance, Registerable):
     mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
 
     def __str__(self):
-        return ' '.join([self.title, str(self.owner.gatorlink)])
+        title = self.title or 'NO TITLE'
+        try:
+            owner_gatorlink = str(self.owner.gatorlink)
+        except:
+            owner_gatorlink = 'NO GATORLINK FOR OWNER'
+        return ' '.join([title, owner_gatorlink])
 
     def get_is_editable(self):
         """
