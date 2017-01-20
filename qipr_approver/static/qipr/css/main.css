@@ -13,6 +13,10 @@ nav .brand-logo {
     transform: translateX(0%);
     }
 
+.nav__secondary {
+    padding: 0 1rem .1rem;
+}
+
 body {
     display: flex;
     min-height: 100vh;
