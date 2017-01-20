@@ -1,11 +1,39 @@
 {% load staticfiles %}
-<div class="row error__margin">
-    <div class="col s12  nonapprove__center">
-        <div class="error__404">404</div>
-    </div>
-    <div class="col s12">
-        <div class="valign-wrapper">
-            <h1 class="valign error__404--header">Ooops! The page you are searching for does not exist or another error occurred. Try your search again or head back to the <a href="{% url 'approver:dashboard' %}">dashboard</a> to view your projects and profile.</h1>
-        </div>
-    </div>
+
+<div class="row nonapprove__margin--top">
+	<div class="col s12 nonapprove__center">
+		<img src="{% static 'qipr/img/caution.png' %}" class="nonapprove__caution" alt="IRB Caution Sign"/>
+	</div>
+    <div class="col s12 center-align">
+  		<h2>Please upgrade your browser to use QIPR.</h2>
+	</div>
+	<div class="col s12 m12 center-align">
+		<h5>Our website has detected that you are using an outdated browser. We built QIPR using the latest techniques and technologies. This makes QIPR faster and easier to use. Unfortunately, your browser does not support these technologies. An update is not required, but it is strongly encouraged to improve your experience.</h5>
+		<div class="col s12 center-align">
+			<h5>Download any one of the following browsers for best QIPR experience:</h5>
+		</div>
+		<div class="col s6 m3 center-align">
+			<a href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads"><img src="{% static 'qipr/img/explorer.png' %}" class="responsive-img browser__icon" alt="Internet Explorer"/></a>
+			<a class="nonapprove__body--link" href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads">Internet Explorer</a>
+			<p>Version 10+</p>
+		</div>
+		<div class="col s6 m3 center-align">
+			<a href="https://www.mozilla.org/en-US/firefox/new/"><img src="{% static 'qipr/img/mozilla.png' %}" class="responsive-img browser__icon" alt="Mozilla Firefox"/></a>
+			<a class="nonapprove__body--link" href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>
+			<p>Version 50+</p>
+		</div>
+		<div class="col s6 m3 center-align">
+			<a href="https://www.google.com/chrome/browser/desktop/"><img src="{% static 'qipr/img/chrome.png' %}" class="responsive-img browser__icon" alt="Google Chrome"/></a>
+			<a class="nonapprove__body--link" href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a>
+			<p>Version 54+</p>
+		</div>
+		<div class="col s6 m3 center-align">
+			<a href="https://support.apple.com/downloads/safari"><img src="{% static 'qipr/img/safari.png' %}" class="responsive-img browser__icon" alt="Apple Safari"/></a>
+			<a class="nonapprove__body--link" href="https://support.apple.com/downloads/safari">Apple Safari</a>
+			<p>Version 5+</p>
+		</div>
+	</div>
+	<div class="col s12">
+		<a class="back__dashboard center" href="{% url 'approver:dashboard' %}">Continue to site anyway >></a>
+	</div>
 </div>

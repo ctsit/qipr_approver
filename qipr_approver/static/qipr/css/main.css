@@ -1236,6 +1236,11 @@ textarea.textarea__height {
     top: .2rem;
 }
 
+/*Upgrade Browser Page*/
+.browser__icon {
+    padding: 2.5rem;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
