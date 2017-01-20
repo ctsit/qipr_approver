@@ -1,4 +1,57 @@
-## [0.8.0] = 2016-01-08
+## [1.0.2] - 2017-01-19
+## Summary
+ This release corrects the slow down issue and address some other bugs discovered in release
+### Fixed
+* Give admins the ability to edit and submit project approver questions (Matthew McConnell)
+* Guids on access log for easier auditing (Patrick White)
+* Create a setting for the fake shib middleware to turn on instead of debug (Matthew McConnell)
+* Update the way access log gets gatorlink (Matthew McConnell)
+
+## [1.0.01] - 2017-01-19
+## Summary
+ This update disables signals while loading data from outside sources. It also
+ has more robust handing of errors
+
+### Added
+ * Signals no longer are fired while import data (PFWhite)
+ * Django wont die with missing data (PFWhite)
+
+## [1.0.0] - 2017-01-17
+## Summary
+ This update finalizes design changes across the app, adds better authentication
+ methods, and implements better security for requests.
+
+### Added
+* Added all the proper urls to their spots (Matthew McConnell)
+* Add new approver host settings and constants (Matthew McConnell)
+* Added the ability to add collaborators or advisors by name or email address (PFWhite)
+* More robust logging (PFWhite)
+* QIPR now requires and can use Shibboleth for authentication (Matthew McConnell)
+* Fixed the way api calls are handled and processed (PFWhite)
+* Add and remove fields on project page overall project goal, measures (Amber Allen)
+
+### Fixed
+* Made the dash search bar search on enter press (Patrick White)
+* AJAX calls failing due to wrong links (Matthew McConnell)
+* IE should now have functionality (Patrick White)
+
+### Changed
+* add required to title/description and First/Last name fields so the form can’t be submitted without them (Matthew McConnell)
+* Landing Page redesign (Amber)
+* Removed relevance score from similar projects page (Patrick White)
+* Changed project fields (Patrick White)
+* Change CQI to QI on admin dashboard and userlist (Amber Allen)
+* Add spacing between headings on project page (Amber Allen)
+* Fix left margin on bluebox clinical area (Amber Allen)
+* Resize blue boxes on About you page (Amber Allen)
+* Format form fields to be same width, modify blue boxes (Amber Allen)
+* Add left padding to id column on dashboard (Amber Allen)
+* Make QI forms buttons responsive on mobile. (Amber Allen)
+* Update QI criteria text (Amber Allen)
+* Remove 'Continuous' from landing page. Update css to resize bg image and blue box proportionally. (Amber Allen)
+* Remove 'website' txt from footer (Amber Allen)
+
+## [0.8.0] - 2016-01-08
 ## Summary
   This release adds a two admin pages - one for users and one for projects. Admins have the
   ability to edit/delete and archive projects. New fields were added to the project page to

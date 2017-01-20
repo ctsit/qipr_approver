@@ -79,6 +79,10 @@ celerybeat-schedule
 # dotenv
 .env
 
+# virtualenv
+venv/
+ENV/
+
 # Spyder project settings
 .spyderproject
 
@@ -88,3 +92,6 @@ celerybeat-schedule
 #Vagrant machine stuff
 .vagrant
 .swp
+
+# django fixture tests
+fixtures/test*

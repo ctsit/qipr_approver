@@ -37,6 +37,10 @@ def create_new_project_from_user_form(current_user, form):
 
     return new_project
 
+def __is_email(tag):
+    if '@' in tag:
+        return tag
+
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -49,31 +53,22 @@ def update_project_from_project_form(project, project_form, editing_user):
 
     project.title = project_form.get('title')
     project.description = project_form.get('description')
-    project.objective = project_form.get('objective')
-    project.scope = project_form.get('scope')
+    project.overall_goal = project_form.get('overall_goal')
     project.measures = project_form.get('measures')
-    project.milestones = project_form.get('milestones')
     project.proposed_start_date = parse_date(project_form.get('proposed_start_date'))
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
     project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
-    advisor = extract_tags(project_form, 'advisor')
+    advisor = [tag for tag in extract_tags(project_form, 'advisor') if __is_email(tag)]
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
-    collaborator = extract_tags(project_form, 'collaborator')
-    keyword = extract_tags(project_form, 'keyword')
+    collaborator = [tag for tag in extract_tags(project_form, 'collaborator') if __is_email(tag)]
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
                 tags=mesh_keyword,
                 tag_model=Descriptor,
-                tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='keyword',
-                tags=keyword,
-                tag_model=Keyword,
                 tagging_user=editing_user)
 
     update_tags(model=project,
@@ -129,7 +124,9 @@ def current_user_is_project_owner(current_user, project):
     return current_user.person.id == project.owner.id
 
 def is_current_project_editable(current_user,project):
-    return current_user_is_superuser(current_user) or current_user_is_project_owner(current_user, project)
+    return current_user_is_superuser(current_user) or (
+           current_user_is_project_owner(current_user, project) and
+           project.get_is_editable())
 
 def current_user_is_project_advisor_or_collaborator(current_user, project):
     """
@@ -203,8 +200,8 @@ def _calculate_similarity_score(project, member):
     if project.title is not None and member.title is not None:
         similarity += title_factor * _jaccard_similarity(project.title, member.title)
 
-    if project.keyword is not None and member.keyword is not None:
-        similarity += keyword_factor * _jaccard_similarity(project.keyword.all(), member.keyword.all())
+    if project.mesh_keyword is not None and member.mesh_keyword is not None:
+        similarity += keyword_factor * _jaccard_similarity(project.mesh_keyword.all(), member.mesh_keyword.all())
 
     if project.description is not None and member.description is not None:
         similarity += description_factor * _jaccard_similarity(project.description, member.description)
@@ -227,7 +224,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(element.name)
+        res.add(getattr(element, element.tag_property_name))
     return res
 
 def _jaccard_similarity(doc1, doc2):
