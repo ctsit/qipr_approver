@@ -94,7 +94,6 @@ registry_hostportpath = registry_hostport + ( registry_path if registry_path els
 registry_search_path = registry_hostportpath + '/search'
 
 registry_endpoints = {
-    'add_model': '/'.join([registry_hostportpath, 'api', 'add_model']),
 }
 
 base_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST'] + os.environ['QIPR_APPROVER_APPROVER_PATH']
