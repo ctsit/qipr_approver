@@ -61,6 +61,8 @@ DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
 DEBUG_FAKE_SHIB = False 
 
 ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
+#Used for the debug tool bar, put your ip(s) to activate the toolbar
+INTERNAL_IPS = []
 
 
 # Application definition
@@ -73,9 +75,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
