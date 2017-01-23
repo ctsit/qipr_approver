@@ -6,3 +6,4 @@ pylint
 coverage
 coveralls
 django-debug-toolbar
+pytz
