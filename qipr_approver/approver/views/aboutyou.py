@@ -25,6 +25,8 @@ def about_you(request):
         user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
         person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
 
+        request.access_log.model = person
+
         if (not person.first_name.strip() or not person.last_name.strip()):
             return utils.about_you_redirect_and_toast(request, "First and last name are required.")
         return utils.dashboard_redirect_and_toast(request, 'Profile Saved!')
@@ -53,7 +55,10 @@ def about_you_superuser(request,person_id=None):
         about_you_form = request.POST
         user = Person.objects.get(id=person_id).user
         editing_user = request.user
-        user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+        person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+
+        request.access_log.model = person
+
         return utils.userlist_su_redirect_and_toast(request,"Profile Saved!")
 
     else:

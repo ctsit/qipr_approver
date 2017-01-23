@@ -13,6 +13,10 @@ nav .brand-logo {
     transform: translateX(0%);
     }
 
+.nav__secondary {
+    padding: 0 1rem .1rem;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -1234,6 +1238,11 @@ textarea.textarea__height {
     font-size: 1.3rem;
     position: relative;
     top: .2rem;
+}
+
+/*Upgrade Browser Page*/
+.browser__icon {
+    padding: 2.5rem;
 }
 
 @media screen and (min-width: 420px) {

@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Amiri|Eczar" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-
+        <title>QIPR</title>
     </head>
     <body>
         <div id="BASE_URL" style="display: none">{{base_url}}</div>
@@ -42,6 +42,26 @@
                     </div>
                 </nav>
             </div>
+
+
+
+
+<!-- CONDITIONAL STAGING WARNING CODE BELOW  -->
+
+            <div class="navbar-fixed navbar-fixed--admin">
+                <nav class="orange">
+                    <div class="nav-wrapper">
+                            <div class="orange nav__secondary">
+                                <h5>Staging Site: This site is for experimental and exploratory purposes only. If you would like to enter real project data, please do so on the live site <span><a href="https://qipr.ctsi.ufl.edu/approver/">https://qipr.ctsi.ufl.edu/approver/</a></span></h5>
+                            </div>
+                    </div>
+                </nav>
+            </div>
+
+<!-- END STAGING WARNING CODE  -->
+
+
+
 
             <div class="container">
                 {% include content %}
