@@ -85,6 +85,17 @@ function apply_fixtures() {
     python3 manage.py loaddata ./approver/fixtures/*
 }
 
+function copy_settings_example() {
+    pushd /var/www/qipr/approver/qipr_approver/deploy
+    if [ -e settings.ini ]; then
+        echo "settings.ini already defined"
+    else
+        echo "settings.ini created from settings.example.ini"
+        cp settings.example.ini settings.ini
+    fi
+    popd
+}
+
 function install_qipr_approver_fresh_vm () {
     pushd /var/www/qipr/approver
         create_virtualenv
