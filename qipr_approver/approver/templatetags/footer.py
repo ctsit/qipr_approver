@@ -1,5 +1,5 @@
 from django import template
-from approver.models import Project, Person
+from approver.models import Project, Person, User
 from django.utils import timezone
 
 import approver.constants as constants
