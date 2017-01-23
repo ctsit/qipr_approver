@@ -26,7 +26,7 @@ def blacklist_user_agent(get_response):
     return middleware
 
 def __is_valid(request):
-    user_agent = request.META.get('HTTP_USER_AGENT')
+    user_agent = request.META.get('HTTP_USER_AGENT') or ''
 
     valid_ua = __is_valid_user_agent(user_agent, constants.bad_user_agent_strings)
     is_static_request = __is_static_request(request)
