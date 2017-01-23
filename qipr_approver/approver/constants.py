@@ -111,3 +111,10 @@ invalid_email_characters = [
     '"',
     ' ',
 ]
+
+# Internet explorer 8 is bad
+bad_user_agent_strings = [
+    'MSIE 8.0',
+]
+
+is_staging = True if os.environ['IS_STAGING'] == 'true' else False
