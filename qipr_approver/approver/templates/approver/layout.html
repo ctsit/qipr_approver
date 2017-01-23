@@ -9,12 +9,12 @@
         <link href="https://fonts.googleapis.com/css?family=Amiri|Eczar" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'qipr/img/favicon-32x32.png' %}">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-
+        <title>QIPR</title>
     </head>
     <body>
         <div id="BASE_URL" style="display: none">{{base_url}}</div>
         <main>
-            <div class="navbar-fixed">
+            <div class="navbar-fixed" style="display:{{ navbar_display }};">
                 <nav>
                     <div class="nav-wrapper bg-blue">
                         <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
@@ -43,6 +43,17 @@
                 </nav>
             </div>
 
+            <div class="navbar-fixed navbar-fixed--admin" style="display:{{ staging_bar_display }};">
+                <nav class="orange">
+                    <div class="nav-wrapper">
+                            <div class="orange nav__secondary">
+                                <h5>Staging Site: This site is for experimental and exploratory purposes only. If you would like to enter real project data, please do so on the live site <span><a href="https://qipr.ctsi.ufl.edu/approver/">https://qipr.ctsi.ufl.edu/approver/</a></span></h5>
+                            </div>
+                    </div>
+                </nav>
+            </div>
+
+
             <div class="container">
                 {% include content %}
             </div>
@@ -54,7 +65,9 @@
         </main>
 
         {% load footer %}
-        {% footer %}
+        <div class="{% if hide_stats %}hide_stats{% endif %}">
+            {% footer %}
+        </div>
         <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
         <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
         <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>

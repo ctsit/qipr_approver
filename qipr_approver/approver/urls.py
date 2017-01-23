@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^api/tags$', api.tags, name='api_tags'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^error404/$', views.error404, name='error404'),
+    url(r'^unsupported_browser/$', views.unsupported_browser, name='unsupported_browser'),
 ]

@@ -94,7 +94,7 @@ registry_hostportpath = registry_hostport + ( registry_path if registry_path els
 registry_search_path = registry_hostportpath + '/search'
 
 registry_endpoints = {
-    'add_model': '/'.join([registry_hostport, 'api', 'add_model']),
+    'add_model': '/'.join([registry_hostportpath, 'api', 'add_model']),
 }
 
 base_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST'] + os.environ['QIPR_APPROVER_APPROVER_PATH']
@@ -105,9 +105,16 @@ total_qualifiers_2017 = 80
 
 SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'true')
 
-VERSION_NUMBER = '1.0.2'
+VERSION_NUMBER = '1.0.3'
 
 invalid_email_characters = [
     '"',
     ' ',
 ]
+
+# Internet explorer 8 is bad
+bad_user_agent_strings = [
+    'MSIE 8.0',
+]
+
+is_staging = True if os.environ['IS_STAGING'] == 'true' else False

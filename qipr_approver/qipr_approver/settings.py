@@ -43,6 +43,7 @@ def define_env():
     os.environ['QIPR_APPROVER_APPROVER_PATH'] = get_config('approver_path', 'hosts')
     os.environ['QIPR_SHARED_BRIDGE_KEY'] = get_config('shared_bridge_key')
     os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
+    os.environ['IS_STAGING'] = get_config('is_staging')
 
 define_env()
 
@@ -58,9 +59,11 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
-DEBUG_FAKE_SHIB = False 
+DEBUG_FAKE_SHIB = True if get_config('debug_fake_shib') == 'true' else False
 
 ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
+#Used for the debug tool bar, put your ip(s) to activate the toolbar
+INTERNAL_IPS = []
 
 
 # Application definition
@@ -73,9 +76,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,6 +93,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'approver.middleware.session_expire',
     'approver.middleware.log_access',
+    'approver.middleware.blacklist_user_agent',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -96,7 +102,7 @@ AUTHENTICATION_BACKENDS = [
 
 #Set if shib is enabled or not
 SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
-LOGIN_URL = '/shib/'
+LOGIN_URL =  get_config('approver_path', 'hosts') + '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 

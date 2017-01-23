@@ -97,13 +97,11 @@
                                                 </div>
                                             </li>
                                            {% endif %}
-                                            {% if project.has_similar_projects != 0 %}
-                                                <li class="dashboard__list">
-                                                    <div class="dashboard__status--btns">
-                                                        <a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">View Similar Projects</a>
-                                                    </div>
-                                                </li>
-                                            {% endif %}
+                                            <li class="dashboard__list">
+                                                <div class="dashboard__status--btns">
+                                                    <a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Find Similar Projects</a>
+                                                </div>
+                                            </li>
                                         </ul></a></td>
                             {% endif %}
                         </tr>
