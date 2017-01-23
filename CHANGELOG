@@ -1,3 +1,31 @@
+## [1.0.3] - 2017-01-23
+## Summary
+ This release addresses performance issues discovered while using the application.
+ There are also some UI enhancements.
+
+### Fixed
+* Settings will be auto generated for vagrants (Patrick White)
+* Vagrant up urls fix (Patrick White)
+* Remove adding options to tags on first load to reduce load time (Matthew McConnell)
+* Optimize footer queries (Matthew McConnell)
+* Update registry endpoints in constants (Matthew McConnell)
+* Extend max width of training program input (Amber Allen)
+* Fix login url in settings to include any path before it (Matthew McConnell)
+
+### Added
+* Unsupported Browser page (Patrick White)
+* Create browser upgrade page (Amber Allen)
+* Create secondary nav bar alert for staging site (Amber Allen)
+* update bootstrap functions to handle static files (Matthew McConnell)
+* Add the django debug toolbar as a requirement (Matthew McConnell)
+
+### Changed
+* Make dashboard no longer evaluate similar projects (Matthew McConnell)
+* Remove question Will the results of the project be published.. (Amber Allen)
+* Add blue box around suffix field (Amber Allen)
+* Add blue box to collaborators and advisors on project page (Amber Allen)
+* Change PI to QPI (Amber Allen)
+
 ## [1.0.2] - 2017-01-19
 ## Summary
  This release corrects the slow down issue and address some other bugs discovered in release
