@@ -5,3 +5,5 @@ requests==2.10.0
 pylint
 coverage
 coveralls
+django-debug-toolbar
+pytz

@@ -101,6 +101,13 @@ function apply_fixtures() {
     source venv/bin/activate
     python3 manage.py loaddata ./approver/fixtures/user.json
     python3 manage.py loaddata ./approver/fixtures/*
+    deactivate
+}
+
+function handle_static_files() {
+    source venv/bin/activate
+    python3 manage.py collectstatic
+    deactivate
 }
 
 function install_qipr_approver_fresh_vm () {
@@ -110,6 +117,7 @@ function install_qipr_approver_fresh_vm () {
         create_database
         migrate_application_database
         apply_fixtures
+        handle_static_files
         apache_setup
     popd
 }
@@ -120,5 +128,6 @@ function install_qipr_approver() {
         pip_dependencies
         migrate_application_database
         apply_fixtures
+        handle_static_files
     popd
 }

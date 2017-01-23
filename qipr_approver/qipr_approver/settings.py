@@ -62,6 +62,8 @@ DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
 DEBUG_FAKE_SHIB = True if get_config('debug_fake_shib') == 'true' else False
 
 ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
+#Used for the debug tool bar, put your ip(s) to activate the toolbar
+INTERNAL_IPS = []
 
 
 # Application definition
@@ -74,9 +76,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -98,7 +102,7 @@ AUTHENTICATION_BACKENDS = [
 
 #Set if shib is enabled or not
 SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
-LOGIN_URL = '/shib/'
+LOGIN_URL =  get_config('approver_path', 'hosts') + '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 
