@@ -44,6 +44,7 @@ def layout_render(request, context):
     context['base_url'] = constants.base_url
     context['registry_search_url'] = constants.registry_search_path
     context['faq_url'] = constants.registry_hostportpath
+    context['staging_bar_display'] = '' if constants.is_staging else 'none'
     return render(request, 'approver/layout.html', context)
 
 def get_current_user_gatorlink(request):

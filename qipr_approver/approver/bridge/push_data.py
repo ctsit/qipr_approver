@@ -15,7 +15,7 @@ def push_model(model):
     response = None
     url = '/'.join([registry_endpoints.get('add_model'), req_hash])
     try:
-        response = requests.post(url, data=json_data, verify=False)
+        response = requests.post(url, data=json_data)
         if response.status_code == 200 and not model.is_registered():
             model.register()
             model.save(api_user)

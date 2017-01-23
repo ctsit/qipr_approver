@@ -14,7 +14,7 @@
     <body>
         <div id="BASE_URL" style="display: none">{{base_url}}</div>
         <main>
-            <div class="navbar-fixed">
+            <div class="navbar-fixed" style="display:{{ navbar_display }};">
                 <nav>
                     <div class="nav-wrapper bg-blue">
                         <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
@@ -43,12 +43,7 @@
                 </nav>
             </div>
 
-
-
-
-<!-- CONDITIONAL STAGING WARNING CODE BELOW  -->
-
-            <div class="navbar-fixed navbar-fixed--admin">
+            <div class="navbar-fixed navbar-fixed--admin" style="display:{{ staging_bar_display }};">
                 <nav class="orange">
                     <div class="nav-wrapper">
                             <div class="orange nav__secondary">
@@ -57,10 +52,6 @@
                     </div>
                 </nav>
             </div>
-
-<!-- END STAGING WARNING CODE  -->
-
-
 
 
             <div class="container">
@@ -74,7 +65,9 @@
         </main>
 
         {% load footer %}
-        {% footer %}
+        <div class="{% if hide_stats %}hide_stats{% endif %}">
+            {% footer %}
+        </div>
         <script type="text/javascript" src="{% static 'qipr/js/materialize.js' %}"></script>
         <script type="text/javascript" src="{% static 'qipr/js/app.js' %}"></script>
         <script type="text/javascript" src="{% static 'qipr/js/functions.js' %}"></script>

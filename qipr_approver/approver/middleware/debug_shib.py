@@ -13,8 +13,8 @@ class DebugShibMiddleware(object):
 
     def __call__(self, request):
         #add fake shib variables here
-        request.META['REMOTE_USER'] = 'kbarber@ufl.edu'
-        request.META['HTTP_GLID'] = 'kbarber'
+        request.META['REMOTE_USER'] = 'pfwhite@ufl.edu'
+        request.META['HTTP_GLID'] = 'pfwhite'
         request.META['HTTP_MAIL'] = 'kbarber@ufl.edu'
         request.META['HTTP_GIVENNAME'] = 'Kate'
         request.META['HTTP_SN'] = 'Barber'

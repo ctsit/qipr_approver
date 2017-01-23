@@ -34,6 +34,14 @@
 		</div>
 	</div>
 	<div class="col s12">
-		<a class="back__dashboard center" href="{% url 'approver:dashboard' %}">Continue to site anyway >></a>
+      <form action="{% url 'approver:unsupported_browser' %}"
+            method="post"
+            class="center-align"
+            onkeypress="return event.keyCode != 13;">
+          {% csrf_token %}
+          <button class="btn continue_anyways" type="submit">
+            Continue to site anyway >>
+          </button>
+      </form>
 	</div>
 </div>
