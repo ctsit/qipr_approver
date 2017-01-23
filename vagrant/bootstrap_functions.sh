@@ -73,27 +73,9 @@ function apache_setup() {
     service apache2 start
 }
 
-function swap_to_migration_urls () {
-    pushd qipr_approver
-        cp urls.py temp_urls.py
-        rm urls.py
-        cp migration_urls.py urls.py
-    popd
-}
-
-function swap_to_real_urls () {
-    pushd qipr_approver
-        rm urls.py
-        cp temp_urls.py urls.py
-        rm temp_urls.py
-    popd
-}
-
 function migrate_application_database () {
     source venv/bin/activate
-    swap_to_migration_urls
     python3 manage.py migrate
-    swap_to_real_urls
     deactivate
 }
 
@@ -108,6 +90,17 @@ function handle_static_files() {
     source venv/bin/activate
     python3 manage.py collectstatic
     deactivate
+}
+
+function copy_settings_example() {
+    pushd /var/www/qipr/approver/qipr_approver/deploy
+    if [ -e settings.ini ]; then
+        echo "settings.ini already defined"
+    else
+        echo "settings.ini created from settings.example.ini"
+        cp settings.example.ini settings.ini
+    fi
+    popd
 }
 
 function install_qipr_approver_fresh_vm () {
