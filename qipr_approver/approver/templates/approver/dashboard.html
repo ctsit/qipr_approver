@@ -127,13 +127,13 @@
 
                       <span class="current">
                           Page {{ projects.number }} of {{ projects.paginator.num_pages }}
-                          <span>,    </span>
                       </span>
 
                       {% if projects.has_next %}
                           <a href="?page={{ projects.next_page_number }}"> &gt; </a>
                       {% endif %}
                       {% if projects.has_next or projects.has_previous %}
+                          <br>
                           <a href="?page=all">Show All</a>
                       {% endif %}
                   </span>

@@ -85,13 +85,10 @@
                                 <!-- ARCHIVE BUTTON -->
                             {% if request.session.su %}
                                 {% if project.is_archived == 0 %}
-                                
                                     <div class="dashboard_btns-admin">
                                         <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_action' action='archive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to archive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Archive Project" /></form>
                                     </div>
-                                
                                 {% else %}
-                                
                                     <div class="dashboard_btns-admin">
                                         <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_action' action='unarchive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to unarchive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="UnArchive Project" /></form>
                                     </div>
@@ -155,13 +152,13 @@
 
                       <span class="current">
                           Page {{ projects.number }} of {{ projects.paginator.num_pages }}
-                          <span>,    </span>
                       </span>
 
                       {% if projects.has_next %}
                           <a href="?page={{ projects.next_page_number }}"> &gt; </a>
                       {% endif %}
                       {% if projects.has_next or projects.has_previous %}
+                          <br>
                           <a href="?page=all">Show All</a>
                       {% endif %}
                   </span>
