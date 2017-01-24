@@ -953,6 +953,14 @@ iframe {
     margin: 0;
 }
 
+.tagbox__spinner-box-wrapper {
+    position: relative;
+}
+
+.form-tagbox-wrapper .tag_label {
+    min-height: 3rem;
+}
+
 .tagbox__input {
     position: relative;
 }
@@ -1247,6 +1255,13 @@ textarea.textarea__height {
 
 .continue_anyways {
     margin-top: 3rem;
+}
+
+.preloader-wrapper {
+    position: absolute;
+    right: .8rem;
+    top: 3.8rem;
+    z-index: 1;
 }
 
 .hide_stats .dashboard_stats{
