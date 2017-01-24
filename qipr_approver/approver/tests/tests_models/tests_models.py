@@ -99,7 +99,7 @@ class QIInterestModel(TestCase):
 
 class SpecialityModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Speciality, "name" ,"Char", 50))
+        self.assertTrue(check_fields(Speciality, "name" ,"Char", 80))
         self.assertTrue(check_fields(Speciality, "description", "Char", 100))
 
 class SuffixModel(TestCase):
