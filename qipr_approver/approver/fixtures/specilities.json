@@ -1,0 +1,1679 @@
+[
+{
+  "model": "approver.speciality",
+  "pk": 48,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Abdominal Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 49,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Addiction Psychiatry Psychiatry"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 50,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Adolescent Medicine Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 51,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Adult Reconstructive Orthopaedics Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 52,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Advanced Heart Failure & Transplant Cardiology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 53,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Allergy & Immunology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 54,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Anesthesiology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 55,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Biochemical Genetics Medical Genetics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 56,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Blood Banking - Transfusion Medicine Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 57,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Cardiothoracic Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 58,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Cardiovascular Disease Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 59,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Chemical Pathology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 60,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Child & Adolescent Psychiatry Psychiatry"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 61,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Child Abuse Pediatrics Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 62,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Child Neurology Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 63,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Clinical & Laboratory Immunology Allergy & Immunology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 64,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Clinical Cardiac Electrophysiology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 65,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Clinical Neurophysiology Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 66,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Colon & Rectal Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 67,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Congenital Cardiac Surgery Thoracic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 68,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Craniofacial Surgery Plastic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 69,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Critical Care Medicine Anesthesiology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 70,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Critical Care Medicine Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 71,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Cytopathology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 72,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Dermatology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 73,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Dermatopathology Dermatology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 74,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Emergency Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 75,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Endocrinology, Diabetes & Metabolism Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 76,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Endovascular Surgical Neuroradiology Neurological Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 77,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Endovascular Surgical Neuroradiology Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 78,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Endovascular Surgical Neuroradiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 79,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Family Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 80,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Family Practice"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 81,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Female Pelvic Medicine & Reconstructive Surgery Obstetrics & Gynecology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 82,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Foot & Ankle Orthopaedics Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 83,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Forensic Pathology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 84,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Forensic Psychiatry Psychiatry"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 85,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Gastroenterology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 86,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Geriatric Medicine Family Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 87,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Geriatric Medicine Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 88,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Geriatric Medicine Family Practice"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 89,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Geriatric Psychiatry Psychiatry"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 90,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hand Surgery Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 91,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hand Surgery Plastic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 92,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hand Surgery Surgery-General"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 93,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hematology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 94,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hematology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 95,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Hematology & Oncology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 96,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Infectious Disease Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 97,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 98,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Internal Medicine-Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 99,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Interventional Cardiology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 100,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Medical Genetics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 101,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Medical Microbiology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 102,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Medical Toxicology Emergency Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 103,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Medical Toxicology Preventive Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 104,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Molecular Genetic Pathology Medical Genetics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 105,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:30Z",
+    "last_modified": "2017-01-24T14:37:30Z",
+    "description": null,
+    "name": "Muscoskeletal Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 106,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Musculoskeletal Oncology Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 107,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neonatal-Perinatal Medicine Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 108,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Nephrology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 109,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neurological Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 110,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 111,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neuromuscular Medicine Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 112,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neuromuscular Medicine Physical Medicine & Rehabilitation"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 113,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neuropathology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 114,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Neuroradiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 115,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Nuclear Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 116,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Nuclear Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 117,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Obstetric Anesthesiology Anesthesiology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 118,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Obstetrics & Gynecology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 119,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Oncology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 120,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Ophthalmic Plastic & Reconstructive Surgery Ophthalmology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 121,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Ophthalmology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 122,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Orthopaedic Sports Medicine Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 123,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 124,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Orthopaedic Surgery of the Spine Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 125,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Orthopaedic Trauma Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 126,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Otolaryngology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 127,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Otology - Neurotology Otolaryngology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 128,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pain Medicine Anesthesiology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 129,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pain Medicine Neurology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 130,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pain Medicine Physical Medicine & Rehabilitation"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 131,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 132,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Anesthesiology Anesthesiology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 133,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Cardiology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 134,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Critical Care Medicine Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 135,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Emergency Medicine Emergency Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 136,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Emergency Medicine Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 137,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Endocrinology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 138,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Gastroenterology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 139,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Hematology-Oncology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 140,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Infectious Diseases Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 141,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Nephrology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 142,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Orthopaedics Orthopaedic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 143,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Otolaryngology Otolaryngology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 144,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Pathology Pathology-Anatomic & Clinical"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 145,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Pulmonology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 146,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 147,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Rheumatology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 148,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Sports Medicine Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 149,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Surgery Surgery-General"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 150,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Transplant Hepatology Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 151,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatric Urology Urology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 152,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pediatrics"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 153,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Physical Medicine & Rehabilitation"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 154,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Plastic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 155,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Preventive Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 156,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Procedural Dermatology Dermatology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 157,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Psychiatry"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 158,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pulmonary Disease Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 159,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Pulmonary Disease & Critical Care Medicine Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 160,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Radiation Oncology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 161,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 162,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Rheumatology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 163,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:31Z",
+    "last_modified": "2017-01-24T14:37:31Z",
+    "description": null,
+    "name": "Sleep Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 164,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Spinal Cord Injury Medicine Physical Medicine & Rehabilitation"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 165,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Sports Medicine Emergency Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 166,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Sports Medicine Family Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 167,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Sports Medicine Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 168,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Sports Medicine Physical Medicine & Rehabilitation"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 169,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Surgery-General"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 170,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Surgical Critical Care Surgery-General"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 171,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Thoracic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 172,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Thoracic Surgery-Integrated Thoracic Surgery"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 173,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Transplant Hepatology Internal Medicine"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 174,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Urology"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 175,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Vascular & Interventional Radiology Radiology-Diagnostic"
+  }
+},
+{
+  "model": "approver.speciality",
+  "pk": 176,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2017-01-24T14:37:32Z",
+    "last_modified": "2017-01-24T14:37:32Z",
+    "description": null,
+    "name": "Vascular Surgery Surgery-General"
+  }
+}
+]
