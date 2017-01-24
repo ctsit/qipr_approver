@@ -60,8 +60,10 @@ class QI_Interest(Provenance, Tag):
     pass
 class Self_Classification(Provenance, DataList):
     pass
+
 class Speciality(Provenance, Tag):
-    pass
+    name = models.CharField(max_length=80)
+
 class Suffix(Provenance, Tag):
     pass
 
