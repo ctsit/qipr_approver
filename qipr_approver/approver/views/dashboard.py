@@ -32,11 +32,14 @@ def dashboard(request,project_id=None):
         paginator = Paginator(projects_list, projects_per_page)
         page = request.GET.get('page')
         try:
+            if page == 'all':
+                projects = projects_list
+            else:
                 projects = paginator.page(page)
         except PageNotAnInteger:
-                projects = paginator.page(1)
+            projects = paginator.page(1)
         except EmptyPage:
-                projects = paginator.page(paginator.num_pages)
+            projects = paginator.page(paginator.num_pages)
 
         person = request.user.person
         context = {
@@ -44,6 +47,7 @@ def dashboard(request,project_id=None):
             'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session),
             'search_query': search_query,
+            'show_all': page == 'all',
             'person': person
         }
         return utils.layout_render(request, context)
@@ -59,7 +63,7 @@ def dashboard(request,project_id=None):
 def get_project_context(request,search_query,super_user=False):
     '''Super Users can view Archived Projects.All the available projects
      will be returned. If not Super User only projects that are not archived will be shown'''
-    user = request.user 
+    user = request.user
     if super_user:
         projects = [__get_project_details(project,"Super_User") for project in Project.objects.all().filter(title__icontains=search_query)]
         return projects
@@ -93,11 +97,14 @@ def dashboard_su(request,action=None,project_id=None):
         paginator = Paginator(projects_list, projects_per_page)
         page = request.GET.get('page')
         try:
+            if page == 'all':
+                projects = projects_list
+            else:
                 projects = paginator.page(page)
         except PageNotAnInteger:
-                projects = paginator.page(1)
+            projects = paginator.page(1)
         except EmptyPage:
-                projects = paginator.page(paginator.num_pages)
+            projects = paginator.page(paginator.num_pages)
 
         person = request.user.person
         context = {
@@ -105,6 +112,7 @@ def dashboard_su(request,action=None,project_id=None):
             'projects': projects,
             'toast_text': utils.get_and_reset_toast(request.session),
             'search_query': search_query,
+            'show_all': page == 'all',
             'person': active_person
         }
         return utils.layout_render(request, context)
