@@ -111,6 +111,14 @@
 
       <div class="row">
           <div class="col s12">
+            {% if show_all %}
+              <div class="pagination center-align">
+                  <span class="step-links">
+                      <a href="{% url 'approver:dashboard' %}">Paginate Projects</a>
+                  </span>
+              </div>
+            {% endif %}
+            {% if not show_all %}
               <div class="pagination center-align">
                   <span class="step-links">
                       {% if projects.has_previous %}
@@ -119,13 +127,17 @@
 
                       <span class="current">
                           Page {{ projects.number }} of {{ projects.paginator.num_pages }}
+                          <span>,    </span>
                       </span>
 
                       {% if projects.has_next %}
                           <a href="?page={{ projects.next_page_number }}"> &gt; </a>
                       {% endif %}
+                      {% if projects.has_next or projects.has_previous %}
+                          <a href="?page=all">Show All</a>
+                      {% endif %}
                   </span>
-              </div>
+            {% endif %}
           </div>
       </div>
    </div> <!-- end right side of dashboard -->
