@@ -42,7 +42,7 @@
 
     //setup before functions
     var typingTimer;                //timer identifier
-    var doneTypingInterval = 200;  //time in ms (.5 seconds)
+    var doneTypingInterval = 400;  //time in ms (.4 seconds)
     var nodeSpinner;
 
     function getCookie(name) {
@@ -67,6 +67,31 @@
         // these HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
+
+    turnOnSpinner = function(node){
+        nodeSpinner = $('#spinner_' + getTagboxData(node, 'name'));
+        nodeSpinner.removeClass('hidden');
+    };
+
+    var getBaseURL = function () {
+        return document.getElementById('BASE_URL').innerHTML;
+    };
+
+    debouncer = function(func, wait, immediate) {
+	      var timeout;
+	      return function() {
+		        var context = this, args = arguments;
+		        var later = function() {
+			          timeout = null;
+			          if (!immediate) func.apply(context, args);
+		        };
+		        var callNow = immediate && !timeout;
+		        clearTimeout(timeout);
+		        timeout = setTimeout(later, wait);
+		        if (callNow) func.apply(context, args);
+	      };
+    };
+
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -74,19 +99,6 @@
             }
         }
     });
-
-    //on keyup, start the countdown
-    startTypingTimer = function(node){
-        clearTimeout(typingTimer);
-        nodeSpinner = $('#spinner_' + getTagboxData(node, 'name'));
-        nodeSpinner.removeClass('hidden');
-        window.typingTimer = setTimeout(doneTyping, doneTypingInterval, node);
-    };
-
-    var getBaseURL = function () {
-        return document.getElementById('BASE_URL').innerHTML;
-    };
-
     //user is "finished typing," do something
     function doneTyping (node) {
         //do something
@@ -147,6 +159,7 @@
     tagboxInputs = document.getElementsByClassName("tagbox__input");
 
     Array.prototype.forEach.call(tagboxInputs, function(node) {
+        var debounceRequest = debouncer(doneTyping.bind({}, node), doneTypingInterval);
         node.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode == 13) {
@@ -158,17 +171,20 @@
             closeDropDowns();
         });
         node.addEventListener("click", function(event) {
-            startTypingTimer(node);
+            turnOnSpinner(node);
+            debounceRequest();
         });
         node.addEventListener("focus", function(event) {
-            startTypingTimer(node);
+            turnOnSpinner(node);
+            debounceRequest();
         });
         node.addEventListener("input", function(event) {
             var invisibleSpace = '\u200B';
             if (event.target.value.search(invisibleSpace) > -1){
                 addTag(this);
             }
-            startTypingTimer(node);
+            turnOnSpinner(node);
+            debounceRequest();
             return true;
         });
     });
