@@ -1,3 +1,19 @@
+## [1.0.4] - 2017-01-24
+## Summary
+
+### Fixed
+* Updates ajax calls to wait for typing to be done before firing (Matthew McConnell)
+
+### Added
+ * Put the show all pages link underneath the page links (Matthew McConnell)
+ * pagination show all. closes #245 (Patrick White)
+ * Adds faculty to self classification. closes #274 (Patrick White)
+  * Adds correct specialities. closes #275 (Patrick White)
+
+### Changed
+* Spinner in the box (Patrick White)
+* refactoring to reduce code duplication (Patrick White)
+
 ## [1.0.3] - 2017-01-23
 ## Summary
  This release addresses performance issues discovered while using the application.
