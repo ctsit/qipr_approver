@@ -1148,6 +1148,12 @@ iframe {
     text-transform: uppercase;
 }
 
+.cert_header_project_id {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
 .cert__text--xsmall {
     font-style: italic;
     font-size: 1rem;
