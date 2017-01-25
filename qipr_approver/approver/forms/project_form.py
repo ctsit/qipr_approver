@@ -35,11 +35,13 @@ class ProjectForm():
                         'selected': utils.get_related_property(project, "advisor", 'email_address')}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
-                             'label': 'MeSH Keywords',
+                             'label': 'Please indicate 5 or more MeSH keywords relating to your project. Type keyword, then press "enter" to save',
                              'model': 'descriptor',
                              'filter_field': 'mesh_heading',
+                             'placeholder': 'e.g. Micronutrient and/or Zinc',
                              'tag_prop': Descriptor.tag_property_name,
-                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading")}
+                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading"),
+                             'div_classes': 'about__txtfield--100',}
 
         self.bigaim = {'name': 'big_aim',
                        'label': 'Please select from the dropdown the UF Health Big Aims relating to your project',
