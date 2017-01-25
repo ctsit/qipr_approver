@@ -28,8 +28,6 @@ At minimum, a citation should include: Clinical and Translational Science Inform
 Our suggested acknowledgement is (select one or more items within the braces, as appropriate): The authors acknowledge the Clinical and Translational Science Informatics and Technology group at the University of Florida for providing {Python software library, code, examples} resources that have contributed to the research results reported within this paper. URL: http://www.ncbi.nlm.nih.gov/pubmed/20306566
 
 
-#Literature cited.
-Duara, R., Loewenstein, D. A., Greig, M., Acevedo, A., Potter, E., Appel, J., … Potter, H. (2010). Reliability and Validity of an Algorithm for the Diagnosis of Normal Cognition, MCI and Dementia: Implications for Multi-Center Research Studies. The American Journal of Geriatric Psychiatry : Official Journal of the American Association for Geriatric Psychiatry, 18(4), 363–370.http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2844658/
 
 #Special Thanks to:
 Style Guide for Module project structure:
