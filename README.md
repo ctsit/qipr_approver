@@ -6,7 +6,7 @@
  | |__| |_| |_| |    | | \ \ 
   \___\_\_____|_|    |_|  \_\
  ```
-[![DOI](https://zenodo.org/badge/63183236.svg)](https://zenodo.org/badge/latestdoi/63183236)
+[![DOI](https://zenodo.org/badge/63101692.svg)](https://zenodo.org/badge/latestdoi/63101692)
 
 # QIPR, the Quality Improvement Registry and Approver.
 
