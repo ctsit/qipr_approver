@@ -46,8 +46,8 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     user.last_name = about_you_form.get('last_name')
     user.email = about_you_form.get('email')
 
-    person.business_phone = about_you_form.get('business_phone') or 0
-    person.contact_phone = about_you_form.get('contact_phone') or 0
+    person.business_phone = about_you_form.get('business_phone') or None
+    person.contact_phone = about_you_form.get('contact_phone') or None
     person.email_address = about_you_form.get('email')
     person.first_name = about_you_form.get('first_name')
     person.gatorlink = user.username
