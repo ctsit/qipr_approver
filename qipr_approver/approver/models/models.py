@@ -109,11 +109,11 @@ class Person(Provenance, Registerable):
         super(Person, self).save(*args, **kwargs)
 
     def __str__(self):
-        first_name = self.first_name or ''
-        last_name = self.last_name or ''
-        email_address = '(' +self.email_address + ')' if self.email_address else ''
-        strs = [str(item) for item in [first_name, last_name, email_address] if len(item)]
-        return ', '.join(strs)
+        first = self.first_name or ''
+        last = self.last_name or ''
+        name = ', '.join([str(item) for item in [first, last] if len(item)])
+        email = '(' +self.email_address + ')' if self.email_address else ''
+        return ' '.join([name, email])
 
     def get_natural_dict(self):
         return {
