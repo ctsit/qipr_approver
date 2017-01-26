@@ -1629,6 +1629,7 @@ textarea.textarea__height {
     padding: .5rem .6rem;
     text-decoration: none;
     display: block;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
     min-height: 2.5rem;
 }
