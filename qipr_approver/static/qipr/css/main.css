@@ -1274,6 +1274,10 @@ textarea.textarea__height {
     display: none; 
 }
 
+.dashboard_stats {
+    margin-bottom: -1.5rem;
+}
+
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
