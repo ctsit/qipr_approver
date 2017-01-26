@@ -693,7 +693,7 @@ select:focus {
 
 .col.bg__tags--blue1, .col.bg__tags--blue2, .col.about__bgtags--blue1, .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.about__bgtags--blue4 {
     background-color: rgb(243, 250, 255);
-    padding: 1rem;
+    padding-top: 1rem;
     border-radius: .5rem;
     border: grey solid 1pt;
 }
@@ -957,7 +957,7 @@ iframe {
     position: relative;
 }
 
-.form-tagbox-wrapper .tag_label {
+.bluebox__height--projectpg .form-tagbox-wrapper .tag_label {
     min-height: 3rem;
 }
 
@@ -1368,8 +1368,8 @@ textarea.textarea__height {
     }
 
     .suffix__adjust.bg__tags--blue1 {
+        padding-top: .6rem;
         margin-top: -.5rem;
-        padding-top: .5rem;
     }
 }
 
@@ -1581,6 +1581,10 @@ textarea.textarea__height {
     .about__header {
         font-size: 2rem;
     }
+
+    .suffix__adjust.bg__tags--blue1 {
+        margin-top: 1rem;
+    }
 }
 
 @media screen and (min-width: 1500px) {
@@ -1596,6 +1600,14 @@ textarea.textarea__height {
         padding-top: 6rem !important;
         padding-bottom: 3.5rem !important;
         max-width: 33rem;
+    }
+
+    #quality--details label {
+        min-height: 20px;
+    }
+
+    .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+        line-height: 25px;
     }
 }
 

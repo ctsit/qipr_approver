@@ -142,16 +142,16 @@
         }
     });
 
-    // function closeDropDowns() {
-    //     var dropdowns = document.getElementsByClassName("dropdown-content");
-    //     var i;
-    //     for (i = 0; i < dropdowns.length; i++) {
-    //         var openDropdown = $(dropdowns[i]);
-    //         if (openDropdown.is(":visible") ) {
-    //             openDropdown.hide();
-    //         }
-    //     }
-    // };
+    function closeDropDowns() {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = $(dropdowns[i]);
+            if (openDropdown.is(":visible") ) {
+                openDropdown.hide();
+            }
+        }
+    };
 
     $(document).on("keypress", ":input:not(textarea)", function(event) {
         return event.keyCode != 13;
