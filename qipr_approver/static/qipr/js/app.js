@@ -119,9 +119,10 @@
                                       .attr("value", l)
                                       .mousedown(function() {
                                           var tagProp = l.tag_prop,
-                                              model_name = l.model_name;
+                                              model_name = l.model_name,
+                                              model_guid= l.guid;
                                           node.value = $(this).text();
-                                          addTag(node, {tagProp:tagProp, model_name:model_name});
+                                          addTag(node, {tagProp:tagProp, model_name:model_name, model_guid:model_guid});
                                           $(this).remove();
                                       }));
                 });
