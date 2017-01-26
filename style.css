@@ -3,9 +3,10 @@
 	margin: 0 auto;
 }
 
-.responsive-img {
-	display: block;
+p .responsive-img {
 	text-align: center;
+}
+.responsive-img {
 	max-width: 100%;
 }
 
