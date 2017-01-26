@@ -55,7 +55,7 @@ def get_data(display, model_props, model_name):
         data.append({
             'display': display[index],
             'tag_prop': model_props[index]['tag'],
-            'model_naeme': model_name,
+            'model_name': model_name,
             'guid': model_props[index]['guid']
         })
     return data
