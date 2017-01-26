@@ -1,0 +1,16 @@
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.responsive-img {
+	display: block;
+	text-align: center;
+	max-width: 100%;
+}
+
+@media screen and (min-width: 647px) {
+	.responsive-img {
+		max-width: none;
+	}
+}
