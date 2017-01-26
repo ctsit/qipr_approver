@@ -25,7 +25,7 @@ def tagbox(input_dict, is_disabled=False):
 
 def __add_invisible_spaces(collection):
     invisible_space = u"\u200B"
-    return [(item + invisible_space) for item in collection]
+    return [(str(item) + invisible_space) for item in collection]
 
 def __to_hidden_input_string(collection):
     return ';'.join(str(item) for item in collection)
