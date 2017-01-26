@@ -17,10 +17,10 @@
     {% load tagbox %}
     {% load form_select %}
     <div class="row">
-        <h5 class="project__subhead">Project Title</h5>
+        <h5 class="project__subhead">Project Title <span class="red-text">*</span></h5>
         {% form_input_textarea form.title form.is_disabled %}
 
-        <h5 class="project__subhead">Project Description</h5>
+        <h5 class="project__subhead">Project Description <span class="red-text">*</span></h5>
         {% form_input_textarea form.description form.is_disabled %}
 
         <h5 class="project__subhead">Overall Goal</h5>

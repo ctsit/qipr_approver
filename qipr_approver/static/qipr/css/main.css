@@ -729,7 +729,7 @@ select:focus {
     border-color: red !important;
 }
 
-.required_form-input label::after {
+.required_form-aboutyou .required_form-input label::after {
     content: " *";
     color: red;
 }
