@@ -1,6 +1,6 @@
 import approver.parsers.people_ingest.actions as line_actions
 
-def load_people(argv):
+def load_contacts(argv):
     filename = argv[2]
     stream_parse(filename)
 
