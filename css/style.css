@@ -1,10 +1,12 @@
 .container {
 	width: 90%;
+	margin: 0 auto;
 }
 
-.responsive-img {
-	display: block;
+.center {
 	text-align: center;
+}
+.responsive-img {
 	max-width: 100%;
 }
 
