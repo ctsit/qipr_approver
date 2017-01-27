@@ -1,4 +1,4 @@
-from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor, Contact
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
@@ -41,6 +41,42 @@ def __is_email(tag):
     if '@' in tag:
         return tag
 
+def __is_valid(tag):
+    if __is_email(tag):
+        return tag
+    elif len(tag) == 32:
+        return tag
+
+def __clean_tag(tag):
+    return tag.replace('NEW::', '').replace(';', '')
+
+def __new_person_from_contact(contact, user):
+    person = contact.new_person()
+    person.save(user)
+    contact.person = person
+    contact.save(user)
+    return person
+
+def get_person(tag, user):
+    # see if tag is guid or not
+    cleaned = __clean_tag(tag)
+
+    if __is_email(cleaned):
+        contact = Contact(business_email=cleaned)
+        contact.save(user)
+        return __new_person_from_contact(contact, user)
+    else:
+        contact = Contact.objects.get(guid=tag)
+        try:
+            person = contact.person
+        except:
+            person = None
+        if person:
+            return person
+        else:
+            return __new_person_from_contact(contact, user)
+
+
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -59,10 +95,10 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
     project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
-    advisor = [tag for tag in extract_tags(project_form, 'advisor') if __is_email(tag)]
+    advisor = [get_person(tag, editing_user) for tag in extract_tags(project_form, 'advisor') if __is_valid(tag)]
+    collaborator = [get_person(tag, editing_user) for tag in extract_tags(project_form, 'collaborator') if __is_valid(tag)]
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
-    collaborator = [tag for tag in extract_tags(project_form, 'collaborator') if __is_email(tag)]
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
 
     update_tags(model=project,
@@ -83,17 +119,8 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
-                tag_property='collaborator',
-                tags=collaborator,
-                tag_model=Person,
-                tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='advisor',
-                tags=advisor,
-                tag_model=Person,
-                tagging_user=editing_user)
+    project.collaborator = collaborator
+    project.advisor = advisor
 
     project.save(editing_user)
 

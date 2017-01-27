@@ -106,6 +106,14 @@ class Person(Provenance, Registerable):
                 self.email_address = self.email_address.replace(char, '')
         except:
             pass
+        try:
+            contact = self.contact_set[0]
+            contact.business_email = self.email_address
+            contact.first_name = self.first_name
+            contact.last_name = self.last_name
+            contact.save(*args, **kwargs)
+        except:
+            pass
         super(Person, self).save(*args, **kwargs)
 
     def __str__(self):

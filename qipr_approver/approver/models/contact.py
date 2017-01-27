@@ -42,6 +42,13 @@ class Contact(Provenance, Registerable):
         email = '(' +self.business_email + ')' if self.business_email else ''
         return ' '.join([name, email])
 
+    def new_person(self):
+        return Person(
+            email_address=self.business_email,
+            first_name=self.first_name,
+            last_name=self.last_name,
+        )
+
     def get_natural_dict(self):
         return {
             'gatorlink': self.gatorlink,
