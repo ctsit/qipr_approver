@@ -171,6 +171,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email settings for application
+QIPR_EMAIL_HOST = get_config('smtp_host', 'email')
+QIPR_EMAIL_PORT = get_config('smtp_port', 'email')
+QIPR_EMAIL_HOSTNAME = get_config('email_hostname', 'email')
+
+if DEBUG:
+    EMAIL_FILE_PATH = '/tmp/app-messages'
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
