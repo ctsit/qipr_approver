@@ -1,3 +1,5 @@
+from itertools import chain
+
 from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor, Contact
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
@@ -47,6 +49,8 @@ def __is_valid(tag):
         return tag
     elif len(tag) == 32:
         return tag
+    else:
+        return None
 
 def __clean_tag(tag):
     return tag.replace('NEW::', '').replace(';', '')
@@ -57,6 +61,10 @@ def __new_person_from_contact(contact, user):
     contact.person = person
     contact.save(user)
     return person
+
+def __get_q(tag):
+    # see if tag is guid or not
+    return Q(guid=tag)
 
 def get_person(tag, user):
     # see if tag is guid or not
@@ -77,7 +85,6 @@ def get_person(tag, user):
         else:
             return __new_person_from_contact(contact, user)
 
-
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -96,11 +103,54 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
     project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
-    advisor = [get_person(tag, editing_user) for tag in extract_tags(project_form, 'advisor') if __is_valid(tag)]
-    collaborator = [get_person(tag, editing_user) for tag in extract_tags(project_form, 'collaborator') if __is_valid(tag)]
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
+
+    collaborators = []
+    c_remove = []
+    advisors = []
+    a_remove = []
+    # get tags
+    c_tags = extract_tags(project_form, 'collaborator')
+    a_tags = extract_tags(project_form, 'advisor')
+
+    # if tag is new get person from contact
+    for tag in c_tags:
+        cleaned = __clean_tag(tag)
+        if __is_valid(tag) and __is_email(cleaned):
+            contact = Contact(business_email=cleaned)
+            collaborators.append(__new_person_from_contact(contact, editing_user))
+            c_remove.append(tag)
+
+    for tag in a_tags:
+        cleaned = __clean_tag(tag)
+        if __is_valid(tag) and __is_email(cleaned):
+            contact = Contact(business_email=cleaned)
+            advisors.append(__new_person_from_contact(contact, editing_user))
+            a_remove.append(tag)
+
+    # else run get person with that tag but get q's
+    c_q = [__get_q(tag) for tag in c_tags if not tag in c_remove]
+    a_q = [__get_q(tag) for tag in a_tags if not tag in a_remove]
+
+    CQ = Q()
+    for q in c_q:
+        CQ |= q
+
+    AQ = Q()
+    for q in a_q:
+        AQ |= q
+
+    # then get people corresponding to that q
+    c_c_matches = [model.person for model in Contact.objects.filter(CQ).select_related('person')]
+    c_p_matches = Person.objects.filter(CQ)
+    a_c_matches = [model.person for model in Contact.objects.filter(AQ).select_related('person')]
+    a_p_matches = Person.objects.filter(AQ)
+
+    project.collaborator = list(chain(c_c_matches, c_p_matches))
+    project.advisor = list(chain(a_c_matches, a_p_matches))
+
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
@@ -120,8 +170,8 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
-    project.collaborator = collaborator
-    project.advisor = advisor
+    # project.collaborator = collaborator
+    # project.advisor = advisor
 
     project.save(editing_user)
 
