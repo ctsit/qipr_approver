@@ -63,8 +63,16 @@ DEBUG_FAKE_SHIB = True if get_config('debug_fake_shib') == 'true' else False
 
 ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
 #Used for the debug tool bar, put your ip(s) to activate the toolbar
-INTERNAL_IPS = []
+INTERNAL_IPS = [
+    '192.168.222.1', # vagrant ip
+]
 
+# Despite what the documentation implies, this is the way to change the toolbar config
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': True,
+    'DISABLE_PANELS': set(),
+}
 
 # Application definition
 

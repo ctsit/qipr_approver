@@ -23,9 +23,15 @@ def tagbox(input_dict, is_disabled=False):
     input_dict['selected_values_string'] = __to_hidden_input_string(input_dict.get('selected'))
     return input_dict
 
-def __add_invisible_spaces(collection):
+def __get_option_dict(model):
     invisible_space = u"\u200B"
-    return [(str(item) + invisible_space) for item in collection]
+    return {
+        'display': (str(item) + invisible_space),
+        'guid': model.guid,
+    }
+
+def __add_invisible_spaces(collection):
+    return [__get_option_dict(item) for item in collection]
 
 def __to_hidden_input_string(collection):
     return ';'.join(str(item) for item in collection)

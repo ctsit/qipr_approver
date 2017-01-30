@@ -6,6 +6,7 @@ import approver.utils as utils
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
 from django.db.models.query import QuerySet
+from django.db.models import Q
 from approver.constants import description_factor,keyword_factor,title_factor,big_aim_factor,category_factor,clinical_area_factor,clinical_setting_factor
 
 
@@ -63,10 +64,10 @@ def get_person(tag, user):
 
     if __is_email(cleaned):
         contact = Contact(business_email=cleaned)
-        contact.save(user)
+        # contact.save(user)
         return __new_person_from_contact(contact, user)
     else:
-        contact = Contact.objects.get(guid=tag)
+        contact = Contact.objects.get(guid=tag).select_related('person')
         try:
             person = contact.person
         except:
