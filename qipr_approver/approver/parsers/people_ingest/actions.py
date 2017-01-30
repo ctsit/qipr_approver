@@ -34,6 +34,10 @@ def make_contact(field_index_map, line):
             field_name = field_index_map[str(index)]
             contact_dict[field_name] = datum
 
+    # If we got data with no email
+    if (contact_dict.get('business_email').lower() == 'null'):
+        return field_index_map
+
     contact = Contact(**contact_dict)
 
     fixture_save(contact)
