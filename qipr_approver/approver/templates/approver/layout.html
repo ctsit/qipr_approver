@@ -20,8 +20,8 @@
                         <a id="icon-container" class="icon" href="{% url 'approver:index' %}">
                             <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
                         </a>
-                        <a href="#" data-activates="mobile-demo" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
-                        <ul class="right hide-on-med-and-down">
+                        <a href="#" data-activates="mobile-demo" class="button-collapse hide-on-med-and-up"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-small-only">
                             {% if request.user.person.is_admin %}
                             <li class="nav_li"><a href="{% url 'approver:dashboard_su' %}">Admin</a></li>
                             {% endif %}
