@@ -17,3 +17,11 @@ class Registerable(models.Model):
 
     class Meta:
         abstract = True
+
+
+class PushQueue(models.Model):
+    """
+    This model is used to stage other models that will be pushed over later
+    """
+    guid = models.CharField(max_length=32)
+    model_name = models.CharField(max_length=20)

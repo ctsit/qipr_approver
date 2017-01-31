@@ -7,25 +7,37 @@ from django.contrib.auth.models import User
 import requests
 
 import approver.models
+from approver.models import PushQueue
 from approver.constants import registry_endpoints, api_username, bridge_key
 
-api_user = User.objects.get(username=api_username)
+api_user = None
 
 def push_model(model):
-    if 1 == 0:
-        json_data, req_hash = process_data(model)
-        response = None
-        url = '/'.join([registry_endpoints.get('add_model'), req_hash])
-        try:
-            response = requests.post(url, data=json_data)
-            if response.status_code == 200 and not model.is_registered():
-                model.register()
-                model.save(api_user)
-        except requests.exceptions.RequestException as e:
-            print(e)
-        return response
-    else:
-        pass
+    """
+    This is used to build a staging area for things that
+    will be pushed over late
+    """
+    try:
+        item = PushQueue.objects.get(guid=model.guid)
+    except:
+        item = PushQueue(guid=model.guid, model_name=model.__class__.__name__)
+        item.save()
+
+def send_model(model, api_user):
+    json_data, req_hash = process_data(model)
+    response = None
+    url = '/'.join([registry_endpoints.get('add_model'), req_hash])
+    try:
+        response = requests.post(url, data=json_data)
+        if response.status_code == 200 and not model.is_registered():
+            model.register()
+            model.save(api_user)
+    except requests.exceptions.RequestException as e:
+        print(e)
+    return response
+
+def get_api_user():
+    return User.objects.get(username=api_username)
 
 def process_data(model):
     """
