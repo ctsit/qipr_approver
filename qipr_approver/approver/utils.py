@@ -318,3 +318,9 @@ def extract_model(model, filter_field, filter_value):
         return None
     except model.DoesNotExist:
         return None
+
+def Model_for_model(model):
+    """
+    Returns the capital M Model for a given instance
+    """
+    return type(model)

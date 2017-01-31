@@ -99,3 +99,4 @@ fixtures/test*
 # collectstatic
 qipr_approver/static/admin/*
 qipr_approver/static/debug_toolbar/*
+test_contact.csv

@@ -11,6 +11,7 @@ from django.db.models.query import QuerySet
 from django.db.models import Q
 from approver.constants import description_factor,keyword_factor,title_factor,big_aim_factor,category_factor,clinical_area_factor,clinical_setting_factor
 
+from approver.workflows import contact_person
 
 def create_or_update_project(current_user, project_form, project_id=None):
     """
@@ -40,51 +41,6 @@ def create_new_project_from_user_form(current_user, form):
 
     return new_project
 
-def __is_email(tag):
-    if '@' in tag:
-        return tag
-
-def __is_valid(tag):
-    if __is_email(tag):
-        return tag
-    elif len(tag) == 32:
-        return tag
-    else:
-        return None
-
-def __clean_tag(tag):
-    return tag.replace('NEW::', '').replace(';', '')
-
-def __new_person_from_contact(contact, user):
-    person = contact.new_person()
-    person.save(user)
-    contact.person = person
-    contact.save(user)
-    return person
-
-def __get_q(tag):
-    # see if tag is guid or not
-    return Q(guid=tag)
-
-def get_person(tag, user):
-    # see if tag is guid or not
-    cleaned = __clean_tag(tag)
-
-    if __is_email(cleaned):
-        contact = Contact(business_email=cleaned)
-        # contact.save(user)
-        return __new_person_from_contact(contact, user)
-    else:
-        contact = Contact.objects.get(guid=tag).select_related('person')
-        try:
-            person = contact.person
-        except:
-            person = None
-        if person:
-            return person
-        else:
-            return __new_person_from_contact(contact, user)
-
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -107,50 +63,8 @@ def update_project_from_project_form(project, project_form, editing_user):
     clinical_setting = extract_tags(project_form, 'clinical_setting')
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
 
-    collaborators = []
-    c_remove = []
-    advisors = []
-    a_remove = []
-    # get tags
-    c_tags = extract_tags(project_form, 'collaborator')
-    a_tags = extract_tags(project_form, 'advisor')
-
-    # if tag is new get person from contact
-    for tag in c_tags:
-        cleaned = __clean_tag(tag)
-        if __is_valid(tag) and __is_email(cleaned):
-            contact = Contact(business_email=cleaned)
-            collaborators.append(__new_person_from_contact(contact, editing_user))
-            c_remove.append(tag)
-
-    for tag in a_tags:
-        cleaned = __clean_tag(tag)
-        if __is_valid(tag) and __is_email(cleaned):
-            contact = Contact(business_email=cleaned)
-            advisors.append(__new_person_from_contact(contact, editing_user))
-            a_remove.append(tag)
-
-    # else run get person with that tag but get q's
-    c_q = [__get_q(tag) for tag in c_tags if not tag in c_remove]
-    a_q = [__get_q(tag) for tag in a_tags if not tag in a_remove]
-
-    CQ = Q()
-    for q in c_q:
-        CQ |= q
-
-    AQ = Q()
-    for q in a_q:
-        AQ |= q
-
-    # then get people corresponding to that q
-    c_c_matches = [model.person for model in Contact.objects.filter(CQ).select_related('person')]
-    c_p_matches = Person.objects.filter(CQ)
-    a_c_matches = [model.person for model in Contact.objects.filter(AQ).select_related('person')]
-    a_p_matches = Person.objects.filter(AQ)
-
-    project.collaborator = list(chain(c_c_matches, c_p_matches))
-    project.advisor = list(chain(a_c_matches, a_p_matches))
-
+    project.collaborator = contact_person.get_collaborators_from_form(project_form, editing_user)
+    project.advisor = contact_person.get_advisors_from_form(project_form, editing_user)
 
     update_tags(model=project,
                 tag_property='mesh_keyword',
