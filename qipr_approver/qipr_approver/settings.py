@@ -14,6 +14,7 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
+project_path = '/var/www/qipr/approver'
 
 def get_config(key, section=config.default_section):
     return config.get(section, key)
@@ -22,7 +23,7 @@ def define_env():
     settings_proj_path = '/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
-        settings_pre_path = '/var/www/qipr/approver'
+        settings_pre_path = project_path
     elif os.getenv('TRAVIS', False):
         settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None) + '/qipr_approver'
     print(settings_pre_path + settings_proj_path)
@@ -170,6 +171,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Email settings for application
+QIPR_EMAIL_HOST = get_config('smtp_host', 'email')
+QIPR_EMAIL_PORT = get_config('smtp_port', 'email')
+QIPR_EMAIL_HOSTNAME = get_config('email_hostname', 'email')
+QIPR_EMAIL_RETURN_ADDR = get_config('email_return_addr', 'email')
+QIPR_EMAIL_DEBUG = get_config('email_debug', 'email') == 'true'
+
+if QIPR_EMAIL_DEBUG:
+    EMAIL_FILE_PATH = '/tmp/app-messages'
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)
