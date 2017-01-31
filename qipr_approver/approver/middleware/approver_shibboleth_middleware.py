@@ -91,8 +91,12 @@ class ApproverShibbolethMiddleware(object):
                 'account_expiration_time':utils.get_account_expiration_date(timezone.now()),
                 }
 
+        user.first_name = defaults.get('first_name')
+        user.last_name = defaults.get('first_name')
+        user.email = defaults.get('email_address')
+
         try:
-            person = Person.objects.get(user=request.user)
+            person = Person.objects.get(email_address=request.user.username)
             person.account_expiration_time = utils.get_account_expiration_date(timezone.now())
             person.save(request.user)
         except Person.DoesNotExist:

@@ -42,10 +42,6 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     now = timezone.now()
     person = user.person
 
-    user.first_name = about_you_form.get('first_name')
-    user.last_name = about_you_form.get('last_name')
-    user.email = about_you_form.get('email')
-
     person.business_phone = about_you_form.get('business_phone') or None
     person.contact_phone = about_you_form.get('contact_phone') or None
     person.email_address = about_you_form.get('email')
@@ -99,7 +95,6 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    user.save()
     person.save(last_modified_by=editing_user)
     save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
 
