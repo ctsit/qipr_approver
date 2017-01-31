@@ -17,7 +17,7 @@ def send_email(subject, message_body, from_email, to_emails):
     from_email: who the email is coming from
     to_emails: either a string or list of emails address being sent to
     '''
-    if settings.DEBUG:
+    if settings.QIPR_EMAIL_DEBUG:
         return send_mail(subject,message_body,from_email, __get_list(to_emails))
 
     msg = __create_message(subject, message_body, from_email, to_emails)

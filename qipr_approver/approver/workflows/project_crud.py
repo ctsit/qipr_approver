@@ -2,11 +2,14 @@ from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSett
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
+from approver.utilities import send_email
+from approver.constants import similarity_factors, email_from_address, base_url
+from approver.templates.email_template import get_email_body_person_added, get_email_subject_person_added
 
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
 from django.db.models.query import QuerySet
-from approver.constants import description_factor,keyword_factor,title_factor,big_aim_factor,category_factor,clinical_area_factor,clinical_setting_factor
+from django.urls import reverse
 
 
 def create_or_update_project(current_user, project_form, project_id=None):
@@ -95,6 +98,7 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=Person,
                 tagging_user=editing_user)
 
+    email_advs_and_collabs(project, editing_user)
     project.save(editing_user)
 
 def get_project_or_none(project_id):
@@ -198,25 +202,25 @@ def _calculate_similarity_score(project, member):
     similarity = 0.0
 
     if project.title is not None and member.title is not None:
-        similarity += title_factor * _jaccard_similarity(project.title, member.title)
+        similarity += similarity_factors['title'] * _jaccard_similarity(project.title, member.title)
 
     if project.mesh_keyword is not None and member.mesh_keyword is not None:
-        similarity += keyword_factor * _jaccard_similarity(project.mesh_keyword.all(), member.mesh_keyword.all())
+        similarity += similarity_factors['keyword'] * _jaccard_similarity(project.mesh_keyword.all(), member.mesh_keyword.all())
 
     if project.description is not None and member.description is not None:
-        similarity += description_factor * _jaccard_similarity(project.description, member.description)
+        similarity += similarity_factors['description'] * _jaccard_similarity(project.description, member.description)
 
     if project.big_aim is not None and member.big_aim is not None:
-        similarity += big_aim_factor * _jaccard_similarity(project.big_aim.name, member.big_aim.name)
+        similarity += similarity_factors['big_aim'] * _jaccard_similarity(project.big_aim.name, member.big_aim.name)
 
     if project.clinical_setting is not None and member.clinical_setting is not None:
-        similarity += clinical_setting_factor * _jaccard_similarity(project.clinical_setting.all(), member.clinical_setting.all())
+        similarity += similarity_factors['clinical_setting'] * _jaccard_similarity(project.clinical_setting.all(), member.clinical_setting.all())
 
     if project.clinical_area is not None and member.clinical_area is not None:
-        similarity += clinical_area_factor * _jaccard_similarity(project.clinical_area.all(), member.clinical_area.all())
+        similarity += similarity_factors['clinical_area'] * _jaccard_similarity(project.clinical_area.all(), member.clinical_area.all())
 
     if project.category is not None and member.category is not None:
-        similarity += category_factor * _jaccard_similarity(project.category.all(), member.category.all())
+        similarity += similarity_factors['category'] * _jaccard_similarity(project.category.all(), member.category.all())
 
     return similarity
 
@@ -245,3 +249,30 @@ def _jaccard_similarity(doc1, doc2):
 
     similarity = float(intersection*1.0/len(a.union(b)))
     return similarity
+
+def email_advs_and_collabs(project, editing_user):
+    advisors = set(project.advisor.all())
+    collaborators = set(project.collaborator.all())
+    prev_sent_email_set = set(project.sent_email_list.all())
+
+    advisors_to_email = advisors.difference(prev_sent_email_set)
+    __generate_email(advisors_to_email, editing_user, 'advisor', project)
+
+    collaborators_to_email = collaborators.difference(prev_sent_email_set)
+    __generate_email(collaborators_to_email, editing_user, 'collaborator', project)
+
+    project.sent_email_list = advisors.union(collaborators)
+
+def __generate_email(to_person_set, editing_user, role, project):
+    project_url = base_url + reverse('approver:projects', args=[project.id])
+    email_body_kwargs = {'first_name': editing_user.person.first_name,
+                         'last_name': editing_user.person.last_name,
+                         'role': role,
+                         'project_title': project.title,
+                         'project_url': project_url,
+    }
+    email_subject = get_email_subject_person_added()
+    email_body = get_email_body_person_added(**email_body_kwargs)
+    for person in to_person_set:
+        send_email(email_subject, email_body,
+                   email_from_address, person.email_address)
