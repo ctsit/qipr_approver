@@ -17,10 +17,10 @@
     {% load tagbox %}
     {% load form_select %}
     <div class="row">
-        <h5 class="project__subhead">Project Title</h5>
+        <h5 class="project__subhead">Project Title <span class="red-text">*</span></h5>
         {% form_input_textarea form.title form.is_disabled %}
 
-        <h5 class="project__subhead">Project Description</h5>
+        <h5 class="project__subhead">Project Description <span class="red-text">*</span></h5>
         {% form_input_textarea form.description form.is_disabled %}
 
         <h5 class="project__subhead">Overall Goal</h5>
@@ -54,10 +54,10 @@
     </div>
 
     <div class="row">
-        <div class="col s12 m6 bg__tags--blue1">
+        <div class="col s12 m6 bg__tags--blue1 bluebox__height--projectpg">
             {% tagbox form.clinical_setting form.is_disabled %}
         </div>
-        <div class="col s12 m6 bg__tags--blue2">
+        <div class="col s12 m6 bg__tags--blue2 bluebox__height--projectpg">
             {% tagbox form.clinical_area form.is_disabled %}
         </div>
     </div>

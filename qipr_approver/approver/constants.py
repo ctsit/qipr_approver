@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 """
 This file contains constants for various things in the app.
 DONT STRING MATCH
@@ -59,19 +60,15 @@ projects_per_page = 25
 
 users_per_page = 25
 
-description_factor = 25
-
-keyword_factor = 25
-
-title_factor = 10
-
-big_aim_factor = 10
-
-category_factor = 10
-
-clinical_area_factor = 10
-
-clinical_setting_factor = 10
+similarity_factors = {
+    'big_aim': 10,
+    'category': 10,
+    'clinical_setting': 10,
+    'clinical_area': 10,
+    'description': 25,
+    'keyword': 25,
+    'title': 10,
+}
 
 api_username = 'admin_api_user'
 
@@ -105,7 +102,7 @@ total_qualifiers_2017 = 80
 
 SHIB_ENABLED = os.getenv('SHIB_ENABLED', 'true')
 
-VERSION_NUMBER = '1.0.4'
+email_from_address = settings.QIPR_EMAIL_RETURN_ADDR
 
 invalid_email_characters = [
     '"',
@@ -118,3 +115,5 @@ bad_user_agent_strings = [
 ]
 
 is_staging = True if os.environ['IS_STAGING'] == 'true' else False
+
+VERSION_NUMBER = '1.0.4'

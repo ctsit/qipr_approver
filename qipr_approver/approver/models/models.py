@@ -150,6 +150,7 @@ class Project(Provenance, Registerable):
     proposed_start_date = models.DateTimeField(null=True)
     title = models.CharField(max_length=300)
     mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
+    sent_email_list = models.ManyToManyField(Person, related_name="emailed_for_projects")
 
     def __str__(self):
         title = self.title or 'NO TITLE'

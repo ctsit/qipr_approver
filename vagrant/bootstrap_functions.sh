@@ -92,6 +92,11 @@ function handle_static_files() {
     deactivate
 }
 
+function make_tmp_directory() {
+    mkdir -p /tmp/app-messages
+    chown www-data /tmp/app-messages
+}
+
 function copy_settings_example() {
     pushd /var/www/qipr/approver/qipr_approver/deploy
     if [ -e settings.ini ]; then
@@ -112,6 +117,7 @@ function install_qipr_approver_fresh_vm () {
         apply_fixtures
         handle_static_files
         apache_setup
+        make_tmp_directory
     popd
 }
 

@@ -35,7 +35,7 @@ class ProjectForm():
                         'selected': utils.get_related(project, "advisor")}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
-                             'label': 'Please indicate 5 or more MeSH keywords relating to your project. Type keyword, then press "enter" to save',
+                             'label': 'Please indicate 5 or more MeSH (Medical Subject Headings) keywords relating to your project. MeSH keywords are a comprehensive controlled vocabulary for the purpose of indexing journal articles and books. Type keyword, then press "enter" to save',
                              'model': 'descriptor',
                              'filter_field': 'mesh_heading',
                              'placeholder': 'e.g. Micronutrient and/or Zinc',
