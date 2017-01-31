@@ -4,7 +4,7 @@ from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
 from approver.utilities import send_email
 from approver.constants import similarity_factors, email_from_address, base_url
-from approver.templates.email_template import get_email_body_person_added, get_email_subject_person_added
+import approver.templates.email_template as email_builder # get_email_body_person_added, get_email_subject_person_added
 
 from django.contrib.auth.models import User
 from django.utils import timezone, dateparse
@@ -99,6 +99,7 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tagging_user=editing_user)
 
     email_advs_and_collabs(project, editing_user)
+    email_confirmation(project)
     project.save(editing_user)
 
 def get_project_or_none(project_id):
@@ -271,8 +272,16 @@ def __generate_email(to_person_set, editing_user, role, project):
                          'project_title': project.title,
                          'project_url': project_url,
     }
-    email_subject = get_email_subject_person_added()
-    email_body = get_email_body_person_added(**email_body_kwargs)
+    email_subject = email_builder.get_email_subject_person_added()
+    email_body = email_builder.get_email_body_person_added(**email_body_kwargs)
     for person in to_person_set:
         send_email(email_subject, email_body,
                    email_from_address, person.email_address)
+
+def email_confirmation(project):
+    title = project.title
+    url = base_url + reverse('approver:projects', args=[project.id])
+    send_email(email_builder.get_email_subject_confirmation(),
+               email_builder.get_email_sent_confirmation_body(title, url),
+               email_from_address,
+               project.owner.email_address)
