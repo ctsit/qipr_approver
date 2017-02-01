@@ -1,7 +1,7 @@
 # Mixin models
 from approver.models.provenance import Provenance
 from approver.models.tag_models import Tag, TagPrint, TaggedWithName
-from approver.models.bridge_models import Registerable, PushQueue
+from approver.models.bridge_models import Registerable
 
 # Main models file
 from approver.models.models import *

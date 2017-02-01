@@ -9,7 +9,7 @@ def get_collaborators_from_form(form, user):
     return __process_tags_get_people(form, 'collaborator', user)
 
 def get_advisors_from_form(form, user):
-    return __process_tags_get_people(form, 'advisor', user)
+    return __process_tags_get_people(form, 'collaborator', user)
 
 def __process_tags_get_people(form, prop, user):
     """

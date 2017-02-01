@@ -10,8 +10,10 @@ while true; do
     echo 'Watching python files.'
     if inotifywait -e modify -e attrib -e create -e delete $targets;
     then
-        echo 'Touch wsgi'
-        touch /var/www/qipr/approver/qipr_approver/wsgi.py;
+        echo 'Restarting Apache.'
+        sudo service apache2 restart;
+        echo 'Running tests.'
+	python3 /var/www/qipr_approver/manage.py test
     fi;
     echo '==============================='
 done;

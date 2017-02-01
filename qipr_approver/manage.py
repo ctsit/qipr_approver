@@ -24,9 +24,5 @@ if __name__ == "__main__":
         disconnect_signals()
         from approver.custom_commands import loadprojects
         loadprojects(sys.argv)
-    elif sys.argv[1] == 'senddata':
-        disconnect_signals()
-        from approver.custom_commands import senddata
-        senddata()
     else:
         execute_from_command_line(sys.argv)
