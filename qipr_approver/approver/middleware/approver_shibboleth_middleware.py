@@ -92,7 +92,7 @@ class ApproverShibbolethMiddleware(object):
                 }
 
         request.user.first_name = defaults.get('first_name')
-        request.user.last_name = defaults.get('first_name')
+        request.user.last_name = defaults.get('last_name')
         request.user.email = defaults.get('email_address')
 
         try:
