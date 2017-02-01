@@ -91,9 +91,9 @@ class ApproverShibbolethMiddleware(object):
                 'account_expiration_time':utils.get_account_expiration_date(timezone.now()),
                 }
 
-        user.first_name = defaults.get('first_name')
-        user.last_name = defaults.get('first_name')
-        user.email = defaults.get('email_address')
+        request.user.first_name = defaults.get('first_name')
+        request.user.last_name = defaults.get('first_name')
+        request.user.email = defaults.get('email_address')
 
         try:
             person = Person.objects.get(email_address=request.user.username)
