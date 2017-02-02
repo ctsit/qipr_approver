@@ -120,7 +120,7 @@ class Person(Provenance, Registerable):
         first = self.first_name or ''
         last = self.last_name or ''
         name = ', '.join([str(item) for item in [first, last] if len(item)])
-        email = '(' +self.email_address + ')' if self.email_address else ''
+        email = '(' + self.email_address + ')' if self.email_address else ''
         return ' '.join([name, email])
 
     def get_natural_dict(self):

@@ -1,9 +1,5 @@
-from datetime import timedelta
-
 from django.db import models
-from django.utils import timezone
 
-from approver import utils
 from approver import constants
 from approver.models.bridge_models import Registerable
 from approver.models.provenance import Provenance
@@ -39,7 +35,7 @@ class Contact(Provenance, Registerable):
         first = self.first_name or ''
         last = self.last_name or ''
         name = ', '.join([str(item) for item in [first, last] if len(item)])
-        email = '(' +self.business_email + ')' if self.business_email else ''
+        email = '(' + self.business_email + ')' if self.business_email else ''
         return ' '.join([name, email])
 
     def new_person(self):

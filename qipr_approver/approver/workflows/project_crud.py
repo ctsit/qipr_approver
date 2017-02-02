@@ -1,5 +1,3 @@
-from itertools import chain
-
 from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor, Contact
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
