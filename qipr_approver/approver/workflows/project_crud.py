@@ -187,9 +187,10 @@ def get_similar_projects(project):
     project_scores = []
 
     for member in projects:
-        similarity = _calculate_similarity_score(project, member)
-        if similarity != 0:
-            project_scores.append((member.id, member, similarity))
+        if project != member:
+            similarity = _calculate_similarity_score(project, member)
+            if similarity != 0:
+                project_scores.append((member.id, member, similarity))
 
     return sorted(project_scores, key=lambda score: score[2], reverse = True)
 
@@ -229,7 +230,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(getattr(element, element.tag_property_name))
+        res.add(getattr(element, element.tag_property_name)).lower()
     return res
 
 def _jaccard_similarity(doc1, doc2):
@@ -241,8 +242,8 @@ def _jaccard_similarity(doc1, doc2):
         a = _get_set_for_query(doc1)
         b = _get_set_for_query(doc2)
     else:
-        a = set(doc1.split())
-        b = set(doc2.split())
+        a = set([item.lower() for item in doc1.split()])
+        b = set([item.lower() for item in doc2.split()])
 
     intersection = len(a.intersection(b))
 
