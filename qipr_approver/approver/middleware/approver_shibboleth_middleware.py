@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from approver.models import Person, Address
 from approver import utils
+from approver.workflows.contact_person import add_contact_for_person
 
 
 class ApproverShibbolethMiddleware(object):
@@ -96,13 +97,17 @@ class ApproverShibbolethMiddleware(object):
         request.user.email = defaults.get('email_address')
 
         try:
-            person = Person.objects.get(email_address=request.user.username)
+            try:
+                person = request.user.person
+            except:
+                person = Person.objects.get(email_address=request.user.username)
             person.account_expiration_time = utils.get_account_expiration_date(timezone.now())
             person.save(request.user)
         except Person.DoesNotExist:
             person = Person(**defaults)
             person.user = request.user
             person.save(request.user)
+            add_contact_for_person(person, request.user)
             created = True
 
         if not person.business_address.count():

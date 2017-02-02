@@ -5,6 +5,12 @@ from django.db.models import Q
 from approver import utils
 from approver.models import Person, Contact
 
+def add_contact_for_person(person, user):
+    contact = Contact(business_email=person.email_address, first_name=person.first_name, last_name=person.last_name)
+    contact.person = person
+    contact.save(user)
+    return contact
+
 def get_collaborators_from_form(form, user):
     return __process_tags_get_people(form, 'collaborator', user)
 

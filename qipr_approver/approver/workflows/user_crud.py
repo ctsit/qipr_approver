@@ -5,6 +5,7 @@ from approver.utils import extract_tags, update_tags, true_false_to_bool, extrac
 from django.contrib.auth.models import User
 from django.utils import timezone
 from approver import utils
+from approver.workflows.contact_person import add_contact_for_person
 
 def create_new_user_from_current_session(session):
     """
@@ -32,6 +33,18 @@ def create_new_user_from_current_session(session):
 
     return new_user
 
+def check_changed_contact(person, form):
+    new_email_address = form.get('email')
+    new_first_name = form.get('first_name')
+    new_last_name = form.get('last_name')
+    if new_email_address != person.email_address:
+        return True
+    if new_first_name != person.first_name:
+        return True
+    if new_first_name != person.last_name:
+        return True
+    return False
+
 def update_user_from_about_you_form(user, about_you_form, editing_user):
     """
     This function changes an existing (user,person) entry
@@ -41,6 +54,8 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     """
     now = timezone.now()
     person = user.person
+
+    changed_contact = check_changed_contact(person, about_you_form)
 
     person.business_phone = about_you_form.get('business_phone') or None
     person.contact_phone = about_you_form.get('contact_phone') or None
@@ -97,6 +112,8 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
 
     save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
     person.save(last_modified_by=editing_user)
+    if changed_contact:
+        add_contact_for_person(person, editing_user)
     return person
 
 def save_address_from_form(form, user, address_type, person=None, organization=None):

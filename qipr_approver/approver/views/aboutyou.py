@@ -22,7 +22,6 @@ def about_you(request):
 
         user = request.user
         editing_user = request.user
-        user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
         person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
 
         request.access_log.model = person
