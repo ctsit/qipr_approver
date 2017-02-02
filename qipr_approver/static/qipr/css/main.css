@@ -573,14 +573,18 @@ td, th {
 }
 
 .dashboard_row-title-project {
-    padding-left:2rem;
+    padding-left: 2rem;
 }
 
 .dashboard_stats {
-    padding-top: 1rem;
+    padding: 1rem 0;
     background-color: #004d9a;
-    margin-bottom: 0;
+    margin-bottom: -1.5rem;
     color: white;
+}
+
+.hide_stats .dashboard_stats{
+    display: none; 
 }
 
 .dashboard__updated {
@@ -1268,14 +1272,6 @@ textarea.textarea__height {
     right: .8rem;
     top: 3.8rem;
     z-index: 1;
-}
-
-.hide_stats .dashboard_stats{
-    display: none; 
-}
-
-.dashboard_stats {
-    margin-bottom: -1.5rem;
 }
 
 @media screen and (min-width: 420px) {
