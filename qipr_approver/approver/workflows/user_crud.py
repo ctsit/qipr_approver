@@ -65,39 +65,38 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     specialities = extract_tags(about_you_form, 'speciality')
     suffixes = extract_tags(about_you_form, 'suffix')
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='expertise',
                 tags=expertises,
                 tag_model=Expertise,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='qi_interest',
                 tags=qi_interest,
                 tag_model=QI_Interest,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='speciality',
                 tags=specialities,
                 tag_model=Speciality,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='suffix',
                 tags=suffixes,
                 tag_model=Suffix,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    person.save(last_modified_by=editing_user)
     save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
-
+    person.save(last_modified_by=editing_user)
     return person
 
 def save_address_from_form(form, user, address_type, person=None, organization=None):

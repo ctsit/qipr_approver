@@ -68,19 +68,19 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.collaborator = contact_person.get_collaborators_from_form(project_form, editing_user)
     project.advisor = contact_person.get_advisors_from_form(project_form, editing_user)
 
-    update_tags(model=project,
+    project = update_tags(model=project,
                 tag_property='mesh_keyword',
                 tags=mesh_keyword,
                 tag_model=Descriptor,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
+    project = update_tags(model=project,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
+    project = update_tags(model=project,
                 tag_property='clinical_setting',
                 tags=clinical_setting,
                 tag_model=ClinicalSetting,
