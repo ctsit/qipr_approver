@@ -72,38 +72,39 @@
                                 {% endif %}
                             </td>
                             <td class="project__title">{{ project.role }}</td>
+                              <td class="dashboard_status project__title--forms">
+                                <a href="{% url 'approver:approve' project_id=project.pk %}">
+                                  <ul class="dashboard_status--margin">
+                                      {% if project.is_approved %}
+                                          <li class="dashboard__list">
+                                              <div class="dashboard_certificate-btn dashboard__status--btns">
+                                                  <a href="{% url 'approver:project_status' project_id=project.pk %}">View Certificate</a>
+                                              </div>
+                                          </li>
+                                      {% endif %}
 
-                            {% if project.role == "QPI" %}
-
-                                    <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
-                                        <ul class="dashboard_status--margin">
-                                            {% if project.is_approved %}
-                                                <li class="dashboard__list">
-                                                    <div class="dashboard_certificate-btn dashboard__status--btns">
-                                                        <a href="{% url 'approver:project_status' project_id=project.pk %}">View Certificate</a>
-                                                    </div>
-                                                </li>
-                                            {% endif %}
-
-                                            <li class="dashboard__list">
-                                                <div class="dashboard__status--btns">
-                                                    <a href="{% url 'approver:projects' project_id=project.pk %}">View Project Details</a>
-                                                </div>
-                                            </li>
-                                           {% if not project.is_approved %}
-                                            <li class="dashboard__list">
-                                                <div class="dashboard__status--btns">
-                                                    <a href="{% url 'approver:approve' project_id=project.pk %}">Take Self Certification</a>
-                                                </div>
-                                            </li>
-                                           {% endif %}
-                                            <li class="dashboard__list">
-                                                <div class="dashboard__status--btns">
-                                                    <a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Find Similar Projects</a>
-                                                </div>
-                                            </li>
-                                        </ul></a></td>
-                            {% endif %}
+                                      <li class="dashboard__list">
+                                          <div class="dashboard__status--btns"
+                                              <a href="{% url 'approver:projects' project_id=project.pk %}">View Project Details</a>
+                                          </div>
+                                      </li>
+                              {% if project.role == "QPI" %}
+                                     {% if not project.is_approved %}
+                                      <li class="dashboard__list">
+                                          <div class="dashboard__status--btns">
+                                              <a href="{% url 'approver:approve' project_id=project.pk %}">Take Self Certification</a>
+                                          </div>
+                                      </li>
+                                     {% endif %}
+                                      <li class="dashboard__list">
+                                          <div class="dashboard__status--btns">
+                                              <a href="{% url 'approver:similar_projects' project_id=project.pk from_page='dashboard' %}">Find Similar Projects</a>
+                                          </div>
+                                      </li>
+                              {% endif %}   
+                                  </ul>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
