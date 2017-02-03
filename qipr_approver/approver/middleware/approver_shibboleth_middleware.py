@@ -82,7 +82,7 @@ class ApproverShibbolethMiddleware(object):
         based on the authenticated user. It will add or update values
         found in the request META data which are supplied from Shibboleth.
         """
-        created = False
+        created = True
         defaults={
                 'first_name':request.META['HTTP_GIVENNAME'],
                 'last_name':request.META['HTTP_SN'],
@@ -99,17 +99,17 @@ class ApproverShibbolethMiddleware(object):
         try:
             try:
                 person = request.user.person
+                created = False
             except:
                 person = Person.objects.get(email_address=request.user.username)
+                person.user = request.user
             person.account_expiration_time = utils.get_account_expiration_date(timezone.now())
-            person.user = request.user
             person.save(request.user)
         except Person.DoesNotExist:
             person = Person(**defaults)
             person.user = request.user
             person.save(request.user)
             add_contact_for_person(person, request.user)
-            created = True
 
         if not person.business_address.count():
             self._add_person_address(request, person)
