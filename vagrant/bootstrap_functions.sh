@@ -88,7 +88,7 @@ function apply_fixtures() {
 
 function handle_static_files() {
     source venv/bin/activate
-    python3 manage.py collectstatic
+    python3 manage.py collectstatic --no-input
     deactivate
 }
 

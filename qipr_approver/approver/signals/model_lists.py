@@ -13,6 +13,7 @@ AllNormalModels =[
     ClinicalArea,
     ClinicalDepartment,
     ClinicalSetting,
+    Contact,
     Expertise,
     Keyword,
     Organization,

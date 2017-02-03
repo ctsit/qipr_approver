@@ -9,19 +9,32 @@ import requests
 import approver.models
 from approver.constants import registry_endpoints, api_username, bridge_key
 
+def load_api_user():
+    API_user = None
+    def get_api_user():
+        nonlocal API_user
+        if not API_user:
+            API_user = User.objects.get(username=api_username)
+        return API_user
+
+    return get_api_user
+
+get_api_user = load_api_user()
+
 def push_model(model):
-    api_user = User.objects.get(username=api_username)
-    json_data, req_hash = process_data(model)
-    response = None
-    url = '/'.join([registry_endpoints.get('add_model'), req_hash])
-    try:
-        response = requests.post(url, data=json_data)
-        if response.status_code == 200 and not model.is_registered():
-            model.register()
-            model.save(api_user)
-    except requests.exceptions.RequestException as e:
-        print(e)
-    return response
+    if model.last_modified_by_id != 2:
+        api_user = get_api_user()
+        json_data, req_hash = process_data(model)
+        response = None
+        url = '/'.join([registry_endpoints.get('add_model'), req_hash])
+        try:
+            response = requests.post(url, data=json_data)
+            if response.status_code == 200 and not model.is_registered():
+                model.register()
+                model.save(api_user)
+        except requests.exceptions.RequestException as e:
+            print(e)
+        return response
 
 def process_data(model):
     """

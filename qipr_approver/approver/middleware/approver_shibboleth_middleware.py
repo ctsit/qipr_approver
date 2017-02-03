@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from approver.models import Person, Address
 from approver import utils
+from approver.workflows.contact_person import add_contact_for_person
 
 
 class ApproverShibbolethMiddleware(object):
@@ -81,7 +82,7 @@ class ApproverShibbolethMiddleware(object):
         based on the authenticated user. It will add or update values
         found in the request META data which are supplied from Shibboleth.
         """
-        created = False
+        created = True
         defaults={
                 'first_name':request.META['HTTP_GIVENNAME'],
                 'last_name':request.META['HTTP_SN'],
@@ -91,15 +92,24 @@ class ApproverShibbolethMiddleware(object):
                 'account_expiration_time':utils.get_account_expiration_date(timezone.now()),
                 }
 
+        request.user.first_name = defaults.get('first_name')
+        request.user.last_name = defaults.get('last_name')
+        request.user.email = defaults.get('email_address')
+
         try:
-            person = Person.objects.get(user=request.user)
+            try:
+                person = request.user.person
+                created = False
+            except:
+                person = Person.objects.get(email_address=request.user.username)
+                person.user = request.user
             person.account_expiration_time = utils.get_account_expiration_date(timezone.now())
             person.save(request.user)
         except Person.DoesNotExist:
             person = Person(**defaults)
             person.user = request.user
             person.save(request.user)
-            created = True
+            add_contact_for_person(person, request.user)
 
         if not person.business_address.count():
             self._add_person_address(request, person)

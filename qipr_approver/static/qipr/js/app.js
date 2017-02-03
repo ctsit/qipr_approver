@@ -114,15 +114,12 @@
                 jnode = $(node);
                 optionList = $('#' + jnode.attr('data-list'));
                 optionList.empty();
-                $.each(data, function( i, l ){
-                    optionList.append($("<li>" + l.display + "</li>")
-                                      .attr("value", l)
+                $.each(data, function( index, item ){
+                    optionList.append($("<li>" + item.display + "</li>")
+                                      .attr("data-guid", item.guid)
                                       .mousedown(function() {
-                                          var tagProp = l.tag_prop,
-                                              model_name = l.model_name,
-                                              model_guid= l.guid;
-                                          node.value = $(this).text();
-                                          addTag(node, {tagProp:tagProp, model_name:model_name, model_guid:model_guid});
+                                          node.value = item.display;
+                                          addTag(node, item);
                                           $(this).remove();
                                       }));
                 });
@@ -204,16 +201,17 @@
         }
     };
 
-    addTag = function(inputNode, customAttrs) {
+    addTag = function(inputNode, dataItem) {
         var text = inputNode.value.trim(),
             name = getTagboxData(inputNode, 'name'),
+            isEmail = getTagboxData(inputNode, 'tagProp').search('email') > -1,
             tagHolderId = 'tag-holder_' + name,
-            taggedWith = inputNode.getAttribute('data-tagProp'),
-            tagProp = (customAttrs || {}).tagProp;
+            taggedWith = 'guid',
+            tagProp = (dataItem || {}).guid || 'NEW::' + text;
 
         if (text) {
-            if (addValue(name, tagProp, text)){
-                tag = createtag(text, customAttrs, taggedWith);
+            if (addValue(name, tagProp)){
+                tag = createtag(text, tagProp, isEmail);
                 document.getElementById(tagHolderId).appendChild(tag);
                 inputNode.value = "";
             }
@@ -228,14 +226,12 @@
         return inputString.replace(/\u200B/g, '');
     };
 
-    createtag = function(text, customAttrs, taggedWith) {
+    createtag = function(text, guid, isEmail) {
         var container = document.createElement('div'),
             li = document.createElement('li'),
             tagDelete = document.createElement('i'),
             icontext = document.createTextNode('close'),
-            keys = Object.keys(customAttrs || {}),
-            tagtext = document.createTextNode(text),
-            isEmail = taggedWith === 'email_address';
+            tagtext = document.createTextNode(text);
 
         container.appendChild(li);
         container.appendChild(tagDelete);
@@ -246,9 +242,7 @@
         tagDelete.appendChild(icontext);
 
         li.classList.add('tag');
-        keys.forEach(function (key) {
-            li.setAttribute(('data-' + key), customAttrs[key]);
-        });
+        li.setAttribute('data-guid', guid);
         tagDelete.classList.add('tag__delete');
         container.classList.add('tag__container');
 
@@ -260,10 +254,10 @@
         return container;
     };
 
-    addValue = function (name, val, text) {
+    addValue = function (name, val) {
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';'),
-            item = val || text;
+            item = val;
         if (!tagAlreadyExists(values,item)){
             values.push(item);
             hiddenInputNode.value = values.join(';');
@@ -279,7 +273,7 @@
 
     deleteTag = function (event) {
         var removeMe = event.target.parentElement,
-            value = event.target.parentElement.children[0].getAttribute('data-tagProp'),//the li
+            value = event.target.parentElement.children[0].getAttribute('data-guid'),//the li
             text = event.target.parentElement.children[0].textContent,//the li
             parent = removeMe.parentElement;
         removeValue(getTagboxData(event.target, 'name'), value || text);
@@ -290,6 +284,7 @@
         var hiddenInputNode = document.getElementById('tag-input_' + name),
             values = hiddenInputNode.value.split(';');
         values = values.filter(function(item) {return item !== val;});
+        values = values.filter(function(item) {return item !== 'NEW::' + val;});
         hiddenInputNode.value = values.join(';');
     };
 

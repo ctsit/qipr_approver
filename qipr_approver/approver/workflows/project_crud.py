@@ -1,4 +1,4 @@
-from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor
+from approver.models import Person, Project, Keyword, ClinicalArea, ClinicalSetting, BigAim, Descriptor, Contact
 from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
@@ -11,6 +11,7 @@ from django.utils import timezone, dateparse
 from django.db.models.query import QuerySet
 from django.urls import reverse
 
+from approver.workflows import contact_person
 
 def create_or_update_project(current_user, project_form, project_id=None):
     """
@@ -40,10 +41,6 @@ def create_new_project_from_user_form(current_user, form):
 
     return new_project
 
-def __is_email(tag):
-    if '@' in tag:
-        return tag
-
 def update_project_from_project_form(project, project_form, editing_user):
     """
     This function changes an existing project entry
@@ -62,44 +59,34 @@ def update_project_from_project_form(project, project_form, editing_user):
     project.proposed_end_date = parse_date(project_form.get('proposed_end_date'))
     project.big_aim = extract_model(BigAim, "name", project_form.get('select-big_aim'))
 
-    advisor = [tag for tag in extract_tags(project_form, 'advisor') if __is_email(tag)]
     clinical_area = extract_tags(project_form, 'clinical_area')
     clinical_setting = extract_tags(project_form, 'clinical_setting')
-    collaborator = [tag for tag in extract_tags(project_form, 'collaborator') if __is_email(tag)]
     mesh_keyword = extract_tags(project_form, 'mesh_keyword')
 
-    update_tags(model=project,
+    project.collaborator = contact_person.get_collaborators_from_form(project_form, editing_user)
+    project.advisor = contact_person.get_advisors_from_form(project_form, editing_user)
+
+    project = update_tags(model=project,
                 tag_property='mesh_keyword',
                 tags=mesh_keyword,
                 tag_model=Descriptor,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
+    project = update_tags(model=project,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
+    project = update_tags(model=project,
                 tag_property='clinical_setting',
                 tags=clinical_setting,
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
-    update_tags(model=project,
-                tag_property='collaborator',
-                tags=collaborator,
-                tag_model=Person,
-                tagging_user=editing_user)
-
-    update_tags(model=project,
-                tag_property='advisor',
-                tags=advisor,
-                tag_model=Person,
-                tagging_user=editing_user)
-
     email_advs_and_collabs(project, editing_user)
     email_confirmation(project)
+    
     project.save(editing_user)
 
 def get_project_or_none(project_id):

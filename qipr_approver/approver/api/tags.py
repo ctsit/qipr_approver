@@ -54,7 +54,6 @@ def get_data(display, model_props, model_name):
     for index, item in enumerate(display):
         data.append({
             'display': display[index],
-            'tag_prop': model_props[index]['tag'],
             'model_name': model_name,
             'guid': model_props[index]['guid']
         })
