@@ -1,7 +1,0 @@
-<h1>Fake shib</h1>
-<form action="{% url 'approver:shib' %}" method="post">
-    {% csrf_token %}
-    <input name="gatorlink" type="text" value="" placeholder="Email"/>
-    <input name="password" type="text" value="" placeholder="Password"/>
-    <input type="submit" value="Login" />
-</form>

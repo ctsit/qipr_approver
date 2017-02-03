@@ -51,60 +51,61 @@ class TrainingModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
         self.assertTrue(check_fields(Training, "name", "Char", 200))
 
-class SpecialityModel(TestCase):
+class BigAimModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Speciality, "name" ,"Char", 50))
-        self.assertTrue(check_fields(Speciality, "description", "Char", 100))
-
-class PositionModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Position, "name", "Char", 50))
-        self.assertTrue(check_fields(Position, "description", "Char", 100))
-
-class KeywordModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Keyword, "name", "Char", 50))
-        self.assertTrue(check_fields(Keyword, "description", "Char", 100))
-
-class ClinicalAreaModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(ClinicalArea, "name", "Char", 50))
-        self.assertTrue(check_fields(ClinicalArea, "description", "Char", 100))
-
-class SuffixModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Suffix, "name", "Char", 20))
-        self.assertTrue(check_fields(Suffix, "description", "Char", 100))
-
-class ExpertiseModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Expertise, "name", "Char", 50))
-        self.assertTrue(check_fields(Expertise, "description", "Char", 100))
-
-class QIInterestModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(QI_Interest, "name", "Char", 50))
-        self.assertTrue(check_fields(QI_Interest, "description", "Char", 100))
+        self.assertTrue(check_fields(BigAim, "name", "Char", 400))
+        self.assertTrue(check_fields(BigAim, "description", "Char", 400))
+        self.assertTrue(check_fields(BigAim, "sort_order", "Integer"))
 
 class CategoryModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
         self.assertTrue(check_fields(Category, "name", "Char", 50))
         self.assertTrue(check_fields(Category, "description", "Char", 100))
 
-class BigAimModel(TestCase):
+class ClinicalAreaModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(BigAim, "name", "Char", 100))
-        self.assertTrue(check_fields(BigAim, "sort_order", "Integer"))
-
-class FocusAreaModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(FocusArea, "name", "Char", 100))
-        self.assertTrue(check_fields(FocusArea, "sort_order", "Integer"))
+        self.assertTrue(check_fields(ClinicalArea, "name", "Char", 50))
+        self.assertTrue(check_fields(ClinicalArea, "description", "Char", 100))
 
 class ClinicalDepartmentModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(ClinicalDepartment, "name", "Char", 100))
+        self.assertTrue(check_fields(ClinicalDepartment, "name", "Char", 50))
         self.assertTrue(check_fields(ClinicalDepartment, "sort_order", "Integer"))
+
+class ExpertiseModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(Expertise, "name", "Char", 50))
+        self.assertTrue(check_fields(Expertise, "description", "Char", 100))
+
+class FocusAreaModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(FocusArea, "name", "Char", 50))
+        self.assertTrue(check_fields(FocusArea, "sort_order", "Integer"))
+
+class KeywordModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(Keyword, "name", "Char", 50))
+        self.assertTrue(check_fields(Keyword, "description", "Char", 100))
+
+class PositionModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(Position, "name", "Char", 50))
+        self.assertTrue(check_fields(Position, "description", "Char", 100))
+
+class QIInterestModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(QI_Interest, "name", "Char", 50))
+        self.assertTrue(check_fields(QI_Interest, "description", "Char", 100))
+
+class SpecialityModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(Speciality, "name" ,"Char", 80))
+        self.assertTrue(check_fields(Speciality, "description", "Char", 100))
+
+class SuffixModel(TestCase):
+    def test_should_have_proper_fields_when_created(self):
+        self.assertTrue(check_fields(Suffix, "name", "Char", 50))
+        self.assertTrue(check_fields(Suffix, "description", "Char", 100))
 
 class AddressModel(TestCase):
     def test_should_have_proper_fields_when_created(self):

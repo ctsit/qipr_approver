@@ -2,32 +2,38 @@
      class="form-tagbox-wrapper input_{{ name }} {{div_classes}}"
      data-name="{{ name }}">
 
-    <div class="preloader-wrapper active tag__list--loading hidden" id="spinner_{{name}}">
-        <div class="spinner-layer tag__list--loading">
-            <div class="circle-clipper left">
-                <div class="circle"></div>
-            </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
+    <div class="tagbox__spinner-box-wrapper">
+        <div class="preloader-wrapper active tag__list--loading hidden" id="spinner_{{name}}">
+            <div class="spinner-layer tag__list--loading">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <label class="tag_label" for="{{ name }}">{{ label }}</label>
-    <input id="tag-input-entry_{{ name }}"
-           class="tagbox__input form__input--with-border"
-           type="text"
-           data-list="datalist_{{ name }}"
-           data-model="{{ model }}"
-           data-filter_field="{{ filter_field }}"
-           {{ disabled }}>
+        <label class="tag_label" for="{{ name }}">{{ label }}</label>
+        <input id="tag-input-entry_{{ name }}"
+            class="tagbox__input form__input--with-border"
+            type="text"
+            placeholder="{{ placeholder }}"
+            data-list="datalist_{{ name }}"
+            data-model="{{ model }}"
+            data-filter_field="{{ filter_field }}"
+            data-tagHolder="tag-holder_{{ name }}"
+            data-tagProp="{{ tag_prop }}"
+            {{ disabled }}>
+    </div>
 
     <div class="dropdown">
          <ul class="datalist dropdown-content" id="datalist_{{ name }}"></ul>
     </div>
 
     <input style="display: none"
+           class="tagbox__input__hidden"
            id="tag-input_{{ name }}"
            name="{{ name }}"
            type="text"
@@ -36,9 +42,9 @@
     <ul id="tag-holder_{{ name }}" class="tag-holder">
         {% for option in selected %}
         <div class="tag__container">
-            <li class="tag" >{{ option }}</li>
+            <li class="tag" data-guid="{{ option.guid }}">{{ option.display }}</li>
             {% if disabled != "disabled" %}
-            <i class="tiny tag__delete">cancel</i>
+            <i class="material-icons tag__delete">ic_close</i>
             {% endif %}
         </div>
         {% endfor %}

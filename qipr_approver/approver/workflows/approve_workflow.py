@@ -6,7 +6,7 @@ from approver.models import Response, Question, Project, Choice
 from approver.constants import answer_submit_names, answer_response_names
 from approver.utils import get_current_user_gatorlink, after_approval
 
-def add_update_response(post_data, session):
+def add_update_response(post_data, request):
     """
     This function is responsible for updating responses as a user is
     filling out the project approver form, ajax-style.
@@ -20,8 +20,7 @@ def add_update_response(post_data, session):
     question_id = int(post_data.get(answer_submit_names.get('question_id')))
     project_id = int(post_data.get(answer_submit_names.get('project_id')))
     choice_id = int(post_data.get(answer_submit_names.get('choice_id')))
-    editing_user_gatorlink = get_current_user_gatorlink(session)
-    editing_user = User.objects.get(username=editing_user_gatorlink)
+    editing_user = request.user
 
     question = Question.objects.get(id=question_id)
     project = Project.objects.get(id=project_id)
@@ -46,7 +45,7 @@ def add_update_response(post_data, session):
 
     return api_response
 
-def save_project_with_form(project, question_form, session):
+def save_project_with_form(project, question_form, request):
     """
     Calls the api method to add responses
     Builds a proper call from a project, question_form, and session
@@ -59,7 +58,7 @@ def save_project_with_form(project, question_form, session):
                 answer_submit_names['choice_id']: question_form[str(key)],
                 answer_submit_names['project_id']: project.id,
             }
-            add_update_response(data, session)
+            add_update_response(data, request)
     return project
 
 def approve_or_next_steps(project, user):
@@ -80,7 +79,7 @@ def approve_or_next_steps(project, user):
     # A project is only approved if the self certification questions were answered
     # correctly and the project does not require an advisor (based on if a QI project
     # is required for the PQIs training program
-    if ((is_correct_response) and (project.need_advisor is False)):
+    if (is_correct_response and (project.get_need_advisor() is False)):
         project.approve(user)
 
     return after_approval(project)

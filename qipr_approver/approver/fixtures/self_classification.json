@@ -1,0 +1,128 @@
+[
+{
+  "model": "approver.self_classification",
+  "pk": 1,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:08:03Z",
+    "last_modified": "2016-12-30T03:08:03Z",
+    "name": "resident",
+    "description": null,
+    "sort_order": 6
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 2,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:08:24Z",
+    "last_modified": "2016-12-30T03:08:24Z",
+    "name": "fellow",
+    "description": null,
+    "sort_order": 3
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 3,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:08:42Z",
+    "last_modified": "2016-12-30T03:08:42Z",
+    "name": "nursing fellow",
+    "description": null,
+    "sort_order": 5
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 4,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:09:07Z",
+    "last_modified": "2016-12-30T03:09:07Z",
+    "name": "medical student",
+    "description": null,
+    "sort_order": 4
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 5,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:09:41Z",
+    "last_modified": "2016-12-30T03:09:41Z",
+    "name": "veterinary medicine fellow",
+    "description": null,
+    "sort_order": 7
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 6,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:10:04Z",
+    "last_modified": "2016-12-30T03:10:04Z",
+    "name": "dental fellow",
+    "description": null,
+    "sort_order": 2
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 7,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 1,
+    "created": "2016-12-30T03:10:28Z",
+    "last_modified": "2016-12-30T03:10:28Z",
+    "name": "clinical faculty",
+    "description": null,
+    "sort_order": 1
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 8,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 2,
+    "created": "2016-12-30T03:10:47Z",
+    "last_modified": "2017-01-24T15:10:35Z",
+    "name": "other",
+    "description": null,
+    "sort_order": 9
+  }
+},
+{
+  "model": "approver.self_classification",
+  "pk": 9,
+  "fields": {
+    "in_registry": false,
+    "created_by": 1,
+    "last_modified_by": 2,
+    "created": "2017-01-24T15:10:31Z",
+    "last_modified": "2017-01-24T15:10:31Z",
+    "name": "faculty",
+    "description": null,
+    "sort_order": 8
+  }
+}
+]

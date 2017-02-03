@@ -23,6 +23,6 @@ def answer_submit(request):
         return JsonResponse(api_data)
 
     elif request.method == 'POST':
-        api_data = approve_workflow.add_update_response(request.POST, request.session);
+        api_data = approve_workflow.add_update_response(request.POST, request)
         return JsonResponse(api_data)
 

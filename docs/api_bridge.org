@@ -21,22 +21,69 @@ CLOSED: [2016-08-05 Fri 11:45]
 - [X] fixtures contains the api user
 - [X] constants file has right api username
 - [X] pushdata grabs the username from constants to make those changes
-** TODO Model natural key
+** DONE Model natural key
+CLOSED: [2016-08-09 Tue 13:33]
 Models must contain a natural key in order for the registry database to
 look up and add those related objects. [[https://docs.djangoproject.com/en/1.9/topics/serialization/][Search for "natural key".]] 
 - [X] person natural key
-- [ ] project natural key
-- [ ] tags natural key
-- [ ] address natural key
+- [X] project natural key
+- [X] tags natural key
+- [X] address natural key
 ** TODO Related object dependencies
-Registry must be able to get related objects that are not in the registry
-already. These are most likely already in the registry db but could not be
-due to network failure or something.
-*** option 1: Pass leaf models first
-- [ ] when serializing, make sure related objects are in the registry
-- [ ] when adding the model make sure to respond to dependency errors
-*** option 2: bidirectional communication
-- [ ] approver enpoints so registry can ask for the things it lacks
+Models cannot be added to a remote database if the foreign keys referenced
+in related relationships do not correspond to an existing model in the
+remote database.
+
+So we make sure the natural key contains the most important information
+about the related item. This way we can remake that item in the database
+
+We need to make sure that models are creating GUID's and those are passed
+
+That way we only need to look up that one thing in order to match and we
+will always have the same object mapper
+
+*** DONE GUID
+CLOSED: [2016-09-01 Thu 10:03]
+- [X] add guid generation to provenance
+- [X] make sure natural keys pass guid as item 0
+*** DONE option 3: create the item from the natural key if we have it
+CLOSED: [2016-09-06 Tue 09:24]
+- [X] pass over all adjacent models
+- [X] natural key passes most important stuff with get_natural_dict
+  - [X] tags
+  - [X] person
+  - [X] project
+  - [X] address
+** TODO Related object deserialization
+Since we are serializing with natural_keys we need to define
+how to reserialize. This will be needed in the registry as well
+
+This is now easy, steps are as follows
+1. lookup guid to see if already present. If so, use that model
+2. If not create new model
+** TODO Minimize saving to reduce load on registry
+As of <2016-09-01 Thu> models are getting saved many times due to naive 
+implementations. For instance, approver.utils.update_tags will save the
+model being tagged and that will cause us to hit registry every time with
+the full deserialized model.
+
+This should help with redundant audit trail entries as well
+*** TODO Scan through app with python webserver to find redundant saves
+run the following command on the registry server to see # of requests
+sudo python3 -m http.server 80
+- [ ] fixed everywhere
+  - [ ] fixed in about you post
+  - [ ] fixed in project post
+  - [ ] fixed in approval process
+** TODO Save models at the proper time
+- [ ] remove in_registry to something better
+*** TODO Person
+- [ ] updates registry when user changes their about you
+*** TODO Project
+- [ ] Stops updating the registry when not editable
+*** TODO Tags
+- [ ] On create
 * Registry Implementation
 ** TODO Api endpoints
+- [ ] make sure that passing the provenance from the other database does the right thing
 ** TODO Make sure that the Approver has to log in or verify its identity

@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+settings.ini
 build/
 develop-eggs/
 dist/
@@ -91,3 +92,11 @@ ENV/
 #Vagrant machine stuff
 .vagrant
 .swp
+
+# django fixture tests
+fixtures/test*
+
+# collectstatic
+qipr_approver/static/admin/*
+qipr_approver/static/debug_toolbar/*
+test_contact.csv

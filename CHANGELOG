@@ -1,3 +1,208 @@
+## [1.0.4] - 2017-02-03
+##Summary
+This release adds the emailing of advisors and collaborators when a project is saved.
+Many performance enhancements were made.  The certificate has the project ID on it now.
+
+### Fixed
+* fixes issue where advisors couldn’t see projects (Matthew McConnell)
+* fixed html on dash buttons (Patrick White)
+* Make view project details button available for collaborator and advisor role on dashboard (#331) (Amber)
+* Style dashboard stats to add bottom padding and clean up css code dups (Amber Allen)
+* Update required tag on projects page to sit inline. (Amber Allen)
+* Lookup speed greatly enhanced with Qs (Matthew McConnell)
+* Removed spacing between stats bar and other footer bar (Patrick White)
+* Phone numbers wont save 0. closes #165 (Patrick White)
+* Admin can edit projects. closes #290 (Patrick White)
+* Update MeSH keywords with proper label and placeholder text (Matthew McConnell)
+
+### Added
+* Add google analytics to the site which will only work on production (Matthew McConnell)
+* The QIPR system now emails collaborators and advisors on project saving (Matthew McConnell)
+* Add descriptor on MeSH keywords (Amber Allen)
+* Add project ID to cert (Matthew McConnell)
+* Updated license. closes #241 (Patrick White)
+
+### Changed
+* Enhance person lookup with dedicated lookup table (Patrick White)
+* dropdown sits directly below input box (Amber Allen)
+
+## [1.0.4] - 2017-01-24
+## Summary
+
+### Fixed
+* Updates ajax calls to wait for typing to be done before firing (Matthew McConnell)
+
+### Added
+ * Put the show all pages link underneath the page links (Matthew McConnell)
+ * pagination show all. closes #245 (Patrick White)
+ * Adds faculty to self classification. closes #274 (Patrick White)
+  * Adds correct specialities. closes #275 (Patrick White)
+
+### Changed
+* Spinner in the box (Patrick White)
+* refactoring to reduce code duplication (Patrick White)
+
+## [1.0.3] - 2017-01-23
+## Summary
+ This release addresses performance issues discovered while using the application.
+ There are also some UI enhancements.
+
+### Fixed
+* Settings will be auto generated for vagrants (Patrick White)
+* Vagrant up urls fix (Patrick White)
+* Remove adding options to tags on first load to reduce load time (Matthew McConnell)
+* Optimize footer queries (Matthew McConnell)
+* Update registry endpoints in constants (Matthew McConnell)
+* Extend max width of training program input (Amber Allen)
+* Fix login url in settings to include any path before it (Matthew McConnell)
+
+### Added
+* Unsupported Browser page (Patrick White)
+* Create browser upgrade page (Amber Allen)
+* Create secondary nav bar alert for staging site (Amber Allen)
+* update bootstrap functions to handle static files (Matthew McConnell)
+* Add the django debug toolbar as a requirement (Matthew McConnell)
+
+### Changed
+* Make dashboard no longer evaluate similar projects (Matthew McConnell)
+* Remove question Will the results of the project be published.. (Amber Allen)
+* Add blue box around suffix field (Amber Allen)
+* Add blue box to collaborators and advisors on project page (Amber Allen)
+* Change PI to QPI (Amber Allen)
+
+## [1.0.2] - 2017-01-19
+## Summary
+ This release corrects the slow down issue and address some other bugs discovered in release
+### Fixed
+* Give admins the ability to edit and submit project approver questions (Matthew McConnell)
+* Guids on access log for easier auditing (Patrick White)
+* Create a setting for the fake shib middleware to turn on instead of debug (Matthew McConnell)
+* Update the way access log gets gatorlink (Matthew McConnell)
+
+## [1.0.01] - 2017-01-19
+## Summary
+ This update disables signals while loading data from outside sources. It also
+ has more robust handing of errors
+
+### Added
+ * Signals no longer are fired while import data (PFWhite)
+ * Django wont die with missing data (PFWhite)
+
+## [1.0.0] - 2017-01-17
+## Summary
+ This update finalizes design changes across the app, adds better authentication
+ methods, and implements better security for requests.
+
+### Added
+* Added all the proper urls to their spots (Matthew McConnell)
+* Add new approver host settings and constants (Matthew McConnell)
+* Added the ability to add collaborators or advisors by name or email address (PFWhite)
+* More robust logging (PFWhite)
+* QIPR now requires and can use Shibboleth for authentication (Matthew McConnell)
+* Fixed the way api calls are handled and processed (PFWhite)
+* Add and remove fields on project page overall project goal, measures (Amber Allen)
+
+### Fixed
+* Made the dash search bar search on enter press (Patrick White)
+* AJAX calls failing due to wrong links (Matthew McConnell)
+* IE should now have functionality (Patrick White)
+
+### Changed
+* add required to title/description and First/Last name fields so the form can’t be submitted without them (Matthew McConnell)
+* Landing Page redesign (Amber)
+* Removed relevance score from similar projects page (Patrick White)
+* Changed project fields (Patrick White)
+* Change CQI to QI on admin dashboard and userlist (Amber Allen)
+* Add spacing between headings on project page (Amber Allen)
+* Fix left margin on bluebox clinical area (Amber Allen)
+* Resize blue boxes on About you page (Amber Allen)
+* Format form fields to be same width, modify blue boxes (Amber Allen)
+* Add left padding to id column on dashboard (Amber Allen)
+* Make QI forms buttons responsive on mobile. (Amber Allen)
+* Update QI criteria text (Amber Allen)
+* Remove 'Continuous' from landing page. Update css to resize bg image and blue box proportionally. (Amber Allen)
+* Remove 'website' txt from footer (Amber Allen)
+
+## [0.8.0] - 2016-01-08
+## Summary
+  This release adds a two admin pages - one for users and one for projects. Admins have the
+  ability to edit/delete and archive projects. New fields were added to the project page to
+  capture the objective, scope, measures, and milestones. The certificate and landing page
+  were remade to make them easier to understand and follow.
+
+### Added
+* Added a project import utility (#212) (PFWhite)
+* Added a People import utility (#211) (PFWhite)
+* Add a new fab file with updated settings.ini to facilitate deployments (Matthew McConnell)
+* Added Objective, scope, measures, and milestones fields to projects. Issue 179 (Patrick White)
+* Added id column to projects on Dash. Issue 182 (Patrick White)
+* add the new shib_enabled setting to the settings.ini file (Matthew McConnell)
+* Admin page to view users
+* Admin page to view all projects in order to edit or archive them (ndavuluri)
+* Styled admin pages (Amber)
+
+### Fixed
+* Added dynamic hostname fix. Issue 176 (#201) (PFWhite)
+
+### Changed
+* Updated wording and layout of registered certificate (Amber)
+* Updated landing page to be more user friendly (#221) (Amber)
+* Upgrades django to 1.10.5 and updates dependencies (Matthew McConnell)
+* Convert bigaims to a dropdown (Matthew McConnell)
+* Issue 162. Delete and Self Certificate Questions should not be shown after project approval (ndavuluri)
+* Remove gatorlink in About You as it is not editable (ndavuluri)
+
+
+## [0.7.0] - 2016-12-12
+## Summary
+ Improved the usability on About you and Project page
+
+### Added
+* Add placeholder text to tag-input-entry on project page (Amber Allen)
+* Add placeholder text and helper paragraph to about you page. (Amber Allen)
+* Add placeholder text to advisor field on project entry page (Amber Allen)
+* Add helper paragraph under collaborators and advisors on project.html (Amber Allen)
+* Add unique placeholder text to input fields on project info form (Amber Allen)
+* Add back to dashboard link on certificate page (Amber Allen)
+* Add back to dashboard link on irb approval page. (Amber Allen)
+
+## [0.6.2] - 2016-11-29
+## Summary
+ Fixed a bug causing projects to seem like they were approved and sending them
+ over to registry
+
+### Fixed:
+ * Conditionally pushing projects to registry (Patrick White)
+
+## [0.6.1] - 2016-11-27
+## Summary
+ Two small bug fixes: one was a left over model attribute which no longer existed throwing
+ errors when called and one which fixed how active users are counted to give a proper count.
+
+### Fixed
+* fix the logic to count active users based on their account expiration time. (Matthew McConnell)
+* Replace a forgotten date_first_registered attribute in model_signals (Matthew McConnell)
+
+## [0.6.0] - 2016-11-25
+## Summary
+ This update adds the connection points for registry. There are also a few bug fixes including
+ fixing a JS API call, preventing multiple adding of projects, and making the dashboard search
+ case insensitive. An additional option was added to the about you forms "Is Quality improvement
+ a requirement of your program" question.
+
+### Added
+* Feature/api bridge for connecting Registry (PFWhite)
+* Feature/third qi choice on About you regarding if quality improvement is a requirement of their program(#153) (stewhat)
+* Issue #142 Account expiration should be 1 year from last_login date (ndavuluri)
+
+### Changed
+* Update email message to include link to project (Matthew McConnell)
+
+### Fixed
+* make the tag request go to the right endpoint (#155) (PFWhite)
+* Disabling the Submit Project button to avoid multiple form submissions (ndavuluri)
+* Issue #114 Dashboard search should be case insensitive (ndavuluri)
+
 ## [0.5.1] - 2016-11-10
 ## Summary
 Original merge was missing commits, forcing them back in.

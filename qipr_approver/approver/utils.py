@@ -1,7 +1,11 @@
+from datetime import timedelta
+import uuid
+
+import django
 from django.contrib.auth.models import User
+from django.core.exceptions import MultipleObjectsReturned
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from datetime import timedelta
@@ -10,6 +14,19 @@ import approver.constants as constants
 import django
 from django.db.models import fields
 from django.apps import apps
+
+def shib_enabled():
+    return constants.SHIB_ENABLED == 'true'
+
+def is_callable(item):
+    """
+    Used to check if items in a module are functions
+    """
+    try:
+        getattr(item, '__call__')
+        return True
+    except:
+        return False
 
 def user_exists(about_you_form):
     """
@@ -24,15 +41,22 @@ def layout_render(request, context):
     It adds context['content'] into the layout.html so that the nav bar is
     present as well as css and javascript
     """
+    context['base_url'] = constants.base_url
+    context['registry_search_url'] = constants.registry_search_path
+    context['faq_url'] = constants.registry_hostportpath
+    context['staging_bar_display'] = '' if constants.is_staging else 'none'
     return render(request, 'approver/layout.html', context)
 
-def get_current_user_gatorlink(session):
+def get_current_user_gatorlink(request):
     """
     Gets the current user's gatorlink
     We don't return the user here because the util file shall
     not have a dependency on the models
     """
-    return session.get(constants.SESSION_VARS['gatorlink'])
+    if shib_enabled():
+        return request.META.get('HTTP_GLID')
+    else:
+        return request.session.get(constants.SESSION_VARS['gatorlink'])
 
 def get_and_reset_toast(session):
     toast = session.get("toast_text")
@@ -42,12 +66,35 @@ def get_and_reset_toast(session):
 def set_toast(session, toast_text):
     session['toast_text'] = toast_text
 
+def project_redirect_and_toast(request, project_id, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:projects", kwargs={'project_id':project_id}))
+
+def about_you_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:aboutyou"))
+
 def dashboard_redirect_and_toast(request, toast_text):
     request.session['toast_text'] = toast_text
     return redirect(reverse("approver:dashboard"))
 
+def dashboard_su_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:dashboard_su"))
+
+def userlist_su_redirect_and_toast(request, toast_text):
+    request.session['toast_text'] = toast_text
+    return redirect(reverse("approver:userlist"))
+
 def after_approval(project):
     return redirect(reverse("approver:project_status") + str(project.id))
+
+def set_guid_if_empty(model):
+    if not model.guid:
+        model.guid = get_guid()
+
+def get_guid():
+    return uuid.uuid4().hex
 
 def set_created_by_if_empty(model, user):
     """
@@ -140,7 +187,9 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
         if isinstance(tag, tag_model):
             taggable.add(tag)
 
-    model.save(tagging_user)
+    # this should do a diff and only save if it changed
+    # either that or save all the diffrent tag types at once
+    return model
 
 def get_related(model, related_model_name):
     """
@@ -191,8 +240,32 @@ def check_fields(ModelName,fieldname,type,max_length=None):
             else:
                 return False
 
+def get_account_expiration_date(date):
+    """Account expiration date is an year from last login date"""
+    return date + timedelta(days=365)
+
 def check_is_date_past_year(date):
     return date + timedelta(days=365) < timezone.now()
+
+def get_or_instantiate(Model, kwargs):
+    """
+    This tries to get a model matching the kwargs.
+    If it cant be found. It will instantiate one.
+    NOTE: this will not save the object
+    """
+    try:
+        return Model.objects.get(**kwargs)
+    except:
+        return Model(**kwargs)
+
+def save_all(iterable, user):
+    """
+    Saves every item in iterable with the user passed
+    NOTE: This will exhaust iterators, Take care
+    """
+    for item in iterable:
+        item.save(user)
+
 
 def is_not_none(item):
     return item != None
@@ -227,3 +300,27 @@ def get_user_from_http_request(request):
     username = request.session.get(constants.SESSION_VARS['gatorlink'])
     user = User.objects.get(username=username)
     return user
+
+def extract_model(model, filter_field, filter_value):
+    """
+    This function returns a single model object matching the the filter field and value
+    If more than one model matches, it will return None
+
+    Keyword arguments:
+    model -- the name of the model
+    filter_field -- the name of the field filtering on
+    filter_value -- the value to search for given the field
+    """
+
+    try:
+        return model.objects.get(**{filter_field: filter_value})
+    except MultipleObjectsReturned:
+        return None
+    except model.DoesNotExist:
+        return None
+
+def Model_for_model(model):
+    """
+    Returns the capital M Model for a given instance
+    """
+    return type(model)

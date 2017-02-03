@@ -14,15 +14,19 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
+project_path = '/var/www/qipr/approver'
 
-def get_config(key):
-    return config.get(config.default_section, key)
+def get_config(key, section=config.default_section):
+    return config.get(section, key)
 
 def define_env():
-    settings_proj_path = 'qipr_approver/qipr_approver/deploy/settings.ini'
+    settings_proj_path = '/qipr_approver/deploy/settings.ini'
     settings_pre_path = ''
     if os.getenv('CI', None) == None:
-        settings_pre_path = '/var/www/'
+        settings_pre_path = project_path
+    elif os.getenv('TRAVIS', False):
+        settings_pre_path = os.getenv('TRAVIS_BUILD_DIR', None) + '/qipr_approver'
+    print(settings_pre_path + settings_proj_path)
     config.read(settings_pre_path + settings_proj_path)
     os.environ['DJANGO_SETTINGS_MODULE'] = "qipr_approver.settings"
     os.environ['DJANGO_CONFIGURATION'] = get_config('configuration')
@@ -33,7 +37,14 @@ def define_env():
     os.environ['QIPR_APPROVER_DATABASE_PASSWORD'] = get_config('database_password')
     os.environ['QIPR_APPROVER_DATABASE_HOST'] = get_config('database_host')
     os.environ['QIPR_APPROVER_DATABASE_PORT'] = get_config('database_port')
-    os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host')
+    os.environ['QIPR_APPROVER_REGISTRY_HOST'] = get_config('registry_host', 'hosts')
+    os.environ['QIPR_APPROVER_REGISTRY_PORT'] = get_config('registry_port', 'hosts')
+    os.environ['QIPR_APPROVER_REGISTRY_PATH'] = get_config('registry_path', 'hosts')
+    os.environ['QIPR_APPROVER_APPROVER_HOST'] = get_config('approver_host', 'hosts')
+    os.environ['QIPR_APPROVER_APPROVER_PATH'] = get_config('approver_path', 'hosts')
+    os.environ['QIPR_SHARED_BRIDGE_KEY'] = get_config('shared_bridge_key')
+    os.environ['SHIB_ENABLED'] = get_config('shib_enabled')
+    os.environ['IS_STAGING'] = get_config('is_staging')
 
 define_env()
 
@@ -49,9 +60,20 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ['DJANGO_CONFIGURATION'] == 'development')
+DEBUG_FAKE_SHIB = True if get_config('debug_fake_shib') == 'true' else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [get_config('approver_host', 'hosts')]
+#Used for the debug tool bar, put your ip(s) to activate the toolbar
+INTERNAL_IPS = [
+    '192.168.222.1', # vagrant ip
+]
 
+# Despite what the documentation implies, this is the way to change the toolbar config
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': True,
+    'DISABLE_PANELS': set(),
+}
 
 # Application definition
 
@@ -63,18 +85,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'approver.middleware.debug_shib.DebugShibMiddleware',
+    'approver.middleware.approver_shibboleth_middleware.ApproverShibbolethMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'approver.middleware.session_expire',
+    'approver.middleware.log_access',
+    'approver.middleware.blacklist_user_agent',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.RemoteUserBackend',
+]
+
+#Set if shib is enabled or not
+SHIB_ENABLED = get_config('shib_enabled').lower() == 'true'
+LOGIN_URL =  get_config('approver_path', 'hosts') + '/shib/'
 
 ROOT_URLCONF = 'qipr_approver.urls'
 
@@ -143,9 +180,20 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email settings for application
+QIPR_EMAIL_HOST = get_config('smtp_host', 'email')
+QIPR_EMAIL_PORT = get_config('smtp_port', 'email')
+QIPR_EMAIL_HOSTNAME = get_config('email_hostname', 'email')
+QIPR_EMAIL_RETURN_ADDR = get_config('email_return_addr', 'email')
+QIPR_EMAIL_DEBUG = get_config('email_debug', 'email') == 'true'
+
+if QIPR_EMAIL_DEBUG:
+    EMAIL_FILE_PATH = '/tmp/app-messages'
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = get_config('approver_path','hosts') + '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

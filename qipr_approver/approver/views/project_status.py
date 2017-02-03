@@ -1,17 +1,9 @@
 import json
 
-from django.shortcuts import render,redirect
-from django.http import HttpResponse, Http404
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.models import User
-from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-from approver.models import Project
 from approver.workflows import project_crud
-from approver.decorators import login_required
-import approver.constants as constants
 import approver.utils as utils
-from django.core.urlresolvers import reverse
 
 @login_required
 def project_status(request, project_id=None):
@@ -22,7 +14,7 @@ def project_status(request, project_id=None):
     }
     project = project_crud.get_project_or_none(project_id)
     #Returns true if the project needs an associated advisor.
-    if (project.need_advisor is True):
+    if (project.get_need_advisor()):
         context['need_advisor'] = True
     # Returns desired project and True if approval was confirmed & time stamped
     if project.approval_date:
