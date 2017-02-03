@@ -1,3 +1,31 @@
+## [1.0.4] - 2017-02-03
+##Summary
+This release adds the emailing of advisors and collaborators when a project is saved.
+Many performance enhancements were made.  The certificate has the project ID on it now.
+
+### Fixed
+* fixes issue where advisors couldn’t see projects (Matthew McConnell)
+* fixed html on dash buttons (Patrick White)
+* Make view project details button available for collaborator and advisor role on dashboard (#331) (Amber)
+* Style dashboard stats to add bottom padding and clean up css code dups (Amber Allen)
+* Update required tag on projects page to sit inline. (Amber Allen)
+* Lookup speed greatly enhanced with Qs (Matthew McConnell)
+* Removed spacing between stats bar and other footer bar (Patrick White)
+* Phone numbers wont save 0. closes #165 (Patrick White)
+* Admin can edit projects. closes #290 (Patrick White)
+* Update MeSH keywords with proper label and placeholder text (Matthew McConnell)
+
+### Added
+* Add google analytics to the site which will only work on production (Matthew McConnell)
+* The QIPR system now emails collaborators and advisors on project saving (Matthew McConnell)
+* Add descriptor on MeSH keywords (Amber Allen)
+* Add project ID to cert (Matthew McConnell)
+* Updated license. closes #241 (Patrick White)
+
+### Changed
+* Enhance person lookup with dedicated lookup table (Patrick White)
+* dropdown sits directly below input box (Amber Allen)
+
 ## [1.0.4] - 2017-01-24
 ## Summary
 
