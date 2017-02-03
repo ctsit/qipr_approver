@@ -88,8 +88,13 @@ function apply_fixtures() {
 
 function handle_static_files() {
     source venv/bin/activate
-    python3 manage.py collectstatic
+    python3 manage.py collectstatic --no-input
     deactivate
+}
+
+function make_tmp_directory() {
+    mkdir -p /tmp/app-messages
+    chown www-data /tmp/app-messages
 }
 
 function copy_settings_example() {
@@ -112,6 +117,7 @@ function install_qipr_approver_fresh_vm () {
         apply_fixtures
         handle_static_files
         apache_setup
+        make_tmp_directory
     popd
 }
 

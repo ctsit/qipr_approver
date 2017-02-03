@@ -189,7 +189,7 @@ def update_tags(model, tag_property, tags, tag_model, tagging_user):
 
     # this should do a diff and only save if it changed
     # either that or save all the diffrent tag types at once
-    model.save(tagging_user)
+    return model
 
 def get_related(model, related_model_name):
     """
@@ -318,3 +318,9 @@ def extract_model(model, filter_field, filter_value):
         return None
     except model.DoesNotExist:
         return None
+
+def Model_for_model(model):
+    """
+    Returns the capital M Model for a given instance
+    """
+    return type(model)

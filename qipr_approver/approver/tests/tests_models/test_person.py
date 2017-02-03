@@ -35,7 +35,7 @@ class PersonTestCase(TestCase):
                 self.assertEqual(isinstance(field, django.db.models.fields.CharField),True)
 
     def test_person_string_representation(self):
-        test = "john, doe, (jdoe@ufl.edu)"
+        test = "john, doe (jdoe@ufl.edu)"
         first_name = 'john'
         last_name = "doe"
         email_address = "jdoe@ufl.edu"

@@ -5,6 +5,7 @@ from approver.utils import extract_tags, update_tags, true_false_to_bool, extrac
 from django.contrib.auth.models import User
 from django.utils import timezone
 from approver import utils
+from approver.workflows.contact_person import add_contact_for_person
 
 def create_new_user_from_current_session(session):
     """
@@ -32,6 +33,18 @@ def create_new_user_from_current_session(session):
 
     return new_user
 
+def check_changed_contact(person, form):
+    new_email_address = form.get('email')
+    new_first_name = form.get('first_name')
+    new_last_name = form.get('last_name')
+    if new_email_address != person.email_address:
+        return True
+    if new_first_name != person.first_name:
+        return True
+    if new_first_name != person.last_name:
+        return True
+    return False
+
 def update_user_from_about_you_form(user, about_you_form, editing_user):
     """
     This function changes an existing (user,person) entry
@@ -42,12 +55,10 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     now = timezone.now()
     person = user.person
 
-    user.first_name = about_you_form.get('first_name')
-    user.last_name = about_you_form.get('last_name')
-    user.email = about_you_form.get('email')
+    changed_contact = check_changed_contact(person, about_you_form)
 
-    person.business_phone = about_you_form.get('business_phone') or 0
-    person.contact_phone = about_you_form.get('contact_phone') or 0
+    person.business_phone = about_you_form.get('business_phone') or None
+    person.contact_phone = about_you_form.get('contact_phone') or None
     person.email_address = about_you_form.get('email')
     person.first_name = about_you_form.get('first_name')
     person.gatorlink = user.username
@@ -69,40 +80,40 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     specialities = extract_tags(about_you_form, 'speciality')
     suffixes = extract_tags(about_you_form, 'suffix')
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='expertise',
                 tags=expertises,
                 tag_model=Expertise,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='qi_interest',
                 tags=qi_interest,
                 tag_model=QI_Interest,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='speciality',
                 tags=specialities,
                 tag_model=Speciality,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='suffix',
                 tags=suffixes,
                 tag_model=Suffix,
                 tagging_user=editing_user)
 
-    update_tags(model=person,
+    person = update_tags(model=person,
                 tag_property='clinical_area',
                 tags=clinical_area,
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    user.save()
-    person.save(last_modified_by=editing_user)
     save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
-
+    person.save(last_modified_by=editing_user)
+    if changed_contact:
+        add_contact_for_person(person, editing_user)
     return person
 
 def save_address_from_form(form, user, address_type, person=None, organization=None):

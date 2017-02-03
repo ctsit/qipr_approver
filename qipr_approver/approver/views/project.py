@@ -34,7 +34,7 @@ def project(request, project_id=None):
         else:
             if project.archived and not project_crud.current_user_is_superuser(current_user):
                 return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
-            if project_crud.current_user_is_project_owner(current_user, project) is not True and project_crud.current_user_is_superuser:
+            if project_crud.current_user_is_superuser(current_user):
                 project = project_crud.create_or_update_project(current_user, project_form, project_id)
                 request.access_log.model = project
                 return utils.dashboard_su_redirect_and_toast(request, 'Project is Saved.')

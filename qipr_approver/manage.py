@@ -16,10 +16,10 @@ if __name__ == "__main__":
         disconnect_signals()
         from approver.custom_commands import loadmesh
         loadmesh(sys.argv)
-    elif sys.argv[1] == 'loadpeople':
+    elif sys.argv[1] == 'loadcontacts':
         disconnect_signals()
-        from approver.custom_commands import loadpeople
-        loadpeople(sys.argv)
+        from approver.custom_commands import loadcontacts
+        loadcontacts(sys.argv)
     elif sys.argv[1] == 'loadprojects':
         disconnect_signals()
         from approver.custom_commands import loadprojects

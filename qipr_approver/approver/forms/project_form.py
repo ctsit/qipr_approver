@@ -1,5 +1,5 @@
 from django.utils import timezone
-from approver.models import Project, ClinicalArea, ClinicalSetting, Person, BigAim, Descriptor
+from approver.models import Project, ClinicalArea, ClinicalSetting, Person, BigAim, Descriptor, Contact
 from django.contrib.auth.models import User
 from approver import utils
 
@@ -19,27 +19,29 @@ class ProjectForm():
                       'value': project.title or ''}
 
         self.collaborator = {'name': 'collaborator',
-                             'model': 'person',
+                             'model': 'contact',
                              'placeholder': 'e.g. Alligator, Albert',
                              'label': 'Type collaborator name, then press "enter" to save',
-                             'filter_field': ';'.join(['email_address','first_name', 'last_name']),
-                             'tag_prop': Person.tag_property_name,
-                             'selected': utils.get_related_property(project, "collaborator", 'email_address')}
+                             'filter_field': ';'.join(['business_email','first_name', 'last_name']),
+                             'tag_prop': Contact.tag_property_name,
+                             'selected': utils.get_related(project, "collaborator")}
 
         self.advisor = {'name': 'advisor',
-                        'model': 'person',
+                        'model': 'contact',
                         'placeholder': 'e.g. Alligator, Alberta',
                         'label': 'Type advisor name, then press "enter" to save',
-                        'filter_field': ';'.join(['email_address','first_name', 'last_name']),
-                        'tag_prop': Person.tag_property_name,
-                        'selected': utils.get_related_property(project, "advisor", 'email_address')}
+                        'filter_field': ';'.join(['business_email','first_name', 'last_name']),
+                        'tag_prop': Contact.tag_property_name,
+                        'selected': utils.get_related(project, "advisor")}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
-                             'label': 'MeSH Keywords',
+                             'label': 'Please indicate 5 or more MeSH (Medical Subject Headings) keywords relating to your project. MeSH keywords are a comprehensive controlled vocabulary for the purpose of indexing journal articles and books. Type keyword, then press "enter" to save',
                              'model': 'descriptor',
                              'filter_field': 'mesh_heading',
+                             'placeholder': 'e.g. Micronutrient and/or Zinc',
                              'tag_prop': Descriptor.tag_property_name,
-                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading")}
+                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading"),
+                             'div_classes': 'about__txtfield--100',}
 
         self.bigaim = {'name': 'big_aim',
                        'label': 'Please select from the dropdown the UF Health Big Aims relating to your project',

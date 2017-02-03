@@ -573,14 +573,18 @@ td, th {
 }
 
 .dashboard_row-title-project {
-    padding-left:2rem;
+    padding-left: 2rem;
 }
 
 .dashboard_stats {
-    padding-top: 1rem;
+    padding: 1rem 0;
     background-color: #004d9a;
-    margin-bottom: 0;
+    margin-bottom: -1.5rem;
     color: white;
+}
+
+.hide_stats .dashboard_stats{
+    display: none; 
 }
 
 .dashboard__updated {
@@ -693,7 +697,7 @@ select:focus {
 
 .col.bg__tags--blue1, .col.bg__tags--blue2, .col.about__bgtags--blue1, .col.about__bgtags--blue2, .col.about__bgtags--blue3, .col.about__bgtags--blue4 {
     background-color: rgb(243, 250, 255);
-    padding: 1rem;
+    padding-top: 1rem;
     border-radius: .5rem;
     border: grey solid 1pt;
 }
@@ -729,7 +733,7 @@ select:focus {
     border-color: red !important;
 }
 
-.required_form-input label::after {
+.required_form-aboutyou .required_form-input label::after {
     content: " *";
     color: red;
 }
@@ -957,7 +961,7 @@ iframe {
     position: relative;
 }
 
-.form-tagbox-wrapper .tag_label {
+.bluebox__height--projectpg .form-tagbox-wrapper .tag_label {
     min-height: 3rem;
 }
 
@@ -1148,6 +1152,12 @@ iframe {
     text-transform: uppercase;
 }
 
+.cert_header_project_id {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
 .cert__text--xsmall {
     font-style: italic;
     font-size: 1rem;
@@ -1264,10 +1274,6 @@ textarea.textarea__height {
     z-index: 1;
 }
 
-.hide_stats .dashboard_stats{
-    display: none; 
-}
-
 @media screen and (min-width: 420px) {
     .nonapprove__header--advisor {
             font-size: 2.5rem;
@@ -1362,8 +1368,8 @@ textarea.textarea__height {
     }
 
     .suffix__adjust.bg__tags--blue1 {
+        padding-top: .6rem;
         margin-top: -.5rem;
-        padding-top: .5rem;
     }
 }
 
@@ -1575,6 +1581,10 @@ textarea.textarea__height {
     .about__header {
         font-size: 2rem;
     }
+
+    .suffix__adjust.bg__tags--blue1 {
+        margin-top: 1rem;
+    }
 }
 
 @media screen and (min-width: 1500px) {
@@ -1591,6 +1601,14 @@ textarea.textarea__height {
         padding-bottom: 3.5rem !important;
         max-width: 33rem;
     }
+
+    #quality--details label {
+        min-height: 20px;
+    }
+
+    .input_suffix, .input_clinical_area, .input_speciality, .input_expertise, .input_qi_interest {
+        line-height: 25px;
+    }
 }
 
 @media screen and (min-width: 1600px) {
@@ -1604,7 +1622,7 @@ textarea.textarea__height {
 .dropdown {
     width: 100%;
     position: relative;
-    display: inline-block;
+    font-size: 1rem;
 }
 
 /* Dropdown Content */
@@ -1620,9 +1638,12 @@ textarea.textarea__height {
 /* List items inside the dropdown */
 .dropdown-content li {
     color: black;
-    padding: 12px 16px;
+    padding: .5rem .6rem;
     text-decoration: none;
     display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    min-height: 2.5rem;
 }
 
 .row .padding--no-right {
