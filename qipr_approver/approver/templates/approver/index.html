@@ -12,19 +12,19 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
   <body>
-     <div class="navbar-fixed">
+    <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper bg-blue">
           <a href="#" class="brand-logo">
-              <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
+              <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}" alt="QIPR Logo">
           </a>
           <ul class="right">
               <li class="nav_li"><a href="{% url 'approver:shib' %}">Login</a></li>
               <li class="nav_li"><a href="{% url 'approver:shib' %}">Register</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <main>
       <div class="bg__img">
           <div class="container">
@@ -34,11 +34,11 @@
                    <!-- <div class="video-container">
                       <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
                     </div> -->
-                    <img class="bigaims__img responsive-img" src="{% static 'qipr/img/big_aims_2016.png' %}">
+                    <img class="bigaims__img responsive-img" src="{% static 'qipr/img/big_aims_2016.png' %}" alt="UF Health Big Aims">
               </div>
               
               <!-- REMOVE THE BELOW LINE OF CODE CODE WHEN VIDEO IS REPLACED AND CHANGE VIDEO COLUMN TO S12 L6 -->
-              <div class="col s1 l1">&nbsp</div>
+              <div class="col s1 l1">&nbsp;</div>
 
 
               <div class="col s12 l5 bg__ltblue">
