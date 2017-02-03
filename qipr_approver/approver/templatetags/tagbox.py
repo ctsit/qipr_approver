@@ -26,7 +26,7 @@ def tagbox(input_dict, is_disabled=False):
 def __get_option_dict(model):
     invisible_space = u"\u200B"
     return {
-        'display': (str(item) + invisible_space),
+        'display': (str(model) + invisible_space),
         'guid': model.guid,
     }
 

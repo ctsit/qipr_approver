@@ -107,7 +107,7 @@ def __get_filter_object(tags):
     Or's together a bunch of Q objects to get a more efficient query
     """
     tag_qs = [__get_q(tag) for tag in tags]
-    accumulator = Q()
+    accumulator = Q(guid='None')
     for q in tag_qs:
         accumulator |= q
     return accumulator
