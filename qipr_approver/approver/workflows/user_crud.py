@@ -45,7 +45,7 @@ def check_changed_contact(person, form):
         return True
     return False
 
-def update_user_from_about_you_form(user, about_you_form, editing_user):
+def update_user_from_about_you_form(person, about_you_form, editing_user):
     """
     This function changes an existing (user,person) entry
     based on the information in the about_you_form.
@@ -53,7 +53,6 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     exist.
     """
     now = timezone.now()
-    person = user.person
 
     changed_contact = check_changed_contact(person, about_you_form)
 
@@ -61,7 +60,6 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
     person.contact_phone = about_you_form.get('contact_phone') or None
     person.email_address = about_you_form.get('email')
     person.first_name = about_you_form.get('first_name')
-    person.gatorlink = user.username
     person.last_name = about_you_form.get('last_name')
     person.webpage_url = about_you_form.get('webpage_url')
     person.title = about_you_form.get('title')
@@ -110,7 +108,7 @@ def update_user_from_about_you_form(user, about_you_form, editing_user):
                 tag_model=ClinicalArea,
                 tagging_user=editing_user)
 
-    save_address_from_form(about_you_form, user, ADDRESS_TYPE['business'], person)
+    save_address_from_form(about_you_form, editing_user, ADDRESS_TYPE['business'], person)
     person.save(last_modified_by=editing_user)
     if changed_contact:
         add_contact_for_person(person, editing_user)

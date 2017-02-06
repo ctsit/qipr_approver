@@ -3,12 +3,15 @@ from django.contrib.auth.models import User
 from approver import utils
 class AboutYouForm():
 
-    def __init__(self, user=User()):
+    def __init__(self, user=None, person=None):
+        person = person if person else user.person
+        date_joined = user.date_joined if user else None
+
         self.first_name = {'name': 'first_name',
                            'placeholder': 'Jane',
                            'label': 'First Name',
                            'type': 'text',
-                           'value': user.person.first_name or '',
+                           'value': person.first_name or '',
                            'required': True,
                            'input_classes': 'about__field--box'}
 
@@ -17,21 +20,21 @@ class AboutYouForm():
                           'label': 'Last Name',
                           'type': 'text',
                           'required': True,
-                          'value': user.person.last_name or '',
+                          'value': person.last_name or '',
                           'input_classes': 'about__field--box'}
 
         self.title = {'name': 'title',
                       'label': 'Title',
                       'placeholder': 'e.g. Mrs.',
                       'type': 'text',
-                      'value': user.person.title or '',
+                      'value': person.title or '',
                       'input_classes': 'about__field--box'}
 
         self.department = {'name': 'department',
                            'placeholder': 'e.g. Pediatrics',
                            'label': 'What is your primary department?',
                            'type': 'text',
-                           'value': user.person.department or '',
+                           'value': person.department or '',
                            'input_classes': 'about__field--box'}
 
         self.clinical_area = {'name': 'clinical_area',
@@ -39,46 +42,46 @@ class AboutYouForm():
                               'label': 'What is your clinical area? Press "enter" to save',
                               'model': 'clinicalarea',
                               'filter_field': 'name',
-                              'selected': utils.get_related(user.person,"clinical_area"),
+                              'selected': utils.get_related(person,"clinical_area"),
                               'input_classes': 'about__field--box',
                               'div_classes': 'about__field--width100'}
 
         self.self_classification = {'name': 'self_classification',
                                     'label': 'Self Classification',
                                     'placeholder': 'Self Classification',
-                                    'selected': getattr(user.person.self_classification,'name',''),
-                                    'other': user.person.other_self_classification or '',
+                                    'selected': getattr(person.self_classification,'name',''),
+                                    'other': person.other_self_classification or '',
                                     'options':  Self_Classification.objects.values_list('name', flat=True).order_by('sort_order'),
                                     'input_class_list': 'about__field-box'}
 
-        self.business_address = user.person.business_address
+        self.business_address = person.business_address
 
         self.webpage_url = {'name': 'webpage_url',
                             'placeholder': 'Enter dept webpage url here',
                             'label': 'Webpage URL',
                             'type': 'text',
-                            'value': user.person.webpage_url or '',
+                            'value': person.webpage_url or '',
                             'input_classes': 'about__field--box'}
 
         self.email = {'name': 'email',
                       'placeholder': 'janedoe@shands.ufl.edu',
                       'label': 'Email Address',
                       'type': 'email',
-                      'value': user.person.email_address or '',
+                      'value': person.email_address or '',
                       'input_classes': 'about__field--box'}
 
         self.business_phone = {'name': 'business_phone',
                                'placeholder': '(555) 555-5555',
                                'label': 'Business Phone Number',
                                'type': 'text',
-                               'value': user.person.business_phone or '',
+                               'value': person.business_phone or '',
                                'input_classes': 'about__field--box'}
 
         self.contact_phone = {'name': 'contact_phone',
                               'placeholder': '(555) 555-5555',
                               'label': 'Contact Phone Number',
                               'type': 'text',
-                              'value': user.person.contact_phone or '',
+                              'value': person.contact_phone or '',
                               'input_classes': 'about__field--box'}
 
         self.speciality_tags = {'name': 'speciality',
@@ -86,7 +89,7 @@ class AboutYouForm():
                                 'label': 'What is your speciality or certification? Press "enter" to save.',
                                 'model': 'speciality',
                                 'filter_field': 'name',
-                                'selected': utils.get_related(user.person, 'speciality'),
+                                'selected': utils.get_related(person, 'speciality'),
                                 'input_classes': 'about__field--box, about__details--height',
                                 'div_classes': 'about__field--width100'}
 
@@ -95,7 +98,7 @@ class AboutYouForm():
                                  'label': 'List your Quality Improvement Interests. Press "enter" to save.',
                                  'model': 'qi_interest',
                                  'filter_field': 'name',
-                                 'selected': utils.get_related(user.person, 'qi_interest'),
+                                 'selected': utils.get_related(person, 'qi_interest'),
                                  'input_classes': 'about__field--box',
                                  'div_classes': 'about__field--width100'}
 
@@ -104,7 +107,7 @@ class AboutYouForm():
                                'label': 'What is your area of expertise? Press "enter" to save.',
                                'model': 'expertise',
                                'filter_field': 'name',
-                               'selected': utils.get_related(user.person, 'expertise'),
+                               'selected': utils.get_related(person, 'expertise'),
                                'input_classes': 'about__field--box',
                                'div_classes': 'about__field--width100'}
 
@@ -113,30 +116,30 @@ class AboutYouForm():
                             'placeholder': 'e.g. PhD or M.D.',
                             'model': 'suffix',
                             'filter_field': 'name',
-                            'selected':  utils.get_related(user.person, 'suffix'),
+                            'selected':  utils.get_related(person, 'suffix'),
                             'input_classes': 'about__field--box',
                             'div_classes': 'about__field--width100'}
 
-        self.qi_required = user.person.qi_required
+        self.qi_required = person.qi_required
 
         self.last_login = {'name': 'last_login',
                            'label': 'Last Login',
                            'type': 'text',
-                           'value': user.person.last_login_time or '',
+                           'value': person.last_login_time or '',
                            'input_classes': 'about__acctinfo--border',
                            'div_classes': 'about__acctinfo'}
 
         self.account_expiration = {'name': 'account_expiration',
                            'label': 'Account Expiration',
                            'type': 'text',
-                           'value': user.person.account_expiration_time or '',
+                           'value': person.account_expiration_time or '',
                            'input_classes': 'about__acctinfo--border',
                            'div_classes': 'about__acctinfo'}
 
         self.account_created = {'name': 'account_created',
                            'label': 'Account Created',
                            'type': 'text',
-                           'value': user.date_joined or '',
+                           'value': date_joined or '',
                            'input_classes': 'about__acctinfo--border',
                            'div_classes': 'about__acctinfo'}
 
@@ -144,7 +147,7 @@ class AboutYouForm():
                            'label': 'Training Program',
                            'placeholder': 'If you selected yes, enter your training program here.',
                            'type': 'text',
-                           'value': user.person.training or '',
+                           'value': person.training or '',
                            'input_classes': 'about__field--box',
                            'div_classes': 'about__question--train'}
 
