@@ -1,3 +1,12 @@
+## [1.1.1] - 2017-02-06
+## Summary
+This hotfix addresses bugs that happened when a tag was saved using the new
+contacts table.
+
+### Fixed
+* fix duplicate contact bug when saving about you (DevMattM)
+* Fix to tagboxes (Patrick White)
+
 ## [1.1.0] - 2017-02-03
 ##Summary
 This release adds the emailing of advisors and collaborators when a project is saved.
