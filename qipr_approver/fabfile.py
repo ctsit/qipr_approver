@@ -147,11 +147,9 @@ def package_files():
     #create the package
     local("tar -cz --exclude='__pycache__' --exclude='.DS_Store' \
     -f %(package_name)s \
-    venv/ \
-	manage.py \
+	manage.py requirements.txt \
 	qipr_approver/deploy/settings.ini \
     qipr_approver/__init__.py \
-    qipr_approver/migration_urls.py \
     qipr_approver/settings.py \
     qipr_approver/urls.py \
     qipr_approver/wsgi.py \
@@ -177,6 +175,17 @@ def unpackage_files():
         run("mkdir -p archive/%(project_name)s-%(project_version)s" % env)
         run("tar -x -C archive/%(project_name)s-%(project_version)s \
             -f %(project_name)s-%(project_version)s.tar.gzip" % env)
+
+def create_venv():
+   """
+   Create a new virtual environment and install requirements
+   """
+
+   with cd("%(backup_project_full_path)s/archive/%(project_name)s-%(project_version)s" % env):
+       run("virtualenv venv")
+       run("source venv/bin/activate")
+       run("pip install -r requirements.txt")
+       run("deactivate")
 
 def link_to_live():
     """
@@ -222,6 +231,7 @@ def deploy(version):
     ship_to_host()
     create_backup()
     unpackage_files()
+    create_venv()
     link_to_live()
     refresh_server()
     #TODO: Run tests, run django validation
