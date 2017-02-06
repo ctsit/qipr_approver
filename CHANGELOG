@@ -1,4 +1,4 @@
-## [1.0.4] - 2017-02-03
+## [1.1.0] - 2017-02-03
 ##Summary
 This release adds the emailing of advisors and collaborators when a project is saved.
 Many performance enhancements were made.  The certificate has the project ID on it now.
