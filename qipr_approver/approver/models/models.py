@@ -17,7 +17,7 @@ class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
-    tag_property_name = 'name'
+    tagged_with = 'name'
 
     def __str__(self, delimiter=' '):
         return delimiter.join([self.name, self.description or ''])
@@ -97,7 +97,7 @@ class Person(Provenance, Registerable):
     self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
                                             related_name="person")
     other_self_classification = models.CharField(max_length=100, null=True)
-    tag_property_name = 'email_address'
+    tagged_with = 'email_address'
     is_admin = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

@@ -21,7 +21,7 @@ def tags(request):
 
         display = [get_string(match) for match in matches]
 
-        model_props = [{'tag':getattr(model, model.tag_property_name), 'guid':model.guid} for model in matches]
+        model_props = [{'tag':getattr(model, model.tagged_with), 'guid':model.guid} for model in matches]
 
         data = get_data(display, model_props, model_name)
 

@@ -126,6 +126,16 @@ def format_date(date):
     date_parts = [date.year, date.month, date.day]
     return '/'.join([str(part) for part in date_parts])
 
+def is_guid(tag):
+    try:
+        hex = int(tag.upper(), 16)
+        return len(tag) == 32
+    except:
+        return False
+
+def clean_tag(tag):
+    return tag.replace('NEW::', '').replace(';', '')
+
 def extract_tags(form, tag_field_name):
     """
     This function extracts the tags from a form and returns
@@ -140,7 +150,7 @@ def extract_tags(form, tag_field_name):
             tags.remove('')
     return [tag.replace(invisible_space, '') for tag in tags]
 
-def model_matching_tag(tag_text, model_class, current_user, matching_property=None):
+def model_matching_tag(tag_text, model_class, current_user, matching_property='guid'):
     """
     This returns the model where
     model_class.objects.filter(model_class.tag_property_name=tag_text)
@@ -149,20 +159,20 @@ def model_matching_tag(tag_text, model_class, current_user, matching_property=No
     if no model matches, make a new one with the current_user
     if more than one model exists, return None
     """
-    filter_against = matching_property or model_class.tag_property_name
-    models = model_class.objects.filter(**{filter_against: tag_text})
+    cleaned = clean_tag(tag_text)
 
-    if len(models) is 1:
-        return models[0]
-
-    elif len(models) is 0:
+    if is_guid(cleaned):
+        models = model_class.objects.filter(guid=cleaned)
+        if len(models) is 1:
+            return models[0]
+        else:
+            return None
+    else:
         model = model_class()
-        setattr(model, filter_against, tag_text)
+        setattr(model, model.tagged_with, cleaned)
         model.save(current_user)
         return model
 
-    else:
-        return None
 
 def update_tags(model, tag_property, tags, tag_model, tagging_user):
     """

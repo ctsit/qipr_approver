@@ -2,7 +2,7 @@ from django.db import models
 from approver.models.bridge_models import Registerable
 
 class TaggedWithName(models.Model):
-    tag_property_name = 'name'
+    tagged_with = 'name'
 
     class Meta:
         abstract = True
