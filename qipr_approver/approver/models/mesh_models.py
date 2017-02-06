@@ -90,7 +90,7 @@ class Descriptor(MeshModel, Registerable):
     pharmacological_action = models.ManyToManyField(PharmacologicalAction)
     related_registry_number = models.ManyToManyField(RegistryNumber)
     semantic_type = models.ManyToManyField(SemanticType)
-    tag_property_name = 'mesh_heading'
+    tagged_with = 'mesh_heading'
 
     def __str__(self):
         return str(self.mesh_heading)

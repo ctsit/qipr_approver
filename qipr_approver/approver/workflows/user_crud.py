@@ -41,7 +41,7 @@ def check_changed_contact(person, form):
         return True
     if new_first_name != person.first_name:
         return True
-    if new_first_name != person.last_name:
+    if new_last_name != person.last_name:
         return True
     return False
 

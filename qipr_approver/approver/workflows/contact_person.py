@@ -68,7 +68,8 @@ def __clean_tag(tag):
     """
     This identifier is in the javascript app.js as well
     """
-    return tag.replace('NEW::', '').replace(';', '')
+    # return tag.replace('NEW::', '').replace(';', '')
+    return utils.clean_tag(tag)
 
 def __is_valid(tag):
     """
@@ -76,7 +77,7 @@ def __is_valid(tag):
     """
     if __is_email(tag):
         return tag
-    elif len(tag) == 32:
+    elif utils.is_guid(tag):
         return tag
     else:
         return None

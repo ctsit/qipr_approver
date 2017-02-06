@@ -39,8 +39,7 @@ class AboutYouForm():
                               'label': 'What is your clinical area? Press "enter" to save',
                               'model': 'clinicalarea',
                               'filter_field': 'name',
-                              'tag_prop': ClinicalArea.tag_property_name,
-                              'selected': utils.get_related_property(user.person,"clinical_area"),
+                              'selected': utils.get_related(user.person,"clinical_area"),
                               'input_classes': 'about__field--box',
                               'div_classes': 'about__field--width100'}
 
@@ -86,9 +85,8 @@ class AboutYouForm():
                                 'placeholder': 'e.g. Pediatric Nephrology',
                                 'label': 'What is your speciality or certification? Press "enter" to save.',
                                 'model': 'speciality',
-                                'tag_prop': Speciality.tag_property_name,
                                 'filter_field': 'name',
-                                'selected': [item.name for item in user.person.speciality.all()],
+                                'selected': utils.get_related(user.person, 'speciality'),
                                 'input_classes': 'about__field--box, about__details--height',
                                 'div_classes': 'about__field--width100'}
 
@@ -97,8 +95,7 @@ class AboutYouForm():
                                  'label': 'List your Quality Improvement Interests. Press "enter" to save.',
                                  'model': 'qi_interest',
                                  'filter_field': 'name',
-                                 'tag_prop': QI_Interest.tag_property_name,
-                                 'selected': [item.name for item in user.person.qi_interest.all()],
+                                 'selected': utils.get_related(user.person, 'qi_interest'),
                                  'input_classes': 'about__field--box',
                                  'div_classes': 'about__field--width100'}
 
@@ -107,8 +104,7 @@ class AboutYouForm():
                                'label': 'What is your area of expertise? Press "enter" to save.',
                                'model': 'expertise',
                                'filter_field': 'name',
-                               'tag_prop': Expertise.tag_property_name,
-                               'selected': [item.name for item in user.person.expertise.all()],
+                               'selected': utils.get_related(user.person, 'expertise'),
                                'input_classes': 'about__field--box',
                                'div_classes': 'about__field--width100'}
 
@@ -117,8 +113,7 @@ class AboutYouForm():
                             'placeholder': 'e.g. PhD or M.D.',
                             'model': 'suffix',
                             'filter_field': 'name',
-                            'tag_prop': Suffix.tag_property_name,
-                            'selected': [item.name for item in user.person.suffix.all()],
+                            'selected':  utils.get_related(user.person, 'suffix'),
                             'input_classes': 'about__field--box',
                             'div_classes': 'about__field--width100'}
 

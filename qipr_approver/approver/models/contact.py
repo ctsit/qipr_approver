@@ -21,7 +21,7 @@ class Contact(Provenance, Registerable):
 
     person = models.ForeignKey(Person, null=True)
 
-    tag_property_name = 'business_email'
+    tagged_with = 'business_email'
 
     def save(self, *args, **kwargs):
         try:
