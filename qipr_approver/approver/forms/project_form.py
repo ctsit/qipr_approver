@@ -23,7 +23,6 @@ class ProjectForm():
                              'placeholder': 'e.g. Alligator, Albert',
                              'label': 'Type collaborator name, then press "enter" to save',
                              'filter_field': ';'.join(['business_email','first_name', 'last_name']),
-                             'tag_prop': Contact.tag_property_name,
                              'selected': utils.get_related(project, "collaborator")}
 
         self.advisor = {'name': 'advisor',
@@ -31,7 +30,6 @@ class ProjectForm():
                         'placeholder': 'e.g. Alligator, Alberta',
                         'label': 'Type advisor name, then press "enter" to save',
                         'filter_field': ';'.join(['business_email','first_name', 'last_name']),
-                        'tag_prop': Contact.tag_property_name,
                         'selected': utils.get_related(project, "advisor")}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
@@ -39,8 +37,7 @@ class ProjectForm():
                              'model': 'descriptor',
                              'filter_field': 'mesh_heading',
                              'placeholder': 'e.g. Micronutrient and/or Zinc',
-                             'tag_prop': Descriptor.tag_property_name,
-                             'selected': utils.get_related_property(project, "mesh_keyword", "mesh_heading"),
+                             'selected': utils.get_related(project, "mesh_keyword"),
                              'div_classes': 'about__txtfield--100',}
 
         self.bigaim = {'name': 'big_aim',
@@ -55,8 +52,7 @@ class ProjectForm():
                               'model': 'clinicalarea',
                               'placeholder': 'e.g. NICU 3 and/or Unit 64',
                               'filter_field': 'name',
-                              'tag_prop': ClinicalArea.tag_property_name,
-                              'selected': utils.get_related_property(project,"clinical_area"),
+                              'selected': utils.get_related(project,"clinical_area"),
                               'div_classes': 'about__txtfield--100'}
 
         self.clinical_setting = {'name': 'clinical_setting',
@@ -64,8 +60,7 @@ class ProjectForm():
                                  'model': 'clinicalsetting',
                                  'placeholder': 'e.g. NICU and/or General Medicine.',
                                  'filter_field': 'name',
-                                 'tag_prop': ClinicalSetting.tag_property_name,
-                                 'selected': utils.get_related_property(project,"clinical_setting"),
+                                 'selected': utils.get_related(project,"clinical_setting"),
                                  'div_classes': 'about__txtfield--100'}
 
         self.description = {'name': 'description',

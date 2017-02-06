@@ -34,4 +34,4 @@ def __add_invisible_spaces(collection):
     return [__get_option_dict(item) for item in collection]
 
 def __to_hidden_input_string(collection):
-    return ';'.join(str(item) for item in collection)
+    return ';'.join(item['guid'] for item in collection)
