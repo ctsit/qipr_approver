@@ -183,9 +183,7 @@ def create_venv():
 
    with cd("%(backup_project_full_path)s/archive/%(project_name)s-%(project_version)s" % env):
        run("virtualenv venv")
-       run("source venv/bin/activate")
-       run("pip install -r requirements.txt")
-       run("deactivate")
+       run("source venv/bin/activate && pip install -r requirements.txt && deactivate")
 
 def link_to_live():
     """
