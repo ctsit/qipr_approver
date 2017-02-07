@@ -217,7 +217,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(getattr(element, element.tag_property_name)).lower()
+        res.add(getattr(element, element.tagged_with)).lower()
     return res
 
 def _jaccard_similarity(doc1, doc2):

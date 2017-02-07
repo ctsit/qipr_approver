@@ -20,16 +20,18 @@ class ProjectForm():
 
         self.collaborator = {'name': 'collaborator',
                              'model': 'contact',
-                             'placeholder': 'e.g. Alligator, Albert',
+                             'placeholder': 'e.g. Gator, Albert',
                              'label': 'Type collaborator name, then press "enter" to save',
                              'filter_field': ';'.join(['business_email','first_name', 'last_name']),
+                             'tag_prop': 'email',
                              'selected': utils.get_related(project, "collaborator")}
 
         self.advisor = {'name': 'advisor',
                         'model': 'contact',
-                        'placeholder': 'e.g. Alligator, Alberta',
+                        'placeholder': 'e.g. Gator, Alberta',
                         'label': 'Type advisor name, then press "enter" to save',
                         'filter_field': ';'.join(['business_email','first_name', 'last_name']),
+                        'tag_prop': 'email',
                         'selected': utils.get_related(project, "advisor")}
 
         self.mesh_keyword = {'name': 'mesh_keyword',
