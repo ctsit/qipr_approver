@@ -1,3 +1,13 @@
+## [1.1.2] - 2017-02-07
+## Summary
+This hotfix takes care of two large issues: customers unable to view a registered project and
+admin users unable to view and edit accounts.
+
+## Fixed
+* fix bug that was preventing admin from seeing and using the archive project button (Matthew McConnell)
+* Fix logic that prevented a user from viewing a registered project (Matthew McConnell)
+* fixed admin user editing issues (Patrick White)
+
 ## [1.1.1] - 2017-02-06
 ## Summary
 This hotfix addresses bugs that happened when a tag was saved using the new

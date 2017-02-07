@@ -20,9 +20,9 @@ def about_you(request):
     if request.method == 'POST':
         about_you_form = request.POST
 
-        user = request.user
+        person = request.user.person
         editing_user = request.user
-        person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+        person = user_crud.update_user_from_about_you_form(person, about_you_form, editing_user)
 
         request.access_log.model = person
 
@@ -52,22 +52,18 @@ def about_you_superuser(request,person_id=None):
     }
     if request.method == 'POST':
         about_you_form = request.POST
-        user = Person.objects.get(id=person_id).user
+        person = Person.objects.get(id=person_id)
         editing_user = request.user
-        person = user_crud.update_user_from_about_you_form(user, about_you_form, editing_user)
+        person = user_crud.update_user_from_about_you_form(person, about_you_form, editing_user)
 
         request.access_log.model = person
 
         return utils.userlist_su_redirect_and_toast(request,"Profile Saved!")
 
     else:
-        user = Person.objects.get(id=person_id).user
-        if hasattr(user,"person") :
-            about_you_form = AboutYouForm(user=user)
-            context['form'] = about_you_form
-            context['empty_address'] = Address()
-            return utils.layout_render(request, context)
-        else :
-            request.session['toast_text'] = 'You donot have permissions to edit this user!'
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        person = Person.objects.get(id=person_id)
+        about_you_form = AboutYouForm(user=None, person=person)
+        context['form'] = about_you_form
+        context['empty_address'] = Address()
+        return utils.layout_render(request, context)
 

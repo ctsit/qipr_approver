@@ -83,7 +83,6 @@
                                 <span>|</span>
 
                                 <!-- ARCHIVE BUTTON -->
-                            {% if request.session.su %}
                                 {% if project.is_archived == 0 %}
                                     <div class="dashboard_btns-admin">
                                         <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_action' action='archive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to archive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="Archive Project" /></form>
@@ -93,7 +92,6 @@
                                         <form class="dashboard_delete--form" action="{% url 'approver:dashboard_su_action' action='unarchive' project_id=project.pk %}" method="post" onSubmit="return confirm('Are you really sure you want to unarchive this project?');">{% csrf_token %} <input class="dashboard_delete" type="submit" value="UnArchive Project" /></form>
                                     </div>
                                 {% endif %}
-                            {% endif %}
                             <!-- END ARCHIVE BUTTON -->
                             </td>
 

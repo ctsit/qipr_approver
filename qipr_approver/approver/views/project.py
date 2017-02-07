@@ -5,7 +5,6 @@ from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from approver.models import Project
@@ -51,7 +50,6 @@ def project(request, project_id=None):
         return redirect(reverse("approver:similar_projects", args=[str(project.id)]))
 
     else:
-        now = timezone.now()
         project_form = ProjectForm()
         context['form'] = project_form
         if(project_id is not None):
@@ -59,23 +57,21 @@ def project(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if project.archived and not project_crud.current_user_is_superuser(current_user) :
+                user_can_edit = project_crud.is_current_project_editable_by_user(current_user, project)
+                if project_crud.current_user_is_superuser(current_user):
+                    context['form'] = ProjectForm(project,is_disabled=not user_can_edit)
+                    return utils.layout_render(request,context)
+
+                elif project.archived:
+                    toast_message = 'Project is archived.'
                     return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
-                if(project_crud.is_current_project_editable(current_user, project) is not True):
-                    if project_crud.current_user_is_project_advisor_or_collaborator(current_user,project):
-                        context['form'] = ProjectForm(project,is_disabled=True)
-                        return utils.layout_render(request,context)
-                    else:
-                        return utils.dashboard_redirect_and_toast(request, 'You are not authorized to edit this project.')
+
+                elif(project_crud.current_user_is_project_owner(current_user,project) or
+                     project_crud.current_user_is_project_advisor_or_collaborator(current_user,project)):
+                    context['form'] = ProjectForm(project,is_disabled=not user_can_edit)
+                    return utils.layout_render(request,context)
                 else:
-                    if (project.get_is_editable() is not True):
-                        if (project_crud.current_user_is_superuser(current_user)):
-                            context['form'] = ProjectForm(project,is_disabled=False)
-                        else:
-                            context['form'] = ProjectForm(project,is_disabled=True)
-                        return utils.layout_render(request,context)
-                    else:
-                        context['form'] = ProjectForm(project)
-                        return utils.layout_render(request, context)
+                    return utils.dashboard_redirect_and_toast(request, 'You are not authorized to view this project.')
         else:
+            #new form
             return utils.layout_render(request, context)
