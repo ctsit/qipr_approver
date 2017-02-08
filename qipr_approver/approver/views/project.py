@@ -66,12 +66,9 @@ def project(request, project_id=None):
                     toast_message = 'Project is archived.'
                     return utils.dashboard_redirect_and_toast(request, 'Project is Archived.')
 
-                elif(project_crud.current_user_is_project_owner(current_user,project) or
-                     project_crud.current_user_is_project_advisor_or_collaborator(current_user,project)):
+                else:
                     context['form'] = ProjectForm(project,is_disabled=not user_can_edit)
                     return utils.layout_render(request,context)
-                else:
-                    return utils.dashboard_redirect_and_toast(request, 'You are not authorized to view this project.')
         else:
             #new form
             return utils.layout_render(request, context)
