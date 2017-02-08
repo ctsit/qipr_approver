@@ -35,7 +35,13 @@ def __connect_to_smtp():
 
 def __send(message):
     connection = __connect_to_smtp()
-    failures = connection.send_message(message)
+    failures = {}
+    try:
+        failures = connection.send_message(message)
+    except smtplib.SMTPRecipientsRefused as err:
+        #If no emails are sent
+        failures = err.recipients
+
     connection.quit()
     return failures
 

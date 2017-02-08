@@ -84,9 +84,9 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
-    email_advs_and_collabs(project, editing_user)
-    email_confirmation(project)
-    
+    failures = email_advs_and_collabs(project, editing_user)
+    email_confirmation(project ,failures)
+
     project.save(editing_user)
 
 def get_project_or_none(project_id):
@@ -242,14 +242,19 @@ def email_advs_and_collabs(project, editing_user):
     advisors = set(project.advisor.all())
     collaborators = set(project.collaborator.all())
     prev_sent_email_set = set(project.sent_email_list.all())
+    failures = []
 
     advisors_to_email = advisors.difference(prev_sent_email_set)
-    __generate_email(advisors_to_email, editing_user, 'advisor', project)
+    failures += __generate_email(advisors_to_email, editing_user, 'advisor', project)
 
     collaborators_to_email = collaborators.difference(prev_sent_email_set)
-    __generate_email(collaborators_to_email, editing_user, 'collaborator', project)
+    failures += __generate_email(collaborators_to_email, editing_user, 'collaborator', project)
 
-    project.sent_email_list = advisors.union(collaborators)
+    failures = set(failures)
+    attempted = advisors.union(collaborators)
+    actual_sent = attempted.difference(failures)
+    project.sent_email_list = actual_sent
+    return failures
 
 def __generate_email(to_person_set, editing_user, role, project):
     project_url = base_url + reverse('approver:projects', args=[project.id])
@@ -261,14 +266,19 @@ def __generate_email(to_person_set, editing_user, role, project):
     }
     email_subject = email_builder.get_email_subject_person_added()
     email_body = email_builder.get_email_body_person_added(**email_body_kwargs)
+    email_failures = []
     for person in to_person_set:
-        send_email(email_subject, email_body,
-                   email_from_address, person.email_address)
+        failures = send_email(email_subject, email_body,
+                              email_from_address,
+                              person.email_address)
+        if failures:
+            email_failures.append(person)
+    return email_failures
 
-def email_confirmation(project):
+def email_confirmation(project, failures):
     title = project.title
     url = base_url + reverse('approver:projects', args=[project.id])
     send_email(email_builder.get_email_subject_confirmation(),
-               email_builder.get_email_sent_confirmation_body(title, url),
+               email_builder.get_email_sent_confirmation_body(title, url, failures),
                email_from_address,
                project.owner.email_address)

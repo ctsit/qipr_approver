@@ -23,15 +23,26 @@ def get_email_body_person_added(first_name, last_name, role,
 def get_email_subject_person_added():
     return 'You have been added to a quality improvement project'
 
-def get_email_sent_confirmation_body(project_title, project_url):
+def get_email_sent_confirmation_body(project_title, project_url, failures):
     kwargs = {
     }
     body = 'This email is to alert you that your quality improvement project titled: ' \
            '"{project_title}" has been saved. \n' + \
            'All collaborators and advisors have been alerted \n\n' + \
-            __project_url(project_url) + '\n\n' + __email_footer()
+            __project_url(project_url) + '\n\n'
 
+    if failures:
+        body += add_failed_email_list(failures)
+
+    body +=" \n\n" + __email_footer()
     return body.format(project_title=project_title)
+
+def add_failed_email_list(failed_people):
+    message = "The following people could not be reached, please verify their email: \n\n"
+    for person in failed_people:
+        message += "%s %s - %s" % (person.first_name, person.last_name, person.email_address)
+
+    return message
 
 def get_email_subject_confirmation():
     return 'Your quality improvement project has been saved'
