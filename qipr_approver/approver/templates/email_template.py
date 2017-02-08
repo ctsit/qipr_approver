@@ -14,7 +14,7 @@ def get_email_body_person_added(first_name, last_name, role,
     }
 
     body_string = '{first_name} {last_name} has listed you as ' + __a_or_an(role) + \
-                  ' {role} for the qulatiy improvement project titled: ' \
+                  ' {role} for the quality improvement project titled: ' \
                   '"{project_title}." \n\n' + __project_url(project_url) + \
                   '\n\n' + __email_footer()
 
