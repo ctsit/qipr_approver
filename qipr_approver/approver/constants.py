@@ -94,6 +94,8 @@ registry_endpoints = {
     'add_model': '/'.join([registry_hostportpath, 'api', 'add_model']),
 }
 
+email_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST']
+
 base_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST'] + os.environ['QIPR_APPROVER_APPROVER_PATH']
 
 app_label = 'approver'

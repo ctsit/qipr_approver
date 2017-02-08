@@ -3,7 +3,7 @@ from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
 from approver.utilities import send_email
-from approver.constants import similarity_factors, email_from_address, base_url
+from approver.constants import similarity_factors, email_from_address, email_url
 import approver.templates.email_template as email_builder # get_email_body_person_added, get_email_subject_person_added
 
 from django.contrib.auth.models import User
@@ -217,7 +217,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(getattr(element, element.tag_property_name)).lower()
+        res.add(getattr(element, element.tagged_with)).lower()
     return res
 
 def _jaccard_similarity(doc1, doc2):
@@ -253,7 +253,7 @@ def email_advs_and_collabs(project, editing_user):
     project.sent_email_list = advisors.union(collaborators)
 
 def __generate_email(to_person_set, editing_user, role, project):
-    project_url = base_url + reverse('approver:projects', args=[project.id])
+    project_url = email_url + reverse('approver:projects', args=[project.id])
     email_body_kwargs = {'first_name': editing_user.person.first_name,
                          'last_name': editing_user.person.last_name,
                          'role': role,
@@ -268,7 +268,7 @@ def __generate_email(to_person_set, editing_user, role, project):
 
 def email_confirmation(project):
     title = project.title
-    url = base_url + reverse('approver:projects', args=[project.id])
+    url = email_url + reverse('approver:projects', args=[project.id])
     send_email(email_builder.get_email_subject_confirmation(),
                email_builder.get_email_sent_confirmation_body(title, url),
                email_from_address,
