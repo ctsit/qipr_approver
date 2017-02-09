@@ -244,6 +244,7 @@
         li.classList.add('tag');
         li.setAttribute('data-guid', guid);
         tagDelete.classList.add('tag__delete');
+        tagDelete.classList.add('material-icons');
         container.classList.add('tag__container');
 
         tagDelete.addEventListener('click', function(event) {

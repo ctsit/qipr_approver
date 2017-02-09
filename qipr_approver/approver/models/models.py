@@ -50,8 +50,6 @@ class ClinicalArea(Provenance, Tag):
     pass
 class ClinicalSetting(Provenance, Tag):
     pass
-class Expertise(Provenance, Tag):
-    pass
 class Keyword(Provenance, Tag):
     pass
 class Position(Provenance, Tag):
@@ -77,7 +75,7 @@ class Person(Provenance, Registerable):
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    expertise = models.ManyToManyField(Expertise)
+    expertise = models.ManyToManyField(Descriptor)
     first_name = models.CharField(max_length=30)
     gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
