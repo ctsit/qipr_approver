@@ -67,6 +67,6 @@
     {% if form.is_disabled %}
         <a href="{% url 'approver:project_status' project_id=project_id %}" class="btn seecert__btn">See Certificate</a>
     {% else %}
-        <input class="btn about__submit" name="submitProject" type="submit" value="Submit Project" />
+        <input class="btn about__submit" name="submitProject" type="submit" value="Save and Continue" />
     {% endif %}
 </form>
