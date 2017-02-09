@@ -1,4 +1,4 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification
+from approver.models import Person, Speciality, Descriptor, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
 from approver.utils import extract_tags, update_tags, true_false_to_bool, extract_model
 
@@ -81,7 +81,7 @@ def update_user_from_about_you_form(person, about_you_form, editing_user):
     person = update_tags(model=person,
                 tag_property='expertise',
                 tags=expertises,
-                tag_model=Expertise,
+                tag_model=Descriptor,
                 tagging_user=editing_user)
 
     person = update_tags(model=person,
