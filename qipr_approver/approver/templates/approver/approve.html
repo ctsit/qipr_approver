@@ -6,7 +6,8 @@
 <div class="container"> 
 <form action="{% url 'approver:approve' project_id=project_id %}"
       method="post"
-      onkeypress="return event.keyCode != 13">
+      onkeypress="return event.keyCode != 13"
+      onsubmit="return saveWarn()">
 
     {% csrf_token %}
 
@@ -17,10 +18,21 @@
 
     <div class="btmnav">
       <input type="submit"
-           value="Continue"
+           value="Submit Project"
            class="btmnav__btn--interior btn"
            />
     </div>
 </form>
 
+<a class="back__dashboard center" href="{% url 'approver:projects' project_id=project_id %}">- Back to Project -</a>
 <a class="back__dashboard center" href="{% url 'approver:dashboard' %}">- Back to Dashboard -</a>
+
+<script>
+ function saveWarn(){
+    return confirm('Warning: \n' +
+                   'If you submit this project, and it is registered, it will ' +
+                   'be locked. \n' +
+                   'Any changes after will have to be done by an administrator. \n' +
+                   'If you are ready to submit, press "OK", otherwise cancel.');
+   }
+</script>
