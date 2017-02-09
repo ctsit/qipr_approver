@@ -1,4 +1,4 @@
-from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification
+from approver.models import Person, Speciality, Expertise, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification, ClinicalDepartment
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
 from approver.utils import extract_tags, update_tags, true_false_to_bool, extract_model
 
@@ -63,10 +63,10 @@ def update_user_from_about_you_form(person, about_you_form, editing_user):
     person.last_name = about_you_form.get('last_name')
     person.webpage_url = about_you_form.get('webpage_url')
     person.title = about_you_form.get('title')
-    person.department = about_you_form.get('department')
     person.qi_required = about_you_form.get('qi_required')
     person.training = about_you_form.get('training_program')
     person.self_classification = extract_model(Self_Classification, "name", about_you_form.get('select-self_classification') or '')
+    person.department = extract_model(ClinicalDepartment, "name", about_you_form.get('select-department') or '')
     if (about_you_form.get('select-self_classification') == 'other'):
         person.other_self_classification = about_you_form.get('other_classification')
     else:

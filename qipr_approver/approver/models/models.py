@@ -70,6 +70,7 @@ class Suffix(Provenance, Tag):
 class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 class ClinicalDepartment(Provenance, Tag):
+    name = models.CharField(max_length=90, null=True)
     sort_order = models.IntegerField(null=True)
 
 class Person(Provenance, Registerable):
@@ -91,7 +92,8 @@ class Person(Provenance, Registerable):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name="person")
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
-    department = models.CharField(max_length=50, null=True)
+    department = models.ForeignKey(ClinicalDepartment, null=True, on_delete=models.SET_NULL,
+                                            related_name="person")
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
