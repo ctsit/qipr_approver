@@ -110,6 +110,7 @@ function copy_settings_example() {
 
 function install_qipr_approver_fresh_vm () {
     pushd /var/www/qipr/approver
+        copy_settings_example
         create_virtualenv
         pip_dependencies
         create_database
@@ -123,6 +124,7 @@ function install_qipr_approver_fresh_vm () {
 
 function install_qipr_approver() {
     pushd /var/www/qipr/approver
+        copy_settings_example
         create_virtualenv
         pip_dependencies
         migrate_application_database
