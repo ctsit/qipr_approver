@@ -123,8 +123,15 @@ def format_date(date):
     This format date is used with the date picker. It has to be in a
     particular form in order to work
     """
+    def __pad(item):
+        if len(item) < 2:
+            return ''.join(['0', item])
+        else:
+            return item
+
     date_parts = [date.year, date.month, date.day]
-    return '/'.join([str(part) for part in date_parts])
+    date_strs = [__pad(str(part)) for part in date_parts]
+    return '-'.join(date_strs)
 
 def is_guid(tag):
     try:
