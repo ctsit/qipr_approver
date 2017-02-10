@@ -93,7 +93,7 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.ForeignKey(ClinicalDepartment, null=True, on_delete=models.SET_NULL,
-                                            related_name="person")
+                                   related_name="person")
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,

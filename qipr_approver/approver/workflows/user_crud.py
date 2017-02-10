@@ -66,11 +66,11 @@ def update_user_from_about_you_form(person, about_you_form, editing_user):
     person.qi_required = about_you_form.get('qi_required')
     person.training = about_you_form.get('training_program')
     person.self_classification = extract_model(Self_Classification, "name", about_you_form.get('select-self_classification') or '')
-    person.department = extract_model(ClinicalDepartment, "name", about_you_form.get('select-department') or '')
     if (about_you_form.get('select-self_classification') == 'other'):
         person.other_self_classification = about_you_form.get('other_classification')
     else:
         person.other_self_classification = None
+    person.department = extract_model(ClinicalDepartment, "name", about_you_form.get('select-department') or '')
 
     clinical_area = extract_tags(about_you_form, 'clinical_area')
     expertises = extract_tags(about_you_form, 'expertise')

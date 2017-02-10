@@ -34,7 +34,6 @@ class AboutYouForm():
                            'placeholder': 'Department',
                            'label': 'What is your primary department?',
                            'selected': getattr(person.department,'name',''),
-                           'other': person.other_self_classification or '',
                            'options': ClinicalDepartment.objects.values_list('name', flat=True).order_by('sort_order'),
                            'input_classes': 'about__field--box'}
 
