@@ -76,7 +76,7 @@ class Person(Provenance, Registerable):
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    expertise = models.ManyToManyField(Descriptor)
+    expertise = models.ManyToManyField(Descriptor, related_name='persons')
     first_name = models.CharField(max_length=30)
     gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
