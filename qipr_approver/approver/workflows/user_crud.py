@@ -81,7 +81,7 @@ def update_user_from_about_you_form(person, about_you_form, editing_user):
     person = update_tags(model=person,
                 tag_property='expertise',
                 tags=expertises,
-                tag_model=Expertise,
+                tag_model=Descriptor,
                 tagging_user=editing_user)
 
     person = update_tags(model=person,

@@ -72,11 +72,6 @@ class ClinicalDepartmentModel(TestCase):
         self.assertTrue(check_fields(ClinicalDepartment, "name", "Char", 90))
         self.assertTrue(check_fields(ClinicalDepartment, "sort_order", "Integer"))
 
-class ExpertiseModel(TestCase):
-    def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(Expertise, "name", "Char", 50))
-        self.assertTrue(check_fields(Expertise, "description", "Char", 100))
-
 class FocusAreaModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
         self.assertTrue(check_fields(FocusArea, "name", "Char", 50))

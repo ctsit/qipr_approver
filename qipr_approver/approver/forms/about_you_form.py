@@ -105,8 +105,8 @@ class AboutYouForm():
         self.expertise_tags = {'name': 'expertise',
                                'placeholder': 'e.g. Nephrotic Syndrome',
                                'label': 'What is your area of expertise? Press "enter" to save.',
-                               'model': 'expertise',
-                               'filter_field': 'name',
+                               'model': 'descriptor',
+                               'filter_field': 'mesh_heading',
                                'selected': utils.get_related(person, 'expertise'),
                                'input_classes': 'about__field--box',
                                'div_classes': 'about__field--width100'}
