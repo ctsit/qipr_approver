@@ -1,4 +1,4 @@
-from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea, Self_Classification, ClinicalDepartment
+from approver.models import Speciality, QI_Interest, Suffix, ClinicalArea, Self_Classification, ClinicalDepartment
 from django.contrib.auth.models import User
 from approver import utils
 class AboutYouForm():
