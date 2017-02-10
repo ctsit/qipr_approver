@@ -1,4 +1,4 @@
-from approver.models import Person, Speciality, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification, ClinicalDepartment
+from approver.models import Person, Descriptor, Speciality, QI_Interest, Suffix, Address, Organization, ClinicalArea, Self_Classification, ClinicalDepartment
 from approver.constants import SESSION_VARS, ADDRESS_TYPE
 from approver.utils import extract_tags, update_tags, true_false_to_bool, extract_model
 
