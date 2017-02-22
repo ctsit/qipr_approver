@@ -94,5 +94,9 @@ def __is_logging(request):
     # dont log static file requests
     if 'static' in pieces:
         is_logging = False
+    # dont log api/tags calls
+    if 'api' in pieces and 'tags' in pieces:
+        is_logging = False
 
     return is_logging
+
