@@ -70,7 +70,7 @@ def update_user_from_about_you_form(person, about_you_form, editing_user):
         person.other_self_classification = about_you_form.get('other_classification')
     else:
         person.other_self_classification = None
-    person.department = extract_model(ClinicalDepartment, "name", about_you_form.get('select-department') or '')
+    person.department_select = extract_model(ClinicalDepartment, "name", about_you_form.get('select-department') or '')
 
     clinical_area = extract_tags(about_you_form, 'clinical_area')
     expertises = extract_tags(about_you_form, 'expertise')

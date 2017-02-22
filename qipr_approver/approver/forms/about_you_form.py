@@ -33,7 +33,7 @@ class AboutYouForm():
         self.department = {'name': 'department',
                            'placeholder': 'Department',
                            'label': 'What is your primary department?',
-                           'selected': getattr(person.department,'name',''),
+                           'selected': getattr(person.department_select,'name',''),
                            'options': ClinicalDepartment.objects.values_list('name', flat=True).order_by('sort_order'),
                            'input_classes': 'about__field--box'}
 
