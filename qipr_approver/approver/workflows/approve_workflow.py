@@ -8,10 +8,11 @@ from approver.utils import get_current_user_gatorlink, after_approval
 
 def add_update_response(post_data, request):
     """
-    This function is responsible for updating responses as a user is
+    This function was responsible for updating responses as a user is
     filling out the project approver form, ajax-style.
-    This is important because we want the user to not lose work as
-    they are going along but we also dont want the page refreshing constantly
+    This was important because we wanted the user to not lose work as
+    they are going along. Now we want the responses only to save on
+    submittal so this is no longer used for ajax.
 
     Also this function is used by the form update so we dont duplicate code
     """
@@ -81,6 +82,9 @@ def approve_or_next_steps(project, user):
     # is required for the PQIs training program
     if (is_correct_response and (project.get_need_advisor() is False)):
         project.approve(user)
+    else:
+        for response in project.response.all():
+            response.delete(user)
 
     return after_approval(project)
 
