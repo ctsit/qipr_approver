@@ -29,6 +29,8 @@ class Tag(TaggedWithName, TagPrint, Registerable):
     """
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100, null=True)
+    vivo_uri = models.CharField(max_length=100, null=True)
+    vivo_host = 'http://vivo.ufl.edu/individual/'
 
     def get_natural_dict(self):
         return {

@@ -69,7 +69,7 @@ class ClinicalAreaModel(TestCase):
 
 class ClinicalDepartmentModel(TestCase):
     def test_should_have_proper_fields_when_created(self):
-        self.assertTrue(check_fields(ClinicalDepartment, "name", "Char", 50))
+        self.assertTrue(check_fields(ClinicalDepartment, "name", "Char", 90))
         self.assertTrue(check_fields(ClinicalDepartment, "sort_order", "Integer"))
 
 class FocusAreaModel(TestCase):
