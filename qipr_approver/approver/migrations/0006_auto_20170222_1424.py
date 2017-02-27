@@ -73,12 +73,4 @@ class Migration(migrations.Migration):
             name='name',
             field=models.CharField(max_length=90, null=True),
         ),
-        migrations.AlterField(
-            model_name='person',
-            name='expertise',
-            field=models.ManyToManyField(to='approver.Descriptor'),
-        ),
-        migrations.DeleteModel(
-            name='Expertise',
-        ),
     ]
