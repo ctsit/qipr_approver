@@ -1,3 +1,34 @@
+## [1.2.0] - 2017-02-27
+## Summary
+This release removes the questionnaire saving answers and also adds a warning when a user attempts to
+submit answers that their project will be locked. There were a few bug fixes including one that prevented
+the similar projects page from showing and one that would cause the application to crash if it couldn't
+email out. There were a few typos corrected and a small problem with dates being formatted incorrectly
+which prevented them from being displayed.
+
+## Fixed
+* Fix bug preventing people from not being able to view similar project details (Matthew McConnell)
+* Fix a typo in the word quality (Matthew McConnell)
+* gracefully handles smtp failures when no emails are successfully sent (Matthew McConnell)
+* email had wrong url for the project (Patrick White)
+* Update index.html wording to say Project instead of performance (PFWhite)
+* fixed date formatting so that project start/stop dates work (Patrick White)
+* Similar project bug causing the page to error if there were similar projects (Patrick White)
+
+## Added
+* Added mesh dedupe custom command (Patrick White)
+* Add a popup to warn the user that the project is locked if submitted, add link back to project (Matthew McConnell)
+* update departments to include all known UF departments (Patrick White)
+
+## Changed
+* Do not log calls to api/tags in the access log (Patrick White)
+* Removed ajax endpoint so answers are only saved on project submittal (Patrick White)
+* Change wording of project save button (Matthew McConnell)
+* Resize icon images for ie alert page (Amber Allen)
+* Create second image of caution sign for ie view (Amber Allen)
+* modify classes on unsupported browser to display better in chrome (Amber Allen)
+* Change Expertise to now pull from the mesh keyword list instead of free form text (Patrick White)
+
 ## [1.1.2] - 2017-02-07
 ## Summary
 This hotfix takes care of two large issues: customers unable to view a registered project and
