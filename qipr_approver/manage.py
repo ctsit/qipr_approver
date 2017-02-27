@@ -24,5 +24,9 @@ if __name__ == "__main__":
         disconnect_signals()
         from approver.custom_commands import loadprojects
         loadprojects(sys.argv)
+    elif sys.argv[1] == 'dedupemesh':
+        disconnect_signals()
+        from approver.custom_commands import dedupemesh
+        dedupemesh(sys.argv)
     else:
         execute_from_command_line(sys.argv)

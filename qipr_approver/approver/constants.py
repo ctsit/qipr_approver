@@ -72,6 +72,8 @@ similarity_factors = {
 
 api_username = 'admin_api_user'
 
+fixture_username = 'admin_fixture_user'
+
 gatorlink_header = 'Glid'
 
 bridge_key = os.environ['QIPR_SHARED_BRIDGE_KEY']
