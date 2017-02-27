@@ -3,7 +3,7 @@ from approver.constants import SESSION_VARS
 from approver.utils import extract_tags, update_tags, extract_model
 import approver.utils as utils
 from approver.utilities import send_email
-from approver.constants import similarity_factors, email_from_address, base_url
+from approver.constants import similarity_factors, email_from_address, email_url
 import approver.templates.email_template as email_builder # get_email_body_person_added, get_email_subject_person_added
 
 from django.contrib.auth.models import User
@@ -84,9 +84,9 @@ def update_project_from_project_form(project, project_form, editing_user):
                 tag_model=ClinicalSetting,
                 tagging_user=editing_user)
 
-    email_advs_and_collabs(project, editing_user)
-    email_confirmation(project)
-    
+    failures = email_advs_and_collabs(project, editing_user)
+    email_confirmation(project ,failures)
+
     project.save(editing_user)
 
 def get_project_or_none(project_id):
@@ -174,9 +174,10 @@ def get_similar_projects(project):
     project_scores = []
 
     for member in projects:
-        similarity = _calculate_similarity_score(project, member)
-        if similarity != 0:
-            project_scores.append((member.id, member, similarity))
+        if project != member:
+            similarity = _calculate_similarity_score(project, member)
+            if similarity != 0:
+                project_scores.append((member.id, member, similarity))
 
     return sorted(project_scores, key=lambda score: score[2], reverse = True)
 
@@ -216,7 +217,7 @@ def _calculate_similarity_score(project, member):
 def _get_set_for_query(queryset):
     res = set()
     for element in queryset.all():
-        res.add(getattr(element, element.tag_property_name))
+        res.add(str(getattr(element, element.tagged_with)).lower())
     return res
 
 def _jaccard_similarity(doc1, doc2):
@@ -228,8 +229,8 @@ def _jaccard_similarity(doc1, doc2):
         a = _get_set_for_query(doc1)
         b = _get_set_for_query(doc2)
     else:
-        a = set(doc1.split())
-        b = set(doc2.split())
+        a = set([item.lower() for item in doc1.split()])
+        b = set([item.lower() for item in doc2.split()])
 
     intersection = len(a.intersection(b))
 
@@ -242,17 +243,22 @@ def email_advs_and_collabs(project, editing_user):
     advisors = set(project.advisor.all())
     collaborators = set(project.collaborator.all())
     prev_sent_email_set = set(project.sent_email_list.all())
+    failures = []
 
     advisors_to_email = advisors.difference(prev_sent_email_set)
-    __generate_email(advisors_to_email, editing_user, 'advisor', project)
+    failures += __generate_email(advisors_to_email, editing_user, 'advisor', project)
 
     collaborators_to_email = collaborators.difference(prev_sent_email_set)
-    __generate_email(collaborators_to_email, editing_user, 'collaborator', project)
+    failures += __generate_email(collaborators_to_email, editing_user, 'collaborator', project)
 
-    project.sent_email_list = advisors.union(collaborators)
+    failures = set(failures)
+    attempted = advisors.union(collaborators)
+    actual_sent = attempted.difference(failures)
+    project.sent_email_list = actual_sent
+    return failures
 
 def __generate_email(to_person_set, editing_user, role, project):
-    project_url = base_url + reverse('approver:projects', args=[project.id])
+    project_url = email_url + reverse('approver:projects', args=[project.id])
     email_body_kwargs = {'first_name': editing_user.person.first_name,
                          'last_name': editing_user.person.last_name,
                          'role': role,
@@ -261,14 +267,19 @@ def __generate_email(to_person_set, editing_user, role, project):
     }
     email_subject = email_builder.get_email_subject_person_added()
     email_body = email_builder.get_email_body_person_added(**email_body_kwargs)
+    email_failures = []
     for person in to_person_set:
-        send_email(email_subject, email_body,
-                   email_from_address, person.email_address)
+        failures = send_email(email_subject, email_body,
+                              email_from_address,
+                              person.email_address)
+        if failures:
+            email_failures.append(person)
+    return email_failures
 
-def email_confirmation(project):
+def email_confirmation(project, failures):
     title = project.title
-    url = base_url + reverse('approver:projects', args=[project.id])
+    url = email_url + reverse('approver:projects', args=[project.id])
     send_email(email_builder.get_email_subject_confirmation(),
-               email_builder.get_email_sent_confirmation_body(title, url),
+               email_builder.get_email_sent_confirmation_body(title, url, failures),
                email_from_address,
                project.owner.email_address)

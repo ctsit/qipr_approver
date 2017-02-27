@@ -72,6 +72,8 @@ similarity_factors = {
 
 api_username = 'admin_api_user'
 
+fixture_username = 'admin_fixture_user'
+
 gatorlink_header = 'Glid'
 
 bridge_key = os.environ['QIPR_SHARED_BRIDGE_KEY']
@@ -93,6 +95,8 @@ registry_search_path = registry_hostportpath + '/search'
 registry_endpoints = {
     'add_model': '/'.join([registry_hostportpath, 'api', 'add_model']),
 }
+
+email_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST']
 
 base_url = protocol + os.environ['QIPR_APPROVER_APPROVER_HOST'] + os.environ['QIPR_APPROVER_APPROVER_PATH']
 
@@ -116,4 +120,4 @@ bad_user_agent_strings = [
 
 is_staging = True if os.environ['IS_STAGING'] == 'true' else False
 
-VERSION_NUMBER = '1.1.2'
+VERSION_NUMBER = '1.2.0'

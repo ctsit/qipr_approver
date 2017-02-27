@@ -1,4 +1,4 @@
-from approver.models import Speciality, Expertise, QI_Interest, Suffix, ClinicalArea, Self_Classification
+from approver.models import Speciality, QI_Interest, Suffix, ClinicalArea, Self_Classification, ClinicalDepartment
 from django.contrib.auth.models import User
 from approver import utils
 class AboutYouForm():
@@ -31,10 +31,10 @@ class AboutYouForm():
                       'input_classes': 'about__field--box'}
 
         self.department = {'name': 'department',
-                           'placeholder': 'e.g. Pediatrics',
+                           'placeholder': 'Department',
                            'label': 'What is your primary department?',
-                           'type': 'text',
-                           'value': person.department or '',
+                           'selected': getattr(person.department_select,'name',''),
+                           'options': ClinicalDepartment.objects.values_list('name', flat=True).order_by('sort_order'),
                            'input_classes': 'about__field--box'}
 
         self.clinical_area = {'name': 'clinical_area',
@@ -105,8 +105,8 @@ class AboutYouForm():
         self.expertise_tags = {'name': 'expertise',
                                'placeholder': 'e.g. Nephrotic Syndrome',
                                'label': 'What is your area of expertise? Press "enter" to save.',
-                               'model': 'expertise',
-                               'filter_field': 'name',
+                               'model': 'descriptor',
+                               'filter_field': 'mesh_heading',
                                'selected': utils.get_related(person, 'expertise'),
                                'input_classes': 'about__field--box',
                                'div_classes': 'about__field--width100'}

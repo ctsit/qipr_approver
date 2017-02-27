@@ -50,8 +50,6 @@ class ClinicalArea(Provenance, Tag):
     pass
 class ClinicalSetting(Provenance, Tag):
     pass
-class Expertise(Provenance, Tag):
-    pass
 class Keyword(Provenance, Tag):
     pass
 class Position(Provenance, Tag):
@@ -70,6 +68,7 @@ class Suffix(Provenance, Tag):
 class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 class ClinicalDepartment(Provenance, Tag):
+    name = models.CharField(max_length=90, null=True)
     sort_order = models.IntegerField(null=True)
 
 class Person(Provenance, Registerable):
@@ -77,7 +76,7 @@ class Person(Provenance, Registerable):
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    expertise = models.ManyToManyField(Expertise)
+    expertise = models.ManyToManyField(Descriptor, related_name='persons')
     first_name = models.CharField(max_length=30)
     gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
@@ -92,6 +91,8 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
+    department_select = models.ForeignKey(ClinicalDepartment, null=True, on_delete=models.SET_NULL,
+                                          related_name="person")
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
