@@ -37,7 +37,7 @@
                         <div class="input-field dashboard_search">
                             <form method="post" action="{% url 'approver:dashboard_su' %}">
                                 {% csrf_token %}
-                                <input placeholder="Search your project title" class="dashboard_search-input" id="dash-search-text" type="search" name="search" value={{ search_query }} >
+                                <input placeholder="Search for title or gatorlink" class="dashboard_search-input" id="dash-search-text" type="search" name="search" value={{ search_query }} >
                                 
                                 <input class="dashboard__search--projects" id="dash-search-button" type="submit" value="&#128270;">
                             </form>
@@ -50,7 +50,7 @@
                 <thead>
                     <tr>
                         <th class="dashboard_row-title" data-field="title"><h5>Title</h5></th>
-                        
+                        <th class="dashboard_row-title" data-field="pqi"><h5>PQI</h5></th>
                         <th class="dashboard_row-title dashboard_row-title-project project__title--forms" data-field="Approval"><h5>QI Forms <a class="waves-effect waves-light dashboard__question modal-trigger" href="#modal1">?</a></h5>
 
                         <!-- Modal Structure -->
@@ -94,7 +94,9 @@
                                 {% endif %}
                             <!-- END ARCHIVE BUTTON -->
                             </td>
-
+                            <td>
+                                {{ project.owner }}
+                            </td>
                             <td class="dashboard_status project__title--forms"><a href="{% url 'approver:approve' project_id=project.pk %}">
                                 <ul>
                                     {% if project.is_approved %}
