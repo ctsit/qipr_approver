@@ -145,13 +145,17 @@ class Project(Provenance, Registerable):
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
     measures = models.TextField()
+    mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
     overall_goal = models.TextField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
-    title = models.CharField(max_length=300)
-    mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
+    reached_needs_advisor_page_count = models.IntegerField(null=True, default=0)
+    reached_needs_advisor_page_date = models.DateTimeField(null=True)
+    reached_irb_page_count = models.IntegerField(null=True, default=0)
+    reached_irb_page_date = models.DateTimeField(null=True)
     sent_email_list = models.ManyToManyField(Person, related_name="emailed_for_projects")
+    title = models.CharField(max_length=300)
 
     def __str__(self):
         title = self.title or 'NO TITLE'
@@ -176,6 +180,16 @@ class Project(Provenance, Registerable):
 
     def approve(self, user):
         self.approval_date = timezone.now()
+        self.save(user)
+
+    def reached_irb(self,user):
+        self.reached_irb_page_date = timezone.now()
+        self.reached_irb_page_count += 1
+        self.save(user)
+
+    def reached_needs_advisor(self,user):
+        self.reached_needs_advisor_page_date = timezone.now()
+        self.reached_needs_advisor_page_count += 1
         self.save(user)
 
     def get_natural_dict(self):
