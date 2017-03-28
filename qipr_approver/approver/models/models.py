@@ -182,12 +182,12 @@ class Project(Provenance, Registerable):
         self.approval_date = timezone.now()
         self.save(user)
 
-    def reached_irb(self,user):
+    def reached_irb(self, user):
         self.reached_irb_page_date = timezone.now()
         self.reached_irb_page_count += 1
         self.save(user)
 
-    def reached_needs_advisor(self,user):
+    def reached_needs_advisor(self, user):
         self.reached_needs_advisor_page_date = timezone.now()
         self.reached_needs_advisor_page_count += 1
         self.save(user)
