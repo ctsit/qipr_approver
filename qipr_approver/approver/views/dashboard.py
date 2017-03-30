@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
+from django.db.models import Q
 
 from approver.forms import AboutYouForm, ProjectForm
 from approver.models import Person
@@ -99,7 +100,7 @@ def get_project_context(request,search_query,super_user=False):
      will be returned. If not Super User only projects that are not archived will be shown'''
     user = request.user
     if super_user:
-        projects = [__get_project_details(project,"Super_User") for project in Project.objects.all().filter(title__icontains=search_query)]
+        projects = [__get_project_details(project,"Super_User") for project in Project.objects.all().select_related('owner').filter(Q(title__icontains=search_query) | Q(owner__gatorlink__icontains=search_query))]
         return projects
     projects = [__get_project_details(project,"QPI") for project in user.person.projects.all().filter(title__icontains=search_query).filter(archived=False)]
     collaborator_projects = [__get_project_details(project,"Collaborator") for project in Project.objects.filter(collaborator=user.person).filter(title__icontains=search_query).filter(archived=False)]
@@ -113,4 +114,6 @@ def __get_project_details(project, role):
             'role':role,
             'is_approved':project.is_approved,
             'last_modified':project.last_modified,
-            'is_archived':project.archived}
+            'is_archived':project.archived,
+            'owner':project.owner.gatorlink,
+           }

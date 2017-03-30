@@ -26,7 +26,7 @@ def __before_view(request):
     Does the logging with the information in the request
     """
     try:
-        gatorlink = request.user.person.gatorlink
+        gatorlink = request.user.username
     except:
         gatorlink = None
     url = request.get_full_path()

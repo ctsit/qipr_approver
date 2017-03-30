@@ -1,3 +1,18 @@
+## [1.3.0] - 2017-03-30s
+## Summary
+This release adds new ways to query data on when and how many times a customer reached the "Needs IRB" and "Needs
+advisor" page. It also enhances logging information to get more consistent results.
+
+## Fixed
+ * fix logging to pull in the username field from the User object in order to get a better unique ID(Matthew McConnell)
+
+## Added
+ * Add new fields to a project model which track when and how many times a customer sees the IRB page or the needs advisor page (Matthew McConnell)
+ * Add gatorlink column for PQI in admin dashboard (Matthew McConnell)
+
+## Changed
+ * Removed the email from "Needs Advisor" Page (DevMattM)
+
 ## [1.2.0] - 2017-02-27
 ## Summary
 This release removes the questionnaire saving answers and also adds a warning when a user attempts to

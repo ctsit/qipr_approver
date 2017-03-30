@@ -83,6 +83,12 @@ def approve_or_next_steps(project, user):
     if (is_correct_response and (project.get_need_advisor() is False)):
         project.approve(user)
     else:
+        if is_correct_response is False:
+            project.reached_irb(user)
+
+        if project.get_need_advisor():
+            project.reached_needs_advisor(user)
+
         for response in project.response.all():
             response.delete(user)
 
