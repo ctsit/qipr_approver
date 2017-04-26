@@ -115,5 +115,5 @@ def __get_project_details(project, role):
             'is_approved':project.is_approved,
             'last_modified':project.last_modified,
             'is_archived':project.archived,
-            'owner':project.owner.gatorlink,
+            'owner': getattr(project.owner,'gatorlink','None')
            }
