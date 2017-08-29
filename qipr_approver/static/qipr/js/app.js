@@ -314,6 +314,16 @@
         }); 
     }
 
+    window.userSearch = document.getElementById('userlist-search-text');
+
+    if (window.userSearch) {
+        window.userSearch.addEventListener('keypress', function (event) {
+            if (event.keyCode == 13) {
+                document.getElementById('userlist-search-button').click();
+            }
+        });
+    }
+
     // if the other option in self classification on the about you form is selected,
     // show a new text box for the customer to write in the other classification
     self_classification = document.getElementById('select-self_classification');
