@@ -26,7 +26,7 @@ def __before_view(request):
     Does the logging with the information in the request
     """
     try:
-        gatorlink = request.user.person.gatorlink
+        gatorlink = request.user.username
     except:
         gatorlink = None
     url = request.get_full_path()
@@ -94,5 +94,9 @@ def __is_logging(request):
     # dont log static file requests
     if 'static' in pieces:
         is_logging = False
+    # dont log api/tags calls
+    if 'api' in pieces and 'tags' in pieces:
+        is_logging = False
 
     return is_logging
+

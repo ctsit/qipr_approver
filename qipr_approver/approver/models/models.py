@@ -17,7 +17,7 @@ class DataList(Registerable):
     name = models.CharField(max_length=400)
     description = models.CharField(max_length=400, null=True)
     sort_order = models.IntegerField(null=True)
-    tag_property_name = 'name'
+    tagged_with = 'name'
 
     def __str__(self, delimiter=' '):
         return delimiter.join([self.name, self.description or ''])
@@ -50,8 +50,6 @@ class ClinicalArea(Provenance, Tag):
     pass
 class ClinicalSetting(Provenance, Tag):
     pass
-class Expertise(Provenance, Tag):
-    pass
 class Keyword(Provenance, Tag):
     pass
 class Position(Provenance, Tag):
@@ -70,6 +68,7 @@ class Suffix(Provenance, Tag):
 class FocusArea(Provenance, Tag):
     sort_order = models.IntegerField(null=True)
 class ClinicalDepartment(Provenance, Tag):
+    name = models.CharField(max_length=90, null=True)
     sort_order = models.IntegerField(null=True)
 
 class Person(Provenance, Registerable):
@@ -77,7 +76,7 @@ class Person(Provenance, Registerable):
     business_phone = models.CharField(max_length=50, null=True)
     contact_phone = models.CharField(max_length=50, null=True)
     email_address = models.CharField(max_length=100, null=True)
-    expertise = models.ManyToManyField(Expertise)
+    expertise = models.ManyToManyField(Descriptor, related_name='persons')
     first_name = models.CharField(max_length=30)
     gatorlink = models.CharField(max_length=50, null=True)
     last_login_time = models.DateTimeField(null=True)
@@ -92,12 +91,14 @@ class Person(Provenance, Registerable):
     webpage_url = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=50, null=True)
     department = models.CharField(max_length=50, null=True)
+    department_select = models.ForeignKey(ClinicalDepartment, null=True, on_delete=models.SET_NULL,
+                                          related_name="person")
     qi_required = models.SmallIntegerField(null=True)
     clinical_area = models.ManyToManyField(ClinicalArea)
     self_classification = models.ForeignKey(Self_Classification, null=True, on_delete=models.SET_NULL,
                                             related_name="person")
     other_self_classification = models.CharField(max_length=100, null=True)
-    tag_property_name = 'email_address'
+    tagged_with = 'email_address'
     is_admin = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
@@ -144,13 +145,17 @@ class Project(Provenance, Registerable):
     collaborator = models.ManyToManyField(Person, related_name="collaborations")
     description = models.TextField()
     measures = models.TextField()
+    mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
     overall_goal = models.TextField()
     owner = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name="projects")
     proposed_end_date = models.DateTimeField(null=True)
     proposed_start_date = models.DateTimeField(null=True)
-    title = models.CharField(max_length=300)
-    mesh_keyword = models.ManyToManyField(Descriptor, related_name='projects', null=True)
+    reached_needs_advisor_page_count = models.IntegerField(null=True, default=0)
+    reached_needs_advisor_page_date = models.DateTimeField(null=True)
+    reached_irb_page_count = models.IntegerField(null=True, default=0)
+    reached_irb_page_date = models.DateTimeField(null=True)
     sent_email_list = models.ManyToManyField(Person, related_name="emailed_for_projects")
+    title = models.CharField(max_length=300)
 
     def __str__(self):
         title = self.title or 'NO TITLE'
@@ -175,6 +180,16 @@ class Project(Provenance, Registerable):
 
     def approve(self, user):
         self.approval_date = timezone.now()
+        self.save(user)
+
+    def reached_irb(self, user):
+        self.reached_irb_page_date = timezone.now()
+        self.reached_irb_page_count += 1
+        self.save(user)
+
+    def reached_needs_advisor(self, user):
+        self.reached_needs_advisor_page_date = timezone.now()
+        self.reached_needs_advisor_page_count += 1
         self.save(user)
 
     def get_natural_dict(self):

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
       {% load staticfiles %}
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +12,19 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
   <body>
-     <div class="navbar-fixed">
+    <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper bg-blue">
           <a href="#" class="brand-logo">
-              <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}">
+              <img class="nav__logo" src="{% static 'qipr/img/qipr_outlines.png' %}" alt="QIPR Logo">
           </a>
           <ul class="right">
               <li class="nav_li"><a href="{% url 'approver:shib' %}">Login</a></li>
               <li class="nav_li"><a href="{% url 'approver:shib' %}">Register</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <main>
       <div class="bg__img">
           <div class="container">
@@ -34,11 +34,11 @@
                    <!-- <div class="video-container">
                       <iframe width="560" height="315" src="https://www.youtube.com/embed/2jzQEd-jCU4" frameborder="1" allowfullscreen></iframe>
                     </div> -->
-                    <img class="bigaims__img responsive-img" src="{% static 'qipr/img/big_aims_2016.png' %}">
+                    <img class="bigaims__img responsive-img" src="{% static 'qipr/img/big_aims_2016.png' %}" alt="UF Health Big Aims">
               </div>
               
               <!-- REMOVE THE BELOW LINE OF CODE CODE WHEN VIDEO IS REPLACED AND CHANGE VIDEO COLUMN TO S12 L6 -->
-              <div class="col s1 l1">&nbsp</div>
+              <div class="col s1 l1">&nbsp;</div>
 
 
               <div class="col s12 l5 bg__ltblue">
@@ -133,7 +133,7 @@
                           <div class="shape__circle--text white-text">?</div>
                       </div>
                       <h5 class="text__blue">What is QIPR?</h5>
-                      <p class="landing__FAQ--font landing__FAQ--padding">The Quality Improvement Performance Registry (QIPR) for UF Health quality improvement projects. </p>
+                      <p class="landing__FAQ--font landing__FAQ--padding">The Quality Improvement Project Registry (QIPR) for UF Health quality improvement projects. </p>
                   </div>
                   <div class="col s12 l6 font__opensans">
                       <div class="shape__circle">
@@ -182,7 +182,7 @@
     {% load footer %}
     {% footer %}
     <script type="text/javascript">
-        if (document.location.hostname.search("qipr.ctsi.ulf.edu") !== -1) {
+        if (document.location.hostname.search("qipr.ctsi.ufl.edu") !== -1) {
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                                     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -2,7 +2,7 @@ from django.db import models
 from approver.models.bridge_models import Registerable
 
 class TaggedWithName(models.Model):
-    tag_property_name = 'name'
+    tagged_with = 'name'
 
     class Meta:
         abstract = True
@@ -29,6 +29,8 @@ class Tag(TaggedWithName, TagPrint, Registerable):
     """
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100, null=True)
+    vivo_uri = models.CharField(max_length=100, null=True)
+    vivo_host = 'http://vivo.ufl.edu/individual/'
 
     def get_natural_dict(self):
         return {

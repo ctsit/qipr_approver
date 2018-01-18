@@ -15,15 +15,19 @@ def userlist(request):
         person_list = Person.objects.all()
         paginator = Paginator(person_list, users_per_page)
         page = request.GET.get('page')
-        try:
-            persons_page = paginator.page(page)
-        except PageNotAnInteger:
-            persons_page = paginator.page(1)
-        except EmptyPage:
-            persons_page = paginator.page(paginator.num_pages)
+        if page =='all':
+            persons_page = person_list
+        else:
+            try:
+                persons_page = paginator.page(page)
+            except PageNotAnInteger:
+                persons_page = paginator.page(1)
+            except EmptyPage:
+                persons_page = paginator.page(paginator.num_pages)
         context = {
                 'content': 'approver/userlist.html',
                 'persons_page': persons_page,
+                'show_all': page == 'all',
                 'toast_text': utils.get_and_reset_toast(request.session),
             }
         return utils.layout_render(request, context)

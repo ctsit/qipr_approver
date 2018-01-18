@@ -32,7 +32,7 @@ def approve(request, project_id=None):
             if(project is None):
                 return utils.dashboard_redirect_and_toast(request, 'Project with id {} does not exist.'.format(project_id))
             else:
-                if(project_crud.is_current_project_editable(current_user,project)):
+                if(project_crud.is_current_project_editable_by_user(current_user,project)):
                     question_form = QuestionForm(project_id=project_id)
                     context['sorted_questions'] = question_form.get_random_questions()
 
