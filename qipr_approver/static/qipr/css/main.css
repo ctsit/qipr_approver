@@ -90,8 +90,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .text__blue {
     color: #004d9a;
-    height: 4rem;
     padding-top: .5rem;
+    margin-top: 0;
 }
 
 .signin {
