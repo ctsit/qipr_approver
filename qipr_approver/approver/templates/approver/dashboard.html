@@ -24,7 +24,7 @@
                     <div class="input-field dashboard_search">
                         <form method="post" action="{% url 'approver:dashboard' %}">
                             {% csrf_token %}
-                            <input placeholder="Search your project title" class="dashboard_search-input" id="dash-search-text" type="search" name="search" value={{ search_query }} >
+                            <input placeholder="Search by Project Title" class="dashboard_search-input" id="dash-search-text" type="search" name="search" value={{ search_query }} >
 
                             <input class="dashboard__search--projects" type="submit" id="dash-search-button" value="&#128270;">
                         </form>

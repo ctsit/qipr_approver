@@ -123,57 +123,95 @@
 
        <!-- FAQs Section -->
         <section class="section sec-pad lighten-4">
-          <div class="container">
-              <div class="row home__section">
-                  <div class="col s12">
-                      <h2 class="header grey-text text-darken-3 center font__roboto">Frequently Asked Questions</h2>
-                  </div>
-                  <div class="col s12 l6 font__opensans">
+          <div class="container home__section">
+            <div class="row">
+                <div class="col s12">
+                    <h2 class="header grey-text text-darken-3 center font__roboto">Frequently Asked Questions</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 l6 font__opensans">
+                    <div class="row">
                       <div class="shape__circle">
                           <div class="shape__circle--text white-text">?</div>
                       </div>
                       <h5 class="text__blue">What is QIPR?</h5>
+                    </div>
+                    <div class="row">
                       <p class="landing__FAQ--font landing__FAQ--padding">The Quality Improvement Project Registry (QIPR) for UF Health quality improvement projects. </p>
                   </div>
-                  <div class="col s12 l6 font__opensans">
+               </div>
+               <div class="col s12 l6 font__opensans">
+                <div class="row">
                       <div class="shape__circle">
                           <div class="shape__circle--text white-text">?</div>
                       </div>
-                      <h5 class="text__blue">What do I need to get started?</h5>
-                      <ul class="landing__FAQ--font landing_FAQ--bullets">
-                        <li><a href="{{ registry_search_url }}">Search QIPR</a> to learn about existing quality improvement projects </li>
-                        <li>Make sure you have a mentor for your project if you are a resident/trainee/student</li>
-                        <li>Complete <a target="_blank" href="{% static 'qipr/img/process_improvement_team_charter.pdf' %}">QI project charter</a></li>
-                      </ul>
-                  </div>
-                  <div class="col s12 l6 font__opensans">
+                      <div class="valign-wrapper"><h5 class="text__blue">Are there differences between Quality Improvement and Research?</h5></div>
+                </div>
+                <div class="row">
+                      <p class="landing__FAQ--font">Yes, there are several important distinctions between quality improvement/quality assurance and research. To read more about these differences, visit the IRB’s webpage: <a href="http://irb.ufl.edu/irb01/researcher-information/qaqi-vs-research.html">QA/QI vs Research</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col s12 l6 font__opensans">
+                    <div class="row">
                       <div class="shape__circle">
                           <div class="shape__circle--text white-text">?</div>
                       </div>
                       <h5 class="text__blue">Why should I use QIPR?</h5>
+                    </div>
+                    <div class="row">
                       <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
                         <li>Share your QI projects, learn from others, and see current improvement projects to connect and collaborate</li>
                         <li>Apply credit to New Innovations (for Residents and Magnet  only)</li>
                         <li>Access to BMJ Quality website to manage projects and facilitate QI publications and presentations</li>
                         <li>Access to Quality Department experts and data resources</li>
                       </ul>
+                    </div>
                   </div>
                   <div class="col s12 l6 font__opensans">
-                      <div class="shape__circle">
-                          <div class="shape__circle--text white-text">?</div>
+                      <div class="row">
+                        <div class="shape__circle">
+                            <div class="shape__circle--text white-text">?</div>
+                        </div>
+                        <h5 class="text__blue">What do I need to get started?</h5>
                       </div>
-                      <h5 class="text__blue">Do I need IRB approval?</h5>
-                      <p class="landing__FAQ--font">Most QI projects do not require IRB approval if they meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>. If the project does not meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>, the IRB will need to review the project. QIPR will help to determine if the project meets <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>.</p>
+                      <div class="row">
+                        <ul class="landing__FAQ--font landing_FAQ--bullets">
+                            <li><a href="{{ registry_search_url }}">Search QIPR</a> to learn about existing quality improvement projects </li>
+                            <li>Make sure you have a mentor for your project if you are a resident/trainee/student</li>
+                            <li>Complete <a target="_blank" href="{% static 'qipr/img/process_improvement_team_charter.pdf' %}">QI project charter</a></li>
+                        </ul>
+                      </div>
                   </div>
-                  <div class="col s12 l6 font__opensans clear__both">
-                      <div class="shape__circle">
-                          <div class="shape__circle--text white-text">?</div>
+            </div>
+            <div class="row">
+                  <div class="col s12 l6 font__opensans">
+                      <div class="row">
+                        <div class="shape__circle">
+                            <div class="shape__circle--text white-text">?</div>
+                        </div>
+                        <h5 class="text__blue">Do I need IRB approval?</h5>
                       </div>
-                      <h5 class="text__blue">How can I get help? </h5>
-                      <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
-                        <li>Visit the <a href="https://ufhealth.org/quality-and-patient-safety/welcome" target="_blank">Quality Improvement Resources and Education</a> website</li>
-                        <li>Call us <a href="tel:352-265-0002">352-265-0002</a></li>
-                      </ul>
+                      <div class="row">
+                        <p class="landing__FAQ--font">Most QI projects do not require IRB approval if they meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>. If the project does not meet <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>, the IRB will need to review the project. QIPR will help to determine if the project meets <a href="{% static 'qipr/img/criteria_qi_projects.pdf' %}" target="_blank">QI criteria</a>.</p>
+                      </div>
+                  </div>
+                  <div class="col s12 l6 font__opensans">
+                      <div class="row">
+                          <div class="shape__circle">
+                              <div class="shape__circle--text white-text">?</div>
+                          </div>
+                          <h5 class="text__blue">How can I get help? </h5>
+                      </div>
+                      <div class="row">
+                          <ul class="landing__FAQ--font landing__FAQ--padding landing_FAQ--bullets">
+                              <li>Visit the <a href="https://ufhealth.org/quality-and-patient-safety/welcome" target="_blank">Quality Improvement Resources and Education</a> website</li>
+                              <li>Call us <a href="tel:352-265-0002">352-265-0002</a></li>
+                          </ul>
+                      </div>
+                  </div>
                   </div>
               </div>
           </div>
