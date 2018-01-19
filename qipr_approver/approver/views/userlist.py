@@ -6,13 +6,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import approver.utils as utils
 from approver.models import Person
 from approver.constants import users_per_page
+from django.db.models import Q
 
 @login_required
 @user_passes_test(lambda u: u.person.is_admin)
 def userlist(request):
-    if request.method == 'GET':
+    if request.method == 'GET' or request.POST.get('search') is not None:
         persons_page = []
-        person_list = Person.objects.all()
+        search_query = ""
+        if(request.POST.get('search') is not None):
+            search_query = request.POST.get('search')
+            person_list = Person.objects.filter(Q(gatorlink__icontains=search_query))
+        else:
+            person_list = Person.objects.all()
         paginator = Paginator(person_list, users_per_page)
         page = request.GET.get('page')
         if page =='all':
@@ -28,6 +34,7 @@ def userlist(request):
                 'content': 'approver/userlist.html',
                 'persons_page': persons_page,
                 'show_all': page == 'all',
+                'search_query': search_query,
                 'toast_text': utils.get_and_reset_toast(request.session),
             }
         return utils.layout_render(request, context)
