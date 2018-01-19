@@ -120,4 +120,4 @@ bad_user_agent_strings = [
 
 is_staging = True if os.environ['IS_STAGING'] == 'true' else False
 
-VERSION_NUMBER = '1.3.1'
+VERSION_NUMBER = '1.4.0'
