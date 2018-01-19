@@ -31,10 +31,10 @@
       </div>
            <div class="col s12">
               <div class="input-field dashboard_search">
-                  <form method="post" action="{% url 'approver:dashboard_su' %}">
+                  <form method="post" action="{% url 'approver:userlist' %}">
                       {% csrf_token %}
-                      <input placeholder="Search user" class="dashboard_search-input" id="search" type="search" name="search" value={{ search_query }} >
-                      <input class="dashboard__search--projects" type="submit" value="&#128270;">
+                      <input placeholder="Search by Gatorlink" class="dashboard_search-input" id="userlist-search-text" type="search" name="search" value={{ search_query }} >
+                      <input class="dashboard__search--projects" id="userlist-search-button" type="submit" value="&#128270;">
                   </form>
               </div>
           </div>
